@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<meta>
+  <info name="pcrpg" author="PC RPG team" type="gamemode"/>
+  <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />  
+</meta>

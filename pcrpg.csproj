@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>pcrpg</RootNamespace>
     <AssemblyName>pcrpg</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +31,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.481, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.513.481\lib\net452\GrandTheftMultiplayer.Server.exe</HintPath>
+    </Reference>
+    <Reference Include="GrandTheftMultiplayer.Shared, Version=0.1.489.410, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.513.481\lib\net452\GrandTheftMultiplayer.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,8 +63,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
+    <Compile Include="src\Database\Main.cs" />
+    <Compile Include="src\Database\Models\DefaultDbContext.cs" />
+    <Compile Include="src\Database\Models\Users.cs" />
+    <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="meta.xml" />
+    <Content Include="types-gt-mp\Declarations.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Javascript.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Javascript.ScriptContext.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Misc.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Sound.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Streamer.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Sync.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Util.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Shared.d.ts" />
+    <Content Include="types-gt-mp\GrandTheftMultiplayer.Shared.Math.d.ts" />
+    <Content Include="types-gt-mp\GTA.d.ts" />
+    <Content Include="types-gt-mp\GTA.Math.d.ts" />
+    <Content Include="types-gt-mp\GTA.Native.d.ts" />
+    <Content Include="types-gt-mp\GTA.NaturalMotion.d.ts" />
+    <Content Include="types-gt-mp\GTA.UI.d.ts" />
+    <Content Include="types-gt-mp\index.d.ts" />
+    <Content Include="types-gt-mp\Microsoft.ClearScript.d.ts" />
+    <Content Include="types-gt-mp\NativeUI.d.ts" />
+    <Content Include="types-gt-mp\NativeUI.UIMenu.d.ts" />
+    <Content Include="types-gt-mp\NativeUI.UIMenuItem.d.ts" />
+    <Content Include="types-gt-mp\NativeUI.UIResText.d.ts" />
+    <Content Include="types-gt-mp\System.Collections.d.ts" />
+    <Content Include="types-gt-mp\System.Collections.Generic.d.ts" />
+    <Content Include="types-gt-mp\System.d.ts" />
+    <Content Include="types-gt-mp\System.Drawing.d.ts" />
+    <Content Include="types-gt-mp\System.Windows.Forms.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

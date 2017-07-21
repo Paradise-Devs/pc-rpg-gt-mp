@@ -68,14 +68,25 @@
     <Compile Include="src\Database\Models\Users.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Player\Auth\Login.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="res\js\jquery.min.js" />
+    <Content Include="res\views\characterselector.html" />
+    <Content Include="res\views\login.html" />
+    <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
+    <TypeScriptCompile Include="src\Player\Character\CharacterSelector.ts" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="meta.xml" />
+    <Content Include="meta.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="src\Player\Utils\Camera.ts" />
     <Content Include="types-gt-mp\Declarations.d.ts" />
     <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
     <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Javascript.d.ts" />

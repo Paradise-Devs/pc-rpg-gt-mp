@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <meta>
   <info name="pcrpg" author="PC RPG team" type="gamemode"/>
-  <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />  
+  <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
+  
+  <!-- Authentication -->  
+  <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
+  
+  <!-- Character -->
+  <script src="src/Player/Character/CharacterSelector.js" type="client" lang="javascript"/>
+  
+  <!-- Player Utils -->
+  <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
+
+  <!-- Resources -->  
+  <file src="res/views/login.html" />
+  <file src="res/views/characterselector.html" />
+  
+  <file src="res/js/jquery.min.js" />
 </meta>

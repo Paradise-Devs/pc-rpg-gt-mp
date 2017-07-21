@@ -1,0 +1,127 @@
+﻿<div class="container">
+    <h1>Login</h1>
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" id="l-username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" id="l-password" required>
+
+    <button type="submit" id="l-submit">Login</button>
+</div>
+<div class="container">
+    <h1>Registro</h1>
+
+    <label><b>SocialClub</b></label>
+    <input type="text" id="socialClub" readonly>
+
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" id="r-username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" id="r-password" required>
+
+    <label><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" id="r-email" required>
+
+    <button type="submit" id="r-submit">Registrar</button>
+</div>
+
+<div id="error"></div>
+
+<script src='../js/jquery.min.js'></script>
+<script>    
+    var errorTimer = null;
+    var isSubmitting = false;
+
+    function LoginAttempt(username, password)
+    {
+        if (isSubmitting)
+            ShowError("Aguarde...");
+        else if (username.length == 0)
+            ShowError("Insira um nome de usuário.");
+        else if (password.length == 0)
+            ShowError("Insira uma senha.");
+        else
+        {
+            isSubmitting = true;
+            resourceCall("Login", username, password);
+        }
+    }
+
+    function RegisterAttempt(username, password, email)
+    {
+        if (isSubmitting)
+            ShowError("Aguarde...");
+
+        else if (username.length == 0)
+            ShowError("Insira um nome de usuário.");
+        else if (username.length < 3)
+            ShowError("Usuário muito curto.");
+        else if (username.length > 25)
+            ShowError("Usuário muito longo.");
+
+        else if (password.length == 0)
+            ShowError("Insira uma senha.");
+        else if (password.length < 4)
+            ShowError("Senha muito curta.");
+        else if (password.length > 32)
+            ShowError("Senha muito longa.");
+
+        else if (email.length == 0)
+            ShowError("Insira um e-mail.");
+        else if (!IsEmailValid(email))
+            ShowError("E-mail inválido.");        
+
+        else
+        {
+            isSubmitting = true;
+            resourceCall("Register", username, password, email);
+        }
+    }
+
+    function ShowError(message)
+    {
+        isSubmitting = false;
+
+        $("#error").html(message);
+        $('#error').show();
+
+        clearTimeout(errorTimer);
+        errorTimer = setTimeout(function () { $('#error').hide(); }, 7500);
+    }
+
+    function IsEmailValid(email)
+    {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    $('#l-submit').click(function()
+    {
+        LoginAttempt($("#l-username").val(), $("#l-password").val());
+    });
+
+    $('#r-submit').click(function ()
+    {
+        RegisterAttempt($("#r-username").val(), $("#r-password").val(), $("#r-email").val());
+    });
+
+    $('#l-username').keydown(function (event)
+    {
+        var keypressed = event.keyCode || event.which;
+        if (keypressed == 13)        
+            LoginAttempt($("#l-username").val(), $("#l-password").val());
+    });
+
+    $('#l-password').keydown(function (event)
+    {
+        var keypressed = event.keyCode || event.which;
+        if (keypressed == 13)
+            LoginAttempt($("#l-username").val(), $("#l-password").val());
+    });
+
+    $(document).ready(function ()
+    {
+        $("#error").hide();
+    });
+</script>

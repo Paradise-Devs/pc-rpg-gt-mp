@@ -1,127 +1,198 @@
-﻿<div class="container">
-    <h1>Login</h1>
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" id="l-username" required>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/font-awesome.min.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+        <link rel='stylesheet' href='../css/animation.css'>
+    </head>
+    <body id="main">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <launchpage>
+                    <logo>Seja bem vindo a Los Santos!</logo>
+                    <underlogo>Conheça a cidade paraíso e explore um universo de possibilidades!</underlogo>
+                </launchpage>
+                <block class="signin">
+                    <header>
+                        Olá, <username></username>!
+                        <br />
+                        Seja bem vindo de volta! <br />
+                        Já estamos a <b>23 dias</b> sem te ver por Los Santos. Sentimos sua falta!
+                    </header>
+                    <content>
+                        <form>
+                            <field>
+                                <label>Social Club</label>
+                                <input type="text" id="socialClub" placeholder="Los799" readonly>
+                            </field>
+                            <field>
+                                <label>Usuário</label>
+                                <input type="text" id="l-username" placeholder="Usuário" max="24" maxlength="24" required>
+                                <help>Você pode ativar o login automático quando estiver dentro do jogo.</help>
+                            </field>
+                            <field>
+                                <label>Senha</label>
+                                <input type="password" id="l-password" placeholder="Senha" max="32" maxlength="32" required>
+                                <help><a href="#">esqueceu a senha?</a></help>
+                            </field>
+                        </form>
+                    </content>
+                    <footer class="right">
+                        <error></error>
+                        <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
+                        <button type="submit" id="l-submit">Logar</button>
+                    </footer>
+                </block>
+                <block class="signup">
+                    <header>
+                        Olá, <username></username>!
+                        <br />
+                        Notamos que você é novo por aqui, precisamos de algumas informações para que você possa começar sua jornada por Los Santos. Você só vai passar por isto uma única vez.
+                    </header>
+                    <content>
+                        <form>
+                            <field>
+                                <label>Social Club</label>
+                                <input type="text" id="socialClub" placeholder="Los799" readonly>
+                                <help>Seu ID do social club é único e não poderá ser alterado.</help>
+                            </field>
+                            <field>
+                                <label>Usuário</label>
+                                <input type="text" id="r-username" placeholder="Usuário" max="24" maxlength="24" required>
+                                <help>Você utilizará esse login para acessar o painel de controle.</help>
+                            </field>
+                            <field>
+                                <label>Email</label>
+                                <input type="email" id="r-email" placeholder="Email" required>
+                                <help>Este email você utilizara para recuperar sua senha, ou receber novidades.</help>
+                            </field>
+                            <field>
+                                <label>Senha</label>
+                                <input type="password" id="r-password" placeholder="Senha" max="32" maxlength="32" required>
+                                <help>Utilize no mínimo <b>6</b> caracteres.</help>
+                            </field>
+                            <field>
+                                <label>Confirmar senha</label>
+                                <input type="password" id="r-confirmpass" placeholder="Confirmar senha" max="32" maxlength="32" required>
+                                <help>Ambas as senhas devem coincidir.</help>
+                            </field>
+                        </form>
+                    </content>
+                    <footer class="right">
+                        <error></error>
+                        <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
+                        <button type="submit" id="r-submit">continuar</button>
+                    </footer>
+                </block>
+            </div>
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/tether.min.js"></script>
+        <script src="../js/pcfw.js"></script>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="l-password" required>
+        <script>
+            var errorTimer = null;
+            var isSubmitting = false;
 
-    <button type="submit" id="l-submit">Login</button>
-</div>
-<div class="container">
-    <h1>Registro</h1>
+            $('input').keyup(function() {
+                if($(this).hasClass('error')) {
+                    $("error").hide();
+                    $(this).removeClass('error');
+                }
+            })
 
-    <label><b>SocialClub</b></label>
-    <input type="text" id="socialClub" readonly>
+            /*
+                se tiver conta
+                    #("block.signin").show();
+                se não
+                    #("block.signup").show();
+            */
 
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" id="r-username" required>
+            function LoginAttempt(username, password)
+            {
+                if (isSubmitting)
+                    $('loading').show();
+                else if (username.length == 0)
+                    ShowError("Nome de usuário não pode ficar em branco.", "#l-username");
+                else if (password.length == 0)
+                    ShowError("Insira uma senha.", "#l-password");
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="r-password" required>
+                else
+                {
+                    isSubmitting = true;
+                    resourceCall("Login", username, password);
+                }
+            }
 
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" id="r-email" required>
+            function RegisterAttempt(username, password, email)
+            {
+                if (isSubmitting)
+                    $('loading').show();
+                else if (username.length == 0)
+                    ShowError("Nome de usuário não pode ficar em branco.", "#r-username");
+                else if (username.length < 3)
+                    ShowError("Nome de usuário precisa ter no mínimo <b>3</b> caracteres.", "#r-username");
 
-    <button type="submit" id="r-submit">Registrar</button>
-</div>
+                else if (email.length == 0)
+                    ShowError("Ter um email é obrigatório.", "#r-email");
+                else if (!IsEmailValid(email))
+                    ShowError("E-mail inválido.", "#r-email");
 
-<div id="error"></div>
 
-<script src='../js/jquery.min.js'></script>
-<script>    
-    var errorTimer = null;
-    var isSubmitting = false;
+                else if (password.length == 0)
+                    ShowError("Ter uma senha é obrigatório.", "#r-password");
+                else if (password.length < 6)
+                    ShowError("Sua senha precisa ter no mínimo <b>6</b> caracteres.", "#r-password");
+                else if ($('#r-password') != $('#r-confirmpass'))
+                    ShowError("Senhas não são iguais.", "input:password");
 
-    function LoginAttempt(username, password)
-    {
-        if (isSubmitting)
-            ShowError("Aguarde...");
-        else if (username.length == 0)
-            ShowError("Insira um nome de usuário.");
-        else if (password.length == 0)
-            ShowError("Insira uma senha.");
-        else
-        {
-            isSubmitting = true;
-            resourceCall("Login", username, password);
-        }
-    }
+                else
+                {
+                    isSubmitting = true;
+                    resourceCall("Register", username, password, email);
+                }
+            }
 
-    function RegisterAttempt(username, password, email)
-    {
-        if (isSubmitting)
-            ShowError("Aguarde...");
+            function ShowError(message, input)
+            {
+                isSubmitting = false;
 
-        else if (username.length == 0)
-            ShowError("Insira um nome de usuário.");
-        else if (username.length < 3)
-            ShowError("Usuário muito curto.");
-        else if (username.length > 25)
-            ShowError("Usuário muito longo.");
+                $("error").html(message);
+                $("error").show();
+                $(input).addClass('error');
+            }
 
-        else if (password.length == 0)
-            ShowError("Insira uma senha.");
-        else if (password.length < 4)
-            ShowError("Senha muito curta.");
-        else if (password.length > 32)
-            ShowError("Senha muito longa.");
+            function IsEmailValid(email)
+            {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
 
-        else if (email.length == 0)
-            ShowError("Insira um e-mail.");
-        else if (!IsEmailValid(email))
-            ShowError("E-mail inválido.");        
+            $('#l-submit').click(function()
+            {
+                LoginAttempt($("#l-username").val(), $("#l-password").val());
+            });
 
-        else
-        {
-            isSubmitting = true;
-            resourceCall("Register", username, password, email);
-        }
-    }
+            $('#r-submit').click(function ()
+            {
+                RegisterAttempt($("#r-username").val(), $("#r-password").val(), $("#r-email").val());
+            });
 
-    function ShowError(message)
-    {
-        isSubmitting = false;
+            $('#l-username').keydown(function (event)
+            {
+                var keypressed = event.keyCode || event.which;
+                if (keypressed == 13)
+                    LoginAttempt($("#l-username").val(), $("#l-password").val());
+            });
 
-        $("#error").html(message);
-        $('#error').show();
-
-        clearTimeout(errorTimer);
-        errorTimer = setTimeout(function () { $('#error').hide(); }, 7500);
-    }
-
-    function IsEmailValid(email)
-    {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
-    $('#l-submit').click(function()
-    {
-        LoginAttempt($("#l-username").val(), $("#l-password").val());
-    });
-
-    $('#r-submit').click(function ()
-    {
-        RegisterAttempt($("#r-username").val(), $("#r-password").val(), $("#r-email").val());
-    });
-
-    $('#l-username').keydown(function (event)
-    {
-        var keypressed = event.keyCode || event.which;
-        if (keypressed == 13)        
-            LoginAttempt($("#l-username").val(), $("#l-password").val());
-    });
-
-    $('#l-password').keydown(function (event)
-    {
-        var keypressed = event.keyCode || event.which;
-        if (keypressed == 13)
-            LoginAttempt($("#l-username").val(), $("#l-password").val());
-    });
-
-    $(document).ready(function ()
-    {
-        $("#error").hide();
-    });
-</script>
+            $('#l-password').keydown(function (event)
+            {
+                var keypressed = event.keyCode || event.which;
+                if (keypressed == 13)
+                    LoginAttempt($("#l-username").val(), $("#l-password").val());
+            });
+        </script>
+    </body>
+</html>

@@ -4,13 +4,24 @@
 body {
     background-color: transparent !important;
     height: 100%;
+    color: #aaa;
+    font-family: "Segoe UI";
+    font-weight: 100;
+    font-size: 15px;
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-.btn-primar { box-shadow: 0px 0px 0px #000 !important; }
+hr {
+    margin: 10px 0px 10px 0px;
+}
+
+b {
+    font-weight: 400;
+    color: #fff;
+}
 
 /******************************************************************************/
 /*   Fonts                                                                   */
@@ -25,6 +36,11 @@ body {
     src: url('../fonts/logo.ttf') format("truetype");
 }
 
+@font-face {
+    font-family: "Five";
+    src: url('../fonts/five.ttf') format("truetype");
+}
+
 /******************************************************************************/
 /*   Testing environment                                                      */
 /******************************************************************************/
@@ -32,4 +48,245 @@ body {
     background-image: url('../img/bg.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+/******************************************************************************/
+/*   Blocks                                                                   */
+/******************************************************************************/
+block {
+    display: block;
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+block header {
+    padding: 10px;
+}
+
+block content {
+    display: block;
+    padding: 10px;
+    margin: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+block footer {
+    padding: 5px 10px 10px 10px;
+}
+
+block footer.right {
+    text-align: right;
+    float: right;
+}
+
+block footer button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
+    padding: 8px 15px 8px 15px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+block footer button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+block footer error {
+    display: none;
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    color: #D22F2F;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+block footer error b {
+    color: #FF2F2F;
+    font-weight: 700;
+}
+
+block footer loading {
+    display: none;
+    position: absolute;
+    left: 45%;
+    bottom: 6px;
+    color: #fff;
+    font-size: 30px;
+}
+
+block username {
+    color: #03A8F3;
+}
+
+/******************************************************************************/
+/*   Launchpage                                                               */
+/******************************************************************************/
+launchpage {
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 40%;
+    left: 34%;
+    position: fixed;
+    animation: movetoleft 1s ease-in-out 4s 1 alternate;
+    animation-fill-mode: forwards;
+}
+
+launchpage logo {
+    display: block;
+    font-family: "Five";
+    font-size: 400%;
+    text-shadow: 0px 0px 20px #000;
+    color: #fff;
+    text-align: left;
+    white-space: nowrap;
+    animation: opacity 2s ease-in-out;
+}
+
+launchpage underlogo {
+    display: block;
+    overflow: hidden;
+    width: 0;
+    font-family: "Segoe UI";
+    text-align: left;
+    color: #444;
+    font-size: 12px;
+    padding: 0px;
+    font-weight: 500;
+    top: 63px;
+    left: 53px;
+    position: absolute;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+    typing 1.5s steps(40, end);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+
+@keyframes opacity {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes movetoleft {
+    from { left : 34% }
+    to { left: 10%; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100% }
+}
+
+/******************************************************************************/
+/*   Signin                                                                   */
+/******************************************************************************/
+signin, signup {
+    display: block;
+}
+
+block.signin {
+    display: none;
+    opacity: 0;
+    width: 35%;
+    top: 25%;
+    left: 58%;
+    position: fixed;
+    animation: opacity 1s ease-in-out 5s 1 alternate;
+    animation-fill-mode: forwards;
+}
+
+/******************************************************************************/
+/*   Signup                                                                   */
+/******************************************************************************/
+block.signup {
+    display: none;
+    opacity: 0;
+    width: 35%;
+    top: 13%;
+    left: 58%;
+    position: fixed;
+    animation: opacity 1s ease-in-out 5s 1 alternate;
+    animation-fill-mode: forwards;
+}
+
+/******************************************************************************/
+/*   Forms                                                                    */
+/******************************************************************************/
+form {
+    margin: 0px;
+}
+
+label {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    color: #888;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #fff;
+    background-color: rgba(69, 69, 69, 0.8);
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+}
+
+input:read-only {
+    background-color: #222;
+}
+
+input:focus + help {
+    display: block;
+}
+
+input.error {
+    border: 1px solid rgba(210, 47, 47, 0.9);
+    color: #D22F2F;
+    background-color: rgba(210, 47, 47, 0.2);
+}
+
+form help {
+    display: none;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+}
+
+form help a {
+    color: #fff;
+}
+
+form help a:hover {
+    color: #999;
+    text-decoration: none;
+}
+
+form field {
+    display: block;
+    margin-top: 3px;
+    height: 75px;
+}
+
+form field:first-child {
+    margin-top: 0px;
 }

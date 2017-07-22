@@ -16,10 +16,10 @@
                 </launchpage>
                 <block class="signin">
                     <header>
-                        Olá, <username class="name"></username>!
+                        Olá, <username></username>!
                         <br />
                         Seja bem vindo de volta! <br />
-                        Já estamos a <b>23 dias</b> sem te ver por Los Santos. Sentimos sua falta!
+                        Já estamos a <lastlogin></lastlogin> sem te ver por Los Santos. Sentimos sua falta!
                     </header>
                     <content>
                         <form>
@@ -47,7 +47,7 @@
                 </block>
                 <block class="signup">
                     <header>
-                        Olá, <username class="name"></username>!
+                        Olá, <username></username>!
                         <br />
                         Seja bem-vindo, preencha algumas informações antes de começar sua jornada por Los Santos.
                         <br />
@@ -57,7 +57,7 @@
                         <form>
                             <field>
                                 <label>Social Club</label>
-                                <input type="text" class="socialClub" placeholder="" readonly>
+                                <input type="text" class="socialClub" readonly>
                                 <help>Seu ID do social club é único e não poderá ser alterado.</help>
                             </field>
                             <field>
@@ -103,11 +103,11 @@
                     $("error").hide();
                     $(this).removeClass('error');
                 }
-            })            
+            })
 
             $(document).ready(function ()
             {
-                $("block.signin").hide();
+                $("block.signup").hide();
                 resourceCall("browserReady");
             });
 
@@ -176,7 +176,7 @@
             function update(data)
             {
                 var player = JSON.parse(data);
-                $(".name").text(player.name);
+                $("username").html(player.name);
                 $(".socialClub").attr("placeholder", player.socialClub);
             }
 

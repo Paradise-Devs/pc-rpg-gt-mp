@@ -5,6 +5,8 @@ using pcrpg.Database.Models;
 using System.Security.Cryptography;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
 
 namespace pcrpg.src.Player.Auth
 {
@@ -29,7 +31,12 @@ namespace pcrpg.src.Player.Auth
             }
             else
             {
-                API.triggerClientEvent(player, "ShowLoginForm");
+                Dictionary<string, string> playerData = new Dictionary<string, string>()
+                {
+                    { "name", player.name},
+                    { "socialClub", player.socialClubName}
+                };
+                API.triggerClientEvent(player, "ShowLoginForm", new JavaScriptSerializer().Serialize(playerData));
             }
         }
 

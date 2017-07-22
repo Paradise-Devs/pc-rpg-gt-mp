@@ -1,5 +1,6 @@
 ﻿/// <reference path='../../../types-gt-mp/index.d.ts' />
 
+var player = null;
 var browser = null;
 
 API.onResourceStart.connect(() =>
@@ -8,12 +9,14 @@ API.onResourceStart.connect(() =>
     var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());
     API.pointCameraAtPosition(newCam, new Vector3(-80.07943, -840.8312, 310.4772));
     API.setActiveCamera(newCam);
+    API.setHudVisible(false);
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>
 {
     if (name == "ShowLoginForm")
     {
+        player = args[0];
         if (browser == null)
         {
             var res = API.getScreenResolution();
@@ -36,7 +39,7 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
             browser = null;
         }
 
-        // Move camera position
+        // Move camera position        
         var _camPos = new Vector3(113.7806, -646.5242, 355.2048);
         var _camLookAtPos = new Vector3(-35.43801, -1122.411, 270.5569);
         var _cam = API.createCamera(_camPos, new Vector3());
@@ -71,4 +74,9 @@ function Login(username: string, password: string)
 function Register(username: string, password: string, email: string)
 {
     API.triggerServerEvent("RegisterAttempt", username, password, email);
+}
+
+function browserReady()
+{
+    browser.call("update", player);
 }

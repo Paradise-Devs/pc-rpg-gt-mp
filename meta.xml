@@ -19,11 +19,12 @@
   <!-- JS -->
   <file src="res/js/jquery.min.js" />
   <file src="res/js/tether.min.js" />
+  <file src="res/js/pcfw.js" />
 
-  <!-- Framework -->
+  <!-- CSS -->
   <file src="res/css/gui.css" />
   <file src="res/css/pcfw.css" />
-  <file src="res/js/pcfw.js" />
+  <file src="res/css/animation.css" />
 
   <!-- Fonts -->
   <file src="res/css/font-awesome.min.css" />
@@ -31,6 +32,6 @@
   <file src="res/fonts/fontawesome-webfont.svg" />
   <file src="res/fonts/fontawesome-webfont.woff2" />
   <file src="res/fonts/Roboto.ttf" />
-  <file src="res/fonts/main.ttf" />
+  <file src="res/fonts/five.ttf" />
   <file src="res/fonts/logo.ttf" />
 </meta>

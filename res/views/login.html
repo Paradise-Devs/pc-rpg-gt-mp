@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,7 +16,7 @@
                 </launchpage>
                 <block class="signin">
                     <header>
-                        Olá, <username></username>!
+                        Olá, <username class="name"></username>!
                         <br />
                         Seja bem vindo de volta! <br />
                         Já estamos a <b>23 dias</b> sem te ver por Los Santos. Sentimos sua falta!
@@ -25,7 +25,7 @@
                         <form>
                             <field>
                                 <label>Social Club</label>
-                                <input type="text" id="socialClub" placeholder="Los799" readonly>
+                                <input type="text" class="socialClub" placeholder="" readonly>
                             </field>
                             <field>
                                 <label>Usuário</label>
@@ -47,15 +47,17 @@
                 </block>
                 <block class="signup">
                     <header>
-                        Olá, <username></username>!
+                        Olá, <username class="name"></username>!
                         <br />
-                        Notamos que você é novo por aqui, precisamos de algumas informações para que você possa começar sua jornada por Los Santos. Você só vai passar por isto uma única vez.
+                        Seja bem-vindo, preencha algumas informações antes de começar sua jornada por Los Santos.
+                        <br />
+                        Você só precisará acessar sua conta uma única vez.
                     </header>
                     <content>
                         <form>
                             <field>
                                 <label>Social Club</label>
-                                <input type="text" id="socialClub" placeholder="Los799" readonly>
+                                <input type="text" class="socialClub" placeholder="" readonly>
                                 <help>Seu ID do social club é único e não poderá ser alterado.</help>
                             </field>
                             <field>
@@ -83,7 +85,7 @@
                     <footer class="right">
                         <error></error>
                         <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
-                        <button type="submit" id="r-submit">continuar</button>
+                        <button type="submit" id="r-submit">registrar</button>
                     </footer>
                 </block>
             </div>
@@ -101,14 +103,14 @@
                     $("error").hide();
                     $(this).removeClass('error');
                 }
-            })
+            })            
 
-            /*
-                se tiver conta
-                    #("block.signin").show();
-                se não
-                    #("block.signup").show();
-            */
+            $(document).ready(function ()
+            {
+                $("block.signin").hide();
+                resourceCall("browserReady");
+            });
+
 
             function LoginAttempt(username, password)
             {
@@ -145,7 +147,7 @@
                     ShowError("Ter uma senha é obrigatório.", "#r-password");
                 else if (password.length < 6)
                     ShowError("Sua senha precisa ter no mínimo <b>6</b> caracteres.", "#r-password");
-                else if ($('#r-password') != $('#r-confirmpass'))
+                else if (password != $('#r-confirmpass').val())
                     ShowError("Senhas não são iguais.", "input:password");
 
                 else
@@ -157,6 +159,7 @@
 
             function ShowError(message, input)
             {
+                $('loading').hide();
                 isSubmitting = false;
 
                 $("error").html(message);
@@ -168,6 +171,13 @@
             {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
+            }
+
+            function update(data)
+            {
+                var player = JSON.parse(data);
+                $(".name").text(player.name);
+                $(".socialClub").attr("placeholder", player.socialClub);
             }
 
             $('#l-submit').click(function()

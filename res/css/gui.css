@@ -1,0 +1,35 @@
+/******************************************************************************/
+/*   General                                                                 */
+/****************************************************************************/
+body {
+    background-color: transparent !important;
+    height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.btn-primar { box-shadow: 0px 0px 0px #000 !important; }
+
+/******************************************************************************/
+/*   Fonts                                                                   */
+/******************************************************************************/
+@font-face {
+    font-family: "Roboto";
+    src: url('../fonts/Roboto.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Logo";
+    src: url('../fonts/logo.ttf') format("truetype");
+}
+
+/******************************************************************************/
+/*   Testing environment                                                      */
+/******************************************************************************/
+.test-enabled {
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

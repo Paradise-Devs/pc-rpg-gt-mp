@@ -2,19 +2,35 @@
 <meta>
   <info name="pcrpg" author="PC RPG team" type="gamemode"/>
   <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
-  
-  <!-- Authentication -->  
+
+  <!-- Authentication -->
   <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
-  
+
   <!-- Character -->
   <script src="src/Player/Character/CharacterSelector.js" type="client" lang="javascript"/>
-  
+
   <!-- Player Utils -->
   <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
 
-  <!-- Resources -->  
+  <!-- Resources -->
   <file src="res/views/login.html" />
   <file src="res/views/characterselector.html" />
-  
+
+  <!-- JS -->
   <file src="res/js/jquery.min.js" />
+  <file src="res/js/tether.min.js" />
+
+  <!-- Framework -->
+  <file src="res/css/gui.css" />
+  <file src="res/css/pcfw.css" />
+  <file src="res/js/pcfw.js" />
+
+  <!-- Fonts -->
+  <file src="res/css/font-awesome.min.css" />
+  <file src="res/fonts/FontAwesome.otf" />
+  <file src="res/fonts/fontawesome-webfont.svg" />
+  <file src="res/fonts/fontawesome-webfont.woff2" />
+  <file src="res/fonts/Roboto.ttf" />
+  <file src="res/fonts/main.ttf" />
+  <file src="res/fonts/logo.ttf" />
 </meta>

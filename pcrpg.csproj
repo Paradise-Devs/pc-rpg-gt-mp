@@ -71,7 +71,15 @@
     <Compile Include="src\Player\Auth\Login.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\css\animation.css" />
+    <Content Include="res\css\font-awesome.min.css" />
+    <Content Include="res\css\gui.css" />
+    <Content Include="res\css\pcfw.css" />
+    <Content Include="res\fonts\fontawesome-webfont.svg" />
+    <Content Include="res\img\bg.jpg" />
     <Content Include="res\js\jquery.min.js" />
+    <Content Include="res\js\pcfw.js" />
+    <Content Include="res\js\tether.min.js" />
     <Content Include="res\views\characterselector.html" />
     <Content Include="res\views\login.html" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
@@ -81,6 +89,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="res\fonts\fontawesome-webfont.woff2" />
+    <None Include="res\fonts\FontAwesome.otf" />
+    <None Include="res\fonts\logo.ttf" />
+    <None Include="res\fonts\main.ttf" />
+    <None Include="res\fonts\Roboto.ttf" />
     <None Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>

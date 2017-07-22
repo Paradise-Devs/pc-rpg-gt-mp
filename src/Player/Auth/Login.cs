@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using pcrpg.Database.Models;
+using System.Security.Cryptography;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 
@@ -35,7 +38,7 @@ namespace pcrpg.src.Player.Auth
             if (eventName == "LoginAttempt")
             {
                 string username = (string)arguments[0];
-                string password = (string)arguments[1];
+                string password = Encrypt((string)arguments[1]);
 
                 var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.Username == username && up.Password == password);
                 if (user != null)
@@ -52,7 +55,7 @@ namespace pcrpg.src.Player.Auth
             else if (eventName == "RegisterAttempt")
             {
                 string username = (string)arguments[0];
-                string password = (string)arguments[1];
+                string password = Encrypt((string)arguments[1]);
                 string emailadd = (string)arguments[2];
 
                 var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.Username == username);
@@ -71,6 +74,14 @@ namespace pcrpg.src.Player.Auth
                     API.triggerClientEvent(sender, "LoginError", "Este usuário já está em uso.");
                 }
             }
-        }        
+        }
+
+        public static String Encrypt(String value)
+        {
+            using (SHA256 hash = SHA256Managed.Create())
+            {
+                return String.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(value)).Select(item => item.ToString("x2")));
+            }
+        }
     }
 }

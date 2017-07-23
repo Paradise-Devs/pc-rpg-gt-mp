@@ -18,7 +18,7 @@ API.onResourceStop.connect(() =>
         API.destroyCefBrowser(browser);
         browser = null;
     }
-})
+});
 
 function ShowCharacterSelector()
 {
@@ -37,7 +37,7 @@ function ShowCharacterSelector()
     API.setCefBrowserHeadless(browser, false);
 }
 
-function browserReady()
+function CharacterSelectorBrowserReady()
 {
     API.triggerServerEvent("RetrieveCharactersList");
 }

@@ -60,6 +60,6 @@ function Login(username, password) {
 function Register(username, password, email) {
     API.triggerServerEvent("RegisterAttempt", username, password, email);
 }
-function browserReady() {
+function LoginBrowserReady() {
     browser.call("update", player);
 }

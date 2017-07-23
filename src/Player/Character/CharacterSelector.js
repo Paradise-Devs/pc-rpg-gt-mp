@@ -27,6 +27,6 @@ function ShowCharacterSelector() {
     API.setCanOpenChat(false);
     API.setCefBrowserHeadless(browser, false);
 }
-function browserReady() {
+function CharacterSelectorBrowserReady() {
     API.triggerServerEvent("RetrieveCharactersList");
 }

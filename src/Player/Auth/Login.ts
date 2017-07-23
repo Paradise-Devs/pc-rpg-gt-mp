@@ -72,7 +72,7 @@ API.onResourceStop.connect(() =>
         API.destroyCefBrowser(browser);
         browser = null;
     }
-})
+});
 
 function Login(username: string, password: string)
 {
@@ -84,7 +84,7 @@ function Register(username: string, password: string, email: string)
     API.triggerServerEvent("RegisterAttempt", username, password, email);
 }
 
-function browserReady()
+function LoginBrowserReady()
 {
     browser.call("update", player);
 }

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.Entity;
 using MySql.Data.MySqlClient;
+using pcrpg.src.Database.Models;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -16,6 +17,7 @@ namespace pcrpg.Database.Models
         }
 
         public DbSet<Users> Users { get; set; }
+        public DbSet<Characters> Characters { get; set; }
     }
 
     public class ContextFactory : IDbContextFactory<DefaultDbContext>

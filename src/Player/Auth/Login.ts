@@ -10,6 +10,7 @@ API.onResourceStart.connect(() =>
     API.pointCameraAtPosition(newCam, new Vector3(-80.07943, -840.8312, 310.4772));
     API.setActiveCamera(newCam);
     API.setHudVisible(false);
+    API.setChatVisible(false);
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>

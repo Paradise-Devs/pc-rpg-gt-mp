@@ -11,9 +11,10 @@ function ShowCharacterSelector() {
     if (browser == null) {
         var res = API.getScreenResolution();
         browser = API.createCefBrowser(res.Width, res.Height);
+        API.setCefBrowserHeadless(browser, true);
         API.setCefBrowserPosition(browser, 0, 0);
         API.waitUntilCefBrowserInit(browser);
-        API.loadPageCefBrowser(browser, "res/views/characterselector.html");
+        API.loadPageCefBrowser(browser, "res/views/character_selector.html");
         API.waitUntilCefBrowserLoaded(browser);
     }
     API.showCursor(true);

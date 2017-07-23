@@ -13,10 +13,10 @@
   <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
 
   <!-- Resources -->
-  <file src="res/views/login.html" />
 
-  <!-- Chars -->
-  <file src="res/views/char_selector.html" />
+  <!-- Views -->
+  <file src="res/views/login.html" />
+  <file src="res/views/character_selector.html" />
 
   <!-- JS -->
   <file src="res/js/jquery.min.js" />

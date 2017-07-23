@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,7 +6,7 @@
         <link rel='stylesheet' href='../css/pcfw.css'>
         <link rel='stylesheet' href='../css/gui.css'>
     </head>
-    <body id="main" class="test-enabled">
+    <body id="main">
         <div class="container-fluid">
             <block class="charselector">
                 <header>
@@ -79,7 +79,6 @@
         <script src="../js/tether.min.js"></script>
         <script src="../js/pcfw.js"></script>
         <script>
-            $("selectchar").hide();
             $($('charlist ul li')).on('click',function() {
                 $("selectchar").show();
                 $(this).addClass('active').siblings().removeClass('active');

@@ -15,11 +15,11 @@ namespace pcrpg.src.Player.Auth
         public Login()
         {
             API.onClientEventTrigger += OnClientEventTrigger;
-            API.onPlayerFinishedDownload += OnPlayerDownloaded;
-        }
+            API.onPlayerFinishedDownload += OnPlayerDownloaded;            
+        }        
 
         private void OnPlayerDownloaded(Client player)
-        {
+        {            
             var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.SocialClubName == player.socialClubName);
             if (user != null)
             {
@@ -35,7 +35,7 @@ namespace pcrpg.src.Player.Auth
                 {
                     { "name", player.name},
                     { "socialClub", player.socialClubName}
-                };
+                };                
                 API.triggerClientEvent(player, "ShowLoginForm", new JavaScriptSerializer().Serialize(playerData));
             }
         }

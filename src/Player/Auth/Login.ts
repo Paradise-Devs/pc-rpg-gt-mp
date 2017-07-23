@@ -39,12 +39,20 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
             browser = null;
         }
 
-        // Move camera position        
-        var _camPos = new Vector3(113.7806, -646.5242, 355.2048);
-        var _camLookAtPos = new Vector3(-35.43801, -1122.411, 270.5569);
-        var _cam = API.createCamera(_camPos, new Vector3());
-        API.pointCameraAtPosition(_cam, _camLookAtPos);
-        API.interpolateCameras(API.getActiveCamera(), _cam, 15000, false, false);
+        // Move scene position
+        API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
+        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+
+        var startCamPos = new Vector3(400.9627, -1005.109, -99.00404);
+        var startCamRot = new Vector3(0.0, 0.0, 176.891);
+        var startCamera = API.createCamera(startCamPos, startCamRot);
+
+        var endCamPos = new Vector3(403.6378, -998.5422, -99.00404);
+        var endCamRot = new Vector3(0.0, 0.0, 176.891);
+        var endCamera = API.createCamera(endCamPos, endCamRot);
+
+        API.pointCameraAtPosition(endCamera, new Vector3(402.9198, -996.5348, -99.00024));
+        API.interpolateCameras(startCamera, endCamera, 5000, false, false);
 
         resource.CharacterSelector.ShowCharacterSelector();
     }

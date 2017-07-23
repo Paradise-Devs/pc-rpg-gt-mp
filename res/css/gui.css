@@ -333,10 +333,10 @@ charlist ul li.active lastlogin {
 /******************************************************************************/
 selectchar {
     width: 300px;
-    display: block;
+    display: none;
     position: fixed;
-    bottom: 10%;
-    left: 28%;
+    bottom: 40%;
+    left: 18%;
     padding-top: 6px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #000;

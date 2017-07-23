@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/font-awesome.min.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+    </head>
+    <body id="main" class="test-enabled">
+        <div class="container-fluid">
+            <block class="charselector">
+                <header>
+                    Selecione seu personagem abaixo ou crie um novo
+                </header>
+                <nochar>Nenhum personagem encontrado</nochar>
+                <charlist>
+                    <ul>
+                        <li class="active">
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li>
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li>
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li>
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li>
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li>
+                            <charname>Lucas.Souza</charname>
+                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
+                        </li>
+                        <li class="addchar">
+                            <i class="fa fa-plus"></i> Adicionar novo personagem
+                        </li>
+                    </ul>
+                </charlist>
+            </block>
+            <selectchar>
+                <charinfo>
+                    <item>
+                        <stat>Emprego</stat>
+                        <data>Caminhoneiro</data>
+                    </item>
+                    <item>
+                        <stat>Carteira</stat>
+                        <data class="money">$999.999,99</data>
+                    </item>
+                    <item>
+                        <stat>Banco</stat>
+                        <data class="money">$999.999,99</data>
+                    </item>
+                    <item>
+                        <stat>Tempo Jogado</stat>
+                        <data>2 horas</data>
+                    </item>
+                    <item>
+                        <stat>Veículos</stat>
+                        <data>4</data>
+                    </item>
+                    <item>
+                        <stat>Propriedades</stat>
+                        <data>2</data>
+                    </item>
+                </charinfo>
+                <button><i class="fa fa-play"></i> Selecionar</button>
+            </selectchar>
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/tether.min.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script>
+            $("selectchar").hide();
+            $($('charlist ul li')).on('click',function() {
+                $("selectchar").show();
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        </script>
+    </body>
+</html>

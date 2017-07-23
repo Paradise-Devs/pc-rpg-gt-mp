@@ -14,7 +14,9 @@
 
   <!-- Resources -->
   <file src="res/views/login.html" />
-  <file src="res/views/characterselector.html" />
+
+  <!-- Chars -->
+  <file src="res/views/char_selector.html" />
 
   <!-- JS -->
   <file src="res/js/jquery.min.js" />

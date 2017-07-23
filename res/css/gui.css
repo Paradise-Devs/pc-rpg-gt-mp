@@ -71,12 +71,13 @@ block content {
 }
 
 block footer {
+    display: flex;
     padding: 5px 10px 10px 10px;
 }
 
 block footer.right {
-    text-align: right;
     float: right;
+    text-align: right;
 }
 
 block footer button {
@@ -221,6 +222,177 @@ block.signup {
     position: fixed;
     animation: opacity 1s ease-in-out 5s 1 alternate;
     animation-fill-mode: forwards;
+}
+
+/******************************************************************************/
+/*   Selector                                                                 */
+/******************************************************************************/
+block.charselector {
+    width: 28%;
+    top: 15%;
+    left: 68%;
+    position: fixed;
+}
+
+block.charselector content {
+    padding: 0px;
+}
+
+block.charselector nochar {
+    display: none;
+    padding: 10px;
+}
+
+block.charselector charname {
+    font-size: 20px;
+}
+
+block.charselector lastlogin {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #777;
+}
+
+block.charselector sep {
+    height: 100%;
+    border-right: 1px solid #333;
+    margin: 0px 8px 0px 5px;
+}
+
+charlist ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+charlist ul li {
+    height: 70px;
+    color: #757575;
+    padding: 7px 5px 5px 10px;
+    background-color: rgba(69, 69, 69, 0.4);
+}
+
+
+charlist ul li:not(:first-child) {
+    border-top: 1px solid #2A2A2A;
+}
+
+charlist ul li.addchar {
+    text-align: center;
+    padding-top: 22px;
+    text-transform: uppercase;
+    color: #aaa;
+    font-size: 18px;
+    background-color: rgba(0, 76, 67, 0.7);
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+charlist ul li.addchar.active {
+    background-color: rgba(0, 76, 67, 0.7);
+}
+
+charlist ul li.addchar:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: rgba(0, 76, 67, 0.8);
+}
+
+charlist ul li.addchar:hover i {
+    color: #fff;
+}
+
+charlist ul li.addchar i {
+    color: #aaa;
+    margin-right: 15px;
+}
+
+charlist ul li:not(.active):not(.addchar):hover {
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.8);
+    color: #ddd;
+}
+
+charlist ul li:not(.active):not(.addchar):hover lastlogin {
+    color: #aaa;
+}
+
+charlist ul li.active {
+    opacity: 1;
+    color: #fff;
+    background-color: rgba(34, 34, 34, 0.8);
+}
+
+charlist ul li.active lastlogin {
+    color: #757575;
+}
+
+/******************************************************************************/
+/*   Selector                                                                 */
+/******************************************************************************/
+selectchar {
+    width: 300px;
+    display: block;
+    position: fixed;
+    bottom: 10%;
+    left: 28%;
+    padding-top: 6px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #000;
+}
+
+charinfo item {
+    display: block;
+    color: #fff;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+charinfo item data.money {
+    color: #009587;
+}
+
+charinfo item:last-child {
+    margin-bottom: 6px;
+}
+
+charinfo item stat {
+    display: inline-block;
+    text-align: left;
+    padding-left: 6px;
+}
+
+charinfo item data {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    padding-right: 6px;
+    color: #ccc;
+}
+
+selectchar button {
+    width: 100%;
+    display: block;
+    background-color: #1975D1;
+    border: 0px;
+    padding: 8px 15px 8px 15px;
+    color: #ddd;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+selectchar button i {
+    margin-right: 10px;
+}
+
+selectchar button:hover {
+    cursor: pointer;
+    background-color: #2195F2;
+    color: #fff;
 }
 
 /******************************************************************************/

@@ -17,6 +17,7 @@
   <!-- Views -->
   <file src="res/views/login.html" />
   <file src="res/views/character_selector.html" />
+  <file src="res/views/character_creator.html" />
 
   <!-- JS -->
   <file src="res/js/jquery.min.js" />
@@ -27,12 +28,20 @@
   <file src="res/css/gui.css" />
   <file src="res/css/pcfw.css" />
   <file src="res/css/animation.css" />
+  <file src="res/css/bodyparts.css" />
+  <file src="res/css/clothes.css" />
 
   <!-- Fonts -->
   <file src="res/css/font-awesome.min.css" />
   <file src="res/fonts/FontAwesome.otf" />
   <file src="res/fonts/fontawesome-webfont.svg" />
   <file src="res/fonts/fontawesome-webfont.woff2" />
+  <file src="res/fonts/clothes.ttf" />
+  <file src="res/fonts/clothes.svg" />
+  <file src="res/fonts/clothes.woff" />
+  <file src="res/fonts/bodyparts.ttf" />
+  <file src="res/fonts/bodyparts.svg" />
+  <file src="res/fonts/bodyparts.woff" />
   <file src="res/fonts/Roboto.ttf" />
   <file src="res/fonts/five.ttf" />
   <file src="res/fonts/logo.ttf" />

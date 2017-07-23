@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/font-awesome.min.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+        <link rel='stylesheet' href='../css/clothes.css'>
+        <link rel='stylesheet' href='../css/bodyparts.css'>
+    </head>
+    <body id="main" class="test-enabled animated">
+        <div class="container-fluid">
+            <pagetitle>Criar novo personagem</pagetitle>
+            <block class="charcreator">
+                <header>
+                    A personalização do seu personagem é livre!
+                    Uma maior gama de itens para personalização, está disponível para compra nas lojas de Los Santos.
+                </header>
+                <content>
+                    <form>
+                        <field>
+                            <label>Personagem</label>
+                            <input type="text" id="charname" placeholder="Nome do personagem" max="24" maxlength="24" required>
+                            <help>Formato: Nome Sobrenome</help>
+                        </field>
+                    </form>
+                </content>
+                <customization>
+                    <category>
+                        <header>Geral <i class="fa fa-caret-down"></i></header>
+                        <container>
+                            <item class="male genderbutton">
+                                <i class="fa fa-male"></i>
+                            </item>
+                            <item class="female genderbutton">
+                                <i class="fa fa-female"></i>
+                            </item>
+                        </container>
+                    </category>
+                    <category>
+                        <header>Cabeça <i class="fa fa-caret-down"></i></header>
+                        <container>
+                            <item>
+                                <i class="bodyparts-face-of-a-woman-outline"></i>
+                            </item>
+                            <item>
+                                <i class="bodyparts-eye-variant-with-enlarged-pupil"></i>
+                            </item>
+                            <item>
+                                <i class="bodyparts-male-black-short-hair-shape-silhouette"></i>
+                            </item>
+                        </container>
+                    </category>
+                    <category>
+                        <header>Superior <i class="fa fa-caret-down"></i></header>
+                        <container>
+                            <item>
+                                <i class="clothes-shirt"></i>
+                            </item>
+                            <item>
+                                <i class="clothes-trench-coat"></i>
+                            </item>
+                        </container>
+                    </category>
+                    <category>
+                        <header>Inferior <i class="fa fa-caret-down"></i></header>
+                        <container>
+                            <item>
+                                <i class="clothes-jeans"></i>
+                            </item>
+                            <item>
+                                <i class="clothes-shorts"></i>
+                            </item>
+                            <item>
+                                <i class="clothes-underwear"></i>
+                            </item>
+                            <item>
+                                <i class="clothes-shoe"></i>
+                            </item>
+                        </container>
+                    </category>
+                    <category>
+                        <header>Acessórios <i class="fa fa-caret-down"></i></header>
+                        <container>
+                                <item>
+                                    <i class="clothes-tie"></i>
+                                </item>
+                                <item>
+                                    <i class="clothes-scarf"></i>
+                                </item>
+                                <item>
+                                    <i class="clothes-necklace"></i>
+                                </item>
+                                <item>
+                                    <i class="clothes-glasses"></i>
+                                </item>
+                                <item>
+                                    <i class="clothes-hat"></i>
+                                </item>
+                            </container>
+                    </category>
+                </customization>
+                <footer class="right">
+                    <error></error>
+                    <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
+                    <button type="submit">Criar</button>
+                </footer>
+            </block>
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/tether.min.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script>
+            //$('category container').hide();
+            $("error").hide();
+
+            $('input').keyup(function() {
+                if($(this).hasClass('error')) {
+                    $("error").hide();
+                    $(this).removeClass('error');
+                }
+            });
+
+            $('category header').click(function(){
+                $(this).parent().siblings().find('container').slideUp();
+                $(this).parent().toggleClass('active');
+                $("i", this).toggleClass('fa-caret-down fa-caret-up');
+                $(this).siblings('container').slideToggle();
+                $(this).parent().siblings().removeClass('active');
+                $(this).parent().siblings().find('header i').addClass('fa-caret-down').removeClass('fa-caret-up');
+            });
+
+            var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+            $('button:submit').click(function(){
+                if($("#charname").val().length < 8)
+                    ShowError("Nome do personagem precisa ter no mínimo <b>8</b> caracteres.", "#charname");
+                else if(!regx.test($("#charname").val()))
+                    ShowError("Formato: <b>Nome Sobrenome</b>", "#charname");
+            });
+
+            function ShowError(message, input)
+            {
+                $('loading').hide();
+                isSubmitting = false;
+
+                $("error").html(message);
+                $("error").show();
+                $(input).addClass('error');
+            }
+
+            $($('category container item')).on('click',function() {
+                $("editproperty").show();
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        </script>
+    </body>
+</html>

@@ -1,4 +1,6 @@
-﻿using GrandTheftMultiplayer.Server.API;
+﻿using System.Timers;
+using GrandTheftMultiplayer.Server.API;
+using pcrpg.Database.Models;
 
 namespace pcrpg
 {
@@ -6,12 +8,21 @@ namespace pcrpg
     {
         public Main()
         {
-            API.onResourceStart += OnResourceStart;
+            API.onResourceStart += OnResourceStart;            
         }
 
         private void OnResourceStart()
         {
             API.setGamemodeName("pcrpg v0.2.0");
+
+            Timer timer = new Timer(600000);
+            timer.Elapsed += OnSaveChanges;
+            timer.Enabled = true;
+        }
+
+        private void OnSaveChanges(object sender, ElapsedEventArgs e)
+        {
+            ContextFactory.Instance.SaveChangesAsync();
         }
     }
 }

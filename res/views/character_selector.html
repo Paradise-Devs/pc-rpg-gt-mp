@@ -10,79 +10,131 @@
         <div class="container-fluid">
             <block class="charselector">
                 <header>
-                    Selecione seu personagem abaixo ou crie um novo
+                    Selecione um personagem
                 </header>
                 <nochar>Nenhum personagem encontrado</nochar>
                 <charlist>
-                    <ul>
-                        <li class="active">
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li>
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li>
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li>
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li>
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li>
-                            <charname>Lucas.Souza</charname>
-                            <lastlogin>Jogou pela última vez a 3 dias atrás</lastlogin>
-                        </li>
-                        <li class="addchar">
-                            <i class="fa fa-plus"></i> Adicionar novo personagem
-                        </li>
+                    <ul id="list">
                     </ul>
                 </charlist>
             </block>
             <selectchar>
-                <charinfo>
-                    <item>
-                        <stat>Emprego</stat>
-                        <data>Caminhoneiro</data>
-                    </item>
-                    <item>
-                        <stat>Carteira</stat>
-                        <data class="money">$999.999,99</data>
-                    </item>
-                    <item>
-                        <stat>Banco</stat>
-                        <data class="money">$999.999,99</data>
-                    </item>
-                    <item>
-                        <stat>Tempo Jogado</stat>
-                        <data>2 horas</data>
-                    </item>
-                    <item>
-                        <stat>Veículos</stat>
-                        <data>4</data>
-                    </item>
-                    <item>
-                        <stat>Propriedades</stat>
-                        <data>2</data>
-                    </item>
+                <charinfo>                    
                 </charinfo>
-                <button><i class="fa fa-play"></i> Selecionar</button>
+                <button><i class="fa fa-play"></i> Jogar</button>
             </selectchar>
         </div>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/tether.min.js"></script>
         <script src="../js/pcfw.js"></script>
         <script>
-            $($('charlist ul li')).on('click',function() {
+            var characters = null;
+
+            function updateList(data)
+            {
+                characters = JSON.parse(data);
+                var oneDay = 24 * 60 * 60 * 1000;
+                for (var i = 0; i < characters.length; i++)
+                {
+                    var lastLogin = parseJsonDate(characters[i].LastLogin);
+                    var diffDays = Math.floor(Math.abs((new Date().getTime() - lastLogin.getTime()) / oneDay));
+                    var lastLoginMessage = (diffDays > 0) ? 'à ' + diffDays + ' dias atrás' : "hoje";
+
+                    $("#list").append('<li data-id="' + i + '">' +
+                        '<charname>' + characters[i].Name + '</charname>' +
+                        '<lastlogin>Último acesso ' + lastLoginMessage + '</lastlogin>' +
+                        '</li>');
+                }
+
+                if (characters.length < 6)
+                    $("#list").append('<li class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
+            }
+
+            $('charlist').on('click', 'li', function ()
+            {
+                if (characters == null)
+                    return;
+
+                var i = $(this).data("id");
+
+                var bank = characters[i].Bank.toLocaleString('pt-BR');
+                var money = characters[i].Money.toLocaleString('pt-BR');
+
+                $('charinfo').html('<item>' +
+                    '<stat>Nível</stat>' +
+                    '<data>' + characters[i].Level + '</data>' +
+                    '</item>' +
+                    '<item>' +
+                    '<stat>Emprego</stat>' +
+                    '<data>Indisponível</data>' +
+                    '</item>' +
+                    '<item>' +
+                    '<stat>Dinheiro</stat>' +
+                    '<data class="money">$' + money + '</data>' +
+                    '</item>' +
+                    '<item>' +
+                    '<stat>Banco</stat>' +
+                    '<data class="money">$' + bank + '</data>' +
+                    '</item>' +
+                    '<item>' +
+                    '<stat>Tempo Jogado</stat>' +
+                    '<data>' + secondsToStr(characters[i].PlayedTime) + '</data>' +
+                    '</item>');
+
                 $("selectchar").show();
                 $(this).addClass('active').siblings().removeClass('active');
             });
+
+            $(document).ready(function ()
+            {
+                resourceCall("browserReady");
+            });
+
+            function secondsToStr(seconds)
+            {
+                function numberEnding(number)
+                {
+                    return (number > 1) ? 's' : ' ';
+                }
+
+                var temp = Math.floor(seconds);
+                var years = Math.floor(temp / 31536000);
+                if (years)
+                {
+                    return years + ' ano' + numberEnding(years);
+                }
+
+                //TODO: Months! Maybe weeks?
+                var days = Math.floor((temp %= 31536000) / 86400);
+                if (days)
+                {
+                    return days + ' dia' + numberEnding(days);
+                }
+
+                var hours = Math.floor((temp %= 86400) / 3600);
+                if (hours)
+                {
+                    return hours + ' hora' + numberEnding(hours);
+                }
+
+                var minutes = Math.floor((temp %= 3600) / 60);
+                if (minutes)
+                {
+                    return minutes + ' minuto' + numberEnding(minutes);
+                }
+
+                var seconds = temp % 60;
+                if (seconds)
+                {
+                    return seconds + ' segundo' + numberEnding(seconds);
+                }
+                return 'nunca jogou';
+            }
+
+            function parseJsonDate(jsonDateString)
+            {
+                return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+            }
         </script>
     </body>
 </html>

@@ -2,6 +2,15 @@
 
 var browser = null;
 
+API.onServerEventTrigger.connect((eventName: string, args: any[]) =>
+{
+    if (eventName == "UpdateCharactersList")
+    {
+        if (browser != null)
+            browser.call("updateList", args[0]);
+    }
+});
+
 API.onResourceStop.connect(() =>
 {
     if (browser != null)
@@ -26,4 +35,9 @@ function ShowCharacterSelector()
     API.showCursor(true);
     API.setCanOpenChat(false);
     API.setCefBrowserHeadless(browser, false);
+}
+
+function browserReady()
+{
+    API.triggerServerEvent("RetrieveCharactersList");
 }

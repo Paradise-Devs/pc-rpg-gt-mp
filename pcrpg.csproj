@@ -71,6 +71,7 @@
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Player\Auth\Login.cs" />
+    <Compile Include="src\Player\Character\Selection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\css\animation.css" />

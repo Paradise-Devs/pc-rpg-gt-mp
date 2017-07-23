@@ -14,6 +14,8 @@ namespace pcrpg.src.Database.Models
         [ForeignKey("UserId")]
         public Users Users { get; set; }
 
+        public string Name { get; set; }
+
         public int Money { get; set; }
 
         public int Bank { get; set; }

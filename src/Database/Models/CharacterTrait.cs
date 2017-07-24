@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pcrpg.src.Database.Models
 {
     public class CharacterTrait
     {
-        [Key]
-        [ForeignKey("Character")]
         public int Id { get; set; }
+
+        [Required]
+        public virtual Character Character { get; set; }
 
         public int FaceFirst { get; set; }
 
@@ -45,8 +45,6 @@ namespace pcrpg.src.Database.Models
 
         public int? Lipstick { get; set; }
 
-        public int? LipstickColor { get; set; }
-
-        public virtual Character Character { get; set; }
+        public int? LipstickColor { get; set; }        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Timers;
 using GrandTheftMultiplayer.Server.API;
 using pcrpg.Database.Models;
+using System.Linq;
 
 namespace pcrpg
 {
@@ -17,7 +18,10 @@ namespace pcrpg
 
             Timer timer = new Timer(600000);
             timer.Elapsed += OnSaveChanges;
-            timer.Enabled = true;            
+            timer.Enabled = true;
+
+            ContextFactory.Instance.Characters.Where(up => up.Id == 1);
+            ContextFactory.Instance.SaveChanges();
         }
 
         private void OnSaveChanges(object sender, ElapsedEventArgs e)

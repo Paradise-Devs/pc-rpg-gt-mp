@@ -21,7 +21,7 @@
             <selectchar>
                 <charinfo>                    
                 </charinfo>
-                <button><i class="fa fa-play"></i> Jogar</button>
+                <button id="playButton"><i class="fa fa-play"></i> Jogar</button>
             </selectchar>
         </div>
         <script src="../js/jquery.min.js"></script>
@@ -54,21 +54,39 @@
                 }
 
                 if (characters.length < 6)
-                    $("#list").append('<li class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
+                    $("#list").append('<li data-id="-1" class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
             }
 
+            // Character list buttons
             $('charlist').on('click', 'li', function ()
             {
                 if (characters == null)
                     return;
 
                 var i = $(this).data("id");
-                UpdateCharacterInfo(i);
-                
-                $(this).addClass('active').siblings().removeClass('active');
-                
-                resourceCall("ApplyCharacterFeatures", i);
+
+                // Select a character
+                if (i >= 0)
+                {
+                    UpdateCharacterInfo(i);
+
+                    $(this).addClass('active').siblings().removeClass('active');
+
+                    resourceCall("ApplyCharacterFeatures", i);                    
+                }
+                // Create new character
+                else
+                {
+                    //
+                }
+                resourceCall("resource.Sounds.PlaySelectSound");
             });
+
+            // Spawn button
+            $('#playButton').click(function ()
+            {
+                resourceCall("resource.Sounds.PlaySelectSound");
+            });            
 
             $(document).ready(function ()
             {

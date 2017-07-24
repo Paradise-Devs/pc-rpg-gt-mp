@@ -2,6 +2,7 @@
 
 var player = null;
 var browser = null;
+var music = null;
 
 API.onResourceStart.connect(() =>
 {
@@ -11,6 +12,7 @@ API.onResourceStart.connect(() =>
     API.setActiveCamera(newCam);
     API.setHudVisible(false);
     API.setChatVisible(false);
+    music = API.startMusic("res/sounds/music01.ogg", true);
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>
@@ -60,7 +62,7 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
     else if (name == "LoginError")
     {
         if (browser != null)
-        {
+        {            
             browser.call("ShowError", args[0]);
         }
     }
@@ -77,11 +79,13 @@ API.onResourceStop.connect(() =>
 
 function Login(username: string, password: string)
 {
+    resource.Sounds.PlaySelectSound();
     API.triggerServerEvent("LoginAttempt", username, password);
 }
 
 function Register(username: string, password: string, email: string)
 {
+    resource.Sounds.PlaySelectSound();
     API.triggerServerEvent("RegisterAttempt", username, password, email);
 }
 

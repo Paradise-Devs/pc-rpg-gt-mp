@@ -11,6 +11,7 @@
 
   <!-- Player Utils -->
   <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
+  <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
 
   <!-- Resources -->
 
@@ -23,6 +24,9 @@
   <file src="res/js/jquery.min.js" />
   <file src="res/js/tether.min.js" />
   <file src="res/js/pcfw.js" />
+
+  <!-- Sounds -->
+  <file src="res/sounds/music01.ogg" />
 
   <!-- CSS -->
   <file src="res/css/gui.css" />

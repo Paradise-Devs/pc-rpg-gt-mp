@@ -99,6 +99,7 @@
     <None Include="res\fonts\logo.ttf" />
     <None Include="res\fonts\main.ttf" />
     <None Include="res\fonts\Roboto.ttf" />
+    <None Include="res\sounds\music01.ogg" />
     <None Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="src\Player\Utils\Camera.ts" />
+    <Content Include="src\Player\Utils\Sounds.js" />
     <Content Include="types-gt-mp\Declarations.d.ts" />
     <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
     <Content Include="types-gt-mp\GrandTheftMultiplayer.Client.Javascript.d.ts" />

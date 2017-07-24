@@ -16,10 +16,8 @@ namespace pcrpg.Database.Models
             System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<DefaultDbContext, MigrationConfiguration>());
         }
 
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Characters> Characters { get; set; }
-        public DbSet<CharacterTraits> CharacterTraits { get; set; }
-        public DbSet<CharacterClothes> CharacterClothes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Character> Characters { get; set; }
     }
 
     public class ContextFactory : IDbContextFactory<DefaultDbContext>

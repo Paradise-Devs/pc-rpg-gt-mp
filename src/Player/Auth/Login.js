@@ -10,6 +10,7 @@ API.onResourceStart.connect(() => {
     API.setActiveCamera(newCam);
     API.setHudVisible(false);
     API.setChatVisible(false);
+    API.setPlayerSkin(1885233650);
     music = API.startMusic("res/sounds/music01.ogg", true);
 });
 API.onServerEventTrigger.connect((name, args) => {

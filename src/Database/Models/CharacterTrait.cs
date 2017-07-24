@@ -3,14 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pcrpg.src.Database.Models
 {
-    public class CharacterTraits
+    public class CharacterTrait
     {
         [Key]
+        [ForeignKey("Character")]
         public int Id { get; set; }
-
-        public int CharacterId { get; set; }
-        [ForeignKey("CharacterId")]
-        public Characters Characters { get; set; }
 
         public int FaceFirst { get; set; }
 
@@ -50,5 +47,6 @@ namespace pcrpg.src.Database.Models
 
         public int? LipstickColor { get; set; }
 
+        public virtual Character Character { get; set; }
     }
 }

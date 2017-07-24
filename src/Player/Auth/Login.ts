@@ -10,9 +10,11 @@ API.onResourceStart.connect(() =>
     var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());
     API.pointCameraAtPosition(newCam, new Vector3(-80.07943, -840.8312, 310.4772));
     API.setActiveCamera(newCam);
+
     API.setHudVisible(false);
     API.setChatVisible(false);
-    music = API.startMusic("res/sounds/music01.ogg", true);
+    API.setPlayerSkin(1885233650);
+    music = API.startMusic("res/sounds/music01.ogg", true);    
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>

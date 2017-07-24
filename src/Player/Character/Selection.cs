@@ -18,7 +18,7 @@ namespace pcrpg.src.Player.Character
             if (eventName == "RetrieveCharactersList")
             {
                 if (!API.hasEntityData(sender, "User")) return;
-                Users user = API.getEntityData(sender, "User");
+                User user = API.getEntityData(sender, "User");
 
                 var characters = ContextFactory.Instance.Characters.Where(up => up.UserId == user.Id);
                 API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));

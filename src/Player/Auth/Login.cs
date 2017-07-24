@@ -27,7 +27,7 @@ namespace pcrpg.src.Player.Auth
                 API.setEntityData(player, "User", user);
                 API.triggerClientEvent(player, "ShowCharacterSelection");
 
-                ContextFactory.Instance.SaveChangesAsync();
+                ContextFactory.Instance.SaveChanges();
             }
             else
             {
@@ -74,7 +74,7 @@ namespace pcrpg.src.Player.Auth
                     API.setEntityData(sender, "User", user);
                     API.triggerClientEvent(sender, "ShowCharacterSelection");
 
-                    ContextFactory.Instance.SaveChangesAsync();
+                    ContextFactory.Instance.SaveChanges();
                 }
                 else
                 {

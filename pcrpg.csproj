@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="src\Database\Main.cs" />
     <Compile Include="src\Database\Models\Characters.cs" />
+    <Compile Include="src\Database\Models\CharacterTraits.cs" />
     <Compile Include="src\Database\Models\DefaultDbContext.cs" />
     <Compile Include="src\Database\Models\Users.cs" />
     <Compile Include="src\Main.cs" />

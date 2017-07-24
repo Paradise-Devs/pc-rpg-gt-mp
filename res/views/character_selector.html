@@ -46,6 +46,14 @@
                         '</li>');
                 }
 
+
+                if (characters.length > 0)
+                {
+                    $("selectchar").show();
+                    UpdateCharacterInfo(0);
+                    $('#list li:first-child').addClass("active");
+                }
+
                 if (characters.length < 6)
                     $("#list").append('<li class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
             }
@@ -56,7 +64,20 @@
                     return;
 
                 var i = $(this).data("id");
+                UpdateCharacterInfo(i);
+                
+                $(this).addClass('active').siblings().removeClass('active');
+                
+                resourceCall("ApplyCharacterFeatures", i);
+            });
 
+            $(document).ready(function ()
+            {
+                resourceCall("CharacterSelectorBrowserReady");
+            });
+
+            function UpdateCharacterInfo(i)
+            {
                 var bank = characters[i].Bank.toLocaleString('pt-BR');
                 var money = characters[i].Money.toLocaleString('pt-BR');
 
@@ -80,15 +101,7 @@
                     '<stat>Tempo Jogado</stat>' +
                     '<data>' + secondsToStr(characters[i].PlayedTime) + '</data>' +
                     '</item>');
-
-                $("selectchar").show();
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-
-            $(document).ready(function ()
-            {
-                resourceCall("CharacterSelectorBrowserReady");
-            });
+            }
 
             function secondsToStr(seconds)
             {

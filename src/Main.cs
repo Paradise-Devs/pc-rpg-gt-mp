@@ -22,7 +22,7 @@ namespace pcrpg
 
         private void OnSaveChanges(object sender, ElapsedEventArgs e)
         {
-            ContextFactory.Instance.SaveChangesAsync();
+            ContextFactory.Instance.SaveChanges();
         }
     }
 }

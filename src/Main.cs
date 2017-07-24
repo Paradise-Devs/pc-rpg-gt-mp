@@ -1,7 +1,6 @@
 ﻿using System.Timers;
 using GrandTheftMultiplayer.Server.API;
 using pcrpg.Database.Models;
-using System.Linq;
 
 namespace pcrpg
 {

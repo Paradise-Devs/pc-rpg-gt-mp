@@ -96,6 +96,14 @@ block footer button:hover {
     color: #fff;
 }
 
+block footer button.blue {
+    background-color: rgba(25, 117, 209, 0.2);
+}
+
+block footer button.blue:hover {
+    background-color: rgba(25, 117, 209, 0.6);
+}
+
 block footer error {
     display: none;
     position: absolute;
@@ -111,6 +119,7 @@ block footer error {
 block footer error b {
     color: #FF2F2F;
     font-weight: 700;
+    text-transform: capitalize;
 }
 
 block footer loading {
@@ -128,6 +137,35 @@ block username {
 
 block lastlogin {
     font-weight: 600;
+}
+
+body.animated block {
+    opacity: 0;
+    animation: opacity 2s ease-in-out 1s 1 alternate;
+    animation-fill-mode: forwards;
+}
+
+/******************************************************************************/
+/*   Page title                                                               */
+/******************************************************************************/
+pagetitle {
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 5%;
+    left: 34%;
+    position: fixed;
+    animation: movetolefttitle 2s ease-in-out 1 alternate;
+    animation-fill-mode: forwards;
+    font-family: "Five";
+    font-size: 400%;
+    text-shadow: 0px 0px 20px #000;
+    color: #fff;
+}
+
+@keyframes movetolefttitle {
+    from { left : 34% }
+    to { left: 5%; }
 }
 
 /******************************************************************************/
@@ -329,7 +367,7 @@ charlist ul li.active lastlogin {
 }
 
 /******************************************************************************/
-/*   Selector                                                                 */
+/*   Select char                                                              */
 /******************************************************************************/
 selectchar {
     width: 300px;
@@ -351,7 +389,7 @@ charinfo item {
     font-size: 12px;
 }
 
-charinfo item data.money {
+charinfo item data.money::first-letter {
     color: #009587;
 }
 
@@ -363,6 +401,7 @@ charinfo item stat {
     display: inline-block;
     text-align: left;
     padding-left: 6px;
+    font-weight: 400;
 }
 
 charinfo item data {
@@ -393,6 +432,134 @@ selectchar button:hover {
     cursor: pointer;
     background-color: #2195F2;
     color: #fff;
+}
+
+/******************************************************************************/
+/*   Char creator                                                             */
+/******************************************************************************/
+block.charcreator {
+    width: 28%;
+    top: 15%;
+    left: 68%;
+    position: fixed;
+}
+
+block.charcreator content {
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+block.charcreator content form {
+    padding: 10px;
+}
+
+/******************************************************************************/
+/*   Customization Accord                                                     */
+/******************************************************************************/
+customization {
+    display: block;
+}
+
+customization category {
+    display: block;
+    margin: 7px 4px 4px 4px;
+}
+
+customization category header {
+    display: block;
+    height: 35px;
+    padding: 5px 18px 3px 14px;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+
+customization category header:hover {
+    background-color: rgba(69, 69, 69, 0.5);
+    cursor: pointer;
+}
+
+customization category.active header {
+    background-color: rgba(69, 69, 69, 0.9);
+}
+
+customization category header i {
+    float: right;
+    padding-top: 4px;
+}
+
+customization category container {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/******************************************************************************/
+/*   Customization Items                                                      */
+/******************************************************************************/
+customization item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    clear: both;
+}
+
+customization item:not(:first-child) {
+    margin-left: 10px;
+}
+
+customization item:hover {
+    color: #fff;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.3);
+}
+
+customization item.male {
+    background-color: rgba(33, 149, 242, 0.1);
+    color: rgba(33, 149, 242, 0.3);
+}
+
+customization item.male:hover, customization item.male.active {
+    background-color: rgba(33, 149, 242, 0.3);
+    color: #21C6F2;
+    cursor: pointer;
+}
+
+customization item.female {
+    background-color: rgba(81, 45, 167, 0.1);
+    color: rgba(142, 46, 169, 0.3);
+}
+
+customization item.female:hover, customization item.female.active {
+    background-color: rgba(81, 45, 167, 0.3);
+    color: rgba(169, 46, 169, 0.9);
+    cursor: pointer;
+}
+
+customization item.active {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #fff;
+    text-shadow: 0px 0px 9px #000;
+}
+
+customization item i.fa {
+    font-size: 30px;
+}
+
+customization item i[class^="bodyparts-"]:before, customization item i[class^="clothes-"]:before {
+    font-size: 30px;
+    margin: 0px;
+}
+
+customization item desc {
+    display: block;
+    position: relative;
+    bottom: 60px;
 }
 
 /******************************************************************************/

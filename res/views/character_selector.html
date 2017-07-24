@@ -77,7 +77,7 @@
                 // Create new character
                 else
                 {
-                    //
+
                 }
                 resourceCall("resource.Sounds.PlaySelectSound");
             });
@@ -86,7 +86,7 @@
             $('#playButton').click(function ()
             {
                 resourceCall("resource.Sounds.PlaySelectSound");
-            });            
+            });
 
             $(document).ready(function ()
             {
@@ -163,7 +163,8 @@
 
             function parseJsonDate(jsonDateString)
             {
-                return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+                // return new Date(parseInt(jsonDateString.replace('/Date(', '')));                
+                return new Date(jsonDateString);
             }
         </script>
     </body>

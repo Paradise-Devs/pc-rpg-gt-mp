@@ -8,7 +8,7 @@ namespace pcrpg
     {
         public Main()
         {
-            API.onResourceStart += OnResourceStart;            
+            API.onResourceStart += OnResourceStart;
         }
 
         private void OnResourceStart()
@@ -17,7 +17,7 @@ namespace pcrpg
 
             Timer timer = new Timer(600000);
             timer.Elapsed += OnSaveChanges;
-            timer.Enabled = true;
+            timer.Enabled = true;            
         }
 
         private void OnSaveChanges(object sender, ElapsedEventArgs e)

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using pcrpg.Database.Models;
+using System.Collections.Generic;
 
 namespace pcrpg.src.Database.Models
 {
@@ -31,5 +32,9 @@ namespace pcrpg.src.Database.Models
         public DateTime LastLogin { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public virtual ICollection<CharacterTraits> Traits { get; set; }
+
+        public virtual ICollection<CharacterClothes> Clothes { get; set; }
     }
 }

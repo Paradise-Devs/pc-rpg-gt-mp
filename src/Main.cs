@@ -19,9 +19,6 @@ namespace pcrpg
             Timer timer = new Timer(600000);
             timer.Elapsed += OnSaveChanges;
             timer.Enabled = true;
-
-            ContextFactory.Instance.Characters.Where(up => up.Id == 1);
-            ContextFactory.Instance.SaveChanges();
         }
 
         private void OnSaveChanges(object sender, ElapsedEventArgs e)

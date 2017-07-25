@@ -8,7 +8,7 @@ namespace pcrpg
     {
         public Main()
         {
-            API.onResourceStart += OnResourceStart;            
+            API.onResourceStart += OnResourceStart;
         }
 
         private void OnResourceStart()
@@ -22,7 +22,7 @@ namespace pcrpg
 
         private void OnSaveChanges(object sender, ElapsedEventArgs e)
         {
-            ContextFactory.Instance.SaveChangesAsync();
+            ContextFactory.Instance.SaveChanges();
         }
     }
 }

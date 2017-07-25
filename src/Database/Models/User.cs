@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using pcrpg.src.Database.Models;
+using System.Collections.Generic;
 
 namespace pcrpg.Database.Models
 {
-    public class Users
+    public class User
     {
-        [Key]
         public int Id { get; set; }
 
         public string Username { get; set; }
@@ -16,5 +16,7 @@ namespace pcrpg.Database.Models
         public string Email { get; set; }
 
         public string LastIp { get; set; }
+
+        public virtual ICollection<Character> Characters { get; set; }
     }
 }

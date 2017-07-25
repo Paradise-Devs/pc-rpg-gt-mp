@@ -1,8 +1,8 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using Newtonsoft.Json;
 using pcrpg.Database.Models;
 using System.Linq;
-using System.Web.Script.Serialization;
 
 namespace pcrpg.src.Player.Character
 {
@@ -18,10 +18,10 @@ namespace pcrpg.src.Player.Character
             if (eventName == "RetrieveCharactersList")
             {
                 if (!API.hasEntityData(sender, "User")) return;
+                User user = API.getEntityData(sender, "User");
 
-                Users user = API.getEntityData(sender, "User");
-                var characterList = from characters in ContextFactory.Instance.Characters where characters.UserId == user.Id select new { characters.Id, characters.Name, characters.Level, characters.Money, characters.Bank, characters.LastLogin, characters.PlayedTime };
-                API.triggerClientEvent(sender, "UpdateCharactersList", new JavaScriptSerializer().Serialize(characterList));
+                var characters = ContextFactory.Instance.Characters.Where(up => up.UserId == user.Id);
+                API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
             }
         }
     }

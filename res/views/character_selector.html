@@ -21,7 +21,7 @@
             <selectchar>
                 <charinfo>                    
                 </charinfo>
-                <button><i class="fa fa-play"></i> Jogar</button>
+                <button id="playButton"><i class="fa fa-play"></i> Jogar</button>
             </selectchar>
         </div>
         <script src="../js/jquery.min.js"></script>
@@ -32,24 +32,39 @@
 
             function updateList(data)
             {
-                characters = JSON.parse(data);
-                var oneDay = 24 * 60 * 60 * 1000;
-                for (var i = 0; i < characters.length; i++)
+                if (data != null)
                 {
-                    var lastLogin = parseJsonDate(characters[i].LastLogin);
-                    var diffDays = Math.floor(Math.abs((new Date().getTime() - lastLogin.getTime()) / oneDay));
-                    var lastLoginMessage = (diffDays > 0) ? 'à ' + diffDays + ' dias atrás' : "hoje";
+                    characters = JSON.parse(data);
+                    var oneDay = 24 * 60 * 60 * 1000;
+                    for (var i = 0; i < characters.length; i++)
+                    {
+                        var lastLogin = parseJsonDate(characters[i].LastLogin);
+                        var diffDays = Math.floor(Math.abs((new Date().getTime() - lastLogin.getTime()) / oneDay));
+                        var lastLoginMessage = (diffDays > 0) ? 'à ' + diffDays + ' dias atrás' : "hoje";
 
-                    $("#list").append('<li data-id="' + i + '">' +
-                        '<charname>' + characters[i].Name + '</charname>' +
-                        '<lastlogin>Último acesso ' + lastLoginMessage + '</lastlogin>' +
-                        '</li>');
+                        $("#list").append('<li data-id="' + i + '">' +
+                            '<charname>' + characters[i].Name + '</charname>' +
+                            '<lastlogin>Último acesso ' + lastLoginMessage + '</lastlogin>' +
+                            '</li>');
+                    }
+
+                    if (characters.length > 0)
+                    {
+                        $("selectchar").show();
+                        UpdateCharacterInfo(0);
+                        $('#list li:first-child').addClass("active");
+                    }
+
+                    if (characters.length < 6)
+                        $("#list").append('<li data-id="-1" class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
                 }
-
-                if (characters.length < 6)
-                    $("#list").append('<li class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
+                else
+                {
+                    $("#list").append('<li data-id="-1" class="addchar"><i class="fa fa-plus"></i> Adicionar novo personagem</li>');
+                }
             }
 
+            // Character list buttons
             $('charlist').on('click', 'li', function ()
             {
                 if (characters == null)
@@ -57,6 +72,41 @@
 
                 var i = $(this).data("id");
 
+                // Select a character
+                if (i >= 0)
+                {
+                    UpdateCharacterInfo(i);
+
+                    $(this).addClass('active').siblings().removeClass('active');
+
+                    resourceCall("ApplyCharacterFeatures", i);                    
+                }
+                // Create new character
+                else
+                {
+
+                }
+                resourceCall("resource.Sounds.PlaySelectSound");
+            });
+
+            // Spawn button
+            $('#playButton').click(function ()
+            {
+                resourceCall("resource.Sounds.PlaySelectSound");
+            });
+
+            $('header').click(function ()
+            {
+                console.log(characters);
+            });
+
+            $(document).ready(function ()
+            {
+                resourceCall("CharacterSelectorBrowserReady");
+            });
+
+            function UpdateCharacterInfo(i)
+            {
                 var bank = characters[i].Bank.toLocaleString('pt-BR');
                 var money = characters[i].Money.toLocaleString('pt-BR');
 
@@ -80,15 +130,7 @@
                     '<stat>Tempo Jogado</stat>' +
                     '<data>' + secondsToStr(characters[i].PlayedTime) + '</data>' +
                     '</item>');
-
-                $("selectchar").show();
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-
-            $(document).ready(function ()
-            {
-                resourceCall("CharacterSelectorBrowserReady");
-            });
+            }
 
             function secondsToStr(seconds)
             {
@@ -133,7 +175,8 @@
 
             function parseJsonDate(jsonDateString)
             {
-                return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+                // return new Date(parseInt(jsonDateString.replace('/Date(', '')));                
+                return new Date(jsonDateString);
             }
         </script>
     </body>

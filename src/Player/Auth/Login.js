@@ -2,6 +2,7 @@
 /// <reference path='../../../types-gt-mp/index.d.ts' />
 var player = null;
 var browser = null;
+var music = null;
 API.onResourceStart.connect(() => {
     // Login camera position
     var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());
@@ -9,6 +10,8 @@ API.onResourceStart.connect(() => {
     API.setActiveCamera(newCam);
     API.setHudVisible(false);
     API.setChatVisible(false);
+    API.setPlayerSkin(1885233650);
+    music = API.startMusic("res/sounds/music01.ogg", true);
 });
 API.onServerEventTrigger.connect((name, args) => {
     if (name == "ShowLoginForm") {
@@ -56,9 +59,11 @@ API.onResourceStop.connect(() => {
     }
 });
 function Login(username, password) {
+    resource.Sounds.PlaySelectSound();
     API.triggerServerEvent("LoginAttempt", username, password);
 }
 function Register(username, password, email) {
+    resource.Sounds.PlaySelectSound();
     API.triggerServerEvent("RegisterAttempt", username, password, email);
 }
 function LoginBrowserReady() {

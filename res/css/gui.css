@@ -90,7 +90,11 @@ block footer button {
     text-transform: uppercase;
 }
 
-block footer button:hover {
+block footer button:disabled {
+    opacity: .2;
+}
+
+block footer button:not(:disabled):hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
@@ -102,6 +106,14 @@ block footer button.blue {
 
 block footer button.blue:hover {
     background-color: rgba(25, 117, 209, 0.6);
+}
+
+block footer button.red {
+    background-color: rgba(210, 47, 47, 0.2);
+}
+
+block footer button.red:hover {
+    background-color: rgba(210, 47, 47, 0.6);
 }
 
 block footer error {
@@ -454,6 +466,122 @@ block.charcreator content form {
 }
 
 /******************************************************************************/
+/*  Gender selection                                                          */
+/******************************************************************************/
+block.charcreator gender {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+block.charcreator gender item.active {
+    box-shadow: 0px 0px 2px #000;
+}
+
+block.charcreator gender item.error {
+    border: 1px solid rgba(210, 47, 47, 0.9);
+    color: #D22F2F;
+}
+
+block.charcreator gender item.male:hover desc, block.charcreator gender item.female:hover desc {
+    background-color: rgba(69, 69, 69, 0.3);
+    color: #aaa;
+    cursor: pointer;
+}
+
+block.charcreator gender item.male.active desc, block.charcreator gender item.female.active desc {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #fff;
+    text-shadow: 0px 0px 9px #000;
+}
+
+/*male*/
+block.charcreator gender item.male {
+    display: inline-block;
+    width: 49%;
+}
+
+block.charcreator gender item.male i {
+    position: absolute;
+    left: 14px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    color: #666;
+    padding: 10px 10px 10px 17px;
+    background-color: rgba(2, 135, 208, 0.1);
+    color: rgba(178, 228, 251, 0.2);
+}
+
+block.charcreator gender item.male desc {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    padding: 14px 14px 14px 64px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #666;
+    text-transform: uppercase;
+}
+
+block.charcreator gender item.male:hover {
+    cursor: pointer;
+}
+
+block.charcreator gender item.male:not(.active):hover i {
+    background-color: rgba(2, 135, 208, 0.5);
+    color: rgba(178, 228, 251, 0.6);
+}
+
+block.charcreator gender item.male.active i {
+    background-color: rgba(2, 135, 208, 0.8);
+    color: rgba(178, 228, 251, 0.9);
+}
+
+/*female*/
+block.charcreator gender item.female {
+    display: inline-block;
+    float: right;
+    width: 49%;
+}
+
+block.charcreator gender item.female i {
+    position: absolute;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    color: #666;
+    padding: 10px 10px 10px 14px;
+    background-color: rgba(122, 31, 161, 0.1);
+    color: rgba(224, 189, 230, 0.2);
+}
+
+block.charcreator gender item.female desc {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    padding: 14px 14px 14px 64px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #666;
+    text-transform: uppercase;
+}
+
+block.charcreator gender item.female:hover {
+    cursor: pointer;
+}
+
+block.charcreator gender item.female:not(.active):hover i {
+    background-color: rgba(122, 31, 161, 0.5);
+    color: rgba(224, 189, 230, 0.6);
+}
+
+block.charcreator gender item.female.active i {
+    background-color: rgba(122, 31, 161, 0.8);
+    color: rgba(224, 189, 230, 0.9);
+}
+
+/******************************************************************************/
 /*   Customization Accord                                                     */
 /******************************************************************************/
 customization {
@@ -468,7 +596,7 @@ customization category {
 customization category header {
     display: block;
     height: 35px;
-    padding: 5px 18px 3px 14px;
+    padding: 6px 18px 3px 14px;
     background-color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
 }
@@ -507,38 +635,13 @@ customization item {
     background-color: rgba(0, 0, 0, 0.3);
     max-width: 100%;
     clear: both;
-}
-
-customization item:not(:first-child) {
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 customization item:hover {
-    color: #fff;
+    color: #aaa;
     cursor: pointer;
     background-color: rgba(69, 69, 69, 0.3);
-}
-
-customization item.male {
-    background-color: rgba(33, 149, 242, 0.1);
-    color: rgba(33, 149, 242, 0.3);
-}
-
-customization item.male:hover, customization item.male.active {
-    background-color: rgba(33, 149, 242, 0.3);
-    color: #21C6F2;
-    cursor: pointer;
-}
-
-customization item.female {
-    background-color: rgba(81, 45, 167, 0.1);
-    color: rgba(142, 46, 169, 0.3);
-}
-
-customization item.female:hover, customization item.female.active {
-    background-color: rgba(81, 45, 167, 0.3);
-    color: rgba(169, 46, 169, 0.9);
-    cursor: pointer;
 }
 
 customization item.active {
@@ -560,6 +663,16 @@ customization item desc {
     display: block;
     position: relative;
     bottom: 60px;
+}
+
+/******************************************************************************/
+/*   Char configurator                                                        */
+/******************************************************************************/
+block.configurator {
+    width: 12%;
+    top: 20%;
+    left: 10%;
+    position: fixed;
 }
 
 /******************************************************************************/

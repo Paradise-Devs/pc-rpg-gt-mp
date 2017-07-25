@@ -8,7 +8,7 @@
         <link rel='stylesheet' href='../css/clothes.css'>
         <link rel='stylesheet' href='../css/bodyparts.css'>
     </head>
-    <body id="main" class="test-enabled animated">
+    <body id="main" class="test-enabled">
         <div class="container-fluid">
             <pagetitle>Criar novo personagem</pagetitle>
             <block class="charcreator">
@@ -23,20 +23,19 @@
                             <input type="text" id="charname" placeholder="Nome do personagem" max="24" maxlength="24" required>
                             <help>Formato: Nome Sobrenome</help>
                         </field>
+                        <gender>
+                            <item class="male">
+                                <i class="fa fa-male"></i>
+                                <desc>Homem</desc>
+                            </item>
+                            <item class="female">
+                                <i class="fa fa-female"></i>
+                                <desc>Mulher</desc>
+                            </item>
+                        </gender>
                     </form>
                 </content>
                 <customization>
-                    <category>
-                        <header>Geral <i class="fa fa-caret-down"></i></header>
-                        <container>
-                            <item class="male genderbutton">
-                                <i class="fa fa-male"></i>
-                            </item>
-                            <item class="female genderbutton">
-                                <i class="fa fa-female"></i>
-                            </item>
-                        </container>
-                    </category>
                     <category>
                         <header>Cabeça <i class="fa fa-caret-down"></i></header>
                         <container>
@@ -46,16 +45,25 @@
                             <item>
                                 <i class="bodyparts-eye-variant-with-enlarged-pupil"></i>
                             </item>
-                            <item>
-                                <i class="bodyparts-male-black-short-hair-shape-silhouette"></i>
+                            <item class="male">
+                                <i class="bodyparts-young-male-black-short-hair-shape"></i>
+                            </item>
+                            <item class="female">
+                                <i class="bodyparts-brunette-female-woman-long-hair"></i>
                             </item>
                         </container>
                     </category>
                     <category>
                         <header>Superior <i class="fa fa-caret-down"></i></header>
                         <container>
-                            <item>
+                            <item class="male">
                                 <i class="clothes-shirt"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-shirt-2"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-dress-3"></i>
                             </item>
                             <item>
                                 <i class="clothes-trench-coat"></i>
@@ -68,14 +76,23 @@
                             <item>
                                 <i class="clothes-jeans"></i>
                             </item>
-                            <item>
+                            <item class="male">
                                 <i class="clothes-shorts"></i>
                             </item>
-                            <item>
+                            <item class="female">
+                                <i class="clothes-shorts-1"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-skirt"></i>
+                            </item>
+                            <item class="male">
                                 <i class="clothes-underwear"></i>
                             </item>
-                            <item>
+                            <item class="male">
                                 <i class="clothes-shoe"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-high-heels"></i>
                             </item>
                         </container>
                     </category>
@@ -97,22 +114,30 @@
                                 <item>
                                     <i class="clothes-hat"></i>
                                 </item>
+                                <item class="female">
+                                    <i class="bodyparts-ear-lobe-side-view-outline"></i>
+                                </item>
                             </container>
                     </category>
                 </customization>
                 <footer class="right">
                     <error></error>
                     <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
-                    <button type="submit">Criar</button>
+                    <button class="red"><i class="fa fa-arrow-left"></i></button>
+                    <button type="submit" id="submit">Criar</button>
                 </footer>
+            </block>
+            <block class="configurator" id="">
+
             </block>
         </div>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/tether.min.js"></script>
         <script src="../js/pcfw.js"></script>
         <script>
-            //$('category container').hide();
+            $("category container").hide();
             $("error").hide();
+            $("customization").hide();
 
             $('input').keyup(function() {
                 if($(this).hasClass('error')) {
@@ -131,11 +156,31 @@
             });
 
             var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
-            $('button:submit').click(function(){
+            $('#submit').click(function(){
                 if($("#charname").val().length < 8)
-                    ShowError("Nome do personagem precisa ter no mínimo <b>8</b> caracteres.", "#charname");
+                    ShowError("Utilize no mínimo <b>8</b> caracteres.", "#charname");
                 else if(!regx.test($("#charname").val()))
                     ShowError("Formato: <b>Nome Sobrenome</b>", "#charname");
+                else if (!$("gender item").hasClass("active"))
+                    ShowError("Selecione o sexo do personagem", "gender item");
+            });
+
+            $($('category container item')).on('click',function() {
+                $("editproperty").show();
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+            $($('gender item')).on('click',function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                $("customization").slideDown();
+
+                if($(this).hasClass('male')) {
+                    $('category container item.female').hide();
+                    $('category container item.male').show();
+                } else {
+                    $('category container item.male').hide();
+                    $('category container item.female').show();
+                }
             });
 
             function ShowError(message, input)
@@ -147,11 +192,6 @@
                 $("error").show();
                 $(input).addClass('error');
             }
-
-            $($('category container item')).on('click',function() {
-                $("editproperty").show();
-                $(this).addClass('active').siblings().removeClass('active');
-            });
         </script>
     </body>
 </html>

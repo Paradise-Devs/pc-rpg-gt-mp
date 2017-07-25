@@ -8,6 +8,7 @@
 
   <!-- Character -->
   <script src="src/Player/Character/CharacterSelector.js" type="client" lang="javascript"/>
+  <script src="src/Player/Character/CharacterCreator.js" type="client" lang="javascript"/>
 
   <!-- Player Utils -->
   <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>

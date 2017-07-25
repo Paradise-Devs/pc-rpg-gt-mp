@@ -91,3 +91,14 @@ function CharacterSelectorBrowserReady()
 {
     API.triggerServerEvent("RetrieveCharactersList");
 }
+
+function SendToCharacterCreator()
+{
+    if (browser != null)
+    {
+        API.destroyCefBrowser(browser);
+        browser = null;
+    }
+
+    resource.CharacterCreator.ShowCharacterCreator();
+}

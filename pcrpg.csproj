@@ -92,6 +92,7 @@
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\login.html" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
+    <TypeScriptCompile Include="src\Player\Character\CharacterCreator.ts" />
     <TypeScriptCompile Include="src\Player\Character\CharacterSelector.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 var player = null;
 var browser = null;
 var music = null;
+var canMove = true;
 API.onResourceStart.connect(() => {
     // Login camera position
     var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());
@@ -36,6 +37,7 @@ API.onServerEventTrigger.connect((name, args) => {
         // Move scene position
         API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
         API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+        canMove = false;
         var startCamPos = new Vector3(400.9627, -1005.109, -99.00404);
         var startCamRot = new Vector3(0.0, 0.0, 176.891);
         var startCamera = API.createCamera(startCamPos, startCamRot);
@@ -56,6 +58,11 @@ API.onResourceStop.connect(() => {
     if (browser != null) {
         API.destroyCefBrowser(browser);
         browser = null;
+    }
+});
+API.onUpdate.connect(() => {
+    if (!canMove) {
+        API.disableAllControlsThisFrame();
     }
 });
 function Login(username, password) {

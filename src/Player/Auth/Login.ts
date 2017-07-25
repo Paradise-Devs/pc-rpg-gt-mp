@@ -3,6 +3,7 @@
 var player = null;
 var browser = null;
 var music = null;
+var canMove = true;
 
 API.onResourceStart.connect(() =>
 {
@@ -48,6 +49,8 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
         API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
         API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
 
+        canMove = false;
+
         var startCamPos = new Vector3(400.9627, -1005.109, -99.00404);
         var startCamRot = new Vector3(0.0, 0.0, 176.891);
         var startCamera = API.createCamera(startCamPos, startCamRot);
@@ -76,6 +79,14 @@ API.onResourceStop.connect(() =>
     {
         API.destroyCefBrowser(browser);
         browser = null;
+    }
+});
+
+API.onUpdate.connect(() =>
+{
+    if (!canMove)
+    {
+        API.disableAllControlsThisFrame();
     }
 });
 

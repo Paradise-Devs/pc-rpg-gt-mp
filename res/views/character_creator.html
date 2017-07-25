@@ -37,7 +37,7 @@
                 </content>
                 <customization>
                     <category>
-                        <header>Cabeça <i class="fa fa-caret-down"></i></header>
+                        <header data-id="0">Cabeça <i class="fa fa-caret-down"></i></header>
                         <container>
                             <item>
                                 <i class="bodyparts-face-of-a-woman-outline"></i>
@@ -54,7 +54,7 @@
                         </container>
                     </category>
                     <category>
-                        <header>Superior <i class="fa fa-caret-down"></i></header>
+                        <header data-id="1">Superior <i class="fa fa-caret-down"></i></header>
                         <container>
                             <item class="male">
                                 <i class="clothes-shirt"></i>
@@ -71,7 +71,7 @@
                         </container>
                     </category>
                     <category>
-                        <header>Inferior <i class="fa fa-caret-down"></i></header>
+                        <header data-id="2">Inferior <i class="fa fa-caret-down"></i></header>
                         <container>
                             <item>
                                 <i class="clothes-jeans"></i>
@@ -97,7 +97,7 @@
                         </container>
                     </category>
                     <category>
-                        <header>Acessórios <i class="fa fa-caret-down"></i></header>
+                        <header data-id="-1">Acessórios <i class="fa fa-caret-down"></i></header>
                         <container>
                                 <item>
                                     <i class="clothes-tie"></i>
@@ -123,7 +123,7 @@
                 <footer class="right">
                     <error></error>
                     <loading><i class="fa fa-spinner faa-spin animated"></i></loading>
-                    <button class="red"><i class="fa fa-arrow-left"></i></button>
+                    <button class="red" id="backBtn"><i class="fa fa-arrow-left"></i></button>
                     <button type="submit" id="submit">Criar</button>
                 </footer>
             </block>
@@ -153,6 +153,12 @@
                 $(this).siblings('container').slideToggle();
                 $(this).parent().siblings().removeClass('active');
                 $(this).parent().siblings().find('header i').addClass('fa-caret-down').removeClass('fa-caret-up');
+
+                if ($(this).data("id") != undefined)
+                {
+                    resourceCall("resource.Sounds.PlaySelectSound");
+                    resourceCall("MoveCameraPosition", $(this).data("id"));
+                }
             });
 
             var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
@@ -177,10 +183,19 @@
                 if($(this).hasClass('male')) {
                     $('category container item.female').hide();
                     $('category container item.male').show();
+                    resourceCall("ChangeCharacterGender", 0);
                 } else {
                     $('category container item.male').hide();
                     $('category container item.female').show();
+                    resourceCall("ChangeCharacterGender", 1);
                 }
+                resourceCall("resource.Sounds.PlaySelectSound");                
+            });
+
+            $('#backBtn').click(function ()
+            {
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("GoBackToSelection");
             });
 
             function ShowError(message, input)

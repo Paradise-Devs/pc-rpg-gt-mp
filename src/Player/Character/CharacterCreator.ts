@@ -65,6 +65,10 @@ function ShowCharacterCreator()
 
 function ResetCharacterCreation()
 {
+    torso = gender ? 5 : 0;
+    undershirt = gender ? 95 : 57;
+    hairType = gender ? 4 : 0;
+
     API.setPlayerSkin(gender ? -1667301416 : 1885233650);
 
     API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), faceFirst, faceSecond, 0, skinFirst, skinSecond, 0, faceMix, skinMix, 0, false);

@@ -1,53 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <meta>
-  <info name="pcrpg" author="PC RPG team" type="gamemode"/>
-  <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
+    <info name="pcrpg" author="PC RPG team" type="gamemode"/>
+    <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
 
-  <!-- Authentication -->
-  <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
+    <!-- Authentication -->
+    <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
 
-  <!-- Character -->
-  <script src="src/Player/Character/CharacterSelector.js" type="client" lang="javascript"/>
-  <script src="src/Player/Character/CharacterCreator.js" type="client" lang="javascript"/>
+    <!-- Character -->
+    <script src="src/Player/Character/CharacterSelector.js" type="client" lang="javascript"/>
+    <script src="src/Player/Character/CharacterCreator.js" type="client" lang="javascript"/>
 
-  <!-- Player Utils -->
-  <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
-  <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
+    <!-- Player Utils -->
+    <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
+    <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
 
-  <!-- Resources -->
+    <!-- Resources -->
 
-  <!-- Views -->
-  <file src="res/views/login.html" />
-  <file src="res/views/character_selector.html" />
-  <file src="res/views/character_creator.html" />
+    <!-- Views -->
+    <file src="res/views/login.html" />
+    <file src="res/views/character_selector.html" />
+    <file src="res/views/character_creator.html" />
 
-  <!-- JS -->
-  <file src="res/js/jquery.min.js" />
-  <file src="res/js/tether.min.js" />
-  <file src="res/js/pcfw.js" />
+    <!-- JS -->
+    <file src="res/js/jquery.js" />
+    <file src="res/js/tether.js" />
+    <file src="res/js/slider.js" />
+    <file src="res/js/pcfw.js" />
 
-  <!-- Sounds -->
-  <file src="res/sounds/music01.ogg" />
+    <!-- Sounds -->
+    <file src="res/sounds/music01.ogg" />
 
-  <!-- CSS -->
-  <file src="res/css/gui.css" />
-  <file src="res/css/pcfw.css" />
-  <file src="res/css/animation.css" />
-  <file src="res/css/bodyparts.css" />
-  <file src="res/css/clothes.css" />
+    <!-- CSS -->
+    <file src="res/css/gui.css" />
+    <file src="res/css/pcfw.css" />
 
-  <!-- Fonts -->
-  <file src="res/css/font-awesome.min.css" />
-  <file src="res/fonts/FontAwesome.otf" />
-  <file src="res/fonts/fontawesome-webfont.svg" />
-  <file src="res/fonts/fontawesome-webfont.woff2" />
-  <file src="res/fonts/clothes.ttf" />
-  <file src="res/fonts/clothes.svg" />
-  <file src="res/fonts/clothes.woff" />
-  <file src="res/fonts/bodyparts.ttf" />
-  <file src="res/fonts/bodyparts.svg" />
-  <file src="res/fonts/bodyparts.woff" />
-  <file src="res/fonts/Roboto.ttf" />
-  <file src="res/fonts/five.ttf" />
-  <file src="res/fonts/logo.ttf" />
+    <!-- Icons -->
+    <file src="res/css/icons-anim.css" />
+    <file src="res/css/icons-fa.css" />
+    <file src="res/css/icons-bodyparts.css" />
+    <file src="res/css/icons-clothes.css" />
+    <file src="res/fonts/FontAwesome.otf" />
+    <file src="res/fonts/fontawesome-webfont.svg" />
+    <file src="res/fonts/fontawesome-webfont.woff2" />
+    <file src="res/fonts/clothes.ttf" />
+    <file src="res/fonts/clothes.svg" />
+    <file src="res/fonts/clothes.woff" />
+    <file src="res/fonts/bodyparts.ttf" />
+    <file src="res/fonts/bodyparts.svg" />
+    <file src="res/fonts/bodyparts.woff" />
+
+    <!-- Fonts -->
+    <file src="res/fonts/Roboto.ttf" />
+    <file src="res/fonts/five.ttf" />
+    <file src="res/fonts/logo.ttf" />
 </meta>

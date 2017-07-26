@@ -668,10 +668,53 @@ customization item desc {
 /******************************************************************************/
 /*   Char configurator                                                        */
 /******************************************************************************/
-block.configurator {
-    width: 12%;
-    top: 20%;
-    left: 10%;
+configurator {
+    display: block;
+    width: 20%;
+    top: 80%;
+    left: 40%;
+    padding: 10px;
+    position: fixed;
+}
+
+configurator button.counter {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Roboto";
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
+}
+
+configurator button {
+    display: inline-block;
+    vertical-align: top;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ddd;
+    text-transform: uppercase;
+    padding: 10px 20px 10px 20px;
+    border: 0px;
+}
+
+configurator button.counter:hover {
+    cursor: default;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+configurator button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/******************************************************************************/
+/*   Char  Sliders                                                            */
+/******************************************************************************/
+block.sliders {
+    width: 25%;
+    top: 15%;
+    left: 5%;
     position: fixed;
 }
 

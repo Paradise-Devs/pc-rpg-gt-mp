@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel='stylesheet' href='../css/font-awesome.min.css'>
+        <link rel='stylesheet' href='../css/icons-fa.css'>
         <link rel='stylesheet' href='../css/pcfw.css'>
         <link rel='stylesheet' href='../css/gui.css'>
     </head>
@@ -19,13 +19,13 @@
                 </charlist>
             </block>
             <selectchar>
-                <charinfo>                    
+                <charinfo>
                 </charinfo>
                 <button id="playButton"><i class="fa fa-play"></i> Jogar</button>
             </selectchar>
         </div>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/tether.min.js"></script>
+        <script src="../js/jquery.js"></script>
+        <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
         <script>
             var characters = null;
@@ -79,7 +79,7 @@
 
                     $(this).addClass('active').siblings().removeClass('active');
 
-                    resourceCall("ApplyCharacterFeatures", i);                    
+                    resourceCall("ApplyCharacterFeatures", i);
                 }
                 // Create new character
                 else
@@ -175,7 +175,7 @@
 
             function parseJsonDate(jsonDateString)
             {
-                // return new Date(parseInt(jsonDateString.replace('/Date(', '')));                
+                // return new Date(parseInt(jsonDateString.replace('/Date(', '')));
                 return new Date(jsonDateString);
             }
         </script>

@@ -2,13 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel='stylesheet' href='../css/font-awesome.min.css'>
         <link rel='stylesheet' href='../css/pcfw.css'>
         <link rel='stylesheet' href='../css/gui.css'>
-        <link rel='stylesheet' href='../css/clothes.css'>
-        <link rel='stylesheet' href='../css/bodyparts.css'>
+        <link rel='stylesheet' href='../css/icons-fa.css'>
+        <link rel='stylesheet' href='../css/icons-clothes.css'>
+        <link rel='stylesheet' href='../css/icons-bodyparts.css'>
     </head>
-    <body id="main">
+    <body id="main" class="test-enabled">
         <div class="container-fluid">
             <pagetitle>Criar novo personagem</pagetitle>
             <block class="charcreator">
@@ -48,13 +48,19 @@
                             <item class="male">
                                 <i class="bodyparts-young-male-black-short-hair-shape"></i>
                             </item>
+                            <item class="male">
+                                <i class="bodyparts-mustache-curled-tip-variant"></i>
+                            </item>
                             <item class="female">
                                 <i class="bodyparts-brunette-female-woman-long-hair"></i>
+                            </item>
+                            <item class="female">
+                                <i class="bodyparts-closed-eyes-with-lashes-and-brows"></i>
                             </item>
                         </container>
                     </category>
                     <category>
-                        <header data-id="1">Superior <i class="fa fa-caret-down"></i></header>
+                        <header data-id="1">Torso <i class="fa fa-caret-down"></i></header>
                         <container>
                             <item class="male">
                                 <i class="clothes-shirt"></i>
@@ -71,7 +77,7 @@
                         </container>
                     </category>
                     <category>
-                        <header data-id="2">Inferior <i class="fa fa-caret-down"></i></header>
+                        <header data-id="2">Pernas <i class="fa fa-caret-down"></i></header>
                         <container>
                             <item>
                                 <i class="clothes-jeans"></i>
@@ -88,8 +94,22 @@
                             <item class="male">
                                 <i class="clothes-underwear"></i>
                             </item>
+                        </container>
+                    </category>
+                    <category>
+                        <header data-id="3">Pés <i class="fa fa-caret-down"></i></header>
+                        <container>
+                            <item>
+                                <i class="clothes-slipper"></i>
+                            </item>
                             <item class="male">
-                                <i class="clothes-shoe"></i>
+                                <i class="clothes-boot"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-boot-1"></i>
+                            </item>
+                            <item>
+                                <i class="clothes-sneaker"></i>
                             </item>
                             <item class="female">
                                 <i class="clothes-high-heels"></i>
@@ -127,12 +147,25 @@
                     <button type="submit" id="submit">Criar</button>
                 </footer>
             </block>
-            <block class="configurator" id="">
-
+            <configurator>
+                <div class="btn-group">
+                    <button><i class="fa fa-caret-left"></i></button>
+                    <button class="counter" disabled>1/63</button>
+                    <button><i class="fa fa-caret-right"></i></button>
+                </div>
+            </configurator>
+            <block class="sliders">
+                <header>
+                    Ajuste o configurador conforme as suas preferências.
+                </header>
+                <content>
+                </content>
             </block>
+
         </div>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/tether.min.js"></script>
+        <script src="../js/slider.js"></script>
+        <script src="../js/jquery.js"></script>
+        <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
         <script>
             $("category container").hide();
@@ -172,8 +205,11 @@
             });
 
             $($('category container item')).on('click',function() {
-                $("editproperty").show();
                 $(this).addClass('active').siblings().removeClass('active');
+
+                $(this).parent().parent().siblings()
+                    .find('container item')
+                    .removeClass('active');
             });
 
             $($('gender item')).on('click',function() {
@@ -189,7 +225,7 @@
                     $('category container item.female').show();
                     resourceCall("ChangeCharacterGender", 1);
                 }
-                resourceCall("resource.Sounds.PlaySelectSound");                
+                resourceCall("resource.Sounds.PlaySelectSound");
             });
 
             $('#backBtn').click(function ()

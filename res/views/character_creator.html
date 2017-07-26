@@ -8,7 +8,7 @@
         <link rel='stylesheet' href='../css/icons-clothes.css'>
         <link rel='stylesheet' href='../css/icons-bodyparts.css'>
     </head>
-    <body id="main" class="test-enabled">
+    <body id="main">
         <div class="container-fluid">
             <pagetitle>Criar novo personagem</pagetitle>
             <block class="charcreator">
@@ -62,7 +62,16 @@
                     <category>
                         <header data-id="1">Torso <i class="fa fa-caret-down"></i></header>
                         <container>
-                            <item class="male">
+                            <item class="male" data-id="0">
+                                <i class="clothes-shirt"></i>
+                            </item>
+                            <item class="male" data-id="1"> <!-- TROCAR PARA BLUSA FECHADA -->
+                                <i class="clothes-trench-coat"></i>
+                            </item>
+                            <item class="male" data-id="2"> <!-- TROCAR PARA BLUSA ABERTA -->
+                                <i class="clothes-shirt"></i>
+                            </item>
+                            <item class="male" data-id="12"><!-- TROCAR PARA CAMISA DE DENTRO SÓ PODE SER USADO SE ESTIVER USANDO BLUSA ABERTA -->
                                 <i class="clothes-shirt"></i>
                             </item>
                             <item class="female">
@@ -71,7 +80,7 @@
                             <item class="female">
                                 <i class="clothes-dress-3"></i>
                             </item>
-                            <item>
+                            <item class="female">
                                 <i class="clothes-trench-coat"></i>
                             </item>
                         </container>
@@ -79,11 +88,14 @@
                     <category>
                         <header data-id="2">Pernas <i class="fa fa-caret-down"></i></header>
                         <container>
-                            <item>
+                            <item class="male" data-id="3">
                                 <i class="clothes-jeans"></i>
                             </item>
-                            <item class="male">
+                            <item class="male" data-id="4">
                                 <i class="clothes-shorts"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-jeans"></i>
                             </item>
                             <item class="female">
                                 <i class="clothes-shorts-1"></i>
@@ -99,16 +111,22 @@
                     <category>
                         <header data-id="3">Pés <i class="fa fa-caret-down"></i></header>
                         <container>
-                            <item>
+                            <item class="male" data-id="5">
                                 <i class="clothes-slipper"></i>
                             </item>
-                            <item class="male">
+                            <item class="male" data-id="6">
+                                <i class="clothes-sneaker"></i>
+                            </item>
+                            <item class="male" data-id="7"> <!-- TROCAR ICONE POR CHINELO OU SANDALIA -->
                                 <i class="clothes-boot"></i>
+                            </item>
+                            <item class="female">
+                                <i class="clothes-slipper"></i>
                             </item>
                             <item class="female">
                                 <i class="clothes-boot-1"></i>
                             </item>
-                            <item>
+                            <item class="female">
                                 <i class="clothes-sneaker"></i>
                             </item>
                             <item class="female">
@@ -119,21 +137,18 @@
                     <category>
                         <header data-id="-1">Acessórios <i class="fa fa-caret-down"></i></header>
                         <container>
-                                <item>
+                                <item class="male" data-id="8">
                                     <i class="clothes-tie"></i>
                                 </item>
-                                <item>
+                                <item class="male" data-id="9">
                                     <i class="clothes-scarf"></i>
                                 </item>
-                                <item>
+                                <item class="male" data-id="10">
                                     <i class="clothes-necklace"></i>
                                 </item>
-                                <item>
+                                <item class="male" data-id="11"> <!-- TROCAR ICONE POR DIVERSOS -->
                                     <i class="clothes-glasses"></i>
-                                </item>
-                                <item>
-                                    <i class="clothes-hat"></i>
-                                </item>
+                                </item>                                
                                 <item class="female">
                                     <i class="bodyparts-ear-lobe-side-view-outline"></i>
                                 </item>
@@ -149,9 +164,9 @@
             </block>
             <configurator>
                 <div class="btn-group">
-                    <button><i class="fa fa-caret-left"></i></button>
-                    <button class="counter" disabled>1/63</button>
-                    <button><i class="fa fa-caret-right"></i></button>
+                    <button id="decreaseItem"><i class="fa fa-caret-left"></i></button>
+                    <button class="counter" disabled>0/0</button>
+                    <button id="increaseItem"><i class="fa fa-caret-right"></i></button>
                 </div>
             </configurator>
             <block class="sliders">
@@ -167,7 +182,59 @@
         <script src="../js/jquery.js"></script>
         <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
+        <script src="../js/character-components.js"></script>
         <script>
+
+            // ------------- item selection -------------
+
+            var gender = 0;
+            var selected_item_type = null;
+            var current_item_variation = 0;
+            var current_item_last_index = 0;
+            
+            $("configurator").hide();            
+
+            $("item").click(function ()
+            {
+                if ($(this).data("id") == undefined)
+                    return;
+
+                selected_item_type = $(this).data("id");
+                current_item_variation = 0;
+                current_item_last_index = character_components[gender][selected_item_type].length - 1;
+
+                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                if (!$("configurator").is(":visible"))
+                    $("configurator").show();
+
+                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+            });
+
+            $("#decreaseItem").click(function ()
+            {
+                current_item_variation--;
+                if (current_item_variation < 0)
+                    current_item_variation = current_item_last_index;
+                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+            });
+
+            $("#increaseItem").click(function ()
+            {
+                current_item_variation++;
+                if (current_item_variation > current_item_last_index)
+                    current_item_variation = 0;
+                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+            });
+
+            // ------------- item selection -------------
+
             $("category container").hide();
             $("error").hide();
             $("customization").hide();
@@ -186,6 +253,9 @@
                 $(this).siblings('container').slideToggle();
                 $(this).parent().siblings().removeClass('active');
                 $(this).parent().siblings().find('header i').addClass('fa-caret-down').removeClass('fa-caret-up');
+
+                if ($("configurator").is(":visible"))
+                    $("configurator").hide();
 
                 if ($(this).data("id") != undefined)
                 {
@@ -219,10 +289,14 @@
                 if($(this).hasClass('male')) {
                     $('category container item.female').hide();
                     $('category container item.male').show();
+
+                    gender = 0;
                     resourceCall("ChangeCharacterGender", 0);
                 } else {
                     $('category container item.male').hide();
                     $('category container item.female').show();
+
+                    gender = 1;
                     resourceCall("ChangeCharacterGender", 1);
                 }
                 resourceCall("resource.Sounds.PlaySelectSound");

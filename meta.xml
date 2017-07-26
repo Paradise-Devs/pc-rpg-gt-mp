@@ -26,6 +26,7 @@
     <file src="res/js/tether.js" />
     <file src="res/js/slider.js" />
     <file src="res/js/pcfw.js" />
+    <file src="res/js/character-components.js" />
 
     <!-- Sounds -->
     <file src="res/sounds/music01.ogg" />

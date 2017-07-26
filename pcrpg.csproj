@@ -85,7 +85,7 @@
     <Content Include="res\css\pcfw.css" />
     <Content Include="res\fonts\fontawesome-webfont.svg" />
     <Content Include="res\img\bg.jpg" />
-    <Content Include="res\js\clothes.js" />
+    <Content Include="res\js\character-components.js" />
     <Content Include="res\js\jquery.min.js" />
     <Content Include="res\js\pcfw.js" />
     <Content Include="res\js\tether.min.js" />

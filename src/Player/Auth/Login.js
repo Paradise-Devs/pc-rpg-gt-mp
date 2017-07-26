@@ -34,10 +34,10 @@ API.onServerEventTrigger.connect((name, args) => {
             API.destroyCefBrowser(browser);
             browser = null;
         }
+        canMove = false;
         // Move scene position
         API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
         API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
-        canMove = false;
         var startCamPos = new Vector3(400.9627, -1005.109, -99.00404);
         var startCamRot = new Vector3(0.0, 0.0, 176.891);
         var startCamera = API.createCamera(startCamPos, startCamRot);

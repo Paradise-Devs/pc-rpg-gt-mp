@@ -2,31 +2,33 @@
 /// <reference path='../../../types-gt-mp/index.d.ts' />
 var browser = null;
 // Character's Data
-var gender = 0;
-var faceFirst = 0;
-var faceSecond = 0;
-var faceMix = 0.0;
-var skinFirst = 0;
-var skinSecond = 0;
-var skinMix = 0.0;
-var hairType = 0;
-var hairColor = 0;
-var hairHighlight = 0;
-var eyeColor = 0;
-var eyebrows = 0;
-var eyebrowsColor1 = 0;
-var eyebrowsColor2 = 0;
-var beard = null;
-var beardColor = 0;
-var makeup = null;
-var makeupColor = 0;
-var lipstick = null;
-var lipstickColor = 0;
-var torso = 0;
-var legs = 1;
-var feet = 1;
-var undershirt = 57;
-var topshirt = 1;
+var characterData = {
+    gender: 0,
+    faceFirst: 0,
+    faceSecond: 0,
+    faceMix: 0.0,
+    skinFirst: 0,
+    skinSecond: 0,
+    skinMix: 0.0,
+    hairType: 0,
+    hairColor: 0,
+    hairHighlight: 0,
+    eyeColor: 0,
+    eyebrows: 0,
+    eyebrowsColor1: 0,
+    eyebrowsColor2: 0,
+    beard: null,
+    beardColor: 0,
+    makeup: null,
+    makeupColor: 0,
+    lipstick: null,
+    lipstickColor: 0,
+    torso: 0,
+    legs: 1,
+    feet: 1,
+    undershirt: 57,
+    topshirt: 1,
+};
 API.onResourceStop.connect(() => {
     if (browser != null) {
         API.destroyCefBrowser(browser);
@@ -34,7 +36,7 @@ API.onResourceStop.connect(() => {
     }
 });
 function ChangeCharacterGender(id) {
-    gender = id;
+    characterData.gender = id;
     ResetCharacterCreation();
 }
 function ShowCharacterCreator() {
@@ -53,27 +55,27 @@ function ShowCharacterCreator() {
     ResetCharacterCreation();
 }
 function ResetCharacterCreation() {
-    torso = gender ? 5 : 0;
-    undershirt = gender ? 95 : 57;
-    hairType = gender ? 4 : 0;
-    API.setPlayerSkin(gender ? -1667301416 : 1885233650);
-    API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), faceFirst, faceSecond, 0, skinFirst, skinSecond, 0, faceMix, skinMix, 0, false);
-    API.setPlayerClothes(API.getLocalPlayer(), 2, hairType, 0);
-    API.callNative("_SET_PED_HAIR_COLOR", API.getLocalPlayer(), hairColor, hairHighlight);
-    API.callNative("_SET_PED_EYE_COLOR", API.getLocalPlayer(), eyeColor);
-    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 2, eyebrows, API.f(1));
-    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 2, 1, eyebrowsColor1, eyebrowsColor2);
-    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, beard == null ? 0 : beard, API.f(beard == null ? 0 : 1));
-    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 1, 1, beardColor, beardColor);
-    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 4, makeup == null ? 0 : makeup, API.f(makeup == null ? 0 : 1));
-    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 4, 0, makeupColor, makeupColor);
-    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, lipstick == null ? 0 : lipstick, API.f(lipstick == null ? 0 : 1));
-    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, lipstickColor, lipstickColor);
-    API.setPlayerClothes(API.getLocalPlayer(), 3, torso, 0);
-    API.setPlayerClothes(API.getLocalPlayer(), 4, legs, 0);
-    API.setPlayerClothes(API.getLocalPlayer(), 6, feet, 0);
-    API.setPlayerClothes(API.getLocalPlayer(), 8, undershirt, 0);
-    API.setPlayerClothes(API.getLocalPlayer(), 11, topshirt, 0);
+    characterData.torso = characterData.gender ? 5 : 0;
+    characterData.undershirt = characterData.gender ? 95 : 57;
+    characterData.hairType = characterData.gender ? 4 : 0;
+    API.setPlayerSkin(characterData.gender ? -1667301416 : 1885233650);
+    API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), characterData.faceFirst, characterData.faceSecond, 0, characterData.skinFirst, characterData.skinSecond, 0, characterData.faceMix, characterData.skinMix, 0, false);
+    API.setPlayerClothes(API.getLocalPlayer(), 2, characterData.hairType, 0);
+    API.callNative("_SET_PED_HAIR_COLOR", API.getLocalPlayer(), characterData.hairColor, characterData.hairHighlight);
+    API.callNative("_SET_PED_EYE_COLOR", API.getLocalPlayer(), characterData.eyeColor);
+    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 2, characterData.eyebrows, API.f(1));
+    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 2, 1, characterData.eyebrowsColor1, characterData.eyebrowsColor2);
+    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, characterData.beard == null ? 0 : characterData.beard, API.f(characterData.beard == null ? 0 : 1));
+    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 1, 1, characterData.beardColor, characterData.beardColor);
+    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 4, characterData.makeup == null ? 0 : characterData.makeup, API.f(characterData.makeup == null ? 0 : 1));
+    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 4, 0, characterData.makeupColor, characterData.makeupColor);
+    API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, characterData.lipstick == null ? 0 : characterData.lipstick, API.f(characterData.lipstick == null ? 0 : 1));
+    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, characterData.lipstickColor, characterData.lipstickColor);
+    API.setPlayerClothes(API.getLocalPlayer(), 3, characterData.torso, 0);
+    API.setPlayerClothes(API.getLocalPlayer(), 4, characterData.legs, 0);
+    API.setPlayerClothes(API.getLocalPlayer(), 6, characterData.feet, 0);
+    API.setPlayerClothes(API.getLocalPlayer(), 8, characterData.undershirt, 0);
+    API.setPlayerClothes(API.getLocalPlayer(), 11, characterData.topshirt, 0);
 }
 function MoveCameraPosition(pos) {
     switch (pos) {

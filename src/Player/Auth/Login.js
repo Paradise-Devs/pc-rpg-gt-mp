@@ -3,7 +3,7 @@
 var player = null;
 var browser = null;
 var music = null;
-var canMove = true;
+var canMove = false;
 API.onResourceStart.connect(() => {
     // Login camera position
     var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());

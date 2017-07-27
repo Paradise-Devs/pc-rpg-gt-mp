@@ -3,7 +3,7 @@
 var player = null;
 var browser = null;
 var music = null;
-var canMove = true;
+var canMove = false;
 
 API.onResourceStart.connect(() =>
 {

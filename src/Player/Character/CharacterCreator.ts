@@ -92,6 +92,9 @@ function ShowCharacterCreator()
     API.setCanOpenChat(false);
     API.setCefBrowserHeadless(browser, false);
 
+    API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
+    API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+
     ResetCharacterCreation();
 }
 

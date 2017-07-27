@@ -1,8 +1,10 @@
-"use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+﻿/// <reference path='../../../types-gt-mp/index.d.ts' />
+
 var browser = null;
+
 // Character's Data
 var character_data = {
+    name: "",
     gender: 0,
     faceFirst: 0,
     faceSecond: 0,
@@ -31,14 +33,44 @@ var character_data = {
     topshirtTexture: 0,
     accessory: 0,
 };
-API.onResourceStop.connect(() => {
-    if (browser != null) {
+
+API.onResourceStop.connect(() =>
+{
+    if (browser != null)
+    {
         API.destroyCefBrowser(browser);
         browser = null;
     }
 });
-function ChangeCharacterGender(id) {
+
+API.onServerEventTrigger.connect((eventName: string, _arguments: any[]) =>
+{
+    if (eventName == "closeCharacterCreationBrowser")
+    {
+        if (browser != null)
+        {
+            API.destroyCefBrowser(browser);
+            browser = null;
+        }
+
+        API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
+        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 136.9184));
+
+        API.setActiveCamera(null);
+        API.setCanOpenChat(true);
+        API.setChatVisible(true);
+        API.setHudVisible(true);
+        API.showCursor(false);
+
+        resource.Login.canMove = true;
+        API.stopMusic();
+    }
+});
+
+function ChangeCharacterGender(id)
+{
     character_data.gender = id;
+
     character_data.faceFirst = 0;
     character_data.faceSecond = 0;
     character_data.faceMix = 0.0;
@@ -65,10 +97,14 @@ function ChangeCharacterGender(id) {
     character_data.topshirt = 1;
     character_data.topshirtTexture = 0;
     character_data.accessory = 0;
+
     ResetCharacterCreation();
 }
-function ShowCharacterCreator() {
-    if (browser == null) {
+
+function ShowCharacterCreator()
+{
+    if (browser == null)
+    {
         var res = API.getScreenResolution();
         browser = API.createCefBrowser(res.Width, res.Height);
         API.setCefBrowserHeadless(browser, true);
@@ -80,27 +116,40 @@ function ShowCharacterCreator() {
     API.showCursor(true);
     API.setCanOpenChat(false);
     API.setCefBrowserHeadless(browser, false);
+
     API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
     API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+
     ResetCharacterCreation();
 }
-function ResetCharacterCreation() {
+
+function ResetCharacterCreation()
+{
     character_data.torso = character_data.gender ? 5 : 0;
     character_data.undershirt = character_data.gender ? 95 : 57;
-    character_data.hairType = character_data.gender ? 4 : 0;
+    character_data.hairType = character_data.gender ? 4 : 0;    
+
     API.setPlayerSkin(character_data.gender ? -1667301416 : 1885233650);
+
     API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), character_data.faceFirst, character_data.faceSecond, 0, character_data.skinFirst, character_data.skinSecond, 0, character_data.faceMix, character_data.skinMix, 0, false);
+
     API.setPlayerClothes(API.getLocalPlayer(), 2, character_data.hairType, 0);
     API.callNative("_SET_PED_HAIR_COLOR", API.getLocalPlayer(), character_data.hairColor, character_data.hairHighlight);
+
     API.callNative("_SET_PED_EYE_COLOR", API.getLocalPlayer(), character_data.eyeColor);
+
     API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 2, character_data.eyebrows, API.f(1));
     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 2, 1, character_data.eyebrowsColor1, character_data.eyebrowsColor2);
+
     API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard == null ? 0 : character_data.beard, API.f(character_data.beard == null ? 0 : 1));
     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 1, 1, character_data.beardColor, character_data.beardColor);
+
     API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 4, character_data.makeup == null ? 0 : character_data.makeup, API.f(character_data.makeup == null ? 0 : 1));
     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 4, 0, character_data.makeupColor, character_data.makeupColor);
+
     API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick == null ? 0 : character_data.lipstick, API.f(character_data.lipstick == null ? 0 : 1));
     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, character_data.lipstickColor, character_data.lipstickColor);
+
     API.setPlayerClothes(API.getLocalPlayer(), 3, character_data.torso, 0);
     API.setPlayerClothes(API.getLocalPlayer(), 4, character_data.legs, 0);
     API.setPlayerClothes(API.getLocalPlayer(), 6, character_data.feet, 0);
@@ -108,8 +157,11 @@ function ResetCharacterCreation() {
     API.setPlayerClothes(API.getLocalPlayer(), 8, character_data.undershirt, 0);
     API.setPlayerClothes(API.getLocalPlayer(), 11, character_data.topshirt, 0);
 }
-function MoveCameraPosition(pos) {
-    switch (pos) {
+
+function MoveCameraPosition(pos)
+{
+    switch (pos)
+    {
         case 0:
             {
                 // Head
@@ -162,39 +214,49 @@ function MoveCameraPosition(pos) {
             }
     }
 }
-function GoBackToSelection() {
-    if (browser != null) {
+
+function GoBackToSelection()
+{
+    if (browser != null)
+    {
         API.destroyCefBrowser(browser);
         browser = null;
     }
     MoveCameraPosition(-1);
     resource.CharacterSelector.ShowCharacterSelector();
 }
-function SelectCharacterClothes(data) {
+
+function SelectCharacterClothes(data)
+{
     data = JSON.parse(data);
-    if (data.torso != undefined) {
+
+    if (data.torso != undefined)
+    {
         character_data.torso = data.torso;
         API.setPlayerClothes(API.getLocalPlayer(), 3, data.torso, 0);
     }
-    if (data.undershirt != undefined) {
+
+    if (data.undershirt != undefined)
+    {
         character_data.undershirt = data.undershirt;
         API.setPlayerClothes(API.getLocalPlayer(), 8, data.undershirt, 0);
     }
-    if (data.slot == 4)
-        character_data.legs = data.variation;
-    else if (data.slot == 6)
-        character_data.feet = data.variation;
-    else if (data.slot == 7)
-        character_data.accessory = data.variation;
-    else if (data.slot == 8)
-        character_data.undershirt = data.variation;
-    else if (data.slot == 11) {
+
+    if (data.slot == 4) character_data.legs = data.variation;
+    else if (data.slot == 6) character_data.feet = data.variation;
+    else if (data.slot == 7) character_data.accessory = data.variation;
+    else if (data.slot == 8) character_data.undershirt = data.variation;
+    else if (data.slot == 11)
+    {        
         character_data.topshirt = data.variation;
         character_data.topshirtTexture = data.texture;
     }
+
     API.setPlayerClothes(API.getLocalPlayer(), data.slot, data.variation, data.texture);
 }
-function SelectCharacterComponent(data) {
+
+function SelectCharacterComponent(data)
+{
     var mix_data = [
         0.0,
         0.1,
@@ -208,7 +270,8 @@ function SelectCharacterComponent(data) {
         0.9
     ];
     data = JSON.parse(data);
-    switch (data.type) {
+    switch (data.type)
+    {
         // Face
         case 13:
             {
@@ -238,25 +301,43 @@ function SelectCharacterComponent(data) {
         // Beard or Makeup
         case 16:
             {
-                if (!character_data.gender) {
-                    character_data.beard = data.config1;
-                    character_data.beardColor = data.config2;
-                    if (character_data.beard == 0)
-                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard, API.f(0));
+                if (!character_data.gender)
+                {
+                    if (data.config1 < 1)
+                    {
+                        character_data.beard = null;
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, data.config1, API.f(0));
+                    }
                     else
-                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard - 1, API.f(1));
+                    {
+                        character_data.beard = data.config1 - 1;
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard, API.f(1));
+                    }
+                    character_data.beardColor = data.config2;
                     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 1, 1, character_data.beardColor, character_data.beardColor);
                 }
-                else {
-                    character_data.lipstick = data.config1;
-                    character_data.lipstickColor = data.config2;
-                    if (character_data.lipstick == 0)
-                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick, API.f(0));
+                else
+                {                    
+                    if (data.config1 < 1)
+                    {
+                        character_data.lipstick = null;
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, data.config1, API.f(0));
+                    }
                     else
-                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick - 1, API.f(1));
+                    {
+                        character_data.lipstick = data.config1 - 1;
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick, API.f(1));
+                    }
+                    character_data.lipstickColor = data.config2;
                     API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, character_data.lipstickColor, character_data.lipstickColor);
                 }
                 break;
             }
     }
+}
+
+function finishCharacterCreation(character_name)
+{
+    character_data.name = character_name;
+    API.triggerServerEvent("FinishCharacterCreation", API.toJson(character_data));
 }

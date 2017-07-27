@@ -2,7 +2,6 @@
 /// <reference path='../../../types-gt-mp/index.d.ts' />
 var player = null;
 var browser = null;
-var music = null;
 var canMove = false;
 API.onResourceStart.connect(() => {
     // Login camera position
@@ -12,7 +11,8 @@ API.onResourceStart.connect(() => {
     API.setHudVisible(false);
     API.setChatVisible(false);
     resource.CharacterCreator.ResetCharacterCreation();
-    music = API.startMusic("res/sounds/music01.ogg", true);
+    API.startMusic("res/sounds/music01.ogg", true);
+    API.setMusicVolume(0.25);
 });
 API.onServerEventTrigger.connect((name, args) => {
     if (name == "ShowLoginForm") {

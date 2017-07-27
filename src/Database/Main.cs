@@ -1,7 +1,7 @@
 ﻿using GrandTheftMultiplayer.Server.API;
-using pcrpg.Database.Models;
+using pcrpg.src.Database.Models;
 
-namespace pcrpg.Database
+namespace pcrpg.src.Database
 {
     class Main : Script
     {

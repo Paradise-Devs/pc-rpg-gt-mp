@@ -1,7 +1,6 @@
-﻿using pcrpg.src.Database.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace pcrpg.Database.Models
+namespace pcrpg.src.Database.Models
 {
     public class User
     {

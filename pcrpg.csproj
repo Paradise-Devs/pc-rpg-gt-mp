@@ -76,7 +76,8 @@
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Player\Auth\Login.cs" />
-    <Compile Include="src\Player\Character\Selection.cs" />
+    <Compile Include="src\Player\Creation\CharacterCreation.cs" />
+    <Compile Include="src\Player\Creation\Selection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\css\gui.css" />
@@ -99,8 +100,8 @@
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\login.html" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
-    <TypeScriptCompile Include="src\Player\Character\CharacterCreator.ts" />
-    <TypeScriptCompile Include="src\Player\Character\CharacterSelector.ts" />
+    <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
+    <TypeScriptCompile Include="src\Player\Creation\CharacterSelector.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

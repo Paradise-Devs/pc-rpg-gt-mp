@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using pcrpg.Database.Models;
+using pcrpg.src.Database.Models;
 using System.Security.Cryptography;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;

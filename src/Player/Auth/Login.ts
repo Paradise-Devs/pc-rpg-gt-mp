@@ -2,7 +2,6 @@
 
 var player = null;
 var browser = null;
-var music = null;
 var canMove = false;
 
 API.onResourceStart.connect(() =>
@@ -13,9 +12,10 @@ API.onResourceStart.connect(() =>
     API.setActiveCamera(newCam);
 
     API.setHudVisible(false);
-    API.setChatVisible(false);    
+    API.setChatVisible(false);
     resource.CharacterCreator.ResetCharacterCreation();
-    music = API.startMusic("res/sounds/music01.ogg", true);    
+    API.startMusic("res/sounds/music01.ogg", true);
+    API.setMusicVolume(0.25);
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>

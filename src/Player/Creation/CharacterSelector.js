@@ -40,9 +40,7 @@ function ApplyCharacterFeatures(i) {
         API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, character[i].Trait.LipstickColor, character[i].Trait.LipstickColor);
     }
     for (var j = 0; j < character[i].Clothes.length; j++) {
-        if (character[i].Clothes[j].Torso != null)
-            API.setPlayerClothes(API.getLocalPlayer(), 3, character[i].Clothes[j].Torso, 0);
-        API.setPlayerClothes(API.getLocalPlayer(), character[i].Clothes[j].BodyPart, character[i].Clothes[j].Variation, 0);
+        API.setPlayerClothes(API.getLocalPlayer(), character[i].Clothes[j].BodyPart, character[i].Clothes[j].Variation, character[i].Clothes[j].Texture);
     }
 }
 function ShowCharacterSelector() {
@@ -61,6 +59,21 @@ function ShowCharacterSelector() {
 }
 function CharacterSelectorBrowserReady() {
     API.triggerServerEvent("RetrieveCharactersList");
+}
+function SelectCharacterToPlay(id) {
+    if (browser != null) {
+        API.destroyCefBrowser(browser);
+        browser = null;
+    }
+    API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
+    API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 136.9184));
+    API.setActiveCamera(null);
+    API.setCanOpenChat(true);
+    API.setChatVisible(true);
+    API.setHudVisible(true);
+    API.showCursor(false);
+    resource.Login.canMove = true;
+    API.stopMusic();
 }
 function SendToCharacterCreator() {
     if (browser != null) {

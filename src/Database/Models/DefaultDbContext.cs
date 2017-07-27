@@ -1,12 +1,11 @@
 ﻿using MySql.Data.Entity;
 using MySql.Data.MySqlClient;
-using pcrpg.src.Database.Models;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 
-namespace pcrpg.Database.Models
+namespace pcrpg.src.Database.Models
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class DefaultDbContext : DbContext
@@ -17,7 +16,9 @@ namespace pcrpg.Database.Models
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Character> Characters { get; set; }        
+        public DbSet<Character> Characters { get; set; }
+        public DbSet<CharacterTrait> Traits { get; set; }
+        public DbSet<CharacterClothes> Clothes { get; set; }
     }
 
     public class ContextFactory : IDbContextFactory<DefaultDbContext>

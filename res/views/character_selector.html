@@ -29,6 +29,7 @@
         <script src="../js/pcfw.js"></script>
         <script>
             var characters = null;
+            var selected_character = 0;
 
             function updateList(data)
             {
@@ -70,16 +71,16 @@
                 if (characters == null)
                     return;
 
-                var i = $(this).data("id");
+                selected_character = $(this).data("id");
 
                 // Select a character
-                if (i >= 0)
+                if (selected_character >= 0)
                 {
-                    UpdateCharacterInfo(i);
+                    UpdateCharacterInfo(selected_character);
 
                     $(this).addClass('active').siblings().removeClass('active');
 
-                    resourceCall("ApplyCharacterFeatures", i);
+                    resourceCall("ApplyCharacterFeatures", selected_character);
                 }
                 // Create new character
                 else
@@ -93,11 +94,7 @@
             $('#playButton').click(function ()
             {
                 resourceCall("resource.Sounds.PlaySelectSound");
-            });
-
-            $('header').click(function ()
-            {
-                console.log(characters);
+                resourceCall("SelectCharacterToPlay", selected_character);
             });
 
             $(document).ready(function ()

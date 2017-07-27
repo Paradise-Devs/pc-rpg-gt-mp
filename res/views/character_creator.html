@@ -508,7 +508,7 @@
                     $("error").hide();
                     $(this).removeClass('error');
                 }
-            });
+            });            
 
             $('category header').click(function ()
             {
@@ -549,6 +549,12 @@
 
                 else if (!$("gender item").hasClass("active"))
                     ShowError("Selecione o sexo do personagem", "gender item");
+
+                else
+                {
+                    resourceCall("resource.Sounds.PlaySelectSound");
+                    resourceCall("finishCharacterCreation", $("#charname").val());
+                }
             });
 
             $('gender item').on('click', function ()

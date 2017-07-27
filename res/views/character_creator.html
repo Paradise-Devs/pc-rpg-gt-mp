@@ -102,7 +102,7 @@
                             </item>
                             <item class="female">
                                 <i class="clothes-shorts-1"></i>
-                            </item>                            
+                            </item>
                             <item class="male">
                                 <i class="clothes-underwear"></i>
                             </item>
@@ -186,14 +186,6 @@
                     </div>
                 </config>
             <configurators>
-            <block class="sliders">
-                <header>
-                    Ajuste o configurador conforme as suas preferências.
-                </header>
-                <content>
-                </content>
-            </block>
-
         </div>
         <script src="../js/slider.js"></script>
         <script src="../js/jquery.js"></script>
@@ -300,6 +292,11 @@
             $($('gender item')).on('click',function() {
                 $(this).addClass('active').siblings().removeClass('active');
                 $("customization").slideDown();
+
+                $('category').removeClass('active');
+                $('category header i').addClass('fa-caret-down').removeClass('fa-caret-up');
+                $('category container').slideUp();
+                $('category container item').removeClass('active');
 
                 if($(this).hasClass('male')) {
                     $('category container item.female').hide();

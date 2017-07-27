@@ -683,6 +683,7 @@ configurator button.counter {
     vertical-align: middle;
     font-family: "Roboto";
     color: #fff;
+    width: 86px;
     font-size: 12px;
     letter-spacing: 3px;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);

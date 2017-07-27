@@ -196,6 +196,12 @@
 
             $("item").click(function ()
             {
+                $(this).addClass('active').siblings().removeClass('active');
+
+                $(this).parent().parent().siblings()
+                    .find('container item')
+                    .removeClass('active');
+
                 if ($(this).data("id") == undefined)
                     return;
 
@@ -272,14 +278,6 @@
                     ShowError("Formato: <b>Nome Sobrenome</b>", "#charname");
                 else if (!$("gender item").hasClass("active"))
                     ShowError("Selecione o sexo do personagem", "gender item");
-            });
-
-            $($('category container item')).on('click',function() {
-                $(this).addClass('active').siblings().removeClass('active');
-
-                $(this).parent().parent().siblings()
-                    .find('container item')
-                    .removeClass('active');
             });
 
             $($('gender item')).on('click',function() {

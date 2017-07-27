@@ -161,7 +161,7 @@
             </block>
             <configurators>
                 <config id="config1">
-                    <desc>Item 1</desc>
+                    <desc>Superior</desc>
                     <div class="btn-group">
                         <button id="decreaseItem"><i class="fa fa-caret-left"></i></button>
                         <button class="counter" id="counter1" disabled>0/0</button>
@@ -169,7 +169,7 @@
                     </div>
                 </config>
                 <config id="config2">
-                    <desc>Item 2</desc>
+                    <desc>Inferior</desc>
                     <div class="btn-group">
                         <button id="decreaseItem2"><i class="fa fa-caret-left"></i></button>
                         <button class="counter" id="counter2" disabled>0/0</button>
@@ -197,6 +197,7 @@
 
             $("#config1").hide();
             $("#config2").hide();
+            $('config desc').hide();
 
             $("item").click(function ()
             {
@@ -225,9 +226,13 @@
 
                     $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
                     $("#config2").show();
+                    $('config desc').show();
                 }
                 else if (selected_item_type != 2 && $("#config2").is(":visible"))
+                {
                     $("#config2").hide();
+                    $('config desc').hide();
+                }
 
                 resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
             });

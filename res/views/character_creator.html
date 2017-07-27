@@ -180,9 +180,9 @@
                 <config id="config2">
                     <desc>Item 2</desc>
                     <div class="btn-group">
-                        <button id="decreaseItem"><i class="fa fa-caret-left"></i></button>
+                        <button id="decreaseItem2"><i class="fa fa-caret-left"></i></button>
                         <button class="counter" disabled>0/0</button>
-                        <button id="increaseItem"><i class="fa fa-caret-right"></i></button>
+                        <button id="increaseItem2"><i class="fa fa-caret-right"></i></button>
                     </div>
                 </config>
             <configurators>
@@ -201,7 +201,8 @@
             var current_item_variation = 0;
             var current_item_last_index = 0;
 
-            $("configurator").hide();
+            $("#config1").hide();
+            $("#config2").hide();
 
             $("item").click(function ()
             {
@@ -220,8 +221,13 @@
 
                 $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
-                if (!$("configurator").is(":visible"))
-                    $("configurator").show();
+                if (!$("#config1").is(":visible"))
+                    $("#config1").show();
+
+                if (selected_item_type == 2 && !$("#config2").is(":visible"))
+                    $("#config2").show();
+                else if (selected_item_type != 2 && $("#config2").is(":visible"))
+                    $("#config2").hide();
 
                 resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
             });
@@ -254,14 +260,17 @@
             $("error").hide();
             $("customization").hide();
 
-            $('input').keyup(function() {
-                if($(this).hasClass('error')) {
+            $('input').keyup(function ()
+            {
+                if ($(this).hasClass('error'))
+                {
                     $("error").hide();
                     $(this).removeClass('error');
                 }
             });
 
-            $('category header').click(function(){
+            $('category header').click(function ()
+            {
                 $(this).parent().siblings().find('container').slideUp();
                 $(this).parent().toggleClass('active');
                 $("i", this).toggleClass('fa-caret-down fa-caret-up');
@@ -269,8 +278,11 @@
                 $(this).parent().siblings().removeClass('active');
                 $(this).parent().siblings().find('header i').addClass('fa-caret-down').removeClass('fa-caret-up');
 
-                if ($("configurator").is(":visible"))
-                    $("configurator").hide();
+                if ($("#config1").is(":visible"))
+                    $("#config1").hide();
+
+                if ($("#config2").is(":visible"))
+                    $("#config2").hide();
 
                 if ($(this).data("id") != undefined)
                 {
@@ -280,7 +292,8 @@
             });
 
             var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
-            $('#submit').click(function(){
+            $('#submit').click(function ()
+            {
                 if($("#charname").val().length < 8)
                     ShowError("Utilize no mínimo <b>8</b> caracteres.", "#charname");
                 else if(!regx.test($("#charname").val()))
@@ -289,7 +302,8 @@
                     ShowError("Selecione o sexo do personagem", "gender item");
             });
 
-            $($('gender item')).on('click',function() {
+            $('gender item').on('click', function ()
+            {
                 $(this).addClass('active').siblings().removeClass('active');
                 $("customization").slideDown();
 
@@ -304,13 +318,16 @@
 
                     gender = 0;
                     resourceCall("ChangeCharacterGender", 0);
-                } else {
+                }
+                else
+                {
                     $('category container item.male').hide();
                     $('category container item.female').show();
 
                     gender = 1;
                     resourceCall("ChangeCharacterGender", 1);
                 }
+
                 resourceCall("resource.Sounds.PlaySelectSound");
             });
 

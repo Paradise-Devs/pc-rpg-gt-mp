@@ -296,8 +296,10 @@
             {
                 if($("#charname").val().length < 8)
                     ShowError("Utilize no mínimo <b>8</b> caracteres.", "#charname");
+
                 else if(!regx.test($("#charname").val()))
                     ShowError("Formato: <b>Nome Sobrenome</b>", "#charname");
+
                 else if (!$("gender item").hasClass("active"))
                     ShowError("Selecione o sexo do personagem", "gender item");
             });
@@ -307,12 +309,19 @@
                 $(this).addClass('active').siblings().removeClass('active');
                 $("customization").slideDown();
 
+                if ($("#config1").is(":visible"))
+                    $("#config1").hide();
+
+                if ($("#config2").is(":visible"))
+                    $("#config2").hide();
+
                 $('category').removeClass('active');
                 $('category header i').addClass('fa-caret-down').removeClass('fa-caret-up');
                 $('category container').slideUp();
                 $('category container item').removeClass('active');
 
-                if($(this).hasClass('male')) {
+                if ($(this).hasClass('male'))
+                {
                     $('category container item.female').hide();
                     $('category container item.male').show();
 

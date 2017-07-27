@@ -201,7 +201,7 @@ function GoBackToSelection()
     resource.CharacterSelector.ShowCharacterSelector();
 }
 
-function SelectCharacterComponent(data)
+function SelectCharacterClothes(data)
 {
     data = JSON.parse(data);
 
@@ -228,4 +228,75 @@ function SelectCharacterComponent(data)
     }
 
     API.setPlayerClothes(API.getLocalPlayer(), data.slot, data.variation, data.texture);
+}
+
+function SelectCharacterComponent(data)
+{
+    var mix_data = [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+    ];
+    data = JSON.parse(data);
+    switch (data.type)
+    {
+        // Face
+        case 13:
+            {
+                character_data.faceFirst = data.config1;
+                character_data.faceSecond = data.config2;
+                character_data.faceMix = mix_data[data.config3];
+                API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), character_data.faceFirst, character_data.faceSecond, 0, character_data.skinFirst, character_data.skinSecond, 0, character_data.faceMix, character_data.skinMix, 0, false);
+                break;
+            }
+        // Eyes
+        case 14:
+            {
+                character_data.eyeColor = data.config1;
+                API.callNative("_SET_PED_EYE_COLOR", API.getLocalPlayer(), character_data.eyeColor);
+                break;
+            }
+        // Hair
+        case 15:
+            {
+                character_data.hairType = data.config1;
+                character_data.hairColor = data.config2;
+                character_data.hairHighlight = data.config3;
+                API.setPlayerClothes(API.getLocalPlayer(), 2, character_data.hairType, 0);
+                API.callNative("_SET_PED_HAIR_COLOR", API.getLocalPlayer(), character_data.hairColor, character_data.hairHighlight);
+                break;
+            }
+        // Beard or Makeup
+        case 16:
+            {
+                if (!character_data.gender)
+                {
+                    character_data.beard = data.config1;
+                    character_data.beardColor = data.config2;
+                    if (character_data.beard == 0)
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard, API.f(0));
+                    else
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 1, character_data.beard - 1, API.f(1));
+                    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 1, 1, character_data.beardColor, character_data.beardColor);
+                }
+                else
+                {
+                    character_data.lipstick = data.config1;
+                    character_data.lipstickColor = data.config2;
+                    if (character_data.lipstick == 0)
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick, API.f(0));
+                    else
+                        API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 8, character_data.lipstick - 1, API.f(1));
+                    API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 8, 2, character_data.lipstickColor, character_data.lipstickColor);
+                }
+                break;
+            }
+    }
 }

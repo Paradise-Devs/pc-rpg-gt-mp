@@ -90,7 +90,7 @@
     <Content Include="res\fonts\clothes.svg" />
     <Content Include="res\fonts\fontawesome-webfont.svg" />
     <Content Include="res\img\bg.jpg" />
-    <Content Include="res\js\character-components.js" />
+    <Content Include="res\js\character-clothes.js" />
     <Content Include="res\js\jquery.js" />
     <Content Include="res\js\pcfw.js" />
     <Content Include="res\js\slider.js" />

@@ -39,22 +39,22 @@
                     <category>
                         <header data-id="0">Cabeça <i class="fa fa-caret-down"></i></header>
                         <container>
-                            <item>
+                            <item data-id="13">
                                 <i class="bodyparts-face-of-a-woman-outline"></i>
                             </item>
-                            <item>
+                            <item data-id="14">
                                 <i class="bodyparts-eye-variant-with-enlarged-pupil"></i>
                             </item>
-                            <item class="male">
+                            <item class="male" data-id="15">
                                 <i class="bodyparts-young-male-black-short-hair-shape"></i>
                             </item>
-                            <item class="male">
+                            <item class="male" data-id="16">
                                 <i class="bodyparts-mustache-curled-tip-variant"></i>
                             </item>
-                            <item class="female">
+                            <item class="female" data-id="15">
                                 <i class="bodyparts-brunette-female-woman-long-hair"></i>
                             </item>
-                            <item class="female">
+                            <item class="female" data-id="16">
                                 <i class="bodyparts-closed-eyes-with-lashes-and-brows"></i>
                             </item>
                         </container>
@@ -176,28 +176,68 @@
                         <button id="increaseItem2"><i class="fa fa-caret-right"></i></button>
                     </div>
                 </config>
-            <configurators>
+            </configurators>
+            <configurators id="traits-configurator">
+                <config id="config-traits-1">
+                    <desc>Rosto Primário</desc>
+                    <div class="btn-group">
+                        <button id="decrease-config-traits-1"><i class="fa fa-caret-left"></i></button>
+                        <button class="counter" id="counter-config-traits-1" disabled>0/0</button>
+                        <button id="increase-config-traits-1"><i class="fa fa-caret-right"></i></button>
+                    </div>
+                </config>
+                <config id="config-traits-2">
+                    <desc>Rosto Secundário</desc>
+                    <div class="btn-group">
+                        <button id="decrease-config-traits-2"><i class="fa fa-caret-left"></i></button>
+                        <button class="counter" id="counter-config-traits-2" disabled>0/0</button>
+                        <button id="increase-config-traits-2"><i class="fa fa-caret-right"></i></button>
+                    </div>
+                </config>
+                <config id="config-traits-3">
+                    <desc>Mistura</desc>
+                    <div class="btn-group">
+                        <button id="decrease-config-traits-3"><i class="fa fa-caret-left"></i></button>
+                        <button class="counter" id="counter-config-traits-3" disabled>0/0</button>
+                        <button id="increase-config-traits-3"><i class="fa fa-caret-right"></i></button>
+                    </div>
+                </config>
+            </configurators>
         </div>
         <script src="../js/slider.js"></script>
         <script src="../js/jquery.js"></script>
         <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
-        <script src="../js/character-components.js"></script>
+        <script src="../js/character-clothes.js"></script>
         <script>
 
             // ------------- item selection -------------
 
             var gender = 0;
             var selected_item_type = null;
+
+            // Clothes
             var current_item_variation = 0;
             var current_item_last_index = 0;
 
             var config2_item = 0;
             var config2_last = 0;
 
+            // Traits
+            var config_traits_1_count = 0;
+            var config_traits_2_count = 0;
+            var config_traits_3_count = 0;
+
+            var config_traits_1_max = 0;
+            var config_traits_2_max = 0;
+            var config_traits_3_max = 0;
+
             $("#config1").hide();
             $("#config2").hide();
-            $('config desc').hide();
+            $('#config1 desc').hide();
+            $('#config2 desc').hide();
+
+            $('#traits-configurator').hide();
 
             $("item").click(function ()
             {
@@ -211,32 +251,129 @@
                     return;
 
                 selected_item_type = $(this).data("id");
-                current_item_variation = 0;
-                current_item_last_index = character_components[gender][selected_item_type].length - 1;
-
-                $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
-
-                if (!$("#config1").is(":visible"))
-                    $("#config1").show();
-
-                if (selected_item_type == 2 && !$("#config2").is(":visible"))
+                if ($(this).data("id") < 13)
                 {
-                    config2_item = 0;
-                    config2_last = character_components[gender][12].length - 1;
+                    // Seleção de Roupas                    
+                    current_item_variation = 0;
+                    current_item_last_index = character_components[gender][selected_item_type].length - 1;
 
-                    $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
-                    $("#config2").show();
-                    $('config desc').show();
+                    $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                    if (!$("#config1").is(":visible"))
+                        $("#config1").show();
+
+                    if (selected_item_type == 2 && !$("#config2").is(":visible"))
+                    {
+                        config2_item = 0;
+                        config2_last = character_components[gender][12].length - 1;
+
+                        $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
+                        $("#config2").show();
+                        $('#config1 desc').show();
+                        $('#config2 desc').show();
+                    }
+                    else if (selected_item_type != 2 && $("#config2").is(":visible"))
+                    {
+                        $("#config2").hide();
+                        $('#config1 desc').hide();
+                        $('#config2 desc').hide();
+                    }
+
+                    resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
                 }
-                else if (selected_item_type != 2 && $("#config2").is(":visible"))
+                else
                 {
-                    $("#config2").hide();
-                    $('config desc').hide();
-                }
+                    // Seleção de traços
+                    $('#traits-configurator').show();
+                    selected_item_type = $(this).data("id");
+                    switch (selected_item_type)
+                    {
+                        // Rosto
+                        case 13:
+                            {
+                                config_traits_1_count = 0;
+                                config_traits_2_count = 0;
+                                config_traits_3_count = 0;
 
-                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+                                config_traits_1_max = 45;
+                                config_traits_2_max = 45;
+                                config_traits_3_max = 9;
+
+                                $('#config-traits-1 desc').text("Rosto Primário");
+                                $('#config-traits-2 desc').text("Rosto Secundário");
+                                $('#config-traits-3 desc').text("Misturas");
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+                                $("#counter-config-traits-3").html((config_traits_3_count + 1) + "/" + (config_traits_3_max + 1));
+
+                                $('#config-traits-1').show();
+                                $('#config-traits-2').show();
+                                $('#config-traits-3').show();
+                                break;
+                            }
+                        case 14:
+                            {
+                                $('#config-traits-2').hide();
+                                $('#config-traits-3').hide();
+
+                                config_traits_1_count = 0;
+                                config_traits_1_max = 31;
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+
+                                $('#config-traits-1 desc').text("Olhos");
+                                $('#config-traits-1').show();
+                                break;
+                            }
+                        case 15:
+                            {
+                                config_traits_1_count = 0;
+                                config_traits_2_count = 0;
+                                config_traits_3_count = 0;
+
+                                config_traits_1_max = gender ? 38 : 36;
+                                config_traits_2_max = 63;
+                                config_traits_3_max = 63;
+
+                                $('#config-traits-1 desc').text("Cabelo");
+                                $('#config-traits-2 desc').text("Cor");
+                                $('#config-traits-3 desc').text("Cor do brilho");
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+                                $("#counter-config-traits-3").html((config_traits_3_count + 1) + "/" + (config_traits_3_max + 1));
+
+                                $('#config-traits-1').show();
+                                $('#config-traits-2').show();
+                                $('#config-traits-3').show();
+                                break;
+                            }
+                        case 16:
+                            {
+                                $('#config-traits-3').hide();
+
+                                config_traits_1_count = 0;
+                                config_traits_2_count = 0;
+
+                                config_traits_1_max = gender ? 12 : 29;
+                                config_traits_2_max = 64;
+
+                                $('#config-traits-1 desc').text("Estilo");
+                                $('#config-traits-2 desc').text("Cor");
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+
+                                $('#config-traits-1').show();
+                                $('#config-traits-2').show();
+                                break;
+                            }
+                    }
+                }
             });
 
+            // Clothes
             $("#decreaseItem").click(function ()
             {
                 current_item_variation--;
@@ -246,10 +383,10 @@
                 $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
-                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+                resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
 
                 if (selected_item_type == 2)
-                    resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+                    resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][12][config2_item]));
             });
 
             $("#increaseItem").click(function ()
@@ -261,10 +398,10 @@
                 $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
-                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+                resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
 
                 if (selected_item_type == 2)
-                    resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+                    resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][12][config2_item]));
             });
 
             $("#decreaseItem2").click(function ()
@@ -276,7 +413,7 @@
                 $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
-                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+                resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][12][config2_item]));
             });
 
             $("#increaseItem2").click(function ()
@@ -288,7 +425,74 @@
                 $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
-                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+                resourceCall("SelectCharacterClothes", JSON.stringify(character_components[gender][12][config2_item]));
+            });
+
+            // Traits
+            $("#decrease-config-traits-1").click(function ()
+            {
+                config_traits_1_count--;
+                if (config_traits_1_count < 0)
+                    config_traits_1_count = config_traits_1_max;
+
+                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
+            });
+
+            $("#increase-config-traits-1").click(function ()
+            {
+                config_traits_1_count++;
+                if (config_traits_1_count > config_traits_1_max)
+                    config_traits_1_count = 0;
+
+                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
+            });
+
+            $("#decrease-config-traits-2").click(function ()
+            {
+                config_traits_2_count--;
+                if (config_traits_2_count < 0)
+                    config_traits_2_count = config_traits_2_max;
+
+                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
+            });
+
+            $("#increase-config-traits-2").click(function ()
+            {
+                config_traits_2_count++;
+                if (config_traits_2_count > config_traits_2_max)
+                    config_traits_2_count = 0;
+
+                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
+            });
+
+            $("#decrease-config-traits-3").click(function ()
+            {
+                config_traits_3_count--;
+                if (config_traits_3_count < 0)
+                    config_traits_3_count = config_traits_3_max;
+
+                $("#counter-config-traits-3").html((config_traits_3_count + 1) + "/" + (config_traits_3_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
+            });
+
+            $("#increase-config-traits-3").click(function ()
+            {
+                config_traits_3_count++;
+                if (config_traits_3_count > config_traits_3_max)
+                    config_traits_3_count = 0;
+
+                $("#counter-config-traits-3").html((config_traits_3_count + 1) + "/" + (config_traits_3_max + 1));
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify({ type: selected_item_type, config1: config_traits_1_count, config2: config_traits_2_count, config3: config_traits_3_count }));
             });
 
             // ------------- item selection -------------
@@ -321,6 +525,12 @@
                 if ($("#config2").is(":visible"))
                     $("#config2").hide();
 
+                if ($("#traits-configurator").is(":visible"))
+                    $("#traits-configurator").hide();
+
+                $('#config1 desc').hide();               
+                $('#config2 desc').hide();
+
                 if ($(this).data("id") != undefined)
                 {
                     resourceCall("resource.Sounds.PlaySelectSound");
@@ -351,6 +561,9 @@
 
                 if ($("#config2").is(":visible"))
                     $("#config2").hide();
+
+                if ($("#traits-configurator").is(":visible"))
+                    $('#traits-configurator').hide();
 
                 $('category').removeClass('active');
                 $('category header i').addClass('fa-caret-down').removeClass('fa-caret-up');

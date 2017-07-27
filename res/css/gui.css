@@ -182,7 +182,7 @@ pagetitle {
 
 @keyframes movetorighttitle {
     from { left : 5% }
-    to { left: 34%; }
+    to { left: 70%; }
 }
 
 /******************************************************************************/

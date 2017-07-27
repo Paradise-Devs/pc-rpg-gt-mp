@@ -79,16 +79,22 @@
     <Compile Include="src\Player\Character\Selection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="res\css\animation.css" />
-    <Content Include="res\css\font-awesome.min.css" />
     <Content Include="res\css\gui.css" />
+    <Content Include="res\css\icons-anim.css" />
+    <Content Include="res\css\icons-bodyparts.css" />
+    <Content Include="res\css\icons-clothes.css" />
+    <Content Include="res\css\icons-fa.css" />
     <Content Include="res\css\pcfw.css" />
+    <Content Include="res\css\slider.css" />
+    <Content Include="res\fonts\bodyparts.svg" />
+    <Content Include="res\fonts\clothes.svg" />
     <Content Include="res\fonts\fontawesome-webfont.svg" />
     <Content Include="res\img\bg.jpg" />
     <Content Include="res\js\character-components.js" />
-    <Content Include="res\js\jquery.min.js" />
+    <Content Include="res\js\jquery.js" />
     <Content Include="res\js\pcfw.js" />
-    <Content Include="res\js\tether.min.js" />
+    <Content Include="res\js\slider.js" />
+    <Content Include="res\js\tether.js" />
     <Content Include="res\views\character_creator.html" />
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\login.html" />
@@ -100,10 +106,14 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="res\fonts\bodyparts.ttf" />
+    <None Include="res\fonts\bodyparts.woff" />
+    <None Include="res\fonts\clothes.ttf" />
+    <None Include="res\fonts\clothes.woff" />
+    <None Include="res\fonts\five.ttf" />
     <None Include="res\fonts\fontawesome-webfont.woff2" />
     <None Include="res\fonts\FontAwesome.otf" />
     <None Include="res\fonts\logo.ttf" />
-    <None Include="res\fonts\main.ttf" />
     <None Include="res\fonts\Roboto.ttf" />
     <None Include="res\sounds\music01.ogg" />
     <None Include="tsconfig.json" />

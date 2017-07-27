@@ -167,7 +167,7 @@ pagetitle {
     top: 5%;
     left: 34%;
     position: fixed;
-    animation: movetolefttitle 2s ease-in-out 1 alternate;
+    animation: movetorighttitle 2s ease-in-out 1 alternate;
     animation-fill-mode: forwards;
     font-family: "Five";
     font-size: 400%;
@@ -178,6 +178,11 @@ pagetitle {
 @keyframes movetolefttitle {
     from { left : 34% }
     to { left: 5%; }
+}
+
+@keyframes movetorighttitle {
+    from { left : 5% }
+    to { left: 34%; }
 }
 
 /******************************************************************************/

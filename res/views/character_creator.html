@@ -70,10 +70,7 @@
                             </item>
                             <item class="male" data-id="2">
                                 <i class="clothes-vest"></i>
-                            </item>
-                            <item class="male" data-id="12">
-                                <i class="clothes-shirt"></i>
-                            </item>
+                            </item>                            
                             <item class="female">
                                 <i class="clothes-shirt-2"></i>
                             </item>
@@ -98,13 +95,7 @@
                                 <i class="clothes-jeans"></i>
                             </item>
                             <item class="female">
-                                <i class="clothes-skirt"></i>
-                            </item>
-                            <item class="female">
                                 <i class="clothes-shorts-1"></i>
-                            </item>
-                            <item class="male">
-                                <i class="clothes-underwear"></i>
                             </item>
                         </container>
                     </category>
@@ -173,7 +164,7 @@
                     <desc>Item 1</desc>
                     <div class="btn-group">
                         <button id="decreaseItem"><i class="fa fa-caret-left"></i></button>
-                        <button class="counter" disabled>0/0</button>
+                        <button class="counter" id="counter1" disabled>0/0</button>
                         <button id="increaseItem"><i class="fa fa-caret-right"></i></button>
                     </div>
                 </config>
@@ -181,7 +172,7 @@
                     <desc>Item 2</desc>
                     <div class="btn-group">
                         <button id="decreaseItem2"><i class="fa fa-caret-left"></i></button>
-                        <button class="counter" disabled>0/0</button>
+                        <button class="counter" id="counter2" disabled>0/0</button>
                         <button id="increaseItem2"><i class="fa fa-caret-right"></i></button>
                     </div>
                 </config>
@@ -201,6 +192,9 @@
             var current_item_variation = 0;
             var current_item_last_index = 0;
 
+            var config2_item = 0;
+            var config2_last = 0;
+
             $("#config1").hide();
             $("#config2").hide();
 
@@ -219,13 +213,19 @@
                 current_item_variation = 0;
                 current_item_last_index = character_components[gender][selected_item_type].length - 1;
 
-                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+                $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
                 if (!$("#config1").is(":visible"))
                     $("#config1").show();
 
                 if (selected_item_type == 2 && !$("#config2").is(":visible"))
+                {
+                    config2_item = 0;
+                    config2_last = character_components[gender][12].length - 1;
+
+                    $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
                     $("#config2").show();
+                }
                 else if (selected_item_type != 2 && $("#config2").is(":visible"))
                     $("#config2").hide();
 
@@ -237,10 +237,14 @@
                 current_item_variation--;
                 if (current_item_variation < 0)
                     current_item_variation = current_item_last_index;
-                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
                 resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+
+                if (selected_item_type == 2)
+                    resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
             });
 
             $("#increaseItem").click(function ()
@@ -248,10 +252,38 @@
                 current_item_variation++;
                 if (current_item_variation > current_item_last_index)
                     current_item_variation = 0;
-                $(".counter").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
+
+                $("#counter1").html((current_item_variation + 1) + "/" + (current_item_last_index + 1));
 
                 resourceCall("resource.Sounds.PlaySelectSound");
                 resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][selected_item_type][current_item_variation]));
+
+                if (selected_item_type == 2)
+                    resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+            });
+
+            $("#decreaseItem2").click(function ()
+            {
+                config2_item--;
+                if (config2_item < 0)
+                    config2_item = config2_last;
+
+                $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
+
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
+            });
+
+            $("#increaseItem2").click(function ()
+            {
+                config2_item++;
+                if (config2_item > config2_last)
+                    config2_item = 0;
+
+                $("#counter2").html((config2_item + 1) + "/" + (config2_last + 1));
+
+                resourceCall("resource.Sounds.PlaySelectSound");
+                resourceCall("SelectCharacterComponent", JSON.stringify(character_components[gender][12][config2_item]));
             });
 
             // ------------- item selection -------------

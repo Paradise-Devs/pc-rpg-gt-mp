@@ -42,6 +42,7 @@ function ApplyCharacterFeatures(i) {
     for (var j = 0; j < character[i].Clothes.length; j++) {
         API.setPlayerClothes(API.getLocalPlayer(), character[i].Clothes[j].BodyPart, character[i].Clothes[j].Variation, character[i].Clothes[j].Texture);
     }
+    API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 136.9184));
 }
 function ShowCharacterSelector() {
     if (browser == null) {

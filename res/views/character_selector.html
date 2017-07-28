@@ -39,6 +39,10 @@
                     for (var i = 0; i < characters.length; i++)
                     {
                         var lastLogin = new Date(characters[i].LastLogin);
+
+                        if (characters[i].LastLogin.search("-03:00") == -1)
+                            lastLogin.addHours(3);
+
                         $("#list").append('<li data-id="' + i + '">' +
                             '<charname>' + characters[i].Name + '</charname>' +
                             '<lastlogin>Jogou pela última vez à ' + secondsToStr((new Date().getTime() - lastLogin.getTime()) / 1000) + ' atrás</lastlogin>' +
@@ -164,6 +168,12 @@
                     return seconds + ' segundo' + numberEnding(seconds);
                 }
                 return 'nunca jogou';
+            }
+
+            Date.prototype.addHours = function (h)
+            {
+                this.setHours(this.getHours() + h);
+                return this;
             }
         </script>
     </body>

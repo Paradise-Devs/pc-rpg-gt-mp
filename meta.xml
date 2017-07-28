@@ -26,6 +26,7 @@
     <file src="res/js/tether.js" />
     <file src="res/js/slider.js" />
     <file src="res/js/pcfw.js" />
+    <file src="res/js/sweetalert.js" />
     <file src="res/js/character-clothes.js" />
 
     <!-- Sounds -->
@@ -34,6 +35,7 @@
     <!-- CSS -->
     <file src="res/css/gui.css" />
     <file src="res/css/pcfw.css" />
+    <file src="res/css/sweetalert.css" />
 
     <!-- Icons -->
     <file src="res/css/icons-anim.css" />

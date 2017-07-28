@@ -51,8 +51,8 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
         API.setChatVisible(true);
         API.setHudVisible(true);
         API.showCursor(false);
+        resource.Login.stopMusic();
         resource.Login.canMove = true;
-        API.stopMusic();
     }
 });
 function ChangeCharacterGender(id) {

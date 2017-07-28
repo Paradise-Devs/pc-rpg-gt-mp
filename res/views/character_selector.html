@@ -35,17 +35,13 @@
             {
                 if (data != null)
                 {
-                    characters = JSON.parse(data);
-                    var oneDay = 24 * 60 * 60 * 1000;
+                    characters = JSON.parse(data);                    
                     for (var i = 0; i < characters.length; i++)
                     {
                         var lastLogin = parseJsonDate(characters[i].LastLogin);
-                        var diffDays = Math.floor(Math.abs((new Date().getTime() - lastLogin.getTime()) / oneDay));
-                        var lastLoginMessage = (diffDays > 0) ? 'à ' + diffDays + ' dias atrás' : "hoje";
-
                         $("#list").append('<li data-id="' + i + '">' +
                             '<charname>' + characters[i].Name + '</charname>' +
-                            '<lastlogin>Último acesso ' + lastLoginMessage + '</lastlogin>' +
+                            '<lastlogin>Jogou pela última vez à ' + secondsToStr((new Date().getTime() - lastLogin.getTime()) / 1000) + ' atrás</lastlogin>' +
                             '</li>');
                     }
 

@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace pcrpg.src.Player.Creation
 {
-    class Selection : Script
+    class CharacterSelection : Script
     {
-        public Selection()
+        public CharacterSelection()
         {
             API.onClientEventTrigger += OnClientEventTrigger;
         }

@@ -2,12 +2,13 @@
 using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
 using pcrpg.src.Database.Models;
+using System;
 using System.Linq;
 
 namespace pcrpg.src.Player.Creation
 {
     class CharacterSelection : Script
-    {
+    {        
         public CharacterSelection()
         {
             API.onClientEventTrigger += OnClientEventTrigger;
@@ -28,6 +29,7 @@ namespace pcrpg.src.Player.Creation
                 int characterId = (int)arguments[0];
                 var character = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Id == characterId);
                 API.setEntityData(sender, "Character", character);
+                API.setEntityData(sender, "LoggedInTime", DateTime.Now);
 
                 sender.name = character.Name;
 

@@ -35,10 +35,10 @@
             {
                 if (data != null)
                 {
-                    characters = JSON.parse(data);                    
+                    characters = JSON.parse(data);
                     for (var i = 0; i < characters.length; i++)
                     {
-                        var lastLogin = parseJsonDate(characters[i].LastLogin);
+                        var lastLogin = new Date(characters[i].LastLogin);
                         $("#list").append('<li data-id="' + i + '">' +
                             '<charname>' + characters[i].Name + '</charname>' +
                             '<lastlogin>Jogou pela última vez à ' + secondsToStr((new Date().getTime() - lastLogin.getTime()) / 1000) + ' atrás</lastlogin>' +
@@ -164,12 +164,6 @@
                     return seconds + ' segundo' + numberEnding(seconds);
                 }
                 return 'nunca jogou';
-            }
-
-            function parseJsonDate(jsonDateString)
-            {
-                // return new Date(parseInt(jsonDateString.replace('/Date(', '')));
-                return new Date(jsonDateString);
             }
         </script>
     </body>

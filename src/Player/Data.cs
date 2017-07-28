@@ -8,9 +8,9 @@ namespace pcrpg.src.Player
     class Data : Script
     {
         public Data()
-        {
-            API.onPlayerDisconnected += OnPlayerDisconnect;
-        }
+        {     
+            API.onPlayerDisconnected += OnPlayerDisconnect;      
+        }        
 
         private void OnPlayerDisconnect(Client player, string reason)
         {
@@ -18,7 +18,8 @@ namespace pcrpg.src.Player
             {
                 Character character = API.getEntityData(player, "Character");
                 character.LastLogin = DateTime.Now;
-            }            
+                character.PlayedTime += (DateTime.Now - API.getEntityData(player, "LoggedInTime")).TotalSeconds;
+            }
             ContextFactory.Instance.SaveChanges();
         }
     }

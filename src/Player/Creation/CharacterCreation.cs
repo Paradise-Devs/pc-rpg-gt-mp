@@ -39,6 +39,7 @@ namespace pcrpg.src.Player.Creation
 
                 ContextFactory.Instance.Characters.Add(character);
                 API.setEntityData(sender, "Character", character);
+                API.setEntityData(sender, "LoggedInTime", DateTime.Now);
 
                 // Traits
                 CharacterTrait traits = new CharacterTrait
@@ -139,7 +140,7 @@ namespace pcrpg.src.Player.Creation
                 API.triggerClientEvent(sender, "closeCharacterCreationBrowser");
 
                 Managers.DimensionManager.DismissPrivateDimension(sender);
-                API.setEntityDimension(sender, 0);
+                API.setEntityDimension(sender, 0);                
 
                 ContextFactory.Instance.SaveChanges();
             }

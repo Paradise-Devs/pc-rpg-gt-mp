@@ -58,6 +58,12 @@
                             <item class="female" data-id="16">
                                 <i class="bodyparts-closed-eyes-with-lashes-and-brows"></i>
                             </item>
+                            <item data-id="17">
+                                <i class="bodyparts-eye-variant-with-enlarged-pupil"></i><!--  COR DE PELE -->
+                            </item>
+                            <item data-id="18">
+                                <i class="bodyparts-eye-variant-with-enlarged-pupil"></i><!--  SOMBRANCELHA -->
+                            </item>
                         </container>
                     </category>
                     <category>
@@ -290,7 +296,7 @@
                     selected_item_type = $(this).data("id");
                     switch (selected_item_type)
                     {
-                        // Rosto
+                        // Face
                         case 13:
                             {
                                 config_traits_1_count = 0;
@@ -359,6 +365,51 @@
                                 config_traits_2_count = 0;
 
                                 config_traits_1_max = gender ? 12 : 29;
+                                config_traits_2_max = 64;
+
+                                $('#config-traits-1 desc').text("Estilo");
+                                $('#config-traits-2 desc').text("Cor");
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+
+                                $('#config-traits-1').show();
+                                $('#config-traits-2').show();
+                                break;
+                            }
+                        // Skin color
+                        case 17:
+                            {
+                                config_traits_1_count = 0;
+                                config_traits_2_count = 0;
+                                config_traits_3_count = 0;
+
+                                config_traits_1_max = 45;
+                                config_traits_2_max = 45;
+                                config_traits_3_max = 9;
+
+                                $('#config-traits-1 desc').text("Cor Primária");
+                                $('#config-traits-2 desc').text("Cor Secundária");
+                                $('#config-traits-3 desc').text("Misturas");
+
+                                $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
+                                $("#counter-config-traits-2").html((config_traits_2_count + 1) + "/" + (config_traits_2_max + 1));
+                                $("#counter-config-traits-3").html((config_traits_3_count + 1) + "/" + (config_traits_3_max + 1));
+
+                                $('#config-traits-1').show();
+                                $('#config-traits-2').show();
+                                $('#config-traits-3').show();
+                                break;
+                            }
+                        // Eyebrows
+                        case 18:
+                            {
+                                $('#config-traits-3').hide();
+
+                                config_traits_1_count = 0;
+                                config_traits_2_count = 0;
+
+                                config_traits_1_max = 33;
                                 config_traits_2_max = 64;
 
                                 $('#config-traits-1 desc').text("Estilo");

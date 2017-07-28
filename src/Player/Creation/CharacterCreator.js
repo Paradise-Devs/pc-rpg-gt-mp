@@ -282,6 +282,25 @@ function SelectCharacterComponent(data) {
                 }
                 break;
             }
+        // Skin color
+        case 17:
+            {
+                character_data.skinFirst = data.config1;
+                character_data.skinSecond = data.config2;
+                character_data.skinMix = mix_data[data.config3];
+                API.callNative("SET_PED_HEAD_BLEND_DATA", API.getLocalPlayer(), character_data.faceFirst, character_data.faceSecond, 0, character_data.skinFirst, character_data.skinSecond, 0, character_data.faceMix, character_data.skinMix, 0, false);
+                break;
+            }
+        // Eyebrow
+        case 18:
+            {
+                character_data.eyebrows = data.config1;
+                character_data.eyebrowsColor1 = data.config2;
+                character_data.eyebrowsColor2 = data.config2;
+                API.callNative("SET_PED_HEAD_OVERLAY", API.getLocalPlayer(), 2, character_data.eyebrows, API.f(1));
+                API.callNative("_SET_PED_HEAD_OVERLAY_COLOR", API.getLocalPlayer(), 2, 1, character_data.eyebrowsColor1, character_data.eyebrowsColor2);
+                break;
+            }
     }
 }
 function finishCharacterCreation(character_name) {

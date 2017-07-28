@@ -138,6 +138,9 @@ namespace pcrpg.src.Player.Creation
                 // Send to spawn
                 API.triggerClientEvent(sender, "closeCharacterCreationBrowser");
 
+                Managers.DimensionManager.DismissPrivateDimension(sender);
+                API.setEntityDimension(sender, 0);
+
                 ContextFactory.Instance.SaveChanges();
             }
         }

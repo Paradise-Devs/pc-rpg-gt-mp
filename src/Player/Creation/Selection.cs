@@ -34,6 +34,9 @@ namespace pcrpg.src.Player.Creation
                 // Sync player face with other players
                 Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
                 gtao.InitializePedFace(sender);
+
+                Managers.DimensionManager.DismissPrivateDimension(sender);
+                API.setEntityDimension(sender, 0);
             }
         }
     }

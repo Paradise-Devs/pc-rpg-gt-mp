@@ -38,6 +38,9 @@ namespace pcrpg.src.Player.Auth
                 };                
                 API.triggerClientEvent(player, "ShowLoginForm", new JavaScriptSerializer().Serialize(playerData));
             }
+
+            int dimension = Managers.DimensionManager.RequestPrivateDimension(player);
+            API.setEntityDimension(player, dimension);
         }
 
         private void OnClientEventTrigger(Client sender, string eventName, object[] arguments)

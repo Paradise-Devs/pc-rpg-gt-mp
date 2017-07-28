@@ -78,6 +78,7 @@
     <Compile Include="src\Player\Auth\Login.cs" />
     <Compile Include="src\Player\Creation\CharacterCreation.cs" />
     <Compile Include="src\Player\Creation\Selection.cs" />
+    <Compile Include="src\Player\GTAOnlineCharacter\Api.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\css\gui.css" />
@@ -104,6 +105,7 @@
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterSelector.ts" />
+    <TypeScriptCompile Include="src\Player\GTAOnlineCharacter\gtao_handler.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

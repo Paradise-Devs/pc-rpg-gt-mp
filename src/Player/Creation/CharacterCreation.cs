@@ -128,9 +128,14 @@ namespace pcrpg.src.Player.Creation
                 ContextFactory.Instance.Clothes.Add(pants);
                 ContextFactory.Instance.Clothes.Add(shoes);
                 ContextFactory.Instance.Clothes.Add(accessory);
+                                
+                sender.name = characterData.name;
+
+                // Sync player face with other players
+                Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
+                gtao.InitializePedFace(sender);
 
                 // Send to spawn
-                sender.name = characterData.name;
                 API.triggerClientEvent(sender, "closeCharacterCreationBrowser");
 
                 ContextFactory.Instance.SaveChanges();

@@ -61,9 +61,8 @@ API.onServerEventTrigger.connect((eventName: string, _arguments: any[]) =>
         API.setChatVisible(true);
         API.setHudVisible(true);
         API.showCursor(false);
-
+        resource.Login.stopMusic();
         resource.Login.canMove = true;
-        API.stopMusic();
     }
 });
 

@@ -165,12 +165,12 @@ pagetitle {
     height: 100%;
     display: block;
     top: 5%;
-    left: 34%;
+    left: 33%;
     position: fixed;
     animation: movetorighttitle 2s ease-in-out 1 alternate;
     animation-fill-mode: forwards;
     font-family: "Five";
-    font-size: 400%;
+    font-size: 6vh;
     text-shadow: 0px 0px 20px #000;
     color: #fff;
 }
@@ -182,7 +182,7 @@ pagetitle {
 
 @keyframes movetorighttitle {
     from { left : 5% }
-    to { left: 70%; }
+    to { left: 68%; }
 }
 
 /******************************************************************************/
@@ -676,9 +676,10 @@ customization item desc {
 configurators {
     display: block;
     width: 197px;
-    top: 70%;
-    left: 40%;
+    top: 30%;
+    left: 8%;
     padding: 10px;
+    height: 30%;
     position: fixed;
 }
 

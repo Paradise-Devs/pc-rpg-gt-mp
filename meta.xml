@@ -52,7 +52,7 @@
     <file src="res/fonts/bodyparts.ttf" />
     <file src="res/fonts/bodyparts.svg" />
     <file src="res/fonts/bodyparts.woff" />
-    <file src="res/custom/eyebrows.png" />
+    <file src="res/fonts/custom/eyebrows.png" />
 
     <!-- Fonts -->
     <file src="res/fonts/Roboto.ttf" />

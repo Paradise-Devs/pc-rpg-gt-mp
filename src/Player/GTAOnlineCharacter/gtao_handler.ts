@@ -45,10 +45,11 @@ function setPedCharacter(ent)
 
         API.callNative("SET_PED_HEAD_BLEND_DATA", ent, shapeFirstId, shapeSecondId, 0, skinFirstId, skinSecondId, 0, shapeMix, skinMix, 0, false);
 
-        // HAIR COLOR
+        // HAIR
         var hairColor = API.getEntitySyncedData(ent, "GTAO_HAIR_COLOR");
         var highlightColor = API.getEntitySyncedData(ent, "GTAO_HAIR_HIGHLIGHT_COLOR");
 
+        API.setPlayerClothes(ent, 2, API.getEntitySyncedData(ent, "GTAO_HAIR"), 0);
         API.callNative("_SET_PED_HAIR_COLOR", ent, hairColor, highlightColor);
 
         // EYE COLOR
@@ -104,5 +105,13 @@ function setPedCharacter(ent)
         {
             API.callNative("_SET_PED_FACE_FEATURE", ent, i, API.f(faceFeatureList[i]));
         }
+
+        API.setPlayerClothes(ent, 3, API.getEntitySyncedData(ent, "GTAO_TORSO"), 0);
+        API.setPlayerClothes(ent, 4, API.getEntitySyncedData(ent, "GTAO_LEGS"), 0);
+        if (API.hasEntitySyncedData(ent, "GTAO_BACKPACK")) API.setPlayerClothes(ent, 5, API.getEntitySyncedData(ent, "GTAO_BACKPACK"), 0);
+        API.setPlayerClothes(ent, 6, API.getEntitySyncedData(ent, "GTAO_FEET"), 0);
+        if (API.hasEntitySyncedData(ent, "GTAO_ACCESSORY")) API.setPlayerClothes(ent, 7, API.getEntitySyncedData(ent, "GTAO_ACCESSORY"), 0);
+        API.setPlayerClothes(ent, 8, API.getEntitySyncedData(ent, "GTAO_UNDERSHIRT"), 0);
+        API.setPlayerClothes(ent, 11, API.getEntitySyncedData(ent, "GTAO_TOP"), API.getEntitySyncedData(ent, "GTAO_TOP_TEXTURE"));
     }
 }

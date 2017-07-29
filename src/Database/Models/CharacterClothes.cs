@@ -12,6 +12,6 @@
 
         public int Texture { get; set; }
 
-        public bool? IsAccessory { get; set; }
+        public bool IsAccessory { get; set; }
     }
 }

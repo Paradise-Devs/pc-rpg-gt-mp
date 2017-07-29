@@ -142,11 +142,7 @@ namespace pcrpg.src.Player.Creation
                 ContextFactory.Instance.Clothes.Add(shoes);
                 ContextFactory.Instance.Clothes.Add(accessory);
                                 
-                sender.name = characterData.name;
-
-                // Sync player face with other players
-                Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
-                gtao.InitializePedFace(sender);
+                sender.name = characterData.name;                
 
                 // Send to spawn
                 API.triggerClientEvent(sender, "closeCharacterCreationBrowser");
@@ -155,6 +151,11 @@ namespace pcrpg.src.Player.Creation
                 API.setEntityDimension(sender, 0);                
 
                 ContextFactory.Instance.SaveChanges();
+
+                // Sync player face with other players
+                Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
+                gtao.InitializePedFace(sender);
+                gtao.UpdatePlayerFace(sender);
             }
         }
     }

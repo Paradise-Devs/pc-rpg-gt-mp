@@ -31,7 +31,7 @@
     <file src="res/js/character-clothes.js" />
 
     <!-- Sounds -->
-    <file src="res/sounds/music01.ogg" />
+    <file src="res/sounds/music01.mp3" />
 
     <!-- CSS -->
     <file src="res/css/gui.css" />

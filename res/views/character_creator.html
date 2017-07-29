@@ -320,6 +320,7 @@
                                 $('#config-traits-3').show();
                                 break;
                             }
+                        // Eyes
                         case 14:
                             {
                                 $('#config-traits-2').hide();
@@ -334,6 +335,7 @@
                                 $('#config-traits-1').show();
                                 break;
                             }
+                        // Hair
                         case 15:
                             {
                                 config_traits_1_count = 0;
@@ -357,6 +359,7 @@
                                 $('#config-traits-3').show();
                                 break;
                             }
+                        // Beard or Makeup
                         case 16:
                             {
                                 $('#config-traits-3').hide();
@@ -487,6 +490,8 @@
                 config_traits_1_count--;
                 if (config_traits_1_count < 0)
                     config_traits_1_count = config_traits_1_max;
+                else if (selected_item_type == 15 && config_traits_1_count == 24)
+                    config_traits_1_count--;
 
                 $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
                 resourceCall("resource.Sounds.PlaySelectSound");
@@ -498,6 +503,8 @@
                 config_traits_1_count++;
                 if (config_traits_1_count > config_traits_1_max)
                     config_traits_1_count = 0;
+                else if (selected_item_type == 15 && config_traits_1_count == 24)
+                    config_traits_1_count++;
 
                 $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
                 resourceCall("resource.Sounds.PlaySelectSound");

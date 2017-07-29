@@ -97,7 +97,7 @@ block footer button:disabled {
 }
 
 block footer button:active {
-  box-shadow: inset 0 0 3px #000;
+    box-shadow: inset 0 0 3px #000;
 }
 
 block footer button:not(:disabled):hover {
@@ -375,6 +375,10 @@ charlist ul li:not(.active):not(.addchar):hover {
     color: #ddd;
 }
 
+charlist ul li:not(.active):not(.addchar):hover deletechar {
+    display: block;
+}
+
 charlist ul li:not(.active):not(.addchar):hover lastlogin {
     color: #aaa;
 }
@@ -387,6 +391,26 @@ charlist ul li.active {
 
 charlist ul li.active lastlogin {
     color: #757575;
+}
+
+charlist ul li deletechar {
+    display: none;
+    position: absolute;
+    right: 30px;
+    margin-top: -41px;
+}
+
+charlist ul li deletechar i {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+}
+
+charlist ul li deletechar i:hover {
+    background-color: rgba(210, 47, 47, 0.6);
+}
+charlist ul li deletechar i:active {
+    box-shadow: inset 0 0 3px #000;
 }
 
 /******************************************************************************/

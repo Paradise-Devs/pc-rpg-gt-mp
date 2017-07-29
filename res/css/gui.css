@@ -689,6 +689,15 @@ customization item i.fa {
     font-size: 30px;
 }
 
+customization item img {
+    height: 30px;
+    opacity: .5;
+}
+
+customization item:hover img {
+    opacity: 1;
+}
+
 customization item i[class^="bodyparts-"]:before, customization item i[class^="clothes-"]:before {
     font-size: 30px;
     margin: 0px;

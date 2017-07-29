@@ -85,7 +85,8 @@
                         closeOnConfirm: true
                     },
                     function ()
-                    {                        
+                    {
+                        $('charinfo').hide();
                         resourceCall("DeleteCharacter", id);
                     });
             });

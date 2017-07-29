@@ -7,15 +7,20 @@ var canMove = false;
 API.onResourceStart.connect(() =>
 {
     // Login camera position
-    var newCam = API.createCamera(new Vector3(-35.43801, -1122.411, 270.5569), new Vector3());
-    API.pointCameraAtPosition(newCam, new Vector3(-80.07943, -840.8312, 310.4772));
-    API.setActiveCamera(newCam);
+    API.setEntityPosition(API.getLocalPlayer(), new Vector3(-498.3053, 4348.135, 66.42624));
+
+    var startCam = API.createCamera(new Vector3(-734.4893, 4441.397, 15.45909), new Vector3());
+    API.pointCameraAtPosition(startCam, new Vector3(-625.5039, 4449.758, 18.23818));
+
+    var endCam = API.createCamera(new Vector3(-625.5039, 4447.758, 18.23818), new Vector3());
+    API.pointCameraAtPosition(endCam, new Vector3(-528.4624, 4419.629, 30.04474));
+
+    API.interpolateCameras(startCam, endCam, 30000, false, false);
 
     API.setHudVisible(false);
     API.setChatVisible(false);
     resource.CharacterCreator.ResetCharacterCreation();
-    API.startMusic("res/sounds/music01.ogg", true);
-    API.setMusicVolume(0.25);    
+    API.startMusic("res/sounds/music01.ogg", true);    
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>

@@ -54,7 +54,7 @@ API.onServerEventTrigger.connect((eventName: string, _arguments: any[]) =>
         }
 
         API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
-        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 136.9184));
+        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
 
         API.setActiveCamera(null);
         API.setCanOpenChat(true);

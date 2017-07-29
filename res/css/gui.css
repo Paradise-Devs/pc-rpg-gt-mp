@@ -698,7 +698,7 @@ customization item img {
     opacity: .5;
 }
 
-customization item:hover img {
+customization item:hover img, customization item.active img {
     opacity: 1;
 }
 

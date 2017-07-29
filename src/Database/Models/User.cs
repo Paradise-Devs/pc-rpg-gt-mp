@@ -16,6 +16,8 @@ namespace pcrpg.src.Database.Models
 
         public string LastIp { get; set; }
 
+        public int Admin { get; set; }
+
         public virtual ICollection<Character> Characters { get; set; }
     }
 }

@@ -71,7 +71,7 @@ namespace pcrpg.src.Player.Auth
                 var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.Username == username);
                 if (user == null)
                 {
-                    user = new User { Username = username, Password = password, Email = emailadd, SocialClubName = sender.socialClubName, LastIp = sender.address };
+                    user = new User { Username = username, Password = password, Email = emailadd, SocialClubName = sender.socialClubName, Admin = 0, LastIp = sender.address };
                     ContextFactory.Instance.Users.Add(user);
 
                     API.setEntityData(sender, "User", user);

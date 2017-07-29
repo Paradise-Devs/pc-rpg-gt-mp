@@ -6,7 +6,7 @@
         <link rel='stylesheet' href='../css/gui.css'>
         <link rel='stylesheet' href='../css/icons-fa.css'>
         <link rel='stylesheet' href='../css/icons-clothes.css'>
-        <link rel='stylesheet' href='../css/icons-bodyparts.css'>        
+        <link rel='stylesheet' href='../css/icons-bodyparts.css'>
         <link rel="stylesheet" href="../css/sweetalert.css">
     </head>
     <body id="main">
@@ -59,10 +59,10 @@
                                 <i class="bodyparts-closed-eyes-with-lashes-and-brows"></i>
                             </item>
                             <item data-id="17">
-                                <i class="bodyparts-eye-variant-with-enlarged-pupil"></i><!--  COR DE PELE -->
+                                <i class="bodyparts-standing-human-body-silhouette"></i>
                             </item>
                             <item data-id="18">
-                                <i class="bodyparts-eye-variant-with-enlarged-pupil"></i><!--  SOMBRANCELHA -->
+                                <img src="../fonts/custom/eyebrows.png" />
                             </item>
                         </container>
                     </category>
@@ -77,7 +77,7 @@
                             </item>
                             <item class="male" data-id="2">
                                 <i class="clothes-vest"></i>
-                            </item>                            
+                            </item>
                             <item class="female" data-id="0">
                                 <i class="clothes-shirt-2"></i>
                             </item>
@@ -261,7 +261,7 @@
                 selected_item_type = $(this).data("id");
                 if ($(this).data("id") < 13)
                 {
-                    // Seleção de Roupas                    
+                    // Seleção de Roupas
                     current_item_variation = 0;
                     current_item_last_index = character_components[gender][selected_item_type].length - 1;
 
@@ -561,7 +561,7 @@
                     $("error").hide();
                     $(this).removeClass('error');
                 }
-            });            
+            });
 
             $('category header').click(function ()
             {
@@ -581,7 +581,7 @@
                 if ($("#traits-configurator").is(":visible"))
                     $("#traits-configurator").hide();
 
-                $('#config1 desc').hide();               
+                $('#config1 desc').hide();
                 $('#config2 desc').hide();
 
                 if ($(this).data("id") != undefined)
@@ -620,7 +620,7 @@
                     function ()
                     {
                         resourceCall("finishCharacterCreation", $("#charname").val());
-                    });                    
+                    });
                 }
             });
 

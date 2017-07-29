@@ -5,6 +5,7 @@
         <link rel='stylesheet' href='../css/icons-fa.css'>
         <link rel='stylesheet' href='../css/pcfw.css'>
         <link rel='stylesheet' href='../css/gui.css'>
+        <link rel="stylesheet" href="../css/sweetalert.css">
     </head>
     <body id="main">
         <div class="container-fluid">
@@ -15,11 +16,6 @@
                 <nochar>Nenhum personagem encontrado</nochar>
                 <charlist>
                     <ul id="list">
-                        <li>
-                            <charname>Lucas Souza</charname>
-                            <lastlogin>Último acesso 5 dias atrás</lastlogin>
-                            <deletechar><i class="fa fa-trash"></i></deletechar>
-                        </li>
                     </ul>
                 </charlist>
             </block>
@@ -32,6 +28,7 @@
         <script src="../js/jquery.js"></script>
         <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
+        <script src="../js/sweetalert.js"></script>
         <script>
             var characters = null;
             var selected_character = 0;
@@ -40,6 +37,7 @@
             {
                 if (data != null)
                 {
+                    $("#list").html("");
                     characters = JSON.parse(data);
                     for (var i = 0; i < characters.length; i++)
                     {
@@ -51,6 +49,7 @@
                         $("#list").append('<li data-id="' + i + '">' +
                             '<charname>' + characters[i].Name + '</charname>' +
                             '<lastlogin>Jogou pela última vez à ' + secondsToStr((new Date().getTime() - lastLogin.getTime()) / 1000) + ' atrás</lastlogin>' +
+                            '<deletechar><i class="fa fa-trash"></i></deletechar>' +
                             '</li>');
                     }
 
@@ -70,12 +69,33 @@
                 }
             }
 
+            // Delete character button
+            $('charlist').on('click', 'deletechar', function ()
+            {
+                var id = $(this).parent().data("id");
+                swal(
+                    {
+                        title: "Você tem certeza?",
+                        text: "Este operação não tem volta.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Deletar",
+                        cancelButtonText: "Voltar",
+                        closeOnConfirm: true
+                    },
+                    function ()
+                    {                        
+                        resourceCall("DeleteCharacter", id);
+                    });
+            });
+
             // Character list buttons
             $('charlist').on('click', 'li', function ()
-            {
+            {                
                 if (characters == null)
                     return;
-
+                
                 selected_character = $(this).data("id");
 
                 // Select a character

@@ -70,6 +70,12 @@ function ApplyCharacterFeatures(i)
     API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
 }
 
+function DeleteCharacter(id)
+{
+    var character = JSON.parse(characters);
+    API.triggerServerEvent("DeleteCharacter", character[id].Id);
+}
+
 function ShowCharacterSelector()
 {
     if (browser == null)

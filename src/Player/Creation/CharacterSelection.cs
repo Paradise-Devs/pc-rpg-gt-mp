@@ -40,6 +40,22 @@ namespace pcrpg.src.Player.Creation
                 Managers.DimensionManager.DismissPrivateDimension(sender);
                 API.setEntityDimension(sender, 0);
             }
+            else if (eventName == "DeleteCharacter")
+            {
+                int characterId = (int)arguments[0];
+                var character = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Id == characterId);
+                if (character != null)
+                {
+                    ContextFactory.Instance.Characters.Remove(character);
+                    ContextFactory.Instance.SaveChanges();
+                }
+
+                if (!API.hasEntityData(sender, "User")) return;
+                User user = API.getEntityData(sender, "User");
+
+                var characters = ContextFactory.Instance.Characters.Where(up => up.UserId == user.Id);
+                API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+            }
         }
     }
 }

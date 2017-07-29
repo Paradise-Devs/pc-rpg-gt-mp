@@ -31,8 +31,8 @@ namespace pcrpg.src.Admin
                     else
                         API.setEntityPosition(sender.vehicle, target.position);
 
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} teleportou até você.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou até {target.name}.");                
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} teleportou até você.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou até {target.name}.");                
                 }
             }
         }
@@ -59,8 +59,8 @@ namespace pcrpg.src.Admin
                     else
                         API.setEntityPosition(target.vehicle, sender.position);
 
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} teleportou você.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou {target.name} até você.");
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} teleportou você.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou {target.name} até você.");
                 }
             }
         }
@@ -83,8 +83,8 @@ namespace pcrpg.src.Admin
                 else
                 {
                     target.freeze(true);
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} congelou você.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você congelou {target.name}.");
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} congelou você.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você congelou {target.name}.");
                 }
             }
         }
@@ -104,9 +104,9 @@ namespace pcrpg.src.Admin
                     API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
-                    target.freeze(true);
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} descongelou você.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você descongelou {target.name}.");
+                    target.freeze(false);
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} descongelou você.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você descongelou {target.name}.");
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace pcrpg.src.Admin
             if (user.Admin < 1)
                 API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
-                API.sendChatMessageToAll("~#FF4444~", $"* Admin {sender} diz: ~w~{message}");
+                API.sendChatMessageToAll("~#FF4444~", $"* Admin {sender.name} diz: ~w~{message}");
         }
 
         [Command("limparchat")]
@@ -167,8 +167,8 @@ namespace pcrpg.src.Admin
                 else
                 {
                     target.health = int.Parse(health);
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} alterou sua vida para {health}%.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você alterou a vida de {target.name} para {health}%.");
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} alterou sua vida para {health}%.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você alterou a vida de {target.name} para {health}%.");
                 }
             }
         }
@@ -189,8 +189,8 @@ namespace pcrpg.src.Admin
                 else
                 {
                     target.kill();
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} matou você.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você matou {target.name}.");
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} matou você.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você matou {target.name}.");
                 }
             }
         }
@@ -234,8 +234,8 @@ namespace pcrpg.src.Admin
                     User targetUser = API.getEntityData(target, "User");
                     targetUser.Admin = int.Parse(level);
 
-                    API.sendChatMessageToPlayer(target, $"~r~ADMIN: ~w~{sender.name} alterou seu nível de admin para {level}.");
-                    API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você alterou o nível de admin de {target.name} para {level}.");
+                    API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} alterou seu nível de admin para {level}.");
+                    API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você alterou o nível de admin de {target.name} para {level}.");
                 }
             }
         }

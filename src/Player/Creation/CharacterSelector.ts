@@ -66,8 +66,6 @@ function ApplyCharacterFeatures(i)
     {
         API.setPlayerClothes(API.getLocalPlayer(), character[i].Clothes[j].BodyPart, character[i].Clothes[j].Variation, character[i].Clothes[j].Texture);
     }
-
-    API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
 }
 
 function DeleteCharacter(id)
@@ -93,8 +91,9 @@ function ShowCharacterSelector()
     API.setCefBrowserHeadless(browser, false);
 
     // Move scene position
-    API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -99.00024));
+    API.setEntityPosition(API.getLocalPlayer(), new Vector3(402.9198, -996.5348, -100.00024));
     API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+    API.setEntityPositionFrozen(API.getLocalPlayer(), true);
     
     var startCamera = API.createCamera(new Vector3(400.9627, -1005.109, -99.00404), new Vector3());
     API.pointCameraAtPosition(startCamera, new Vector3(400.6378, -1005.109, -99.00404));
@@ -123,6 +122,7 @@ function SelectCharacterToPlay(id)
 
     API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
     API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+    API.setEntityPositionFrozen(API.getLocalPlayer(), false);
 
     API.setActiveCamera(null);
     API.setCanOpenChat(true);

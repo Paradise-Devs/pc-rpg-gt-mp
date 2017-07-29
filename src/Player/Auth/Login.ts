@@ -20,7 +20,7 @@ API.onResourceStart.connect(() =>
     API.setHudVisible(false);
     API.setChatVisible(false);
     resource.CharacterCreator.ResetCharacterCreation();
-    API.startMusic("res/sounds/music01.ogg", true);    
+    API.startMusic("res/sounds/music01.mp3", true);    
 });
 
 API.onServerEventTrigger.connect((name: string, args: any[]) =>

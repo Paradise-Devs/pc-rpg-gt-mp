@@ -20,9 +20,9 @@
                 <content>
                     <form>
                         <field>
-                            <label>Personagem</label>
+                            <label>Nome do Personagem</label>
                             <input type="text" id="charname" placeholder="Nome do personagem" max="24" maxlength="24" required>
-                            <help>Formato: Nome Sobrenome</help>
+                            <help>Utilize apenas letras e a inicial maíuscula</help>
                         </field>
                         <gender>
                             <item class="male">
@@ -591,14 +591,19 @@
                 }
             });
 
-            var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+            // var regx = /^[A-Z][a-z]+\s[A-Z][a-z]+$/; // Nome Sobrenome
+            var regx = /^[A-Z][a-z]+$/; // Nome
+            var regx_letters = /^[a-zA-Z]+$/;
             $('#submit').click(function ()
             {
-                if($("#charname").val().length < 8)
-                    ShowError("Utilize no mínimo <b>8</b> caracteres.", "#charname");
+                if($("#charname").val().length < 4)
+                    ShowError("Utilize no mínimo <b>4</b> caracteres.", "#charname");
+
+                else if (!regx_letters.test($("#charname").val()))
+                    ShowError("Utilize apenas letras.", "#charname");
 
                 else if(!regx.test($("#charname").val()))
-                    ShowError("Formato: <b>Nome Sobrenome</b>", "#charname");
+                    ShowError("Utilize apenas a inicial maíuscula.", "#charname");
 
                 else if (!$("gender item").hasClass("active"))
                     ShowError("Selecione o sexo do personagem", "gender item");

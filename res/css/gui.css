@@ -389,6 +389,10 @@ charlist ul li.active {
     background-color: rgba(34, 34, 34, 0.8);
 }
 
+charlist ul li.active deletechar {
+    display: block;
+}
+
 charlist ul li.active lastlogin {
     color: #757575;
 }

@@ -54,6 +54,11 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
         resource.Login.stopMusic();
         resource.Login.canMove = true;
     }
+    else if (eventName == "CharacterNameAlreadyTaken") {
+        if (browser != null) {
+            browser.call("showError", "Este nome já em uso.", "#charname");
+        }
+    }
 });
 function ChangeCharacterGender(id) {
     character_data.gender = id;

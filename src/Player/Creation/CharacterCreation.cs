@@ -2,6 +2,7 @@
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using System;
+using System.Linq;
 
 namespace pcrpg.src.Player.Creation
 {
@@ -21,6 +22,17 @@ namespace pcrpg.src.Player.Creation
 
                 User user = API.getEntityData(sender, "User");
                 var characterData = API.fromJson((string)arguments[0]);
+
+                // Checking if name is available
+                string characterName = null;
+                characterName = characterData.name;
+                var isNameTaken = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Name == characterName);
+                if (isNameTaken != null)
+                {
+                    API.triggerClientEvent(sender, "CharacterNameAlreadyTaken");
+                    return;
+                }
+
 
                 // Character
                 Character character = new Character

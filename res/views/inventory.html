@@ -147,17 +147,22 @@
         <script src="../js/pcfw.js"></script>
         <script src="../js/sweetalert.js"></script>
         <script>
-            var outside = 0;
-            var itemClicked;
+            var outside = false;
 
             $("inventory").sortable({
                 placeholder: "ui-state-highlight",
-                receive: function(e, ui) { outside = 0; },
-                out: function(e, ui) { outside = 1; },
-                over: function(e, ui ){ outside = 0; },
+                receive: function(e, ui) {
+                    outside = false;
+                },
+                out: function(e, ui) {
+                    outside = true;
+                },
+                over: function(e, ui ) {
+                    outside = false;
+                },
                 beforeStop: function (event, ui) {
-                    if (outside == 1) {
-                        itemClicked = ui.item;
+                    var itemId = $(ui.item);
+                    if (outside) {
                         swal(
                         {
                             title: "Deseja remover este item?",
@@ -170,14 +175,14 @@
                         },
                         function ()
                         {
-                            ui.item.remove();
-                            swal("Removido!", "Item removido com sucesso!", "success");
+                            OnDeleteItem(itemId);
                         });
                     }
                 },
             });
 
             $("inventory > item").on("contextmenu", function({uiData: ui}, event){
+                var itemId = $(this);
                 if($(this).hasClass('usable')) {
                     swal(
                     {
@@ -191,13 +196,25 @@
                     },
                     function ()
                     {
-                        swal("Ativado!", "Você já pode adquirir o item ativado!", "success");
+                        OnUseItem(itemIdb);
                     });
                     return false;
                 } else {
                     return false;
                 }
             });
+
+            function OnDeleteItem(id) {
+                $(id).empty();
+                $(id).removeClass();
+                swal("Removido!", "Item removido com sucesso!", "success");
+            }
+
+            function OnUseItem(id) {
+                $(id).empty();
+                $(id).removeClass();
+                swal("Ativado!", "Você já pode adquirir o item ativado!", "success");
+            }
         </script>
     </body>
 </html>

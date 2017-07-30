@@ -12,17 +12,6 @@ API.onServerEventTrigger.connect((eventName, args) => {
             browser.call("updateList", characters);
     }
 });
-API.onResourceStart.connect(() => {
-    if (browser == null) {
-        var res = API.getScreenResolution();
-        browser = API.createCefBrowser(res.Width, res.Height);
-        API.setCefBrowserHeadless(browser, true);
-        API.setCefBrowserPosition(browser, 0, 0);
-        API.waitUntilCefBrowserInit(browser);
-        API.loadPageCefBrowser(browser, "res/views/character_selector.html");
-        API.waitUntilCefBrowserLoaded(browser);
-    }
-});
 API.onResourceStop.connect(() => {
     if (browser != null) {
         API.destroyCefBrowser(browser);
@@ -91,9 +80,6 @@ function SelectCharacterToPlay(id) {
     }
     var character = JSON.parse(characters);
     API.triggerServerEvent("SelectCharacter", character[id].Id);
-    API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
-    API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
-    API.setEntityPositionFrozen(API.getLocalPlayer(), false);
     API.setActiveCamera(null);
     API.setCanOpenChat(true);
     API.setChatVisible(true);

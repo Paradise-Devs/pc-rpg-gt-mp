@@ -6,5 +6,6 @@ API.onServerEventTrigger.connect((eventName, args) => {
         API.setCanOpenChat(true);
         API.setChatVisible(true);
         API.setHudVisible(true);
+        API.sendNotification("Vá falar com chester");
     }
 });

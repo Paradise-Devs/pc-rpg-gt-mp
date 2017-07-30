@@ -17,6 +17,12 @@ namespace pcrpg.src.Player
             if (API.hasEntityData(player, "Character"))
             {
                 Character character = API.getEntityData(player, "Character");
+
+                character.PositionX = player.position.X;
+                character.PositionY = player.position.Y;
+                character.PositionZ = player.position.Z;
+                character.RotationZ = player.rotation.Z;
+
                 character.LastLogin = DateTime.Now;
                 character.PlayedTime += (DateTime.Now - API.getEntityData(player, "LoggedInTime")).TotalSeconds;
             }

@@ -7,6 +7,8 @@ API.onServerEventTrigger.connect((eventName: string, args: any[]) =>
         API.setActiveCamera(null);
         API.setCanOpenChat(true);
         API.setChatVisible(true);
-        API.setHudVisible(true);        
+        API.setHudVisible(true);
+
+        API.sendNotification("Vá falar com chester");
     }
 });

@@ -74,6 +74,8 @@
     <Compile Include="src\Database\Models\CharacterTrait.cs" />
     <Compile Include="src\Database\Models\DefaultDbContext.cs" />
     <Compile Include="src\Database\Models\User.cs" />
+    <Compile Include="src\Flags\AnimationFlags.cs" />
+    <Compile Include="src\Gameplay\FirstSpawn.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Managers\CommandManager.cs" />
@@ -106,6 +108,7 @@
     <Content Include="res\views\character_creator.html" />
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\login.html" />
+    <TypeScriptCompile Include="src\Gameplay\FirstSpawn.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterSelector.ts" />

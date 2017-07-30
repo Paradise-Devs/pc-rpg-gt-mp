@@ -12,6 +12,17 @@ API.onServerEventTrigger.connect((eventName, args) => {
             browser.call("updateList", characters);
     }
 });
+API.onResourceStart.connect(() => {
+    if (browser == null) {
+        var res = API.getScreenResolution();
+        browser = API.createCefBrowser(res.Width, res.Height);
+        API.setCefBrowserHeadless(browser, true);
+        API.setCefBrowserPosition(browser, 0, 0);
+        API.waitUntilCefBrowserInit(browser);
+        API.loadPageCefBrowser(browser, "res/views/character_selector.html");
+        API.waitUntilCefBrowserLoaded(browser);
+    }
+});
 API.onResourceStop.connect(() => {
     if (browser != null) {
         API.destroyCefBrowser(browser);

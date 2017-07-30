@@ -1485,7 +1485,7 @@ inventory item badge.special i {
     color: #fff;
 }
 
-inventory item.usable container commands {
+inventory item.activable container commands {
     display: block;
 }
 

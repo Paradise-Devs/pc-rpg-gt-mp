@@ -32,7 +32,7 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item class="rare usable" id="item-1">
+                        <item class="rare activable" id="item-1">
                             <i class="fa fa-car"></i>
                             <badge><i class="fa fa-star"></i></badge>
                             <container>
@@ -47,7 +47,7 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item class="usable" id="item-2">
+                        <item class="common activable" id="item-2">
                             <i class="clothes-hoodie"></i>
                             <container>
                                 <header>
@@ -61,7 +61,7 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item id="item-3">
+                        <item class="common non-usable" id="item-3">
                             <i class="fa fa-key"></i>
                             <container>
                                 <header>
@@ -75,68 +75,70 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item id="item-4">
+                        <item class="empty" id="item-4">
                         </item>
-                        <item id="item-5">
+                        <item class="empty" id="item-5">
                         </item>
-                        <item id="item-6">
+                        <item class="empty" id="item-6">
                         </item>
-                        <item id="item-7">
+                        <item class="empty" id="item-7">
                         </item>
-                        <item id="item-8">
+                        <item class="empty" id="item-8">
                         </item>
-                        <item id="item-9">
+                        <item class="empty" id="item-9">
                         </item>
-                        <item id="item-10">
+                        <item class="empty" id="item-10">
                         </item>
-                        <item id="item-11">
+                        <item class="empty" id="item-11">
                         </item>
-                        <item id="item-11">
+                        <item class="empty" id="item-11">
                         </item>
-                        <item id="item-11">
+                        <item class="empty" id="item-11">
                         </item>
-                        <item id="item-12">
+                        <item class="empty" id="item-12">
                         </item>
-                        <item id="item-13">
+                        <item class="empty" id="item-13">
                         </item>
-                        <item id="item-14">
+                        <item class="empty" id="item-14">
                         </item>
-                        <item id="item-15">
+                        <item class="empty" id="item-15">
                         </item>
-                        <item id="item-16">
+                        <item class="empty" id="item-16">
                         </item>
-                        <item id="item-17">
+                        <item class="empty" id="item-17">
                         </item>
-                        <item id="item-18">
+                        <item class="empty" id="item-18">
                         </item>
-                        <item id="item-19">
+                        <item class="empty" id="item-19">
                         </item>
-                        <item id="item-20">
+                        <item class="empty" id="item-20">
                         </item>
-                        <item id="item-21">
+                        <item class="empty" id="item-21">
                         </item>
-                        <item id="item-22">
+                        <item class="empty" id="item-22">
                         </item>
-                        <item id="item-23">
+                        <item class="empty" id="item-23">
                         </item>
-                        <item id="item-24">
+                        <item class="empty" id="item-24">
                         </item>
-                        <item id="item-25">
+                        <item class="empty" id="item-25">
                         </item>
-                        <item id="item-26">
+                        <item class="empty" id="item-26">
                         </item>
-                        <item id="item-27">
+                        <item class="empty" id="item-27">
                         </item>
-                        <item id="item-28">
+                        <item class="empty" id="item-28">
                         </item>
-                        <item id="item-29">
+                        <item class="empty" id="item-29">
                         </item>
+                        <!-- id max 29 -->
                     </inventory>
                 </content>
                 <footer class="right">
                     Banco: <money>$99.000</money>
                     <separator></separator>
                     Carteira: <money>$99.000</money>
+                    <button>adicionar item</button>
                 </footer>
             </block>
         </div>
@@ -181,27 +183,37 @@
                 },
             });
 
-            $("inventory > item").on("contextmenu", function({uiData: ui}, event){
+            $("inventory > item.activable").on("contextmenu", function(){
                 var itemId = $(this);
-                if($(this).hasClass('usable')) {
-                    swal(
-                    {
-                        title: "Deseja ativar este item?",
-                        text: "Este item será vinculado a sua conta e não poderá ser utilizado novamente.",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonText: "Ativar",
-                        cancelButtonText: "Voltar",
-                        closeOnConfirm: false
-                    },
-                    function ()
-                    {
-                        OnUseItem(itemIdb);
-                    });
-                    return false;
-                } else {
-                    return false;
-                }
+                swal(
+                {
+                    title: "Deseja ativar este item?",
+                    text: "Este item será vinculado a sua conta e não poderá ser utilizado novamente.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ativar",
+                    cancelButtonText: "Voltar",
+                    closeOnConfirm: false
+                },
+                function ()
+                {
+                    OnActivateItem(itemId);
+                });
+                return false;
+            });
+
+            $("inventory > item.usable").on("contextmenu", function(){
+                var itemId = $(this);
+                OnUseItem(itemIdb);
+                return false;
+            });
+
+            $("inventory > item.non-usable").on("contextmenu", function(){
+                return false;
+            });
+
+            $("footer button").on("click", function(){
+                AddItem("activable", "common", "Testing", "Testing", 1, "fa fa-female", 0);
             });
 
             function OnDeleteItem(id) {
@@ -210,10 +222,80 @@
                 swal("Removido!", "Item removido com sucesso!", "success");
             }
 
-            function OnUseItem(id) {
+            function OnActivateItem(id) {
                 $(id).empty();
                 $(id).removeClass();
                 swal("Ativado!", "Você já pode adquirir o item ativado!", "success");
+            }
+
+            function AddItem(type = 'static', rarity, title, description, category, icon, databaseid, slot, tradable = true) {
+                /*
+                    Type:
+                        activable, usable, static
+
+                    Rarity:
+                        common, rare, special
+
+                    Title:
+                        Item title
+
+                    Description:
+                        Item desc
+
+                    Category:
+                        0: vehicle
+                        1: clothes
+                        2: bodyparts
+                        3: food
+                        4: drink
+                        5: keys
+
+                    Icon:
+                        Icon class
+
+                    Databaseid:
+                        Server ID
+
+                    Slot:
+                        Item slot on player inventory
+
+                    Tradable:
+                        Item account related (not tradable)
+                        default = true
+                */
+
+
+
+                var editingElement = $("item.empty").first().removeClass().addClass(type + ' ' + rarity + ' recent-added');
+
+                $(editingElement).append(
+                        '<i class="' + icon + '"></i>' +
+                        '<container>' +
+                            '<header>' +
+                                '<icon><i class="' + icon + '"></i></icon>' +
+                                '<info>' +
+                                    '<tit>' + title + '</tit>' +
+                                    '<subtit>' + category + '</subtit>' +
+                                '</info>' +
+                            '</header>' +
+                            '<desc>' + description + '</desc>' +
+                        '</container>');
+
+                if(!tradable) {
+                    $("container header info", editingElement).append('<subtit>Item vinculado a conta</subtit>');
+                }
+
+                if(rarity != 'common') {
+                    $(editingElement).append('<badge><i class="fa fa-star"></i></badge>');
+                }
+
+                if(type == 'activable') {
+                    $("container", editingElement).append('<commands><i class="media-mouse-right-button"></i> para ativar</commands>');
+                } else if(type == 'usable') {
+                    $("container", editingElement).append('<commands><i class="media-mouse-right-button"></i> para consumir</commands>');
+                }
+
+                $(editingElement).removeClass('recent-added');
             }
         </script>
     </body>

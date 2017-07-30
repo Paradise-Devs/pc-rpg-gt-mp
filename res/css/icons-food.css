@@ -1,0 +1,118 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 04/07/2016 14:10
+  	*/
+
+@font-face {
+    font-family: "Food";
+    src: url("../fonts/food.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="food-"]:before, [class*=" food-"]:before,
+[class^="food-"]:after, [class*=" food-"]:after {
+    font-family: "Food";
+    font-style: normal;
+}
+
+.food-apron:before { content: "\f100"; }
+.food-bar:before { content: "\f101"; }
+.food-barbecue:before { content: "\f102"; }
+.food-barman:before { content: "\f103"; }
+.food-beer:before { content: "\f104"; }
+.food-bell:before { content: "\f105"; }
+.food-board:before { content: "\f106"; }
+.food-breakfast:before { content: "\f107"; }
+.food-brochette:before { content: "\f108"; }
+.food-browser:before { content: "\f109"; }
+.food-cake:before { content: "\f10a"; }
+.food-cake-1:before { content: "\f10b"; }
+.food-candles:before { content: "\f10c"; }
+.food-carrot:before { content: "\f10d"; }
+.food-champagne:before { content: "\f10e"; }
+.food-chef-hat:before { content: "\f10f"; }
+.food-chicken:before { content: "\f110"; }
+.food-clipboard:before { content: "\f111"; }
+.food-closed:before { content: "\f112"; }
+.food-cocktail:before { content: "\f113"; }
+.food-coffee:before { content: "\f114"; }
+.food-coffee-cup:before { content: "\f115"; }
+.food-coffee-maker:before { content: "\f116"; }
+.food-cookbook:before { content: "\f117"; }
+.food-cooker:before { content: "\f118"; }
+.food-corkscrew:before { content: "\f119"; }
+.food-credit-card:before { content: "\f11a"; }
+.food-croissant:before { content: "\f11b"; }
+.food-cupcake:before { content: "\f11c"; }
+.food-cutlery:before { content: "\f11d"; }
+.food-cutlery-1:before { content: "\f11e"; }
+.food-daily-specials-board:before { content: "\f11f"; }
+.food-delivery:before { content: "\f120"; }
+.food-dinner:before { content: "\f121"; }
+.food-dinner-1:before { content: "\f122"; }
+.food-discount:before { content: "\f123"; }
+.food-dish:before { content: "\f124"; }
+.food-dishes:before { content: "\f125"; }
+.food-fast-food:before { content: "\f126"; }
+.food-fish:before { content: "\f127"; }
+.food-flower:before { content: "\f128"; }
+.food-fork:before { content: "\f129"; }
+.food-fruit:before { content: "\f12a"; }
+.food-hamburger:before { content: "\f12b"; }
+.food-hot-pepper:before { content: "\f12c"; }
+.food-ice-cream:before { content: "\f12d"; }
+.food-invoice:before { content: "\f12e"; }
+.food-ketchup:before { content: "\f12f"; }
+.food-knife:before { content: "\f130"; }
+.food-ladle:before { content: "\f131"; }
+.food-libra:before { content: "\f132"; }
+.food-lobster:before { content: "\f133"; }
+.food-menu:before { content: "\f134"; }
+.food-menu-1:before { content: "\f135"; }
+.food-microwave-oven:before { content: "\f136"; }
+.food-mill:before { content: "\f137"; }
+.food-mixer:before { content: "\f138"; }
+.food-no-smoking:before { content: "\f139"; }
+.food-noodles:before { content: "\f13a"; }
+.food-open:before { content: "\f13b"; }
+.food-padnote:before { content: "\f13c"; }
+.food-pasta:before { content: "\f13d"; }
+.food-pizza:before { content: "\f13e"; }
+.food-placeholder:before { content: "\f13f"; }
+.food-point-of-service:before { content: "\f140"; }
+.food-pot:before { content: "\f141"; }
+.food-refrigerator:before { content: "\f142"; }
+.food-reserved:before { content: "\f143"; }
+.food-restaurant:before { content: "\f144"; }
+.food-restaurant-card:before { content: "\f145"; }
+.food-rolling-pin:before { content: "\f146"; }
+.food-salmon:before { content: "\f147"; }
+.food-salt-and-pepper:before { content: "\f148"; }
+.food-salver:before { content: "\f149"; }
+.food-sausages:before { content: "\f14a"; }
+.food-sausages-1:before { content: "\f14b"; }
+.food-scooter:before { content: "\f14c"; }
+.food-shaker:before { content: "\f14d"; }
+.food-shrimp:before { content: "\f14e"; }
+.food-signboard:before { content: "\f14f"; }
+.food-smartphone:before { content: "\f150"; }
+.food-soup:before { content: "\f151"; }
+.food-spatula:before { content: "\f152"; }
+.food-spatula-1:before { content: "\f153"; }
+.food-spicy-food:before { content: "\f154"; }
+.food-steak:before { content: "\f155"; }
+.food-sushi:before { content: "\f156"; }
+.food-take-away:before { content: "\f157"; }
+.food-tea:before { content: "\f158"; }
+.food-terrace:before { content: "\f159"; }
+.food-toast:before { content: "\f15a"; }
+.food-tree:before { content: "\f15b"; }
+.food-vegan:before { content: "\f15c"; }
+.food-vegetarian-food:before { content: "\f15d"; }
+.food-waiter:before { content: "\f15e"; }
+.food-wallet:before { content: "\f15f"; }
+.food-wc:before { content: "\f160"; }
+.food-wifi:before { content: "\f161"; }
+.food-wine:before { content: "\f162"; }
+.food-wine-menu:before { content: "\f163"; }

@@ -49,9 +49,7 @@
     <file src="res/css/icons-bodyparts.css" />
     <file src="res/css/icons-clothes.css" />
     <file src="res/css/icons-media.css" />
-    <file src="res/fonts/clothes.ttf" />
-    <file src="res/fonts/bodyparts.ttf" />
-    <file src="res/fonts/media.ttf" />
+    <file src="res/css/icons-food.css" />
     <file src="res/fonts/custom/eyebrows.png" />
 
     <!-- Fonts -->
@@ -59,4 +57,8 @@
     <file src="res/fonts/five.ttf" />
     <file src="res/fonts/logo.ttf" />
     <file src="res/fonts/fontawesome.ttf" />
+    <file src="res/fonts/clothes.ttf" />
+    <file src="res/fonts/bodyparts.ttf" />
+    <file src="res/fonts/media.ttf" />
+    <file src="res/fonts/food.ttf" />
 </meta>

@@ -25,6 +25,29 @@ b {
 
 button:focus { outline:0 !important; }
 
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
 /******************************************************************************/
 /*   Fonts                                                                   */
 /******************************************************************************/
@@ -59,10 +82,32 @@ block {
     display: block;
     background-color: rgba(10, 10, 10, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+block close {
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    background-color: rgba(210, 47, 47, 0.2);
+    border: 0px;
+    padding: 5px 10px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+block close:hover {
+    cursor: pointer;
+    background-color: rgba(210, 47, 47, 0.6);
+    color: #fff;
 }
 
 block header {
     padding: 10px;
+    z-index: -1;
 }
 
 block content {
@@ -961,8 +1006,20 @@ reward container item desc.money::first-letter {
 /******************************************************************************/
 /*   Sweetalert customization                                                 */
 /******************************************************************************/
+.sweet-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    z-index: 10000;
+}
+
+
 .sweet-alert {
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: rgba(30, 30, 30, 1);
     font-family: 'Segoe UI';
     width: 478px;
     border-radius: 0px;
@@ -975,6 +1032,7 @@ reward container item desc.money::first-letter {
     display: none;
     z-index: 99999;
     max-width: 478px;
+    border: 1px solid #2A2A2A;
 }
 
 .sweet-alert h2 {
@@ -1200,4 +1258,339 @@ npc answers button {
     font-family: "Roboto";
     text-transform: uppercase;
     margin-top: 1%;;
+}
+
+/******************************************************************************/
+/*   Inventory                                                                */
+/******************************************************************************/
+block.inventory {
+    display: block;
+    position: fixed;
+    left: 65%;
+    top: 62%;
+    width: 42%;
+    margin-left: -256px;
+    z-index: -1;
+}
+
+block.inventory header {
+    z-index: -1;
+}
+
+block.inventory content {
+    padding-right: 0px;
+    padding-top: 0px;
+    max-height: 200px;
+    overflow: visible auto;
+    z-index: -5;
+    position: relative;
+}
+
+
+inventory {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: visible;
+    height: auto;
+}
+
+inventory item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.3);
+    clear: both;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    flex-basis: 7%;
+    margin-top: 10px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 1600px) {
+    inventory item {
+        flex-basis: 44px;
+        height: 42px;
+    }
+
+    block.inventory {
+        left: 68%;
+        top: 50%;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    inventory item {
+        flex-basis: 39px;
+        height: 42px;
+    }
+
+    block.inventory {
+        left: 70%;
+        top: 50%;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    inventory item {
+        flex-basis: 40px;
+        height: 38px;
+    }
+
+    block.inventory {
+        left: 74%;
+        top: 50%;
+    }
+}
+
+inventory::before, inventory::after {
+    content: "";
+    display: table;
+}
+
+inventory::before {
+    clear: both;
+}
+
+inventory item badge {
+    display: none;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 1px 5px 1px 5px;
+    font-size: 9px;
+}
+
+inventory item badge i {
+    color: #fff;
+}
+
+inventory item:hover container, inventory item:hover spacer {
+    display: block;
+}
+
+inventory item:hover {
+    color: #aaa;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.9);
+}
+
+inventory item:hover i {
+    color: #fff;
+}
+
+inventory item i {
+    text-shadow: 0px 0px 4px #000;
+    color: #aaa;
+}
+
+inventory item desc.money::first-letter {
+    color: #009587;
+}
+
+block.inventory footer {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+block.inventory footer money {
+    font-family: "Roboto";
+    margin-left: 3px;
+    padding-top: 1px;
+}
+
+block.inventory footer money::first-letter {
+    margin-left: 3px;
+    color: #009587;
+}
+
+block.inventory footer separator {
+    border-right: 1px solid #2A2A2A;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*item specials*/
+inventory item.special {
+    background-color: rgba(0, 95, 87, 0.3);
+}
+
+inventory item.special:hover {
+    background-color: rgba(0, 95, 87, 0.6);
+}
+
+inventory item.special container {
+    border: 3px solid rgba(0, 95, 87, 1);
+}
+
+inventory item.special container:after {
+    border-top: solid 20px rgba(0, 95, 87, 1);
+}
+
+inventory item.special container header {
+    background-color: rgba(0, 95, 87, 0.6);
+}
+
+inventory item.special container desc {
+    background-color: rgba(0, 95, 87, 0.3);
+}
+
+inventory item.special commands {
+    background-color: rgba(0, 95, 87, 0.6);
+    border-width: 0px;
+}
+
+inventory item.special container icon {
+    background-color: rgba(0, 95, 87, 0.6);
+}
+
+inventory item.rare {
+    background-color: rgba(103, 58, 182, 0.3);
+}
+
+inventory item.rare:hover {
+    background-color: rgba(103, 58, 182, 0.6);
+}
+
+inventory item.rare container {
+    border: 3px solid rgba(103, 58, 182, 1);
+}
+
+inventory item.rare container:after {
+    border-top: solid 20px rgba(103, 58, 182, 1);
+}
+
+inventory item.rare badge {
+    display: block;
+    background-color: #673AB6;
+}
+
+inventory item.special badge {
+    background-color: #009587;
+    display: block;
+}
+
+inventory item badge.special i {
+    color: #fff;
+}
+
+inventory item.usable container commands {
+    display: block;
+}
+
+/***************
+    container
+****************/
+inventory item container {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    height: auto;
+    width: 250px;
+    color: #fff;
+    bottom: 58px;
+    cursor: default;
+    overflow: visible;
+}
+
+inventory item container:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -20px;
+    width: 0;
+    height: 0;
+    border-top: solid 20px rgba(0, 0, 0, 1);
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+}
+
+inventory item container header {
+    display: block;
+    position: relative;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+inventory item container header info {
+    display: inline-block;
+    vertical-align: top;
+    font-family: "Roboto";
+}
+
+inventory item container header tit {
+    display: inline-block;
+    padding: 0px;
+    font-size: 15px;
+}
+
+inventory item container header subtit {
+    display: block;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: #aaa;
+}
+
+inventory item container desc {
+    display: block;
+    font-size: 12px;
+    font-family: "Roboto";
+    padding: 10px 5px 10px 5px;
+}
+
+inventory item container icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #696969;
+    clear: both;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    margin-right: 5px;
+}
+
+inventory item container header icon i {
+    color: #fff;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-size: 12px;
+}
+
+inventory item commands {
+    display: none;
+    text-align: center;
+    border: 1px solid #2A2A2A;
+    background-color: rgba(100, 100, 100, 0.4);
+    width: 100%;
+    color: #999;
+    padding: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+inventory item commands i:before {
+    color: #999;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.ui-state-highlight {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid cyan !important;
 }

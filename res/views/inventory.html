@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+        <link rel='stylesheet' href='../css/icons-fa.css'>
+        <link rel='stylesheet' href='../css/icons-clothes.css'>
+        <link rel='stylesheet' href='../css/icons-bodyparts.css'>
+        <link rel='stylesheet' href='../css/icons-media.css'>
+        <link rel="stylesheet" href="../css/sweetalert.css">
+        <link rel="stylesheet" href="../css/jquery-ui.css">
+    </head>
+    <body id="main" class="test-enabled">
+        <div class="container-fluid">
+            <block class="inventory">
+                <content>
+                    <inventory>
+                        <item class="special usable" id="item-0">
+                            <i class="fa fa-car"></i>
+                            <badge><i class="fa fa-star"></i></badge>
+                            <container>
+                                <header>
+                                    <icon><i class="fa fa-car"></i></icon>
+                                    <info>
+                                        <tit>X80 Proto</tit>
+                                        <subtit>Veículo</subtit>
+                                        <subtit>item vinculado a conta</subtit>
+                                    </info>
+                                </header>
+                                <desc>Este é um veículo especial e pode ser resgatado em qualquer concessionária de Los Santos.</desc>
+                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
+                            </container>
+                        </item>
+                        <item class="rare usable" id="item-1">
+                            <i class="fa fa-car"></i>
+                            <badge><i class="fa fa-star"></i></badge>
+                            <container>
+                                <header>
+                                    <icon><i class="fa fa-car"></i></icon>
+                                    <info>
+                                        <tit>Infernus</tit>
+                                        <subtit>Veículo</subtit>
+                                    </info>
+                                </header>
+                                <desc>Este é um veículo raro e pode ser resgatado em qualquer concessionária de Los Santos.</desc>
+                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
+                            </container>
+                        </item>
+                        <item class="usable" id="item-2">
+                            <i class="clothes-hoodie"></i>
+                            <container>
+                                <header>
+                                    <icon><i class="clothes-hoodie"></i></icon>
+                                    <info>
+                                        <tit>Kit Outono</tit>
+                                        <subtit>Roupas</subtit>
+                                    </info>
+                                </header>
+                                <desc>Desbloqueia o kit de inverno para compra nas lojas de Los Santos.</desc>
+                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
+                            </container>
+                        </item>
+                        <item id="item-3">
+                            <i class="fa fa-key"></i>
+                            <container>
+                                <header>
+                                    <icon><i class="fa fa-key"></i></icon>
+                                    <info>
+                                        <tit>X80 Proto</tit>
+                                        <subtit>Chave de veículo</subtit>
+                                    </info>
+                                </header>
+                                <desc>Sem esta chave no inventário, você não consegue utilizar seu veículo.</desc>
+                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
+                            </container>
+                        </item>
+                        <item id="item-4">
+                        </item>
+                        <item id="item-5">
+                        </item>
+                        <item id="item-6">
+                        </item>
+                        <item id="item-7">
+                        </item>
+                        <item id="item-8">
+                        </item>
+                        <item id="item-9">
+                        </item>
+                        <item id="item-10">
+                        </item>
+                        <item id="item-11">
+                        </item>
+                        <item id="item-11">
+                        </item>
+                        <item id="item-11">
+                        </item>
+                        <item id="item-12">
+                        </item>
+                        <item id="item-13">
+                        </item>
+                        <item id="item-14">
+                        </item>
+                        <item id="item-15">
+                        </item>
+                        <item id="item-16">
+                        </item>
+                        <item id="item-17">
+                        </item>
+                        <item id="item-18">
+                        </item>
+                        <item id="item-19">
+                        </item>
+                        <item id="item-20">
+                        </item>
+                        <item id="item-21">
+                        </item>
+                        <item id="item-22">
+                        </item>
+                        <item id="item-23">
+                        </item>
+                        <item id="item-24">
+                        </item>
+                        <item id="item-25">
+                        </item>
+                        <item id="item-26">
+                        </item>
+                        <item id="item-27">
+                        </item>
+                        <item id="item-28">
+                        </item>
+                        <item id="item-29">
+                        </item>
+                    </inventory>
+                </content>
+                <footer class="right">
+                    Banco: <money>$99.000</money>
+                    <separator></separator>
+                    Carteira: <money>$99.000</money>
+                </footer>
+            </block>
+        </div>
+
+        <script src="../js/jquery.js"></script>
+        <script src="../js/jquery-ui.js"></script>
+        <script src="../js/tether.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script src="../js/sweetalert.js"></script>
+        <script>
+            var outside = 0;
+            var itemClicked;
+
+            $("inventory").sortable({
+                placeholder: "ui-state-highlight",
+                receive: function(e, ui) { outside = 0; },
+                out: function(e, ui) { outside = 1; },
+                over: function(e, ui ){ outside = 0; },
+                beforeStop: function (event, ui) {
+                    if (outside == 1) {
+                        itemClicked = ui.item;
+                        swal(
+                        {
+                            title: "Deseja remover este item?",
+                            text: "Você não vai ter como recuperar este item posteriormente.",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Remover",
+                            cancelButtonText: "Voltar",
+                            closeOnConfirm: false
+                        },
+                        function ()
+                        {
+                            ui.item.remove();
+                            swal("Removido!", "Item removido com sucesso!", "success");
+                        });
+                    }
+                },
+            });
+
+            $("inventory > item").on("contextmenu", function({uiData: ui}, event){
+                if($(this).hasClass('usable')) {
+                    swal(
+                    {
+                        title: "Deseja ativar este item?",
+                        text: "Este item será vinculado a sua conta e não poderá ser utilizado novamente.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ativar",
+                        cancelButtonText: "Voltar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        swal("Ativado!", "Você já pode adquirir o item ativado!", "success");
+                    });
+                    return false;
+                } else {
+                    return false;
+                }
+            });
+        </script>
+    </body>
+</html>

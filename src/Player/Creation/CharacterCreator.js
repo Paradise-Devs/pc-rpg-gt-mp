@@ -44,14 +44,16 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
             API.destroyCefBrowser(browser);
             browser = null;
         }
-        API.setEntityPosition(API.getLocalPlayer(), new Vector3(-1017.67, -2754.39, 0.8003625));
-        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0.0, 0.0, 176.8912));
+        API.setEntityPosition(API.getLocalPlayer(), new Vector3(169.3792, -967.8402, 29.98808));
+        API.setEntityRotation(API.getLocalPlayer(), new Vector3(0, 0, 138.6666));
         API.setEntityPositionFrozen(API.getLocalPlayer(), false);
-        API.setActiveCamera(null);
-        API.setCanOpenChat(true);
-        API.setChatVisible(true);
-        API.setHudVisible(true);
+        var startCam = API.createCamera(new Vector3(169.3792, -965.8402, 31.98808), new Vector3());
+        API.pointCameraAtPosition(startCam, new Vector3(169.3792, -967.8402, 29.98808));
+        var endCam = API.createCamera(new Vector3(167.3792, -965.8402, 31.98808), new Vector3());
+        API.pointCameraAtPosition(endCam, new Vector3(169.3792, -967.8402, 29.98808));
+        API.interpolateCameras(startCam, endCam, 10000, false, false);
         API.showCursor(false);
+        API.triggerServerEvent("SpawnPlayerForTheFirstTime");
         resource.Login.stopMusic();
         resource.Login.canMove = true;
     }

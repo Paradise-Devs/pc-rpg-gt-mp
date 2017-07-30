@@ -14,6 +14,9 @@
     <!-- Player Utils -->
     <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
     <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
+  
+    <!-- Gameplay -->
+    <script src="src/Gameplay/FirstSpawn.js" type="client" lang="javascript"/>
 
     <!-- Resources -->
 

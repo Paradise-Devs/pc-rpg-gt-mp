@@ -21,6 +21,14 @@ namespace pcrpg.src.Database.Models
 
         public int Experience { get; set; }
 
+        public float PositionX { get; set; }
+
+        public float PositionY { get; set; }
+
+        public float PositionZ { get; set; }
+
+        public float RotationZ { get; set; }
+
         public double PlayedTime { get; set; }
 
         public DateTime LastLogin { get; set; }

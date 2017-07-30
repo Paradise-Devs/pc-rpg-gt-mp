@@ -1,5 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using GrandTheftMultiplayer.Shared.Math;
 using Newtonsoft.Json;
 using pcrpg.src.Database.Models;
 using System;
@@ -32,6 +33,10 @@ namespace pcrpg.src.Player.Creation
                 API.setEntityData(sender, "LoggedInTime", DateTime.Now);
 
                 sender.name = character.Name;
+
+                API.setEntityPositionFrozen(sender, false);
+                API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));
+                API.setEntityRotation(sender, new Vector3(0f, 0f, character.RotationZ));
 
                 // Sync player face with other players
                 Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();

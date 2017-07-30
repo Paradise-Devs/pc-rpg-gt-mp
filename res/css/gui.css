@@ -905,7 +905,7 @@ reward container item {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position:relative;
+    position: relative;
     width: 50px;
     height: 50px;
     color: #666;
@@ -920,7 +920,7 @@ reward container item:not(:last-child) {
 }
 
 reward container item i {
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+    text-shadow: 0px 0px 4px #000;
     color: #fff;
 }
 
@@ -1075,4 +1075,129 @@ reward container item desc.money::first-letter {
 
 .sweet-alert button:active {
     box-shadow: inset 0 0 3px #000 !important;
+}
+
+/******************************************************************************/
+/*   NPC                                                                      */
+/******************************************************************************/
+npc {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 26%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+}
+
+npc header {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    height: 60px;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #2A2A2A;
+}
+
+npc header button {
+    position: relative;
+    display: inline-flex;
+    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0px;
+    width: 180px;
+    padding: 8px 8px 8px 8px;
+    text-align: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+npc button:disabled {
+    opacity: .2;
+}
+
+npc button:active {
+    box-shadow: inset 0 0 3px #000;
+}
+
+npc button:not(:disabled):hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+npc button i {
+    padding-top: 2px;
+    position: absolute;
+    left: 12px;
+}
+
+npc header button i.missionNot {
+    display: none;
+    padding-top: 3px;
+    position: absolute;
+    right: -140px;
+}
+
+npc header button.hasMission {
+    background-color: rgba(250, 191, 45, 0.4);
+    color: #FEF8C3;
+}
+
+npc header button.hasMission i.missionNot {
+    display: inline-block;
+}
+
+npc button.hasMission:hover {
+    background-color: rgba(250, 191, 45, 0.7);
+}
+
+npc button.back {
+    background-color: rgba(25, 117, 209, 0.2);
+}
+
+npc button.back:hover {
+    background-color: rgba(25, 117, 209, 0.6);
+}
+
+npc phrase {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    padding-top: 10px;
+    font-size: 2vh;
+    color: #fff;
+    text-shadow: 0px 0px 10px #000;
+    font-family: "Roboto";
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+npc answers {
+    display: flex;
+    justify-content: center;
+}
+
+npc answers button {
+    position: relative;
+    display: block;
+    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0px;
+    width: 22%;
+    padding: 10px 10px 10px 10px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    margin-top: 1%;;
 }

@@ -45,6 +45,10 @@ namespace pcrpg.src.Player.Creation
                     Level = 1,
                     Experience = 0,
                     PlayedTime = 0,
+                    PositionX = 169.3792f,
+                    PositionY = -967.8402f,
+                    PositionZ = 29.98808f,
+                    RotationZ = 138.6666f,
                     LastLogin = DateTime.Now,
                     CreatedAt = DateTime.Now
                 };

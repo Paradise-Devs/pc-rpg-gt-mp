@@ -27,6 +27,7 @@
 
     <!-- JS -->
     <file src="res/js/jquery.js" />
+    <file src="res/js/jquery-ui.js" />
     <file src="res/js/tether.js" />
     <file src="res/js/slider.js" />
     <file src="res/js/pcfw.js" />
@@ -37,6 +38,7 @@
     <file src="res/sounds/music01.mp3" />
 
     <!-- CSS -->
+    <file src="res/css/jquery-ui.css" />
     <file src="res/css/gui.css" />
     <file src="res/css/pcfw.css" />
     <file src="res/css/sweetalert.css" />

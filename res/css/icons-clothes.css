@@ -5,9 +5,7 @@
 
 @font-face {
   font-family: "clothes";
-  src: url("../fonts/clothes.woff") format("woff"),
-       url("../fonts/clothes.ttf") format("truetype"),
-       url("../fonts/clothes.svg#Flaticon") format("svg");
+  src: url("../fonts/clothes.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

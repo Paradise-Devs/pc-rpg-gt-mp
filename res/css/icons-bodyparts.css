@@ -5,9 +5,7 @@
 
 @font-face {
   font-family: "Bodyparts";
-  src: url("../fonts/bodyparts.woff") format("woff"),
-       url("../fonts/bodyparts.ttf") format("truetype"),
-       url("../fonts/bodyparts.svg#Flaticon") format("svg");
+  src: url("../fonts/bodyparts.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

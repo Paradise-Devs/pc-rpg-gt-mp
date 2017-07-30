@@ -134,6 +134,8 @@
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="res\views\npc.html" />
+    <Content Include="res\views\reward.html" />
     <Content Include="src\Player\Utils\Camera.ts" />
     <Content Include="src\Player\Utils\Sounds.js" />
     <Content Include="types-gt-mp\Declarations.d.ts" />

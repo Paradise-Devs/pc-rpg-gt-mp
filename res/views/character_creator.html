@@ -490,7 +490,7 @@
                 config_traits_1_count--;
                 if (config_traits_1_count < 0)
                     config_traits_1_count = config_traits_1_max;
-                else if (selected_item_type == 15 && config_traits_1_count == 24)
+                else if (selected_item_type == 15 && config_traits_1_count == 23)
                     config_traits_1_count--;
 
                 $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));
@@ -503,7 +503,7 @@
                 config_traits_1_count++;
                 if (config_traits_1_count > config_traits_1_max)
                     config_traits_1_count = 0;
-                else if (selected_item_type == 15 && config_traits_1_count == 24)
+                else if (selected_item_type == 15 && config_traits_1_count == 23)
                     config_traits_1_count++;
 
                 $("#counter-config-traits-1").html((config_traits_1_count + 1) + "/" + (config_traits_1_max + 1));

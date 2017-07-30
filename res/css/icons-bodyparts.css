@@ -14,10 +14,9 @@
 
 [class^="bodyparts-"]:before, [class*=" bodyparts-"]:before,
 [class^="bodyparts-"]:after, [class*=" bodyparts-"]:after {
-  font-family: "Bodyparts";
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
+    font-family: "Bodyparts";
+    font-size: 20px;
+    font-style: normal;
 }
 
 .bodyparts-atom-variant:before { content: "\f100"; }

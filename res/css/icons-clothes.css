@@ -21,10 +21,9 @@
 
 [class^="clothes-"]:before, [class*=" clothes-"]:before,
 [class^="clothes-"]:after, [class*=" clothes-"]:after {
-  font-family: "clothes";
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
+    font-family: "clothes";
+    font-size: 20px;
+    font-style: normal;
 }
 
 .clothes-backpack:before { content: "\f100"; }

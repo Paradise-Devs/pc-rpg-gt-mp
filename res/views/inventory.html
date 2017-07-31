@@ -8,6 +8,7 @@
         <link rel='stylesheet' href='../css/icons-clothes.css'>
         <link rel='stylesheet' href='../css/icons-bodyparts.css'>
         <link rel='stylesheet' href='../css/icons-media.css'>
+        <link rel='stylesheet' href='../css/icons-food.css'>
         <link rel="stylesheet" href="../css/sweetalert.css">
         <link rel="stylesheet" href="../css/jquery-ui.css">
     </head>
@@ -18,7 +19,6 @@
                     <inventory>
                         <item class="special activable" id="item-0">
                             <i class="fa fa-car"></i>
-                            <badge><i class="fa fa-star"></i></badge>
                             <container>
                                 <header>
                                     <icon><i class="fa fa-car"></i></icon>
@@ -34,7 +34,6 @@
                         </item>
                         <item class="rare activable" id="item-1">
                             <i class="fa fa-car"></i>
-                            <badge><i class="fa fa-star"></i></badge>
                             <container>
                                 <header>
                                     <icon><i class="fa fa-car"></i></icon>
@@ -61,7 +60,7 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item class="common non-usable" id="item-3">
+                        <item class="common usable" id="item-3">
                             <i class="fa fa-key"></i>
                             <container>
                                 <header>
@@ -75,7 +74,27 @@
                                 <commands><i class="media-mouse-right-button"></i> para ativar</commands>
                             </container>
                         </item>
-                        <item class="empty" id="item-4">
+                        <item class="usable common stack" id="item-4">
+                            <i class="food-hamburger"></i>
+                            <badge>100</badge>
+                            <container>
+                                <header>
+                                    <icon><i class="food-hamburger"></i></icon>
+                                    <info>
+                                        <tit>Hamburger</tit>
+                                        <subtit>Comida</subtit>
+                                    </info>
+                                </header>
+                                <desc>Perfeito para refeições rápidas.</desc>
+                                <stats>
+                                    <tit>Propriedades:</tit>
+                                    <ul>
+                                        <li>Fome: <data class="positive">-23%</data></li>
+                                        <li>Sede: <data class="negative">+5%</data></li>
+                                    </ul>
+                                </stats>
+                                <commands><i class="media-mouse-right-button"></i> para consumir</commands>
+                            </container>
                         </item>
                         <item class="empty" id="item-5">
                         </item>

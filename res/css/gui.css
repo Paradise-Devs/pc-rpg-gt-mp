@@ -1362,20 +1362,17 @@ inventory::before {
     clear: both;
 }
 
-inventory item badge {
-    display: none;
+inventory item.stack badge {
+    display: block;
     width: auto;
     height: auto;
-    border-radius: 10px;
     position: absolute;
-    top: -5px;
+    bottom: -5px;
     right: -5px;
     padding: 1px 5px 1px 5px;
-    font-size: 9px;
-}
-
-inventory item badge i {
+    background-color: #2A2A2A;
     color: #fff;
+    font-size: 10px;
 }
 
 inventory item:hover container, inventory item:hover spacer {
@@ -1473,21 +1470,7 @@ inventory item.rare container:after {
     border-top: solid 20px rgba(103, 58, 182, 1);
 }
 
-inventory item.rare badge {
-    display: block;
-    background-color: #673AB6;
-}
-
-inventory item.special badge {
-    background-color: #009587;
-    display: block;
-}
-
-inventory item badge.special i {
-    color: #fff;
-}
-
-inventory item.activable container commands {
+inventory item.activable container commands, inventory item.usable container commands {
     display: block;
 }
 
@@ -1554,6 +1537,41 @@ inventory item container desc {
     padding: 10px 5px 10px 5px;
 }
 
+inventory item container stats {
+    display: block;
+    font-size: 12px;
+    font-family: "Roboto";
+    padding: 10px 5px 10px 5px;
+}
+
+inventory item container stats tit {
+    color: #666;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+inventory item container stats ul {
+    list-style-type: none;
+    padding: 0px 0px 0px 15px;
+    margin: 0px;
+    width: 40%;
+}
+
+inventory item container stats ul li data {
+    display: inline-block;
+    float: right;
+}
+
+inventory item container stats ul li data.positive {
+    color: green;
+}
+
+inventory item container stats ul li data.negative {
+    color: red;
+}
+
 inventory item container icon {
     display: inline-flex;
     align-items: center;
@@ -1565,13 +1583,14 @@ inventory item container icon {
     clear: both;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
     margin-right: 5px;
+    font-size: 15px;
 }
 
-inventory item container header icon i {
+inventory item container header icon i:before {
     color: #fff;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    font-size: 12px;
+
 }
 
 inventory item commands {

@@ -1266,9 +1266,9 @@ npc answers button {
 block.inventory {
     display: block;
     position: fixed;
-    left: 65%;
+    left: 78%;
     top: 62%;
-    width: 42%;
+    width: 29%;
     margin-left: -256px;
     z-index: -1;
 }
@@ -1280,8 +1280,7 @@ block.inventory header {
 block.inventory content {
     padding-right: 0px;
     padding-top: 0px;
-    max-height: 200px;
-    overflow: visible auto;
+    overflow: visible;
     z-index: -5;
     position: relative;
 }
@@ -1301,13 +1300,13 @@ inventory item {
     justify-content: center;
     position: relative;
     width: 50px;
-    height: 50px;
+    height: 55px;
     color: #666;
     background-color: rgba(0, 0, 0, 0.3);
     clear: both;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
     flex: 1;
-    flex-basis: 7%;
+    flex-basis: 57px;
     margin-top: 10px;
     flex-grow: 0;
     flex-shrink: 1;
@@ -1316,38 +1315,41 @@ inventory item {
 
 @media screen and (max-width: 1600px) {
     inventory item {
-        flex-basis: 44px;
+        flex-basis: 45px;
         height: 42px;
     }
 
     block.inventory {
-        left: 68%;
-        top: 50%;
+        left: 81%;
+        top: 60%;
+        width: 29%;
     }
 }
 
 @media screen and (max-width: 1366px) {
     inventory item {
-        flex-basis: 39px;
+        flex-basis: 45px;
         height: 42px;
     }
 
     block.inventory {
-        left: 70%;
-        top: 50%;
+        left: 75%;
+        top: 60%;
+        width: 34%;
     }
 }
 
 
 @media screen and (max-width: 1024px) {
     inventory item {
-        flex-basis: 40px;
+        flex-basis: 41px;
         height: 38px;
     }
 
     block.inventory {
         left: 74%;
-        top: 50%;
+        top: 60%;
+        width: 42%;
     }
 }
 

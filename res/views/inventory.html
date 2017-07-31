@@ -138,7 +138,6 @@
                     Banco: <money>$99.000</money>
                     <separator></separator>
                     Carteira: <money>$99.000</money>
-                    <button>adicionar item</button>
                 </footer>
             </block>
         </div>
@@ -212,10 +211,6 @@
                 return false;
             });
 
-            $("footer button").on("click", function(){
-                AddItem("activable", "common", "Testing", "Testing", 1, "fa fa-female", 0);
-            });
-
             function OnDeleteItem(id) {
                 $(id).empty();
                 $(id).removeClass();
@@ -262,6 +257,8 @@
                     Tradable:
                         Item account related (not tradable)
                         default = true
+
+                    eg: AddItem("activable", "common", "Testing", "Testing", 1, "fa fa-female", 0);
                 */
 
 

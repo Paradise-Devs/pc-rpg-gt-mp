@@ -1422,52 +1422,62 @@ block.inventory footer separator {
 
 /*item specials*/
 inventory item.special {
-    background-color: rgba(0, 95, 87, 0.3);
+    background-color: rgba(25, 117, 209, 0.3);
 }
 
 inventory item.special:hover {
-    background-color: rgba(0, 95, 87, 0.6);
+    background-color: rgba(25, 117, 209, 0.6);
 }
 
 inventory item.special container {
-    border: 3px solid rgba(0, 95, 87, 1);
+    border: 3px solid rgba(25, 117, 209, 1);
 }
 
 inventory item.special container:after {
-    border-top: solid 20px rgba(0, 95, 87, 1);
+    border-top: solid 20px rgba(25, 117, 209, 1);
 }
 
 inventory item.special container header {
-    background-color: rgba(0, 95, 87, 0.6);
+    background-color: rgba(25, 117, 209, 0.6);
+}
+
+inventory item.special container header badge {
+    display: block;
+    background-color: rgba(25, 117, 209, 1);
 }
 
 inventory item.special container desc {
-    background-color: rgba(0, 95, 87, 0.3);
+    background-color: rgba(25, 117, 209, 0.3);
 }
 
 inventory item.special commands {
-    background-color: rgba(0, 95, 87, 0.6);
+    background-color: rgba(25, 117, 209, 0.6);
     border-width: 0px;
 }
 
 inventory item.special container icon {
-    background-color: rgba(0, 95, 87, 0.6);
+    background-color: rgba(25, 117, 209, 0.6);
 }
 
 inventory item.rare {
-    background-color: rgba(103, 58, 182, 0.3);
+    background-color: rgba(0, 95, 87, 0.3);
 }
 
 inventory item.rare:hover {
-    background-color: rgba(103, 58, 182, 0.6);
+    background-color: rgba(0, 95, 87, 0.6);
 }
 
 inventory item.rare container {
-    border: 3px solid rgba(103, 58, 182, 1);
+    border: 3px solid rgba(0, 95, 87, 1);
+}
+
+inventory item.rare container header badge {
+    display: block;
+    background-color: rgba(0, 95, 87, 1);
 }
 
 inventory item.rare container:after {
-    border-top: solid 20px rgba(103, 58, 182, 1);
+    border-top: solid 20px rgba(0, 95, 87, 1);
 }
 
 inventory item.activable container commands, inventory item.usable container commands {
@@ -1489,6 +1499,8 @@ inventory item container {
     bottom: 58px;
     cursor: default;
     overflow: visible;
+    pointer-events: none;
+    box-shadow: 0px 0px 4px #000;
 }
 
 inventory item container:after {
@@ -1515,6 +1527,14 @@ inventory item container header info {
     display: inline-block;
     vertical-align: top;
     font-family: "Roboto";
+}
+
+inventory item container header badge {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    padding: 10px 5px 5px 5px;
 }
 
 inventory item container header tit {
@@ -1599,7 +1619,7 @@ inventory item commands {
     border: 1px solid #2A2A2A;
     background-color: rgba(100, 100, 100, 0.4);
     width: 100%;
-    color: #999;
+    color: #aaa;
     padding: 3px;
     text-transform: uppercase;
     font-size: 14px;

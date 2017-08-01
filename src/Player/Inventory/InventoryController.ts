@@ -6,11 +6,16 @@ API.onResourceStart.connect(() =>
 {    
     if (browser == null)
     {
-        var res = API.getScreenResolution();
-        browser = API.createCefBrowser(res.Width, res.Height);
-        API.setCefBrowserHeadless(browser, true);
-        API.setCefBrowserPosition(browser, 0, 0);
-        API.loadPageCefBrowser(browser, "res/views/inventory.html");        
+        InitializeBrowser();
+    }
+});
+
+API.onResourceStop.connect(() =>
+{
+    if (browser != null)
+    {
+        API.destroyCefBrowser(browser);
+        browser = null;
     }
 });
 
@@ -18,8 +23,8 @@ API.onKeyUp.connect(function (sender, e)
 {
     if (e.KeyCode === Keys.I)
     {
-        if (browser == null)
-            return;
+        if (browser == null || !API.isCefBrowserInitialized(browser))
+            InitializeBrowser();
 
         if (API.getCefBrowserHeadless(browser))
         {            
@@ -28,6 +33,7 @@ API.onKeyUp.connect(function (sender, e)
         else
         {
             API.showCursor(false);
+            API.startAudio("res/sounds/inventory/close.wav", false);
             API.setCefBrowserHeadless(browser, true);
         }
     }
@@ -41,6 +47,7 @@ API.onServerEventTrigger.connect(function (eventName: string, args: any[])
             return;
 
         API.showCursor(true);
+        API.startAudio("res/sounds/inventory/open.wav", false);
         API.setCefBrowserHeadless(browser, false);
         browser.call("DrawItems", args[0], args[1]);
     }
@@ -58,4 +65,13 @@ function onUseItem(id)
 function onDiscardItem(id)
 {
     API.triggerServerEvent("DiscardItem", id);
+}
+
+function InitializeBrowser()
+{
+    var res = API.getScreenResolution();
+    browser = API.createCefBrowser(res.Width, res.Height);
+    API.setCefBrowserHeadless(browser, true);
+    API.setCefBrowserPosition(browser, 0, 0);
+    API.loadPageCefBrowser(browser, "res/views/inventory.html");
 }

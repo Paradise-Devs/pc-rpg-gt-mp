@@ -40,6 +40,8 @@
 
     <!-- Sounds -->
     <file src="res/sounds/music01.mp3" />
+    <file src="res/sounds/inventory/open.wav" />
+    <file src="res/sounds/inventory/close.wav" />
 
     <!-- CSS -->
     <file src="res/css/jquery-ui.css" />

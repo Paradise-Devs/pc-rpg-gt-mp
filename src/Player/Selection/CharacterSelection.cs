@@ -6,7 +6,7 @@ using pcrpg.src.Database.Models;
 using System;
 using System.Linq;
 
-namespace pcrpg.src.Player.Creation
+namespace pcrpg.src.Player.Selection
 {
     class CharacterSelection : Script
     {        
@@ -39,7 +39,7 @@ namespace pcrpg.src.Player.Creation
                 API.setEntityRotation(sender, new Vector3(0f, 0f, character.RotationZ));
 
                 // Sync player face with other players
-                Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
+                Customization.CustomizationModel gtao = new Customization.CustomizationModel();
                 gtao.InitializePedFace(sender);
                 gtao.UpdatePlayerFace(sender);
 

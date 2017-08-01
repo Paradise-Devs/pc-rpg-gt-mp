@@ -2,9 +2,9 @@
 using GrandTheftMultiplayer.Shared;
 using pcrpg.src.Database.Models;
 
-namespace pcrpg.src.Player.Faces
+namespace pcrpg.src.Player.Customization
 {
-    public class GTAOnlineCharacter : Script
+    public class CustomizationModel : Script
     {
         public void InitializePedFace(NetHandle ent)
         {

@@ -4,7 +4,7 @@ using GrandTheftMultiplayer.Server.Elements;
 using System;
 using System.Linq;
 
-namespace pcrpg.src.Player.Creation
+namespace pcrpg.src.Player.Selection
 {
     class CharacterCreation : Script
     {
@@ -157,7 +157,7 @@ namespace pcrpg.src.Player.Creation
                 ContextFactory.Instance.SaveChanges();
 
                 // Sync player face with other players
-                Faces.GTAOnlineCharacter gtao = new Faces.GTAOnlineCharacter();
+                Customization.CustomizationModel gtao = new Customization.CustomizationModel();
                 gtao.InitializePedFace(sender);
                 gtao.UpdatePlayerFace(sender);
             }

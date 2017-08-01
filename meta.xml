@@ -7,9 +7,9 @@
     <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
 
     <!-- Character -->
-    <script src="src/Player/Creation/CharacterSelector.js" type="client" lang="javascript"/>
     <script src="src/Player/Creation/CharacterCreator.js" type="client" lang="javascript"/>
-    <script src="src/Player/GTAOnlineCharacter/gtao_handler.js" type="client" lang="javascript"/>
+    <script src="src/Player/Selection/CharacterSelector.js" type="client" lang="javascript"/>
+    <script src="src/Player/Customization/CustomizationController.js" type="client" lang="javascript"/>
 
     <!-- Player Utils -->
     <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>

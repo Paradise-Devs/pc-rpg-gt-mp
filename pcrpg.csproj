@@ -83,9 +83,9 @@
     <Compile Include="src\Managers\DimensionManager.cs" />
     <Compile Include="src\Player\Auth\Login.cs" />
     <Compile Include="src\Player\Creation\CharacterCreation.cs" />
-    <Compile Include="src\Player\Creation\CharacterSelection.cs" />
+    <Compile Include="src\Player\Selection\CharacterSelection.cs" />
     <Compile Include="src\Player\Data.cs" />
-    <Compile Include="src\Player\GTAOnlineCharacter\Api.cs" />
+    <Compile Include="src\Player\Customization\CustomizationModel.cs" />
     <Compile Include="src\Player\Inventory\InventoryModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +117,8 @@
     <TypeScriptCompile Include="src\Gameplay\FirstSpawn.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
-    <TypeScriptCompile Include="src\Player\Creation\CharacterSelector.ts" />
-    <TypeScriptCompile Include="src\Player\GTAOnlineCharacter\gtao_handler.ts" />
+    <TypeScriptCompile Include="src\Player\Selection\CharacterSelector.ts" />
+    <TypeScriptCompile Include="src\Player\Customization\CustomizationController.ts" />
     <TypeScriptCompile Include="src\Player\Inventory\InventoryController.ts" />
   </ItemGroup>
   <ItemGroup>

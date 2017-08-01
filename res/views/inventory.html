@@ -151,7 +151,7 @@
             {
                 var item = $(ui.item);
                 var slot = $(ui.item).data("id");
-                if (outside)
+                if (outside && slot != undefined)
                 {
                     swal({
                         title: "Deseja descartar este item?",

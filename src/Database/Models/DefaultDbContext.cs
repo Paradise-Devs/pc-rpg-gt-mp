@@ -16,6 +16,7 @@ namespace pcrpg.src.Database.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Item> Items { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<CharacterTrait> Traits { get; set; }
         public DbSet<CharacterClothes> Clothes { get; set; }

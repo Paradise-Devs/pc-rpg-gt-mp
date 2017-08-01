@@ -17,11 +17,15 @@
 
     <!-- Gameplay -->
     <script src="src/Gameplay/FirstSpawn.js" type="client" lang="javascript"/>
+  
+    <!-- Player -->
+    <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
 
     <!-- Resources -->
 
     <!-- Views -->
     <file src="res/views/login.html" />
+    <file src="res/views/inventory.html" />
     <file src="res/views/character_selector.html" />
     <file src="res/views/character_creator.html" />
 

@@ -73,6 +73,7 @@
     <Compile Include="src\Database\Models\Character.cs" />
     <Compile Include="src\Database\Models\CharacterTrait.cs" />
     <Compile Include="src\Database\Models\DefaultDbContext.cs" />
+    <Compile Include="src\Database\Models\Item.cs" />
     <Compile Include="src\Database\Models\User.cs" />
     <Compile Include="src\Flags\AnimationFlags.cs" />
     <Compile Include="src\Gameplay\FirstSpawn.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="src\Player\Creation\CharacterSelection.cs" />
     <Compile Include="src\Player\Data.cs" />
     <Compile Include="src\Player\GTAOnlineCharacter\Api.cs" />
+    <Compile Include="src\Player\Inventory\InventoryModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\css\gui.css" />
@@ -107,6 +109,7 @@
     <Content Include="res\js\slider.js" />
     <Content Include="res\js\sweetalert.js" />
     <Content Include="res\js\tether.js" />
+    <Content Include="res\sounds\music01.mp3" />
     <Content Include="res\views\character_creator.html" />
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\inventory.html" />
@@ -116,6 +119,7 @@
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterSelector.ts" />
     <TypeScriptCompile Include="src\Player\GTAOnlineCharacter\gtao_handler.ts" />
+    <TypeScriptCompile Include="src\Player\Inventory\InventoryController.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -130,7 +134,6 @@
     <None Include="res\fonts\FontAwesome.otf" />
     <None Include="res\fonts\logo.ttf" />
     <None Include="res\fonts\Roboto.ttf" />
-    <None Include="res\sounds\music01.ogg" />
     <None Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
@@ -169,5 +172,6 @@
     <Content Include="types-gt-mp\System.Drawing.d.ts" />
     <Content Include="types-gt-mp\System.Windows.Forms.d.ts" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

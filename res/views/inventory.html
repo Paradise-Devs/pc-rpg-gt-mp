@@ -1,320 +1,176 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel='stylesheet' href='../css/pcfw.css'>
-        <link rel='stylesheet' href='../css/gui.css'>
-        <link rel='stylesheet' href='../css/icons-fa.css'>
-        <link rel='stylesheet' href='../css/icons-clothes.css'>
-        <link rel='stylesheet' href='../css/icons-bodyparts.css'>
-        <link rel='stylesheet' href='../css/icons-media.css'>
-        <link rel='stylesheet' href='../css/icons-food.css'>
-        <link rel="stylesheet" href="../css/sweetalert.css">
-        <link rel="stylesheet" href="../css/jquery-ui.css">
-    </head>
-    <body id="main" class="test-enabled">
-        <div class="container-fluid">
-            <block class="inventory">
-                <content>
-                    <inventory>
-                        <item class="special activable" id="item-0">
-                            <i class="fa fa-car"></i>
-                            <container>
-                                <header>
-                                    <icon><i class="fa fa-car"></i></icon>
-                                    <info>
-                                        <tit>X80 Proto</tit>
-                                        <subtit>Veículo</subtit>
-                                        <subtit>item vinculado a conta</subtit>
-                                        <badge><i class="fa fa-star"></i></badge>
-                                    </info>
-                                </header>
-                                <desc>Este é um veículo especial e pode ser resgatado em qualquer concessionária de Los Santos.</desc>
-                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
-                            </container>
-                        </item>
-                        <item class="rare activable" id="item-1">
-                            <i class="fa fa-car"></i>
-                            <container>
-                                <header>
-                                    <icon><i class="fa fa-car"></i></icon>
-                                    <info>
-                                        <tit>Infernus</tit>
-                                        <subtit>Veículo</subtit>
-                                        <badge><i class="fa fa-star"></i></badge>
-                                    </info>
-                                </header>
-                                <desc>Este é um veículo raro e pode ser resgatado em qualquer concessionária de Los Santos.</desc>
-                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
-                            </container>
-                        </item>
-                        <item class="common activable" id="item-2">
-                            <i class="clothes-hoodie"></i>
-                            <container>
-                                <header>
-                                    <icon><i class="clothes-hoodie"></i></icon>
-                                    <info>
-                                        <tit>Kit Outono</tit>
-                                        <subtit>Roupas</subtit>
-                                    </info>
-                                </header>
-                                <desc>Desbloqueia o kit de inverno para compra nas lojas de Los Santos.</desc>
-                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
-                            </container>
-                        </item>
-                        <item class="common usable" id="item-3">
-                            <i class="fa fa-key"></i>
-                            <container>
-                                <header>
-                                    <icon><i class="fa fa-key"></i></icon>
-                                    <info>
-                                        <tit>X80 Proto</tit>
-                                        <subtit>Chave de veículo</subtit>
-                                    </info>
-                                </header>
-                                <desc>Sem esta chave no inventário, você não consegue utilizar seu veículo.</desc>
-                                <commands><i class="media-mouse-right-button"></i> para ativar</commands>
-                            </container>
-                        </item>
-                        <item class="usable common stack" id="item-4">
-                            <i class="food-hamburger"></i>
-                            <badge>100</badge>
-                            <container>
-                                <header>
-                                    <icon><i class="food-hamburger"></i></icon>
-                                    <info>
-                                        <tit>Hamburger</tit>
-                                        <subtit>Comida</subtit>
-                                    </info>
-                                </header>
-                                <desc>Perfeito para refeições rápidas.</desc>
-                                <stats>
-                                    <tit>Propriedades:</tit>
-                                    <ul>
-                                        <li>Fome: <data class="positive">-23%</data></li>
-                                        <li>Sede: <data class="negative">+5%</data></li>
-                                    </ul>
-                                </stats>
-                                <commands><i class="media-mouse-right-button"></i> para consumir</commands>
-                            </container>
-                        </item>
-                        <item class="empty" id="item-5">
-                        </item>
-                        <item class="empty" id="item-6">
-                        </item>
-                        <item class="empty" id="item-7">
-                        </item>
-                        <item class="empty" id="item-8">
-                        </item>
-                        <item class="empty" id="item-9">
-                        </item>
-                        <item class="empty" id="item-10">
-                        </item>
-                        <item class="empty" id="item-11">
-                        </item>
-                        <item class="empty" id="item-11">
-                        </item>
-                        <item class="empty" id="item-11">
-                        </item>
-                        <item class="empty" id="item-12">
-                        </item>
-                        <item class="empty" id="item-13">
-                        </item>
-                        <item class="empty" id="item-14">
-                        </item>
-                        <item class="empty" id="item-15">
-                        </item>
-                        <item class="empty" id="item-16">
-                        </item>
-                        <item class="empty" id="item-17">
-                        </item>
-                        <item class="empty" id="item-18">
-                        </item>
-                        <item class="empty" id="item-19">
-                        </item>
-                        <item class="empty" id="item-20">
-                        </item>
-                        <item class="empty" id="item-21">
-                        </item>
-                        <item class="empty" id="item-22">
-                        </item>
-                        <item class="empty" id="item-23">
-                        </item>
-                        <item class="empty" id="item-24">
-                        </item>
-                        <item class="empty" id="item-25">
-                        </item>
-                        <item class="empty" id="item-26">
-                        </item>
-                        <item class="empty" id="item-27">
-                        </item>
-                        <item class="empty" id="item-28">
-                        </item>
-                        <item class="empty" id="item-29">
-                        </item>
-                        <!-- id max 29 -->
-                    </inventory>
-                </content>
-                <footer class="right">
-                    Banco: <money>$99.000</money>
-                    <separator></separator>
-                    Carteira: <money>$99.000</money>
-                </footer>
-            </block>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../css/pcfw.css'>
+    <link rel='stylesheet' href='../css/gui.css'>
+    <link rel='stylesheet' href='../css/icons-fa.css'>
+    <link rel='stylesheet' href='../css/icons-clothes.css'>
+    <link rel='stylesheet' href='../css/icons-bodyparts.css'>
+    <link rel='stylesheet' href='../css/icons-media.css'>
+    <link rel='stylesheet' href='../css/icons-food.css'>
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+</head>
+<body id="main">
+    <div class="container-fluid">
+        <block class="inventory">
+            <content>
+                <inventory>
+                </inventory>
+            </content>
+            <footer class="right">
+                Banco: <money id="bank"></money>
+                <separator></separator>
+                Carteira: <money id="wallet"></money>
+            </footer>
+        </block>
+    </div>
 
-        <script src="../js/jquery.js"></script>
-        <script src="../js/jquery-ui.js"></script>
-        <script src="../js/tether.js"></script>
-        <script src="../js/pcfw.js"></script>
-        <script src="../js/sweetalert.js"></script>
-        <script>
-            var outside = false;
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/tether.js"></script>
+    <script src="../js/pcfw.js"></script>
+    <script src="../js/sweetalert.js"></script>
+    <script>
+        var items = null;
+        var outside = false;
+        var discarding_item = null;
 
-            $("inventory").sortable({
-                placeholder: "ui-state-highlight",
-                receive: function(e, ui) {
-                    outside = false;
-                },
-                out: function(e, ui) {
-                    outside = true;
-                },
-                over: function(e, ui ) {
-                    outside = false;
-                },
-                beforeStop: function (event, ui) {
-                    var itemId = $(ui.item);
-                    if (outside) {
-                        swal(
-                        {
-                            title: "Deseja remover este item?",
-                            text: "Você não vai ter como recuperar este item posteriormente.",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonText: "Remover",
-                            cancelButtonText: "Voltar",
-                            closeOnConfirm: false
-                        },
-                        function ()
-                        {
-                            OnDeleteItem(itemId);
-                        });
-                    }
-                },
-            });
+        function OnUseItem(slot)
+        {
+            resourceCall("onUseItem", items[slot].Id);
+        }
 
-            $("inventory > item.activable").on("contextmenu", function(){
-                var itemId = $(this);
-                swal(
+        function OnDiscardItem(slot, item)
+        {
+            discarding_item = item;
+            resourceCall("onDiscardItem", items[slot].Id);
+        }
+
+        function OnItemDiscarded(success)
+        {
+            if (success && discarding_item != null)
+            {
+                $(discarding_item).empty();
+                $(discarding_item).removeClass();
+                swal("Deletado!", "Item descartado com sucesso.", "success");
+                discarding_item = null;
+            }
+        }
+
+        function DrawItems(items, cash)
+        {            
+            $("inventory").html("");
+            window.items = JSON.parse(items);
+            for (var i = 0; i < 32; i++)
+            {
+                if (window.items == null)
+                    $("inventory").append('<item class="empty"></item>');
+                else
                 {
-                    title: "Deseja ativar este item?",
-                    text: "Este item será vinculado a sua conta e não poderá ser utilizado novamente.",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Ativar",
-                    cancelButtonText: "Voltar",
-                    closeOnConfirm: false
-                },
-                function ()
+                    if (window.items[i] != undefined)
+                        AddItem(i, window.items[i]);
+                    else
+                        $("inventory").append('<item class="empty"></item>');
+                }
+            }
+
+            cash = JSON.parse(cash);
+            $('#bank').html("$" + cash[1]);
+            $('#wallet').html("$" + cash[0]);
+        }
+        
+        function AddItem(slot, item)
+        {
+            $("inventory").append('<item class="' + item.Rarity + ' ' + (item.Usable ? 'usable' : '') + ' ' + (item.Quantity > 1 ? 'stack' : '') + '" data-id="' + slot + '">' +
+                '<i class="' + item.Icon + '"></i>' +
+                (item.Quantity > 1 ? '<badge>' + item.Quantity + '</badge>' : '') +
+                '<container>' +
+                '<header>' +
+                '<icon><i class="' + item.Icon + '"></i></icon>' +
+                '<info>' +
+                '<tit>' + item.Name + '</tit>' +
+                '<subtit>' + item.Category + '</subtit>' +
+                (item.Tradable ? '<subtit>Item vinculado a conta</subtit>' : '<subtit>Item negociável</subtit>') +
+                (item.Rarity != "common" ? '<badge><i class="fa fa-star"></i></badge>' : '') +
+                '</info>' +
+                '</header>' +
+                '<desc>' + item.Description + '</desc>' +
+                (item.Usable ? '<commands><i class="media-mouse-right-button"></i> para usar</commands>' : '') +
+                '</container>' +
+                '</item>');
+        }
+
+        $("inventory").on("contextmenu", "item", function ()
+        {            
+            var slot = $(this).data("id");
+            if (!items[slot].Usable)
+                return;
+            else
+            {
+                if (!items[slot].NeedConfirmation)
                 {
-                    OnActivateItem(itemId);
-                });
-                return false;
-            });
-
-            $("inventory > item.usable").on("contextmenu", function(){
-                var itemId = $(this);
-                OnUseItem(itemIdb);
-                return false;
-            });
-
-            $("inventory > item.non-usable").on("contextmenu", function(){
-                return false;
-            });
-
-            function OnDeleteItem(id) {
-                $(id).empty();
-                $(id).removeClass();
-                swal("Removido!", "Item removido com sucesso!", "success");
-            }
-
-            function OnActivateItem(id) {
-                $(id).empty();
-                $(id).removeClass();
-                swal("Ativado!", "Você já pode adquirir o item ativado!", "success");
-            }
-
-            function AddItem(type = 'static', rarity, title, description, category, icon, databaseid, slot, tradable = true) {
-                /*
-                    Type:
-                        activable, usable, static
-
-                    Rarity:
-                        common, rare, special
-
-                    Title:
-                        Item title
-
-                    Description:
-                        Item desc
-
-                    Category:
-                        0: vehicle
-                        1: clothes
-                        2: bodyparts
-                        3: food
-                        4: drink
-                        5: keys
-
-                    Icon:
-                        Icon class
-
-                    Databaseid:
-                        Server ID
-
-                    Slot:
-                        Item slot on player inventory
-
-                    Tradable:
-                        Item account related (not tradable)
-                        default = true
-
-                    eg: AddItem("activable", "common", "Testing", "Testing", 1, "fa fa-female", 0);
-                */
-
-
-
-                var editingElement = $("item.empty").first().removeClass().addClass(type + ' ' + rarity + ' recent-added');
-
-                $(editingElement).append(
-                        '<i class="' + icon + '"></i>' +
-                        '<container>' +
-                            '<header>' +
-                                '<icon><i class="' + icon + '"></i></icon>' +
-                                '<info>' +
-                                    '<tit>' + title + '</tit>' +
-                                    '<subtit>' + category + '</subtit>' +
-                                '</info>' +
-                            '</header>' +
-                            '<desc>' + description + '</desc>' +
-                        '</container>');
-
-                if(!tradable) {
-                    $("container header info", editingElement).append('<subtit>Item vinculado a conta</subtit>');
+                    OnUseItem(slot);
                 }
-
-                if(rarity != 'common') {
-                    $(editingElement).append('<badge><i class="fa fa-star"></i></badge>');
+                else
+                {
+                    swal({
+                        title: "Deseja usar este item?",
+                        text: "Esta operação não tem volta.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ativar",
+                        cancelButtonText: "Voltar",
+                        closeOnConfirm: true
+                    },
+                    function ()
+                    {
+                        OnUseItem(slot);
+                    });
                 }
-
-                if(type == 'activable') {
-                    $("container", editingElement).append('<commands><i class="media-mouse-right-button"></i> para ativar</commands>');
-                } else if(type == 'usable') {
-                    $("container", editingElement).append('<commands><i class="media-mouse-right-button"></i> para consumir</commands>');
-                }
-
-                $(editingElement).removeClass('recent-added');
             }
-        </script>
-    </body>
+            return;
+        });
+
+        $("inventory").sortable({
+            placeholder: "ui-state-highlight",
+            receive: function (e, ui)
+            {
+                outside = false;
+            },
+            out: function (e, ui)
+            {
+                outside = true;
+            },
+            over: function (e, ui)
+            {
+                outside = false;
+            },
+            beforeStop: function (event, ui)
+            {
+                var item = $(ui.item);
+                var slot = $(ui.item).data("id");
+                if (outside)
+                {
+                    swal({
+                        title: "Deseja descartar este item?",
+                        text: "Você não poderá recuperar este item posteriormente.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Descartar",
+                        cancelButtonText: "Voltar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        OnDiscardItem(slot, item);
+                    });
+                }
+            },
+        });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
 </html>

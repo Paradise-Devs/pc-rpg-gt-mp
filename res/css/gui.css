@@ -1420,63 +1420,101 @@ block.inventory footer separator {
     margin-right: 10px;
 }
 
-/*item specials*/
-inventory item.special {
-    background-color: rgba(25, 117, 209, 0.3);
+/* Item rarity */
+inventory item.legendary {
+    background-color: rgba(253, 122, 22, 0.3);
 }
 
-inventory item.special:hover {
-    background-color: rgba(25, 117, 209, 0.6);
+inventory item.legendary:hover {
+    background-color: rgba(253, 122, 22, 0.6);
 }
 
-inventory item.special container {
-    border: 3px solid rgba(25, 117, 209, 1);
+inventory item.legendary container {
+    border: 3px solid rgba(253, 122, 22, 1);
 }
 
-inventory item.special container:after {
-    border-top: solid 20px rgba(25, 117, 209, 1);
+inventory item.legendary container:after {
+    border-top: solid 20px rgba(253, 122, 22, 1);
 }
 
-inventory item.special container header {
-    background-color: rgba(25, 117, 209, 0.6);
+inventory item.legendary container header {
+    background-color: rgba(253, 122, 22, 0.6);
 }
 
-inventory item.special container header badge {
+inventory item.legendary container header badge {
     display: block;
-    background-color: rgba(25, 117, 209, 1);
+    background-color: rgba(253, 122, 22, 1);
 }
 
-inventory item.special container desc {
-    background-color: rgba(25, 117, 209, 0.3);
+inventory item.legendary container desc {
+    background-color: rgba(253, 122, 22, 0.3);
 }
 
-inventory item.special commands {
-    background-color: rgba(25, 117, 209, 0.6);
+inventory item.legendary commands {
+    background-color: rgba(253, 122, 22, 0.6);
     border-width: 0px;
 }
 
-inventory item.special container icon {
-    background-color: rgba(25, 117, 209, 0.6);
+inventory item.legendary container icon {
+    background-color: rgba(253, 122, 22, 0.6);
 }
 
 inventory item.rare {
-    background-color: rgba(0, 95, 87, 0.3);
+    background-color: rgba(103, 58, 182, 0.3);
 }
 
 inventory item.rare:hover {
-    background-color: rgba(0, 95, 87, 0.6);
+    background-color: rgba(103, 58, 182, 0.6);
 }
 
 inventory item.rare container {
-    border: 3px solid rgba(0, 95, 87, 1);
+    border: 3px solid rgba(103, 58, 182, 1);
+}
+
+inventory item.rare container:after {
+    border-top: solid 20px rgba(103, 58, 182, 1);
+}
+
+inventory item.rare container header {
+    background-color: rgba(103, 58, 182, 0.6);
 }
 
 inventory item.rare container header badge {
     display: block;
+    background-color: rgba(103, 58, 182, 1);
+}
+
+inventory item.rare container desc {
+    background-color: rgba(103, 58, 182, 0.3);
+}
+
+inventory item.rare commands {
+    background-color: rgba(103, 58, 182, 0.6);
+    border-width: 0px;
+}
+
+inventory item.rare container icon {
+    background-color: rgba(103, 58, 182, 0.6);
+}
+
+inventory item.uncommon {
+    background-color: rgba(0, 95, 87, 0.3);
+}
+
+inventory item.uncommon:hover {
+    background-color: rgba(0, 95, 87, 0.6);
+}
+
+inventory item.uncommon container {
+    border: 3px solid rgba(0, 95, 87, 1);
+}
+
+inventory item.uncommon container header badge {
+    display: block;
     background-color: rgba(0, 95, 87, 1);
 }
 
-inventory item.rare container:after {
+inventory item.uncommon container:after {
     border-top: solid 20px rgba(0, 95, 87, 1);
 }
 

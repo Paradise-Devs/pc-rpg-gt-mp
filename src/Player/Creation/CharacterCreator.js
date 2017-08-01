@@ -59,7 +59,7 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
     }
     else if (eventName == "CharacterNameAlreadyTaken") {
         if (browser != null) {
-            browser.call("showError", "Este nome já em uso.", "#charname");
+            browser.call("showError", "Este nome já está em uso.", "#charname");
         }
     }
 });

@@ -75,7 +75,7 @@ API.onServerEventTrigger.connect((eventName: string, _arguments: any[]) =>
     {
         if (browser != null)
         {
-            browser.call("showError", "Este nome já em uso.", "#charname");
+            browser.call("showError", "Este nome já está em uso.", "#charname");
         }
     }
 });

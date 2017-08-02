@@ -4,13 +4,10 @@ var browser = null;
 
 API.onResourceStart.connect(() =>
 {
-    if (browser == null)
-    {
-        InitializeDialogBrowser();
-    }
+    InitializeDialogBrowser();
 });
 
-function ShowNpcDialog(npc, dialog, data)
+function ShowNpcDialog(id, npc)
 {
     if (browser == null || !API.isCefBrowserInitialized(browser))
         InitializeDialogBrowser();
@@ -18,7 +15,7 @@ function ShowNpcDialog(npc, dialog, data)
     API.showCursor(true);
     resource.Sounds.PlaySelectSound();
     API.setCefBrowserHeadless(browser, false);
-    browser.call("DrawDialog", npc, dialog, data);
+    browser.call("DrawDialog", id, npc);
 }
 
 function HideNpcDialog()
@@ -47,7 +44,7 @@ function InitializeDialogBrowser()
     API.loadPageCefBrowser(browser, "res/views/dialog.html");
 }
 
-function SelectedAnswer(npcid, id)
+function SelectedAnswer(id, answerid)
 {
-    API.triggerServerEvent("OnSelectAnswer", npcid, id);
+    API.triggerServerEvent("OnSelectAnswer", id, answerid);
 }

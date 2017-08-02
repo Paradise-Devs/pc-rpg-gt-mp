@@ -72,7 +72,7 @@ API.onServerEventTrigger.connect(function (eventName, args)
         if (data != null)
             dialog_id = data.CurrentConversation;
 
-        var camera = API.createCamera(new Vector3(_NPC.position.X + 1.0, _NPC.position.Y + 1.0, _NPC.position.Z + 0.100), new Vector3());
+        var camera = API.createCamera(new Vector3(_NPC.position.X + 1.0, _NPC.position.Y + 1.0, _NPC.position.Z + 1.25), new Vector3());
         API.pointCameraAtPosition(camera, _NPC.position);
         API.setActiveCamera(camera);
 

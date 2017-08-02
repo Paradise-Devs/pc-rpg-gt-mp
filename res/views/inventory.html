@@ -60,7 +60,7 @@
         }
 
         function DrawItems(items, cash)
-        {            
+        {
             $("inventory").html("");
             window.items = JSON.parse(items);
             for (var i = 0; i < 32; i++)
@@ -80,12 +80,12 @@
             $('#bank').html("$" + cash[1]);
             $('#wallet').html("$" + cash[0]);
         }
-        
+
         function AddItem(slot, item)
         {
             $("inventory").append('<item class="' + item.Rarity + ' ' + (item.Usable ? 'usable' : '') + ' ' + (item.Quantity > 1 ? 'stack' : '') + '" data-id="' + slot + '">' +
                 '<i class="' + item.Icon + '"></i>' +
-                (item.Quantity > 1 ? '<badge>' + item.Quantity + '</badge>' : '') +
+                (item.Quantity > 1 ? '<counter>' + item.Quantity + '</counter>' : '') +
                 '<container>' +
                 '<header>' +
                 '<icon><i class="' + item.Icon + '"></i></icon>' +
@@ -103,7 +103,7 @@
         }
 
         $("inventory").on("contextmenu", "item", function ()
-        {            
+        {
             var slot = $(this).data("id");
             if (!items[slot].Usable)
                 return;

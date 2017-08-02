@@ -1362,7 +1362,7 @@ inventory::before {
     clear: both;
 }
 
-inventory item.stack badge {
+inventory item.stack counter {
     display: block;
     width: auto;
     height: auto;

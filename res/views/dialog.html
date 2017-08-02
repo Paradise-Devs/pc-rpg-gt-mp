@@ -25,25 +25,27 @@
     <script src="../js/tether.js"></script>
     <script src="../js/pcfw.js"></script>
     <script>
+        var npcid = null;
         var npc = null;
-        // npc_data, dialog_text, dialog_data
-        function DrawDialog(arg1, arg2, arg3)
+        function DrawDialog(npc_id, npc_data)
         {
-            npc = JSON.parse(arg1);
-            var dialog = JSON.parse(arg2);
-            arg3 = JSON.parse(arg3);
-            $('phrase').text(dialog.texts[(arg3 == null ? 0 : arg3.LastAnswer)]);
+            npcid = npc_id;
+            npc = JSON.parse(npc_data);
+            var id = npc.current_conversation;
+
             $('answers').html("");
-            for (var i = 0; i < dialog.answers.length; i++)
+            $('phrase').text(npc.dialogs[id].texts[npc.last_answer]);
+
+            for (var i = 0; i < npc.dialogs[id].answers.length; i++)
             {
-                $('answers').append("<button data-id=" + i + ">" + dialog.answers[i] + "</button>");
+                $('answers').append("<button data-id=" + i + ">" + npc.dialogs[id].answers[i] + "</button>");
             }
         }
 
         $('answers').on('click', 'button', function ()
         {
-            var id = $(this).data("id");
-            resourceCall("SelectedAnswer", npc.id, id);
+            var answerid = $(this).data("id");
+            resourceCall("SelectedAnswer", npcid, answerid);
         });
 
         $(document).keyup(function(e)

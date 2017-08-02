@@ -2,17 +2,15 @@
 /// <reference path='../../../types-gt-mp/index.d.ts' />
 var browser = null;
 API.onResourceStart.connect(() => {
-    if (browser == null) {
-        InitializeDialogBrowser();
-    }
+    InitializeDialogBrowser();
 });
-function ShowNpcDialog(npc, dialog, data) {
+function ShowNpcDialog(id, npc) {
     if (browser == null || !API.isCefBrowserInitialized(browser))
         InitializeDialogBrowser();
     API.showCursor(true);
     resource.Sounds.PlaySelectSound();
     API.setCefBrowserHeadless(browser, false);
-    browser.call("DrawDialog", npc, dialog, data);
+    browser.call("DrawDialog", id, npc);
 }
 function HideNpcDialog() {
     API.showCursor(false);
@@ -33,6 +31,6 @@ function InitializeDialogBrowser() {
     API.setCefBrowserPosition(browser, 0, 0);
     API.loadPageCefBrowser(browser, "res/views/dialog.html");
 }
-function SelectedAnswer(npcid, id) {
-    API.triggerServerEvent("OnSelectAnswer", npcid, id);
+function SelectedAnswer(id, answerid) {
+    API.triggerServerEvent("OnSelectAnswer", id, answerid);
 }

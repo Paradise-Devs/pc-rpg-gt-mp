@@ -22,8 +22,8 @@
     <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
 
     <!-- NPCs -->
+    <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>
     <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
-    <script src="src/Gameplay/Dialog/JamesNPC.js" type="client" lang="javascript"/>
 
     <!-- Resources -->
 

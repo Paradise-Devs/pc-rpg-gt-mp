@@ -117,7 +117,7 @@
     <Content Include="res\views\inventory.html" />
     <Content Include="res\views\login.html" />
     <TypeScriptCompile Include="src\Gameplay\Dialog\DialogController.ts" />
-    <TypeScriptCompile Include="src\Gameplay\Dialog\JamesNPC.ts" />
+    <TypeScriptCompile Include="src\Gameplay\Dialog\NpcHandler.ts" />
     <TypeScriptCompile Include="src\Gameplay\FirstSpawn.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />

@@ -2,9 +2,7 @@
 /// <reference path='../../../types-gt-mp/index.d.ts' />
 var browser = null;
 API.onResourceStart.connect(() => {
-    if (browser == null) {
-        InitializeInventoryBrowser();
-    }
+    InitializeInventoryBrowser();
 });
 API.onResourceStop.connect(() => {
     if (browser != null) {

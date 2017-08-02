@@ -4,10 +4,7 @@ var browser = null;
 
 API.onResourceStart.connect(() =>
 {    
-    if (browser == null)
-    {
-        InitializeInventoryBrowser();
-    }
+    InitializeInventoryBrowser();
 });
 
 API.onResourceStop.connect(() =>

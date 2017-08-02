@@ -6,6 +6,6 @@ API.onServerEventTrigger.connect((eventName, args) => {
         API.setCanOpenChat(true);
         API.setChatVisible(true);
         API.setHudVisible(true);
-        API.sendNotification("Vá falar com chester");
+        API.sendNotification("Pressione ~r~O ~w~para ver suas quests");
     }
 });

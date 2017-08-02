@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../css/icons-fa.css'>
+    <link rel='stylesheet' href='../css/pcfw.css'>
+    <link rel='stylesheet' href='../css/gui.css'>
+</head>
+<body id="main">
+    <div class="container-fluid">
+        <npc>
+            <header>
+                <!-- <button class="back"><i class="fa fa-angle-left"></i> Voltar</button> -->
+                <!--<button class="hasMission"><i class="fa fa-comments"></i> Missão<i class="missionNot fa fa-exclamation"></i></button>-->
+                <!--<button><i class="fa fa-shopping-cart"></i> Comércio</button>-->
+                <button class="hasMission" id="exitBtn"><i class="fa fa-sign-out"></i> Sair (bkspc)</button>
+            </header>
+            <phrase></phrase>
+            <answers>
+            </answers>
+        </npc>
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/tether.js"></script>
+    <script src="../js/pcfw.js"></script>
+    <script>
+        var npc = null;
+        // npc_data, dialog_text, dialog_data
+        function DrawDialog(arg1, arg2, arg3)
+        {
+            npc = JSON.parse(arg1);
+            var dialog = JSON.parse(arg2);
+            arg3 = JSON.parse(arg3);
+            $('phrase').text(dialog.texts[(arg3 == null ? 0 : arg3.LastAnswer)]);
+            $('answers').html("");
+            for (var i = 0; i < dialog.answers.length; i++)
+            {
+                $('answers').append("<button data-id=" + i + ">" + dialog.answers[i] + "</button>");
+            }
+        }
+
+        $('answers').on('click', 'button', function ()
+        {
+            var id = $(this).data("id");
+            resourceCall("SelectedAnswer", npc.id, id);
+        });
+
+        $(document).keyup(function(e)
+        {
+            if (e.which == 8)
+            {
+                exit();
+            }
+        });
+
+        $("#exitBtn").click(function(e)
+        {
+            exit();
+        });
+
+        function exit()
+        {
+            resourceCall("HideNpcDialog");
+        }
+    </script>
+</body>
+</html>

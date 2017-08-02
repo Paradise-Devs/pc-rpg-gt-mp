@@ -21,10 +21,15 @@
     <!-- Player -->
     <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
 
+    <!-- NPCs -->
+    <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
+    <script src="src/Gameplay/Dialog/JamesNPC.js" type="client" lang="javascript"/>
+
     <!-- Resources -->
 
     <!-- Views -->
     <file src="res/views/login.html" />
+    <file src="res/views/dialog.html" />
     <file src="res/views/inventory.html" />
     <file src="res/views/character_selector.html" />
     <file src="res/views/character_creator.html" />

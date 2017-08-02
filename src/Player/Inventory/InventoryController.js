@@ -3,7 +3,7 @@
 var browser = null;
 API.onResourceStart.connect(() => {
     if (browser == null) {
-        InitializeBrowser();
+        InitializeInventoryBrowser();
     }
 });
 API.onResourceStop.connect(() => {
@@ -15,7 +15,7 @@ API.onResourceStop.connect(() => {
 API.onKeyUp.connect(function (sender, e) {
     if (e.KeyCode === Keys.I) {
         if (browser == null || !API.isCefBrowserInitialized(browser))
-            InitializeBrowser();
+            InitializeInventoryBrowser();
         if (API.getCefBrowserHeadless(browser)) {
             API.triggerServerEvent("GetCharacterItems");
         }
@@ -45,7 +45,7 @@ function onUseItem(id) {
 function onDiscardItem(id) {
     API.triggerServerEvent("DiscardItem", id);
 }
-function InitializeBrowser() {
+function InitializeInventoryBrowser() {
     var res = API.getScreenResolution();
     browser = API.createCefBrowser(res.Width, res.Height);
     API.setCefBrowserHeadless(browser, true);

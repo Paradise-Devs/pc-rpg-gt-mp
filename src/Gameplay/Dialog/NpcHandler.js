@@ -12,18 +12,70 @@ var _NPC = [
         current_conversation: 0,
         dialogs: [
             {
-                texts: ["Opa! Precisa de ajuda?",],
+                texts: ["Olá! Você está bem? O que você estava fazendo deitado alí no chão?",],
                 answers: [
-                    "Sim, por favor",
-                    "Sim",
-                    "Se eu te chamei é porque sim, né"
+                    "Eu não me lembro",
+                    "Estava apenas dormindo",
+                    "Não te interessa"
                 ]
             },
             {
                 texts: [
-                    "Amigo, eu amo esta praça...",
-                    "Eu amo esta praça...",
-                    "Ah, você denovo... ",
+                    "Puts, mas você está bem?",
+                    "Ah, haha! Você deve estar todo dolorido, você está bem?",
+                    "Nossa! Pra que tanta hostilidade. Você está bem?",
+                ],
+                answers: [
+                    "Sim, estou bem",
+                    "Sim, estou apenas dolorido",
+                    "Você é bastante intrometido"
+                ]
+            },
+            {
+                texts: [
+                    "Que bom! Precisa de alguma ajuda?",
+                    "Ja já passa. Você precisa de ajuda?",
+                    "E você é bastante ignorante, você não merece, mas vou perguntar, precisa de ajuda?",
+                ],
+                answers: [
+                    "Sim, por favor",
+                    "Sim",
+                    "Sim...",
+                ]
+            },
+            {
+                texts: [
+                    "Você é novo na cidade, estou certo?",
+                    "Você não me é familiar, é novo na cidade?",
+                    "Agora precisa de ajuda... Você é novo na cidade, né?",
+                ],
+                answers: [
+                    "Sim",
+                ]
+            },
+            {
+                texts: [
+                    "A primeira coisa a se fazer é obter habilitação para dirigir, procure por este ícone no mapa, não esqueça de levar dinheiro...",
+                ],
+                answers: [
+                    "Hmm...",
+                ]
+            },
+            {
+                texts: [
+                    "Utilize o banco a frente caso precisar, depois procure pela agencia de emprego através deste ícone no mapa.",
+                ],
+                answers: [
+                    "Certo, obrigado!",
+                    "Certo!",
+                    "Tá, otário.",
+                ]
+            },
+            {
+                texts: [
+                    "Bem-vindo a Los Santos, amigo!",
+                    "Bem-vindo a Los Santos!",
+                    "Vá embora.",
                 ],
                 answers: []
             }
@@ -63,8 +115,8 @@ API.onServerEventTrigger.connect(function (eventName, args) {
             _NPC[id].last_answer = data.LastAnswer;
             _NPC[id].current_conversation = data.CurrentConversation;
         }
-        var camera = API.createCamera(new Vector3(_NPC[id].position.X + 1.0, _NPC[id].position.Y + 1.0, _NPC[id].position.Z + 1.25), new Vector3());
-        API.pointCameraAtPosition(camera, _NPC[id].position);
+        var camera = API.createCamera(new Vector3(_NPC[id].position.X + 1.0, _NPC[id].position.Y + 1.0, _NPC[id].position.Z + 0.7), new Vector3());
+        API.pointCameraAtPosition(camera, new Vector3(_NPC[id].position.X, _NPC[id].position.Y, _NPC[id].position.Z + 0.7));
         API.setActiveCamera(camera);
         resource.DialogController.ShowNpcDialog(id, JSON.stringify(_NPC[id]));
     }

@@ -13,7 +13,7 @@
                 <!-- <button class="back"><i class="fa fa-angle-left"></i> Voltar</button> -->
                 <!--<button class="hasMission"><i class="fa fa-comments"></i> Missão<i class="missionNot fa fa-exclamation"></i></button>-->
                 <!--<button><i class="fa fa-shopping-cart"></i> Comércio</button>-->
-                <button class="hasMission" id="exitBtn"><i class="fa fa-sign-out"></i> Sair (bkspc)</button>
+                <button class="hasMission" id="exitBtn"><i class="fa fa-sign-out"></i> Sair</button>
             </header>
             <phrase></phrase>
             <answers>
@@ -46,14 +46,6 @@
         {
             var answerid = $(this).data("id");
             resourceCall("SelectedAnswer", npcid, answerid);
-        });
-
-        $(document).keyup(function(e)
-        {
-            if (e.which == 8)
-            {
-                exit();
-            }
         });
 
         $("#exitBtn").click(function(e)

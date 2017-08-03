@@ -1,75 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <meta>
-    <info name="pcrpg" author="PC RPG team" type="gamemode"/>
-    <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
+  <info name="pcrpg" author="PC RPG team" type="gamemode"/>
+  <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
 
-    <!-- Authentication -->
-    <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
+  <!-- Gameplay -->
+  <script src="src/Gameplay/FirstSpawn.js" type="client" lang="javascript"/>
 
-    <!-- Character -->
-    <script src="src/Player/Creation/CharacterCreator.js" type="client" lang="javascript"/>
-    <script src="src/Player/Selection/CharacterSelector.js" type="client" lang="javascript"/>
-    <script src="src/Player/Customization/CustomizationController.js" type="client" lang="javascript"/>
+  <!-- Dialog System -->
+  <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>
+  <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
 
-    <!-- Player Utils -->
-    <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
-    <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
-
-    <!-- Gameplay -->
-    <script src="src/Gameplay/FirstSpawn.js" type="client" lang="javascript"/>
+  <!-- Player -->
   
-    <!-- Player -->
-    <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
+  <!-- Inventory -->
+  <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
 
-    <!-- NPCs -->
-    <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>
-    <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
+  <!-- Utils -->
+  <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>
+  <script src="src/Player/Utils/Sounds.js" type="client" lang="javascript"/>
 
-    <!-- Resources -->
+  <!-- Authentication -->
+  <script src="src/Player/Auth/Login.js" type="client" lang="javascript"/>
 
-    <!-- Views -->
-    <file src="res/views/login.html" />
-    <file src="res/views/dialog.html" />
-    <file src="res/views/inventory.html" />
-    <file src="res/views/character_selector.html" />
-    <file src="res/views/character_creator.html" />
+  <!-- Character -->
+  <script src="src/Player/Creation/CharacterCreator.js" type="client" lang="javascript"/>
+  <script src="src/Player/Selection/CharacterSelector.js" type="client" lang="javascript"/>
+  <script src="src/Player/Customization/CustomizationController.js" type="client" lang="javascript"/>
 
-    <!-- JS -->
-    <file src="res/js/jquery.js" />
-    <file src="res/js/jquery-ui.js" />
-    <file src="res/js/tether.js" />
-    <file src="res/js/slider.js" />
-    <file src="res/js/pcfw.js" />
-    <file src="res/js/sweetalert.js" />
-    <file src="res/js/character-clothes.js" />
+  <!-- Server -->
+  <script src="src/Server/Chat/ChatController.js" type="client" lang="javascript"/>
 
-    <!-- Sounds -->
-    <file src="res/sounds/music01.mp3" />
-    <file src="res/sounds/inventory/open.wav" />
-    <file src="res/sounds/inventory/close.wav" />
+  <!-- Resources -->
 
-    <!-- CSS -->
-    <file src="res/css/jquery-ui.css" />
-    <file src="res/css/gui.css" />
-    <file src="res/css/pcfw.css" />
-    <file src="res/css/sweetalert.css" />
+  <!-- Views -->
+  <file src="res/views/chat.html" />
+  <file src="res/views/login.html" />
+  <file src="res/views/dialog.html" />
+  <file src="res/views/inventory.html" />
+  <file src="res/views/character_selector.html" />
+  <file src="res/views/character_creator.html" />
 
-    <!-- Icons -->
-    <file src="res/css/icons-anim.css" />
-    <file src="res/css/icons-fa.css" />
-    <file src="res/css/icons-bodyparts.css" />
-    <file src="res/css/icons-clothes.css" />
-    <file src="res/css/icons-media.css" />
-    <file src="res/css/icons-food.css" />
-    <file src="res/fonts/custom/eyebrows.png" />
+  <!-- JS -->
+  <file src="res/js/chat.js" />
+  <file src="res/js/jquery.js" />
+  <file src="res/js/jquery-ui.js" />
+  <file src="res/js/tether.js" />
+  <file src="res/js/slider.js" />
+  <file src="res/js/pcfw.js" />
+  <file src="res/js/sweetalert.js" />
+  <file src="res/js/character-clothes.js" />
 
-    <!-- Fonts -->
-    <file src="res/fonts/Roboto.ttf" />
-    <file src="res/fonts/five.ttf" />
-    <file src="res/fonts/logo.ttf" />
-    <file src="res/fonts/fontawesome.ttf" />
-    <file src="res/fonts/clothes.ttf" />
-    <file src="res/fonts/bodyparts.ttf" />
-    <file src="res/fonts/media.ttf" />
-    <file src="res/fonts/food.ttf" />
+  <!-- Sounds -->
+  <file src="res/sounds/music01.mp3" />
+  <file src="res/sounds/inventory/open.wav" />
+  <file src="res/sounds/inventory/close.wav" />
+
+  <!-- CSS -->
+  <file src="res/css/jquery-ui.css" />
+  <file src="res/css/gui.css" />
+  <file src="res/css/pcfw.css" />
+  <file src="res/css/sweetalert.css" />
+
+  <!-- Icons -->
+  <file src="res/css/icons-anim.css" />
+  <file src="res/css/icons-fa.css" />
+  <file src="res/css/icons-bodyparts.css" />
+  <file src="res/css/icons-clothes.css" />
+  <file src="res/css/icons-media.css" />
+  <file src="res/css/icons-food.css" />
+  <file src="res/fonts/custom/eyebrows.png" />
+
+  <!-- Fonts -->
+  <file src="res/fonts/Roboto.ttf" />
+  <file src="res/fonts/five.ttf" />
+  <file src="res/fonts/logo.ttf" />
+  <file src="res/fonts/fontawesome.ttf" />
+  <file src="res/fonts/clothes.ttf" />
+  <file src="res/fonts/bodyparts.ttf" />
+  <file src="res/fonts/media.ttf" />
+  <file src="res/fonts/food.ttf" />
 </meta>

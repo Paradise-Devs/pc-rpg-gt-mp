@@ -1,201 +1,42 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <link rel='stylesheet' href='../css/pcfw.css'>
         <link rel='stylesheet' href='../css/gui.css'>
     </head>
-    <body id="main" class="test-enabled">
+    <body id="main">
         <div class="container-fluid">
-            <chat>
+            <chat style="-webkit-user-select: none; user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">
                 <container>
-                    <messages class="selected" id="chatLocal">
-                        <msg>Lós: Teste</msg>
+                    <messages class="selected" data-name='local'>
                     </messages>
-                    <messages id="chatGlobal">
-                        <msg>Lós: Teste2</msg>
+                    <messages data-name='global'>
                     </messages>
-                    <messages id="chatJob">
-                        <msg>Lós: Teste3</msg>
+                    <messages data-name="job">
                     </messages>
-                    <messages id="chatAdmin">
-                        <msg>Lós: Teste4</msg>
+                    <messages data-name="admin">
                     </messages>
-                    <messages id="chatAdmin">
-                        <msg>Lós: Teste5</msg>
+                    <messages data-name="private">
                     </messages>
-                    <messages id="chatPrivate">
-                        <msg>Lós: Teste6</msg>
-                    </messages>
-                    <messages id="chatLogs">
-                        <msg>Lós: Teste7</msg>
-                    </messages>
-                    <messages id="chatServer">
-                        <msg>Lós: Teste8</msg>
+                    <messages data-name="system">
                     </messages>
                     <ul>
-                        <li class="selected" id="tabLocal">Local</li>
-                        <li id="tabGlobal">Global</li>
-                        <li id="tabJob">Emprego</li>
-                        <li id="tabAdmin">Admin</li>
-                        <li id="tabPrivate">Privado</li>
-                        <li id="tabLogs">Sistema</li>
-                        <li id="tabServer">Servidor</li>
+                        <li class="active selected" data-name="local">Local</li>
+                        <li class="active" data-name="global">Global</li>
+                        <li class="active" data-name="job">Emprego</li>
+                        <li class="active" data-name="admin">Admin</li>
+                        <li class="active" data-name="private">Privado</li>
+                        <li class="active" data-name="system">Sistema</li>
                     </ul>
                 </container>
-                <input></input>
+                <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus/>
             </chat>
         </div>
 
         <script src="../js/jquery.js"></script>
         <script src="../js/tether.js"></script>
         <script src="../js/pcfw.js"></script>
-        <script>
-            updateScroll();
-            $('messages.selected').show();
-
-            $('html').keypress(function(e) {
-                if(e.which == 84) {
-                    showChatBox();
-                }
-            });
-
-            //tabs control
-            $('container').hover(function () {
-                $('messages.selected').addClass('active');
-                $('li').addClass('active');
-            });
-
-            $('ul li').click(function () {
-                $('li').addClass('active');
-                if($(this).attr('id') == 'tabLocal') {
-                    if(!$('#chatLocal').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabLocal').addClass('selected');
-                        $('#chatLocal').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabGlobal') {
-                    if(!$('#chatGlobal').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabGlobal').addClass('selected');
-                        $('#chatGlobal').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabJob') {
-                    if(!$('#chatJob').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabJob').addClass('selected');
-                        $('#chatJob').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabAdmin') {
-                    if(!$('#chatAdmin').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabAdmin').addClass('selected');
-                        $('#chatAdmin').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabPrivate') {
-                    if(!$('#chatPrivate').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabPrivate').addClass('selected');
-                        $('#chatPrivate').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabLogs') {
-                    if(!$('#chatLogs').hasClass('selected')) {
-                        $('messages.selected').removeClass('selected');
-                        $('ul li').removeClass('selected');
-
-                        $('#tabLogs').addClass('selected');
-                        $('#chatLogs').addClass('selected active');
-                    }
-                } else if($(this).attr('id') == 'tabServer') {
-                   if(!$('#chatServer').hasClass('selected')) {
-                       $('messages.selected').removeClass('selected');
-                       $('ul li').removeClass('selected');
-
-                       $('#tabServer').addClass('selected');
-                       $('#chatServer').addClass('selected active');
-                   }
-               }
-            });
-
-            $('input').keypress(function(e) {
-                if(e.which == 13) {
-                    sendMessage($('input').val());
-                    cleanChatbox();
-                }
-            });
-
-            $('input').focus(function() {
-                activateUI();
-            });
-
-            $('input').blur(function() {
-                deactivateUI();
-            });
-
-            function showChatBox() {
-                $('input').show();
-                $('input').focus();
-            }
-
-            function updateScroll() {
-                $('messages').scrollTop($('messages').height())
-            }
-
-            function activateUI() {
-                $('messages.selected').addClass('active');
-                $('li').addClass('active');
-            }
-
-            function deactivateUI() {
-                $('messages.selected').removeClass('active');
-                $('li').removeClass('active');
-            }
-
-            function cleanChatbox() {
-                $('input').val("");
-                $('input').blur();
-                $('input').hide();
-            }
-
-            function sendMessage(message) {
-                $('messages.selected').append('<msg>' + formatMsg(message) + '</msg>');
-                updateScroll();
-            }
-
-            function clearChat(chatid) {
-                $(chatid).empty();
-            }
-
-            function clearAllChat() {
-                $('messages').empty();
-            }
-
-            function formatMsg(input) {
-                var start = '<span style="color: white;">';
-                var output = start;
-
-                var pass1 = input.replace("~b~", '</span><span style="color: #07d7ff;">');
-                var pass2 = pass1.replace("~g~", '</span><span style="color: #15c39a;">');
-                var pass3 = pass2.replace("~r~", '</span><span style="color: #f23452;">');
-                var pass4 = pass3.replace("~p~", '</span><span style="color: #ee1289;">');
-                var pass5 = pass4.replace("~y~", '</span><span style="color: #faeaac;">');
-                var pass6 = pass5.replace("~o~", '</span><span style="color: #ffb733;">');
-                var pass7 = pass6.replace("~s~", '</span><span style="color: #bad3e1;">');
-                var pass8 = pass7.replace("~w~", '</span><span style="color: #fff;">');
-
-                return output + pass8 + "</span>";
-            }
-
-        </script>
+        <script src="../js/chat.js"></script>
     </body>
 </html>

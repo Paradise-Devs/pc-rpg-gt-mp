@@ -54,8 +54,7 @@ namespace pcrpg.src.Player.Selection
                 };
 
                 ContextFactory.Instance.Characters.Add(character);
-                API.setEntityData(sender, "Character", character);
-                API.setEntityData(sender, "LoggedInTime", DateTime.Now);
+                API.setEntityData(sender, "Character", character);                
 
                 // Traits
                 CharacterTrait traits = new CharacterTrait

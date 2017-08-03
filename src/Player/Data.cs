@@ -8,11 +8,28 @@ namespace pcrpg.src.Player
     class Data : Script
     {
         public Data()
-        {     
-            API.onPlayerDisconnected += OnPlayerDisconnect;      
+        {
+            API.onResourceStop += OnResourceStop;
+            API.onPlayerDisconnected += OnPlayerDisconnect;
         }        
 
         private void OnPlayerDisconnect(Client player, string reason)
+        {
+            SaveCharacterData(player);
+        }
+
+        private void OnResourceStop()
+        {
+            var players = API.getAllPlayers();
+            foreach (var player in players)
+            {
+                SaveCharacterData(player);
+                API.resetEntityData(player, "User");
+                API.resetEntityData(player, "Character");
+            }
+        }
+
+        private void SaveCharacterData(Client player)
         {
             if (API.hasEntityData(player, "Character"))
             {
@@ -23,8 +40,8 @@ namespace pcrpg.src.Player
                 character.PositionZ = player.position.Z;
                 character.RotationZ = player.rotation.Z;
 
+                character.PlayedTime += (DateTime.Now - character.LastLogin).TotalSeconds;
                 character.LastLogin = DateTime.Now;
-                character.PlayedTime += (DateTime.Now - API.getEntityData(player, "LoggedInTime")).TotalSeconds;
             }
             ContextFactory.Instance.SaveChanges();
         }

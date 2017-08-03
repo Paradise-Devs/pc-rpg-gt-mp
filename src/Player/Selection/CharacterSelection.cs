@@ -29,10 +29,10 @@ namespace pcrpg.src.Player.Selection
             {
                 int characterId = (int)arguments[0];
                 var character = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Id == characterId);
-                API.setEntityData(sender, "Character", character);
-                API.setEntityData(sender, "LoggedInTime", DateTime.Now);
+                API.setEntityData(sender, "Character", character);                
 
                 sender.name = character.Name;
+                character.LastLogin = DateTime.Now;
 
                 API.setEntityPositionFrozen(sender, false);
                 API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));

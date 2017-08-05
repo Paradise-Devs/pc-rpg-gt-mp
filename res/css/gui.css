@@ -30,7 +30,7 @@ b {
     color: #fff;
 }
 
-button:focus { outline:0 !important; }
+button:focus, input:focus { outline:0 !important; }
 
 ::-webkit-scrollbar {
     width: 6px;
@@ -1730,7 +1730,7 @@ chat msg {
     font-family: "Roboto";
     color: #fff;
     word-break: break-all;
-    font-size: 1.4em;
+    font-size: 1.5vh;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
@@ -1784,4 +1784,113 @@ chat ul li.selected {
 
 chat ul li.selected.active {
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+/******************************************************************************/
+/*   Help                                                                    */
+/******************************************************************************/
+.block-help {
+    display: block;
+    position: fixed;
+    top: 15%;
+    height: 100%;
+}
+
+block.help content {
+    display: none;
+    vertical-align: top;
+    background-color: transparent;
+    width: 71%;
+    position: relative;
+    left: 29.6%;
+    min-height: 500px;
+    max-height: 500px;
+}
+
+block.help content p {
+    max-height: 451px;
+    padding-left: 20px;
+    padding-right: 28px;
+    overflow-y: auto;
+}
+
+block.help content.selected {
+    display: inline-block;
+}
+
+block.help menu {
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+block.help menu opt {
+    display: block;
+    position: relative;
+    line-height: 30px;
+    width: 100%;
+    color: #666;
+}
+
+block.help menu opt:not(:last-child) {
+    border-bottom: 1px solid #2A2A2A;
+}
+
+block.help menu opt icon {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+}
+
+block.help menu opt i:before {
+    font-size: 20px;
+    color: #444;
+}
+
+block.help menu opt tit {
+    display: inline-block;
+    padding: 15px 10px 15px 15px;
+    font-size: 1.5vh;
+}
+
+block.help menu opt:hover {
+    background-color: rgba(69, 69, 69, 0.3);
+    color: #aaa;
+    cursor: pointer;
+}
+
+block.help menu opt:hover i::before {
+    color: #aaa;
+}
+
+block.help menu opt.selected {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #fff;
+    text-shadow: 0px 0px 9px #000;
+}
+
+block.help menu opt.selected i::before {
+    color: #fff;
+}
+
+block.help content hr {
+    border: 0;
+    height: 1px;
+    width: 98%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+
+block.help content tit {
+    display: block;
+    font-family: "Segoe UI";
+    font-weight: 200;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
 }

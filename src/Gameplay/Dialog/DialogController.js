@@ -8,12 +8,16 @@ function ShowNpcDialog(id, npc) {
     if (browser == null || !API.isCefBrowserInitialized(browser))
         InitializeDialogBrowser();
     API.showCursor(true);
+    API.setHudVisible(false);
+    API.setCanOpenChat(false);
     resource.Sounds.PlaySelectSound();
     API.setCefBrowserHeadless(browser, false);
     browser.call("DrawDialog", id, npc);
 }
 function HideNpcDialog() {
     API.showCursor(false);
+    API.setHudVisible(true);
+    API.setCanOpenChat(true);
     API.setActiveCamera(null);
     resource.Sounds.PlaySelectSound();
     API.setCefBrowserHeadless(browser, true);

@@ -1790,7 +1790,6 @@ chat ul li.selected.active {
 /*   Help                                                                    */
 /******************************************************************************/
 .block-help {
-    display: block;
     position: fixed;
     top: 15%;
     height: 100%;
@@ -1893,4 +1892,172 @@ block.help content tit {
     text-transform: uppercase;
     color: #fff;
     text-align: center;
+}
+
+/******************************************************************************/
+/*   Quest tracker                                                            */
+/******************************************************************************/
+block.questtracker {
+    width: 58%;
+    top: 15%;
+    left: 20%;
+    position: fixed;
+}
+
+block.questtracker content {
+    display: inline-block;
+    vertical-align: top;
+    background-color: transparent;
+    width: 71%;
+    position: relative;
+    left: 40%;
+    min-height: 500px;
+    max-height: 500px;
+}
+
+block.questtracker questlist {
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+/*quests*/
+block.questtracker quests {
+    display: none;
+    margin-top: 1px;
+    max-height: 95%;
+    overflow-y: auto;
+}
+
+block.questtracker quests.selected {
+    display: block;
+}
+
+block.questtracker collector {
+    display: block;
+    position: relative;
+}
+
+block.questtracker collector desc {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 7px;
+    font-size: 1.3vh;
+    text-align: right;
+    border: 0px;
+}
+
+block.questtracker collector b {
+    float: left;
+}
+
+collector quest {
+    display: block;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 9px;
+    color: #666;
+}
+
+collector quest:hover {
+    background-color: rgba(69, 69, 69, 0.3);
+    cursor: pointer;
+    color: #aaa;
+}
+
+collector quest:hover tit {
+    color: #ddd;
+}
+
+collector quest.selected {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #ddd;
+}
+
+collector quest.selected tit {
+    color: #fff;
+}
+
+collector quest.tracking {
+    opacity: 1;
+    background-color: rgba(33, 149, 242, 0.5);
+}
+
+collector quest.tracking tit, collector quest.tracking subtit {
+    color: #BADDFA;
+}
+
+
+collector quest tit {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #aaa;
+    font-family: "Roboto";
+}
+
+collector quest subtit {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    font-family: "Segoe UI";
+    font-weight: 400;
+}
+
+/*tabs*/
+questlist ul {
+    display: flex;
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 0px;
+}
+
+questlist ul li {
+    display: block;
+    padding: .5em 1em;
+    margin-bottom: -1px;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    color: #444;
+    width: 100%;
+    text-align: center;
+}
+
+questlist ul li.selected {
+    background-color: transparent;
+    color: #fff;
+}
+
+questlist ul li:not(.selected):hover {
+    color: #aaa;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.2);
+}
+
+questlist ul li:not(.selected) {
+    background-color: rgba(69, 69, 69, 0.1);
+}
+
+/*containers*/
+block.questtracker content quest {
+    display: block;
+}
+
+block.questtracker content quest.selected {
+    display: inline-block;
 }

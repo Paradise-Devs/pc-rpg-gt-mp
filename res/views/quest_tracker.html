@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/icons-fa.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+    </head>
+    <body id="main" class="test-enabled">
+        <div class="container-fluid">
+            <block class="questtracker">
+                <questlist>
+                    <ul>
+                        <li class="selected" name="active">Ativas</li>
+                        <li name="concluded">Concluídas</li>
+                    </ul>
+                    <quests name="active">
+                        <collector>
+                            <desc><b>John Doe</b> <sep></sep> Vinewood/LS</desc>
+                            <quest class="tracking" name="gs-shooting">
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest name="testing-asda">
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                        </collector>
+                        <collector>
+                            <desc><b>Diarreia Ingrata</b> <sep></sep> Observatory/LS</desc>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                            <quest>
+                                <tit>Tiroteio na Groove Street</tit>
+                                <subtit>Investigue o que está acontecendo na Groove Street</subtit>
+                            </quest>
+                        </collector>
+                    </quests>
+                    <quests name="concluded">
+                        CONCLUIDED
+                    </quests>
+                </questlist>
+                <content>
+                    <quest name="gs-shooting">
+                        aaaaaaaaaaaaaaaaaaaaa
+                    </quest>
+                    <quest name="testing-asda">
+                        bbbbbbbbbbb
+                    </quest>
+                </content>
+            </block>
+        </div>
+
+        <script src="../js/jquery.js"></script>
+        <script src="../js/tether.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script>
+            $("quests[name='active']").addClass('selected');
+            $('ul li').click(function ()
+            {
+                if (!$("quests[name='" + $(this).attr("name") + "']").hasClass('selected'))
+                {
+                    $('ul li').removeClass('selected');
+                    $('quests').removeClass('selected');
+
+                    $(this).addClass('selected');
+                    $("quests[name='" + $(this).attr("name") + "']").addClass('selected');
+                }
+            });
+
+            $('collector quest').click(function ()
+            {
+                if (!$("content quest[name='" + $(this).attr("name") + "']").hasClass('selected'))
+                {
+                    $('collector quest').removeClass('selected');
+                    $('content quest').removeClass('selected');
+
+                    $(this).addClass('selected');
+                    $("content quest[name='" + $(this).attr("name") + "']").addClass('selected');
+                }
+            });
+        </script>
+    </body>
+</html>

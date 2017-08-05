@@ -30,7 +30,7 @@ b {
     color: #fff;
 }
 
-button:focus { outline:0 !important; }
+button:focus, input:focus { outline:0 !important; }
 
 ::-webkit-scrollbar {
     width: 6px;
@@ -1784,4 +1784,280 @@ chat ul li.selected {
 
 chat ul li.selected.active {
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+/******************************************************************************/
+/*   Help                                                                    */
+/******************************************************************************/
+.block-help {
+    position: fixed;
+    top: 15%;
+    height: 100%;
+}
+
+block.help content {
+    display: none;
+    vertical-align: top;
+    background-color: transparent;
+    width: 71%;
+    position: relative;
+    left: 29.6%;
+    min-height: 500px;
+    max-height: 500px;
+}
+
+block.help content p {
+    max-height: 451px;
+    padding-left: 20px;
+    padding-right: 28px;
+    overflow-y: auto;
+}
+
+block.help content.selected {
+    display: inline-block;
+}
+
+block.help menu {
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+block.help menu opt {
+    display: block;
+    position: relative;
+    line-height: 30px;
+    width: 100%;
+    color: #666;
+}
+
+block.help menu opt:not(:last-child) {
+    border-bottom: 1px solid #2A2A2A;
+}
+
+block.help menu opt icon {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+}
+
+block.help menu opt i:before {
+    font-size: 20px;
+    color: #444;
+}
+
+block.help menu opt tit {
+    display: inline-block;
+    padding: 15px 10px 15px 15px;
+    font-size: 1.5vh;
+}
+
+block.help menu opt:hover {
+    background-color: rgba(69, 69, 69, 0.3);
+    color: #aaa;
+    cursor: pointer;
+}
+
+block.help menu opt:hover i::before {
+    color: #aaa;
+}
+
+block.help menu opt.selected {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #fff;
+    text-shadow: 0px 0px 9px #000;
+}
+
+block.help menu opt.selected i::before {
+    color: #fff;
+}
+
+block.help content hr {
+    border: 0;
+    height: 1px;
+    width: 98%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+
+block.help content tit {
+    display: block;
+    font-family: "Segoe UI";
+    font-weight: 200;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+}
+
+/******************************************************************************/
+/*   Quest tracker                                                            */
+/******************************************************************************/
+block.questtracker {
+    width: 58%;
+    top: 15%;
+    left: 20%;
+    position: fixed;
+}
+
+block.questtracker content {
+    display: inline-block;
+    vertical-align: top;
+    background-color: transparent;
+    width: 71%;
+    position: relative;
+    left: 40%;
+    min-height: 500px;
+    max-height: 500px;
+}
+
+block.questtracker questlist {
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+/*quests*/
+block.questtracker quests {
+    display: none;
+    margin-top: 1px;
+    max-height: 95%;
+    overflow-y: auto;
+}
+
+block.questtracker quests.selected {
+    display: block;
+}
+
+block.questtracker collector {
+    display: block;
+    position: relative;
+}
+
+block.questtracker collector desc {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 7px;
+    font-size: 1.3vh;
+    text-align: right;
+    border: 0px;
+}
+
+block.questtracker collector b {
+    float: left;
+}
+
+collector quest {
+    display: block;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 9px;
+    color: #666;
+}
+
+collector quest:hover {
+    background-color: rgba(69, 69, 69, 0.3);
+    cursor: pointer;
+    color: #aaa;
+}
+
+collector quest:hover tit {
+    color: #ddd;
+}
+
+collector quest.selected {
+    background-color: rgba(69, 69, 69, 0.9);
+    color: #ddd;
+}
+
+collector quest.selected tit {
+    color: #fff;
+}
+
+collector quest.tracking {
+    opacity: 1;
+    background-color: rgba(33, 149, 242, 0.5);
+}
+
+collector quest.tracking tit, collector quest.tracking subtit {
+    color: #BADDFA;
+}
+
+
+collector quest tit {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #aaa;
+    font-family: "Roboto";
+}
+
+collector quest subtit {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    font-family: "Segoe UI";
+    font-weight: 400;
+}
+
+/*tabs*/
+questlist ul {
+    display: flex;
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 0px;
+}
+
+questlist ul li {
+    display: block;
+    padding: .5em 1em;
+    margin-bottom: -1px;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    color: #444;
+    width: 100%;
+    text-align: center;
+}
+
+questlist ul li.selected {
+    background-color: transparent;
+    color: #fff;
+}
+
+questlist ul li:not(.selected):hover {
+    color: #aaa;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.2);
+}
+
+questlist ul li:not(.selected) {
+    background-color: rgba(69, 69, 69, 0.1);
+}
+
+/*containers*/
+block.questtracker content quest {
+    display: block;
+}
+
+block.questtracker content quest.selected {
+    display: inline-block;
 }

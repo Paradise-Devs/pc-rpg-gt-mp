@@ -1730,7 +1730,7 @@ chat msg {
     font-family: "Roboto";
     color: #fff;
     word-break: break-all;
-    font-size: 1.4em;
+    font-size: 1.5vh;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 

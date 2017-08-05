@@ -37,19 +37,19 @@ function deactivateUI()
 }
 
 function setFocus(focus)
-{
+{    
     var mainInput = $("input");
     if (focus)
     {
         clearTimeout(hideTimer);
         activateUI();
-        mainInput.show();
         mainInput.val("");
+        mainInput.show();
         mainInput.focus();
     }
     else
     {
-        mainInput.fadeOut();
+        mainInput.hide();
         mainInput.val("");
         clearTimeout(hideTimer);
         hideTimer = setTimeout(function () { deactivateUI(); }, 5000);

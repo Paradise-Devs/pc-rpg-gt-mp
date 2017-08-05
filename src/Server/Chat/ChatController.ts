@@ -44,6 +44,7 @@ function onChatHide(hide)
 {
     if (mainBrowser != null)
     {
+        API.showCursor(!hide);
         API.setCefBrowserHeadless(mainBrowser, hide);
     }
 }
@@ -52,10 +53,9 @@ function onFocusChange(focus)
 {
     if (mainBrowser != null)
     {
+        API.showCursor(focus);
         mainBrowser.call("setFocus", focus);
     }
-
-    API.showCursor(focus);
 }
 
 function commitMessage(msg)

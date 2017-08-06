@@ -47,7 +47,7 @@
                             <!--<nomails>Não há emails</nomails>-->
                         </maillist>
                         <content>
-                            <mail name="0x931" class="selected">
+                            <mail name="0x931">
                                 <info>
                                     <sender>Paradise City</sender>
                                     <date>2 horas atrás</date>
@@ -73,6 +73,14 @@
                                     <br />
                                     <br />
                                 </p>
+                                <footer>
+                                    <button id="newMail">Novo Email</button>
+                                    <mailbuttons>
+                                        <button><i class="fa fa-warning"></i></button>
+                                        <button class="red"><i class="fa fa-trash"></i></button>
+                                        <button class="blue">Responder</button>
+                                    </mailbuttons>
+                                </footer>
                             </mail>
                             <mail name="0x932">
                                 <info>
@@ -101,6 +109,19 @@
                                     <br />
                                 </p>
                             </mail>
+                            <newmail>
+                                <input placeholder="Destinatário" maxlength="25"/>
+                                <input placeholder="Assunto" maxlength="128"/>
+                                <textarea placeholder="Texto"></textarea>
+                                <footer class="right">
+                                    <button class="red" id="back"><i class="fa fa-arrow-left"></i></button>
+                                    <button>Enviar</button>
+                                </footer>
+                            </newmail>
+                            <nomail>
+                                <text>Não há nenhum email selecionado.</text>
+                                <button>Enviar email</button>
+                            </nomail>
                         </content>
                     </block>
                 </div>
@@ -112,17 +133,34 @@
         <script src="../js/pcfw.js"></script>
         <script src="../js/sweetalert.js"></script>
         <script>
-            $("content mail[name='0x931']").show();
-            $('maillist mail').click(function ()
-            {
-                if (!$("content mail[name='" + $(this).attr("name") + "']").hasClass('selected'))
-                {
+            //$("content mail[name='0x931']").show();
+            $('maillist mail').click(function () {
+                if (!$("content mail[name='" + $(this).attr("name") + "']").hasClass('selected')){
                     $('maillist mail').removeClass('selected');
                     $('content mail').removeClass('selected');
+                    $('nomail').hide();
+                    $('newmail').hide();
 
                     $(this).addClass('selected');
                     $("content mail[name='" + $(this).attr("name") + "']").addClass('selected');
                 }
+            });
+
+            $('#newMail').click(function() {
+                $('content mail.selected').hide();
+                $('newmail').show();
+                $('maillist mail').removeClass('selected');
+                $('content mail').removeClass('selected');
+            });
+
+            $('#back').click(function() {
+                $('newmail').hide();
+                $('nomail').show();
+            });
+
+            $('nomail button').click(function() {
+                $('nomail').hide();
+                $('newmail').show();
             });
         </script>
     </body>

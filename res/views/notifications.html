@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/icons-fa.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+        <link rel="stylesheet" href="../css/sweetalert.css">
+        <link rel='stylesheet' href='../css/icons-media.css'>
+    </head>
+    <body id="main" class="test-enabled">
+        <notifications>
+            <not>
+                <icon><i class="fa fa-envelope-o"></i></icon>
+                <content>
+                    <tit>Novo email</tit>
+                    <desc><b>Paradise City:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</desc>
+                    <help>Pressione <key>M</key> para ver mensagens</help>
+                </content>
+            </not>
+            <not>
+                <icon><i class="fa fa-trophy"></i></icon>
+                <content>
+                    <tit>Nova conquista</tit>
+                    <desc>Conquista <b>"Um por todos, todos por um"</b> alcançada! Verifique as recompensas.</desc>
+                    <help>Pressione <key>N</key> para ver conquistas</help>
+                </content>
+            </not>
+            <not>
+                <icon><i class="fa fa-check"></i></icon>
+                <content>
+                    <tit>Missão concluída</tit>
+                    <desc>Você completou a missão <b>"Tiroteio em Groove Street"</b>. Verifique as recompensas.</desc>
+                    <help>Pressione <key>O</key> para ver missões</help>
+                </content>
+            </not>
+        </notifications>
+
+        <button id="test">Notificar</button>
+
+        <script src="../js/jquery.js"></script>
+        <script src="../js/tether.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script src="../js/sweetalert.js"></script>
+
+        <script>
+            $('#test').click(function() {
+                sendNotification("fa fa-star", "Testing", "Tested", "Pressione <key>O</key> para ver missões");
+            });
+            
+            function sendNotification(icon, title, text, help) {
+                var newNot = $('notifications').append(
+                    '<not>' +
+                        '<icon><i class="' + icon + '"></i></icon>' +
+                        '<content>' +
+                            '<tit>' + title + '</tit>' +
+                            '<desc>' + text + '</desc>' +
+                            '<help>' + help + '</help>' +
+                        '</content>' +
+                    '</not>');
+            }
+        </script>
+    </body>
+</html>

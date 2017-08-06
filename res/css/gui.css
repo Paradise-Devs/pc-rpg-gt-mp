@@ -1909,11 +1909,19 @@ block.questtracker content {
     display: inline-block;
     vertical-align: top;
     background-color: transparent;
-    width: 71%;
+    width: 73.5%;
     position: relative;
     left: 40%;
     min-height: 500px;
     max-height: 500px;
+}
+
+block.questtracker content p {
+    display: block;
+    max-height: 250px;
+    padding-left: 20px;
+    padding-right: 28px;
+    overflow-y: auto;
 }
 
 block.questtracker questlist {
@@ -1924,6 +1932,77 @@ block.questtracker questlist {
     margin: 0px;
     padding: 0px;
     height: 100%;
+}
+
+/*containers*/
+block.questtracker content quest {
+    display: none;
+}
+
+block.questtracker content quest.selected {
+    display: inline-block;
+    width: 82%;
+}
+
+block.questtracker content quest hr {
+    border: 0;
+    height: 1px;
+    width: 98%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+
+block.questtracker content quest tit {
+    display: block;
+    font-family: "Segoe UI";
+    font-weight: 200;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+}
+
+content quest objectives {
+    display: block;
+    margin: 2px 10px 5px 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #666;
+    max-height: 126px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+content quest objectives ul {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+content quest objectives ul li {
+    color: #C7E5C8;
+    position: relative;
+    margin-left: 35px;
+}
+
+content quest objectives ul li i {
+    color: #4CAE50;
+    margin-right: 5px;
+    position: absolute;
+    top: 4px;
+    left: -23px;
+}
+
+content quest objectives ul li.actual {
+    color: #B1EAF1;
+}
+
+content quest objectives ul li.actual i {
+    color: #03A8F3;
+    padding-left: 1px;
 }
 
 /*quests*/
@@ -1988,10 +2067,13 @@ collector quest.tracking {
     background-color: rgba(33, 149, 242, 0.5);
 }
 
+collector quest.tracking:hover {
+    background-color: rgba(33, 149, 242, 0.2);
+}
+
 collector quest.tracking tit, collector quest.tracking subtit {
     color: #BADDFA;
 }
-
 
 collector quest tit {
     display: block;
@@ -2014,6 +2096,24 @@ collector quest subtit {
     font-size: 11px;
     font-family: "Segoe UI";
     font-weight: 400;
+}
+
+quests noquest {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-family: "Roboto";
+    color: #fff;
+}
+
+content noquest {
+    display: block;
+    font-family: "Roboto";
+    color: #fff;
+    position: absolute;
+    left: 30%;
+    top: 45%;
+    text-align: center;
 }
 
 /*tabs*/
@@ -2052,13 +2152,4 @@ questlist ul li:not(.selected):hover {
 
 questlist ul li:not(.selected) {
     background-color: rgba(69, 69, 69, 0.1);
-}
-
-/*containers*/
-block.questtracker content quest {
-    display: block;
-}
-
-block.questtracker content quest.selected {
-    display: inline-block;
 }

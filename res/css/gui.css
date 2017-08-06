@@ -2552,3 +2552,114 @@ nomail text {
     display: flex;
     width: 30%;
 }
+
+/******************************************************************************/
+/*   Options                                                                  */
+/******************************************************************************/
+block.options {
+    width: 28%;
+    top: 15%;
+    left: 68%;
+    position: fixed;
+}
+
+block.options content {
+    padding: 0px;
+}
+
+block.options container form {
+    padding: 10px;
+}
+
+/*tabs*/
+block.options navbar ul {
+    display: flex;
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 0px;
+}
+
+block.options navbar ul li {
+    display: block;
+    padding: .5em 1em;
+    margin-bottom: -1px;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    color: #444;
+    width: 100%;
+    text-align: center;
+}
+
+block.options navbar ul li.selected {
+    background-color: transparent;
+    color: #fff;
+}
+
+block.options navbar ul li:not(.selected):hover {
+    color: #aaa;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.2);
+}
+
+block.options navbar ul li:not(.selected) {
+    background-color: rgba(69, 69, 69, 0.1);
+}
+
+/******************************************************************************/
+/*   Menus                                                                    */
+/******************************************************************************/
+menu {
+    display: block;
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 15%;
+    top: 30%;
+    left: 43%;
+    padding: 0px;
+    margin: 0px;
+}
+
+menu ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none
+}
+
+menu ul li {
+    background-color: rgba(0, 0, 0, 0.2);
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Roboto';
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 40px;
+}
+
+menu li.disabled {
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: .1;
+}
+
+menu li.disabled:hover {
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: default;
+}
+
+menu li:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    cursor: pointer;
+}
+
+menu ul li:not(:last-child) {
+    border-bottom: 1px solid #2A2A2A;
+}

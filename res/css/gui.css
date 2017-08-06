@@ -2245,3 +2245,207 @@ notifications not content help key {
     color: #888;
     text-decoration: underline;
 }
+
+/******************************************************************************/
+/*   Email                                                                    */
+/******************************************************************************/
+.block-email {
+    position: fixed;
+    top: 15%;
+    height: 100%;
+}
+
+block.email unreaded, block.email readed  {
+    display: block;
+    position: relative;
+}
+
+block.email unreaded divider, block.email readed divider {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 7px 7px 7px;
+    font-size: 1.3vh;
+    text-align: left;
+    border: 0px;
+}
+
+block.email count {
+    float: right;
+}
+
+block.email maillist {
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+maillist nomails {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-family: "Roboto";
+    color: #fff;
+}
+
+/* container */
+block.email content {
+    display: inline-block;
+    vertical-align: top;
+    background-color: transparent;
+    width: 70.5%;
+    position: relative;
+    left: 30%;
+    min-height: 500px;
+    max-height: 500px;
+}
+
+block.email content p {
+    display: block;
+    margin-top: 10px;
+    max-height: 425px;
+    padding-left: 20px;
+    padding-right: 28px;
+    overflow-y: auto;
+}
+
+block.email content mail {
+    display: none;
+}
+
+block.email content mail.selected {
+    display: inline-block;
+}
+
+block.email content info {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    width: 98%;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+block.email content info sender {
+    color: #fff;
+    display: inline-block;
+}
+
+block.email content info date {
+    color: #666;
+    display: inline-block;
+    font-size: 12px;
+    padding-top: 3px;
+    float: right;
+}
+
+block.email content info subject {
+    color: #BADDFA;
+    display: block;
+    font-size: 12px;
+}
+
+/* email item */
+block.email maillist mail {
+    display: block;
+    position: relative;
+    line-height: 18px;
+    width: 100%;
+    color: #aaa;
+    padding: 5px;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #2A2A2A;
+}
+
+block.email maillist mail sender {
+    display: block;
+    font-size: 1.2vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+}
+
+block.email maillist mail tit {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.2vh;
+}
+
+block.email maillist mail desc {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.2vh;
+    color: #666;
+}
+
+block.email maillist mail desc b {
+    color: #666;
+}
+
+block.email maillist mail date {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2vh;
+    color: #666;
+}
+
+block.email maillist mail:hover {
+    background-color: rgba(69, 69, 69, 0.3);
+    cursor: pointer;
+}
+
+block.email maillist mail.selected {
+    background-color: rgba(69, 69, 69, 0.9);
+}
+
+block.email maillist mail.selected desc, block.email maillist mail.selected desc b {
+    color: #888;
+}
+
+/* unreaded email item */
+block.email maillist unreaded mail {
+    background-color: rgba(25, 117, 209, 0.3);
+    color: #BADDFA;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+block.email maillist unreaded mail:not(:last-child) {
+    border-bottom: 1px solid #222;
+}
+
+block.email maillist unreaded mail desc {
+    color: #9EAAB8;
+}
+
+block.email maillist unreaded mail desc b {
+    color: #BAC9D2;
+}
+
+block.email maillist unreaded mail date {
+    color: #BAC9D2;
+}
+
+block.email maillist unreaded mail:hover {
+    background-color: rgba(25, 117, 209, 0.2);
+}
+
+block.email maillist unreaded mail.selected {
+    background-color: rgba(25, 117, 209, 0.8);
+}
+
+block.email maillist unreaded mail.selected desc, block.email maillist mail.selected desc b {
+    color: #BAC9D2;
+}

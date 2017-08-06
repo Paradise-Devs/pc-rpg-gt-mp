@@ -2402,7 +2402,7 @@ block.email maillist mail {
     line-height: 18px;
     width: 100%;
     color: #aaa;
-    padding: 5px;
+    padding: 10px 10px 10px 10px;
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid #2A2A2A;
@@ -2441,8 +2441,8 @@ block.email maillist mail desc b {
 block.email maillist mail date {
     display: block;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     font-size: 1.2vh;
     color: #666;
 }

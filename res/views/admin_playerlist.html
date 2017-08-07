@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='../css/icons-fa.css'>
+        <link rel='stylesheet' href='../css/pcfw.css'>
+        <link rel='stylesheet' href='../css/gui.css'>
+        <link rel="stylesheet" href="../css/sweetalert.css">
+    </head>
+    <body id="main" class="test-enabled">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-9 block-adminplayerlist">
+                    <block class="adminplayerlist">
+                        <adminplayerlist>
+                            <search>
+                                <input id="playersearch" placeholder="Procurar jogador..." maxlength="25"/>
+                                <i class="fa fa-search"></i>
+                            </search>
+                            <navbar>
+                                <ul>
+                                    <li class="selected" name="online">Online</li>
+                                    <li name="offline">Offline</li>
+                                </ul>
+                            </navbar>
+                            <players name="online" class="selected">
+                                <desc><b class="dev-color">Desenvolvedores</b> 2</desc>
+                                <role>
+                                    <player>
+                                        <name>Larceny</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                    <player>
+                                        <name>Lós</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                </role>
+                                <desc><b class="admin-color">Administradores</b> 2</desc>
+                                <role>
+                                    <player>
+                                        <name>ReDKiiL</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                    <player>
+                                        <name>Galhardo</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                </role>
+                                <desc><b class="mod-color">Moderadores</b> 1</desc>
+                                <role>
+                                    <player>
+                                        <name>Mike</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                </role>
+                                <desc><b>Jogadores</b> 31</desc>
+                                <role>
+                                    <player>
+                                        <name>Random</name>
+                                        <stats>Level <b>21</b> - Jogando a <b>52 minutos</b></stats>
+                                    </player>
+                                </role>
+                                <noplayerfound>Nenhum jogador encontrado</noplayer>
+                            </players>
+                            <players name="offline">
+                                <player>
+                                    <name>Random</name>
+                                    <stats><b class="mod-color">Moderador</b> - Level <b>21</b> - Último login a <b>3 horas</b> atrás</stats>
+                                </player>
+                                <noplayerfound>Nenhum jogador encontrado</noplayer>
+                            </players>
+                        </adminplayerlist>
+                        <content>
+                            <navbar id="userConfigs">
+                                <ul>
+                                    <li class="selected" name="punishments">Punições</li>
+                                    <li name="chars">Personagens</li>
+                                    <li name="stats">Stats</li>
+                                    <li name="logs">Logs</li>
+                                </ul>
+                            </navbar>
+                            <container name="punishments">
+                                <activepunishment>
+                                    <text>Este jogador atualmente está preso.<br /> Antes de atribuir uma nova punição, remova a atual.</text>
+                                    <button>Remover punição</button>
+                                </activepunishment>
+                                <form>
+                                    <field class="warning">
+                                        <tit>Avisar</tit>
+                                        <subtit>A cada 5 avisos, o jogador recebe punição de banimento temporário por 7 dias. Cada aviso expira em 7 dias.</subtit>
+                                        <group class="inputButton">
+                                            <input type="text" placeholder="Motivo">
+                                            <button class="blue"><i class="fa fa-check"></i></button>
+                                            <error></error>
+                                        </group>
+                                    </field>
+                                    <field class="arrest">
+                                        <tit>Prender</tit>
+                                        <subtit>Você pode prender o jogador até no máximo de 2 horas (120 minutos). Tempo superior a isto, pode acabar desmotivando o jogador a retornar ao servidor.</subtit>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="number" max="120" min="1" placeholder="Tempo">
+                                                <error>wdwdawd</error>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <group class="inputButton">
+                                                    <input type="text" placeholder="Motivo">
+                                                    <button class="blue"><i class="fa fa-check"></i></button>
+                                                    <error></error>
+                                                </group>
+                                            </div>
+                                        </div>
+                                    </field>
+                                    <field class="kick">
+                                        <tit>Expulsar</tit>
+                                        <subtit>Se o tempo for definido, o jogador terá que esperar até que possa logar novamente. Utilize no máximo 5 minutos.</subtit>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="number" max="5" min="1" placeholder="Tempo">
+                                                <error></error>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <group class="inputButton">
+                                                    <input type="text" placeholder="Motivo">
+                                                    <button class="blue"><i class="fa fa-check"></i></button>
+                                                    <error></error>
+                                                </group>
+                                            </div>
+                                        </div>
+                                    </field>
+                                    <field class="ban">
+                                        <tit>Banir</tit>
+                                        <subtit>Em caso de banimentos permanentes, não defina tempo. Utilize no máximo 30 dias.</subtit>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="number" max="30" min="1" placeholder="Tempo">
+                                                <error></error>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <group class="inputButton">
+                                                    <input type="text" placeholder="Motivo">
+                                                    <button class="blue"><i class="fa fa-check"></i></button>
+                                                    <error></error>
+                                                </group>
+                                            </div>
+                                        </div>
+                                    </field>
+                                </form>
+                            </container>
+                            <container name="chars">
+                                chars
+                            </container>
+                            <container name="stats">
+                                stats
+                            </container>
+                            <container name="logs">
+                                <logs>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                    <entry><time>[06/08/2017 - 22:13]</time> Lós desbaniu Larceny</entry>
+                                </logs>
+                            </container>
+                            <noplayerselected>
+                                <text>Nenhum jogador selecionado.</text>
+                            </noplayerselected>
+                        </content>
+                    </block>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/jquery.js"></script>
+        <script src="../js/tether.js"></script>
+        <script src="../js/pcfw.js"></script>
+        <script src="../js/sweetalert.js"></script>
+
+        <script>
+            $("noplayerfound").hide();
+            $("noplayerfound").hide();
+            $('container[name=punishments] form').hide();
+            $('#userConfigs').hide();
+            $('players desc').next().slideUp(1);
+
+            $("#playersearch").keyup(function(){
+                if($("navbar ul li[name='online']").hasClass('selected')) {
+                    var filter = $(this).val(),
+                    count = 0;
+
+                    $("players role player name").each(function(index) {
+                        if ($(this).text().search(new RegExp(filter, "i"))) {
+                            $(this).parent().hide(100);
+                        } else {
+                            $(this).parent().show(100);
+                            count++;
+                        }
+                    });
+
+                    var updatedCount = count;
+
+                    if(updatedCount == 0) {
+                        $('players[name="online"] noplayer').show(100);
+                        $('players desc, players role').hide(100);
+                    } else {
+                        $('players[name="online"] noplayer').hide(100);
+                        $('players desc, players role').show(100);
+                    }
+                } else {
+                    //funções procurar o jogador offline
+
+                    var updatedCount = count;
+
+                    if(updatedCount == 0) {
+                        $('players[name="offline"] noplayer').show(100);
+                    } else {
+                        $('players[name="offline"] noplayer').hide(100);
+                    }
+                }
+            });
+
+            $('adminplayerlist navbar ul li').click(function ()
+            {
+                if (!$("players[name='" + $(this).attr("name") + "']").hasClass('selected'))
+                {
+                    $('adminplayerlist navbar ul li').removeClass('selected');
+                    $('players').removeClass('selected');
+
+                    $(this).addClass('selected');
+                    $("players[name='" + $(this).attr("name") + "']").addClass('selected');
+                }
+            });
+
+            $('#userConfigs ul li').click(function ()
+            {
+                if (!$("container[name='" + $(this).attr("name") + "']").hasClass('selected'))
+                {
+                    $('#userConfigs ul li').removeClass('selected');
+                    $('container').removeClass('selected');
+
+                    $(this).addClass('selected');
+                    $("container[name='" + $(this).attr("name") + "']").addClass('selected');
+                }
+            });
+
+            $('players player').click(function ()
+            {
+                $('players player').removeClass('selected');
+                $(this).addClass('selected');
+                $("noplayer").hide();
+                $('#userConfigs').show();
+                $("container[name='punishments']").addClass('selected');
+            });
+
+            $('players desc').click(function ()
+            {
+                $(this).next().slideToggle(1);
+            });
+
+            $('field.warning button').click(function ()
+            {
+                if($("field.warning input").val().length < 4)
+                    ShowError("Utilize no mínimo <b>4</b> caracteres.", "field.warning input");
+
+                else
+                {
+                    swal(
+                    {
+                        title: "Deseja avisar o jogador?",
+                        text: "Esta ação poderá ser contestada pelo jogador e em caso de abuso, você será punido.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Avisar",
+                        cancelButtonText: "Cancelar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        //avisado
+                    });
+                }
+                return false;
+            });
+
+            $('field.arrest button').click(function ()
+            {
+                if($("field.arrest input[type='number']").val().length == 0)
+                    ShowError("Utilize no mínimo <b>1</b> minuto.", "field.arrest input[type='number']");
+                if($("field.arrest input[type='text']").val().length < 4)
+                    ShowError("Utilize no mínimo <b>4</b> caracteres.", "field.arrest input[type='text']");
+
+                else
+                {
+                    swal(
+                    {
+                        title: "Deseja prender o jogador?",
+                        text: "Esta ação poderá ser contestada pelo jogador e em caso de abuso, você será punido.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Prender",
+                        cancelButtonText: "Cancelar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        //preso
+                    });
+                }
+                return false;
+            });
+
+            $('field.kick button').click(function ()
+            {
+                if($("field.kick input[type='text']").val().length < 4)
+                    ShowError("Utilize no mínimo <b>4</b> caracteres.", "field.kick input[type='text']");
+
+                else
+                {
+                    swal(
+                    {
+                        title: "Deseja expulsar o jogador?",
+                        text: "Esta ação poderá ser contestada pelo jogador e em caso de abuso, você será punido.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Expulsar",
+                        cancelButtonText: "Cancelar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        //kicked
+
+                        // if(!$("field.kick input[type='number']").val().length) - Tempo de kick definido
+                    });
+                }
+                return false;
+            });
+
+            $('field.ban button').click(function ()
+            {
+                if($("field.ban input[type='text']").val().length < 4)
+                    ShowError("Utilize no mínimo <b>4</b> caracteres.", "field.ban input[type='text']");
+
+                else
+                {
+                    swal(
+                    {
+                        title: "Deseja expulsar o jogador?",
+                        text: "Esta ação poderá ser contestada pelo jogador e em caso de abuso, você será punido.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Banir",
+                        cancelButtonText: "Cancelar",
+                        closeOnConfirm: false
+                    },
+                    function ()
+                    {
+                        //banned
+
+                        // if($("field.ban input[type='number']").val().length == 0) - PERMABAN
+                    });
+                }
+                return false;
+            });
+
+            $('activepunishment button').click(function ()
+            {
+                swal(
+                {
+                    title: "Deseja remover a punição?",
+                    text: "Esta ação ficará no log do jogador e não pode ser removida.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Remover",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false
+                },
+                function ()
+                {
+                    //Removido
+                    swal("Removida!", "Punição removida com sucesso.", "success");
+                    $('container[name=punishments] form').show();
+                    $('activepunishment').hide();
+                });
+            });
+
+            $('input').keyup(function() {
+                if($(this).hasClass('error')) {
+                    $("error").hide();
+                    $(this).removeClass('error');
+                    $(this).siblings('button').removeClass('red');
+                }
+            });
+
+            var body = $("container logs");
+            if (body.scrollTop() >= body[0].scrollHeight - 400)
+            {
+                body.scrollTop(body[0].scrollHeight);
+            }
+
+            function ShowError(message, input)
+            {
+                $(input).siblings('error').html(message);
+                $(input).siblings('error').show();
+                $(input).siblings('button').addClass('red');
+                $(input).addClass('error');
+            }
+        </script>
+    </body>
+</html>

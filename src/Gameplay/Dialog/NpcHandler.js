@@ -98,12 +98,13 @@ API.onResourceStop.connect(() => {
 });
 API.onKeyUp.connect(function (sender, e) {
     if (e.KeyCode === Keys.R) {
+        if (!API.getCefBrowserHeadless(resource.DialogController.dlgBrowser))
+            return;
         var position = API.getEntityPosition(API.getLocalPlayer());
         for (let i = 0; i < _NPC.length; i++) {
             if (_NPC[i].position.DistanceTo(position) > 1.25)
                 continue;
-            if (API.getCefBrowserHeadless(resource.DialogController.browser))
-                API.triggerServerEvent("OnPlayerTalkToNpc", i);
+            API.triggerServerEvent("OnPlayerTalkToNpc", i);
         }
     }
 });

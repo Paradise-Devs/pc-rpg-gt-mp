@@ -20,12 +20,12 @@ namespace pcrpg.src.Managers
                 var targetList = players.FindAll(x => x.name.ToLower().Contains(playerName));
                 if (targetList.Count < 1)
                 {
-                    API.shared.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Nenhum jogador com este nome encontrado.");
+                    API.shared.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Nenhum jogador com este nome encontrado.");
                     return null;
                 }
                 else if (targetList.Count > 1)
                 {
-                    API.shared.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Mais de um jogador encontrado, especifique melhor.");
+                    API.shared.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Mais de um jogador encontrado, especifique melhor.");
                     return null;
                 }
                 else

@@ -31,9 +31,9 @@ b {
     color: #fff;
 }
 
-b.dev-color { color: #009587; }
-b.admin-color { color: #F34336; }
-b.mod-color { color: #EDA500; }
+b.dev-color { color: #009587 !important; }
+b.admin-color { color: #F34336 !important; }
+b.mod-color { color: #EDA500 !important; }
 
 button:focus, input:focus, textarea:focus { outline:0 !important; }
 
@@ -2844,6 +2844,7 @@ adminplayerlist player name {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 60%;
+    text-shadow: 0px 0px 8px #000;
 }
 
 adminplayerlist player stats {
@@ -2852,6 +2853,7 @@ adminplayerlist player stats {
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 1.2vh;
+    text-shadow: 0px 0px 8px #000;
 }
 
 adminplayerlist desc {
@@ -2884,7 +2886,7 @@ adminplayerlist player name { color: #aaa; }
 adminplayerlist player:hover name{ color: #ddd; }
 adminplayerlist player.selected name { color: #fff; }
 
-adminplayerlist player stats { color: #555; }
+adminplayerlist player stats { color: #666; }
 adminplayerlist player:hover stats { color: #888; }
 adminplayerlist player.selected stats { color: #aaa; }
 

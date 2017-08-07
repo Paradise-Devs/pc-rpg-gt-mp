@@ -8,7 +8,13 @@ namespace pcrpg.src.Server.Chat
     {
         public ChatApi()
         {
+            API.onChatMessage += OnChatMessage;
             API.onClientEventTrigger += OnClientEventTrigger;
+        }
+
+        private void OnChatMessage(Client sender, string message, CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
 
         private void OnClientEventTrigger(Client sender, string eventName, object[] arguments)

@@ -2,6 +2,7 @@
 
 var mainChat = null;
 var chatBrowser = null;
+var currentTab = "Local";
 
 API.onResourceStart.connect(() =>
 {
@@ -27,7 +28,7 @@ API.onServerEventTrigger.connect((eventName: string, _arguments: any[]) =>
     if (eventName == "OnCommitChatMessage")
     {
         var message = _arguments[0];
-        var tab = _arguments[1];
+        var tab = _arguments[1];        
 
         if (chatBrowser != null)
             chatBrowser.call("addMessage", message, tab);
@@ -69,8 +70,9 @@ function onFocusChange(focus)
 
 function commitMessage(msg, chat)
 {
+    currentTab = chat;
     mainChat.sendMessage(msg);
-    if (msg.replace(/\s/g, '').length)
+    if (msg.replace(/\s/g, '').length && msg.charAt(0) != '/')
     {
         API.triggerServerEvent("OnSendChatMessage", msg, chat);
     }
@@ -79,8 +81,9 @@ function commitMessage(msg, chat)
 function addMessage(msg, hasColor, r, g, b)
 {
     if (chatBrowser != null)
-    {        
-        chatBrowser.call("addMessage", msg);
+    {
+        if (currentTab != "System") chatBrowser.call("addMessage", msg, currentTab);
+        chatBrowser.call("addMessage", msg, "System");
     }
 }
 

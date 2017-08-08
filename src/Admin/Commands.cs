@@ -4,6 +4,7 @@ using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared.Math;
 using pcrpg.src.Database.Models;
 using pcrpg.src.Managers;
+using pcrpg.src.Server.Chat;
 
 namespace pcrpg.src.Admin
 {
@@ -14,16 +15,16 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (sender == target)
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não pode ir até você mesmo.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não pode ir até você mesmo.");
                 else if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     if (!sender.isInVehicle)
@@ -42,16 +43,16 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (sender == target)
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não pode puxar você mesmo.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não pode puxar você mesmo.");
                 else if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     if (!target.isInVehicle)
@@ -70,16 +71,16 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (sender == target)
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não pode congelar você mesmo.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não pode congelar você mesmo.");
                 else if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     target.freeze(true);
@@ -94,14 +95,14 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     target.freeze(false);
@@ -116,11 +117,11 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 sender.position = new Vector3(float.Parse(x), float.Parse(y), float.Parse(z));
-                API.sendChatMessageToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou até a coordenada {x}, {y}, {z}.");
+                API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você teleportou até a coordenada {x}, {y}, {z}.");
             }
         }
 
@@ -129,9 +130,9 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
-                API.sendChatMessageToAll("~#FF4444~", $"* Admin {sender.name} diz: ~w~{message}");
+                ChatApi.SendClientMessageToAll($"* Admin {sender.name} diz: ~w~{message}", "Global");            
         }
 
         [Command("limparchat")]
@@ -139,14 +140,11 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
-                for (int i = 0; i < 25; i++)
-                {
-                    API.sendChatMessageToAll(" ");
-                }
-
+                
+                ChatApi.ClearAllChat();
                 API.sendNotificationToAll("O chat foi limpo por um admin");
             }
         }
@@ -156,14 +154,14 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     target.health = int.Parse(health);
@@ -178,14 +176,14 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     target.kill();
@@ -200,18 +198,18 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
-                    API.sendChatMessageToPlayer(target, "~#FFFF00~", $"PM de {target.name}: {message}");
-                    API.sendChatMessageToPlayer(sender, "~#FFFF00~", $"PM para {target.name}: {message}");
+                    ChatApi.SendClientMessage(target, $"~y~PM de {target.name}: {message}", "Admin");
+                    ChatApi.SendClientMessage(sender, $"~y~PM para {target.name}: {message}", "Admin");
                 }
             }
         }
@@ -221,14 +219,14 @@ namespace pcrpg.src.Admin
         {
             User user = API.getEntityData(sender, "User");
             if (user.Admin < 1)
-                API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
             else
             {
                 Client target = CommandManager.FindPlayer(sender, targetName);
                 if (target == null) return;
 
                 if (!API.hasEntityData(target, "Character"))
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+                    API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 else
                 {
                     User targetUser = API.getEntityData(target, "User");

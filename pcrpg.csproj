@@ -89,6 +89,7 @@
     <Compile Include="src\Player\Data.cs" />
     <Compile Include="src\Player\Customization\CustomizationModel.cs" />
     <Compile Include="src\Player\Inventory\InventoryModel.cs" />
+    <Compile Include="src\Server\Chat\ChatApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\css\gui.css" />

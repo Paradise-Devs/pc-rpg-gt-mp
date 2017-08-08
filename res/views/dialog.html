@@ -50,13 +50,9 @@
 
         $("#exitBtn").click(function(e)
         {
-            exit();
-        });
-
-        function exit()
-        {
+            $("#exitBtn").blur();
             resourceCall("HideNpcDialog");
-        }
+        });        
     </script>
 </body>
 </html>

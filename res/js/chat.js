@@ -14,7 +14,7 @@ $('ul li').click(function ()
         $('messages').removeClass('selected active');
 
         $(this).addClass('selected');
-        $('messages[data-name="' + $(this).data("name") + '"]').addClass('selected active');        
+        $('messages[data-name="' + $(this).data("name") + '"]').addClass('selected active');
     }
 });
 
@@ -56,31 +56,43 @@ function setFocus(focus)
     }
 }
 
-function addMessage(msg)
+function addMessage(msg, chat)
 {
+    if (!$("messages").find("[data-name='" + chat + "']"))
+    {
+        console.log("ERROR: Chat tab not found!");
+        return;
+    }
+
     var child = $("<msg>" + formatMsg(msg) + "</msg>");
     child.hide();
-    $("messages.selected").append(child);
+        
+    $('messages[data-name="' + chat + '"]').append(child);
     child.fadeIn();
 
     updateScroll();
 }
 
+function clearChat()
+{
+    $('messages').empty();
+}
+
 function formatMsg(input)
 {
-    var start = '<span style="color: white;">';
-    var output = start;
+    var output = '';
 
-    var pass1 = input.replace("~b~", '</span><span style="color: #07d7ff;">');
-    var pass2 = pass1.replace("~g~", '</span><span style="color: #15c39a;">');
-    var pass3 = pass2.replace("~r~", '</span><span style="color: #f23452;">');
-    var pass4 = pass3.replace("~p~", '</span><span style="color: #ee1289;">');
-    var pass5 = pass4.replace("~y~", '</span><span style="color: #faeaac;">');
-    var pass6 = pass5.replace("~o~", '</span><span style="color: #ffb733;">');
-    var pass7 = pass6.replace("~s~", '</span><span style="color: #bad3e1;">');
-    var pass8 = pass7.replace("~w~", '</span><span style="color: #fff;">');
+    var pass1 = input.replace(/~b~/g, '</span><span style="color: #07d7ff;">');
+    var pass2 = pass1.replace(/~g~/g, '</span><span style="color: #31a50d;">');
+    var pass3 = pass2.replace(/~r~/g, '</span><span style="color: #f23452;">');
+    var pass4 = pass3.replace(/~p~/g, '</span><span style="color: #ee1289;">');
+    var pass5 = pass4.replace(/~y~/g, '</span><span style="color: #ffe801;">');
+    var pass6 = pass5.replace(/~o~/g, '</span><span style="color: #ffb733;">');
+    var pass7 = pass6.replace(/~s~/g, '</span><span style="color: #bad3e1;">');
+    var pass8 = pass7.replace(/~c~/g, '</span><span style="color: #d3d3d3;">');
+    var pass9 = pass8.replace(/~w~/g, '</span><span style="color: #fff;">');
 
-    return output + pass8 + "</span>";
+    return output + pass9;
 }
 
 function updateScroll()
@@ -99,7 +111,8 @@ function onKeyUp(event)
         var m = $("input").val();
         try
         {
-            resourceCall("commitMessage", (m ? m + "" : " "));
+            var chat = $('messages.selected').data("name");
+            resourceCall("commitMessage", (m ? m + "" : " "), chat);
         }
         catch (err)
         {

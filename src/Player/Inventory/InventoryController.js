@@ -1,40 +1,43 @@
 "use strict";
 /// <reference path='../../../types-gt-mp/index.d.ts' />
-var browser = null;
+var invBrowser = null;
 API.onResourceStart.connect(() => {
-    InitializeInventoryBrowser();
+    var res = API.getScreenResolution();
+    invBrowser = API.createCefBrowser(res.Width, res.Height);
+    API.waitUntilCefBrowserInit(invBrowser);
+    API.setCefBrowserPosition(invBrowser, 0, 0);
+    API.loadPageCefBrowser(invBrowser, "res/views/inventory.html");
+    API.setCefBrowserHeadless(invBrowser, true);
 });
 API.onResourceStop.connect(() => {
-    if (browser != null) {
-        API.destroyCefBrowser(browser);
-        browser = null;
+    if (invBrowser != null) {
+        API.destroyCefBrowser(invBrowser);
+        invBrowser = null;
     }
 });
 API.onKeyUp.connect(function (sender, e) {
     if (e.KeyCode === Keys.I) {
-        if (browser == null || !API.isCefBrowserInitialized(browser))
-            InitializeInventoryBrowser();
-        if (API.getCefBrowserHeadless(browser)) {
+        if (API.getCefBrowserHeadless(invBrowser)) {
             API.triggerServerEvent("GetCharacterItems");
         }
         else {
             API.showCursor(false);
             API.startAudio("res/sounds/inventory/close.wav", false);
-            API.setCefBrowserHeadless(browser, true);
+            API.setCefBrowserHeadless(invBrowser, true);
         }
     }
 });
 API.onServerEventTrigger.connect(function (eventName, args) {
     if (eventName == "UpdateCharacterItems") {
-        if (browser == null)
+        if (invBrowser == null)
             return;
         API.showCursor(true);
         API.startAudio("res/sounds/inventory/open.wav", false);
-        API.setCefBrowserHeadless(browser, false);
-        browser.call("DrawItems", args[0], args[1]);
+        API.setCefBrowserHeadless(invBrowser, false);
+        invBrowser.call("DrawItems", args[0], args[1]);
     }
     else if (eventName == "OnItemDiscarded") {
-        browser.call("OnItemDiscarded", args[0]);
+        invBrowser.call("OnItemDiscarded", args[0]);
     }
 });
 function onUseItem(id) {
@@ -42,11 +45,4 @@ function onUseItem(id) {
 }
 function onDiscardItem(id) {
     API.triggerServerEvent("DiscardItem", id);
-}
-function InitializeInventoryBrowser() {
-    var res = API.getScreenResolution();
-    browser = API.createCefBrowser(res.Width, res.Height);
-    API.setCefBrowserHeadless(browser, true);
-    API.setCefBrowserPosition(browser, 0, 0);
-    API.loadPageCefBrowser(browser, "res/views/inventory.html");
 }

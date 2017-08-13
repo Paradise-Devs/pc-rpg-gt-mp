@@ -7,7 +7,7 @@ namespace pcrpg.src.Database
     {
         public Main()
         {
-            ContextFactory.SetConnectionParameters("127.0.0.1", "root", "root", "pcrpg");
+            ContextFactory.SetConnectionParameters("127.0.0.1", "root", "", "pcrpg");
         }
     }
 }

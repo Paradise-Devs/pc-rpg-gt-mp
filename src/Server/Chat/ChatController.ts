@@ -46,7 +46,7 @@ API.onResourceStop.connect(function ()
     {
         var localCopy = chatBrowser;
         chatBrowser = null;
-        API.destroyCefBrowser(localCopy);
+        API.destroyCefBrowser(localCopy);		
     }
 });
 

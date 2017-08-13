@@ -14,7 +14,7 @@ namespace pcrpg
         private void OnResourceStart()
         {
             API.setGamemodeName("pcrpg v0.2.0");
-            API.setCommandErrorMessage("~r~ERRO: ~w~Comando inválido.");
+            API.setCommandErrorMessage("~r~ERRO: ~w~Comando inválido.");            
 
             Timer timer = new Timer(600000);
             timer.Elapsed += OnSaveChanges;

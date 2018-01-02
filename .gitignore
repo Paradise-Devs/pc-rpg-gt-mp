@@ -6,6 +6,9 @@
 ## Docs folder
 docs
 
+## Data folder
+data
+
 ## Ignore VSCode files
 .vscode
 

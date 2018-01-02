@@ -12,6 +12,7 @@
   "files": [
     "src/Gameplay/Dialog/DialogController.ts",
     "src/Gameplay/Dialog/NpcHandler.ts",
+    "src/Gameplay/Dealership/Dealership.ts",
     "src/Player/Auth/Login.ts",
     "src/Player/Creation/CharacterCreator.ts",
     "src/Player/Customization/CustomizationController.ts",

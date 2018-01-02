@@ -5,6 +5,9 @@
 
   <!-- Gameplay -->
 
+  <!-- Dealership -->
+  <script src="src/Gameplay/Dealership/Dealership.js" type="client" lang="javascript"/>
+  
   <!-- Dialog System -->
   <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>
   <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
@@ -28,6 +31,16 @@
 
   <!-- Server -->
   <script src="src/Server/Chat/ChatController.js" type="client" lang="javascript"/>
+
+  <!-- Settings -->
+  <settings>
+    <!-- Dealership -->
+    <setting name="dealershipDirName" value="data/Dealership" default="data/Dealership" description="Directory name of the save files." />
+    <setting name="playerDealershipLimit" value="0" default="1" description="Maximum amount of dealership a player can own. (0 to disable)" />
+    <setting name="dealershipMoneyLimit" value="5000000" default="5000000" description="Maximum amount of money a dealership can have." />
+
+    <setting name="saveInterval" value="120" default="120" description="Seconds between two save operations." />
+  </settings>
 
   <!-- Resources -->
 

@@ -50,7 +50,7 @@ namespace pcrpg.src.Gameplay.Vehicles
         {
             if (!API.getVehicleEngineStatus(vehicle) && !Dealership.Main.IsADealershipVehicle(vehicle) && seat == -1)
             {
-                player.sendNotification("", "O motor deste veículo está desligado, para ligar pressione ~g~Y~s~.");
+                player.sendNotification("", "O motor deste veículo está desligado, pressione ~g~Y~s~.");
             }
         }
     }

@@ -74,6 +74,13 @@ namespace pcrpg.src.Player.Vehicle
                     API.setEntityRotation(vehicle.Entity, parkingSpace.Rotation);
                     sender.giveMoney(-DepositPrice);
                 }
+                else if (sender.position.DistanceTo(API.getEntityPosition(vehicle.Entity)) < 40f)
+                {
+                    bool isLocked = API.getVehicleLocked(vehicle.Entity);
+                    if (isLocked) sender.sendChatAction((sender.isInVehicle) ? ((vehicle.Entity == sender.vehicle) ? "destranca o veículo." : "destranca o veículo com o controle remoto.") : "destranca o veículo com o controle remoto.");
+                    else sender.sendChatAction((sender.isInVehicle) ? ((vehicle.Entity == sender.vehicle) ? "tranca o veículo." : "tranca o veículo com o controle remoto.") : "tranca o veículo com o controle remoto.");
+                    API.setVehicleLocked(vehicle.Entity, !isLocked);
+                }
                 else
                 {
                     Vector3 position = API.getEntityPosition(vehicle.Entity);
@@ -166,43 +173,6 @@ namespace pcrpg.src.Player.Vehicle
                     else
                         PlayerVehicles.Add(player, new List<PlayerVehicle> { new PlayerVehicle { Id = vehicle.Id, Entity = veh } });
                 }
-            }
-        }
-
-        [Command("trancar", Alias = "destrancar")]
-        public void LockVehCommand(Client player)
-        {
-            if (PlayerVehicles.ContainsKey(player))
-            {
-                NetHandle closestVehicle = new NetHandle();
-                float distanceFromClosestVehicle = 40f;
-                foreach (var vehicle in PlayerVehicles[player])
-                {
-                    var distance = player.position.DistanceTo(API.getEntityPosition(vehicle.Entity));
-                    if (player.position.DistanceTo(API.getEntityPosition(vehicle.Entity)) < 40.0f && distance < distanceFromClosestVehicle)
-                    {
-                        closestVehicle = vehicle.Entity;
-                        distanceFromClosestVehicle = distance;
-                    }
-                }
-
-                foreach (var vehicle in PlayerVehicles[player])
-                {
-                    if (vehicle.Entity == closestVehicle)
-                    {
-                        bool isLocked = API.getVehicleLocked(vehicle.Entity);
-                        if (isLocked) player.sendChatAction((player.isInVehicle) ? ((vehicle.Entity == player.vehicle) ? "desbloquea el vehículo." : "desbloquea el vehículo con control remoto.") : "desbloquea el vehículo con control remoto.");
-                        else player.sendChatAction((player.isInVehicle) ? ((vehicle.Entity == player.vehicle) ? "bloquea el vehículo." : "bloquea el vehículo con control remoto.") : "bloquea el vehículo con control remoto.");
-                        API.setVehicleLocked(vehicle.Entity, !isLocked);
-                        return;
-                    }
-                }
-
-                API.sendChatMessageToPlayer(player, "~r~ERRO: ~s~Você está muito longe de seu veículo.");
-            }
-            else
-            {
-                API.sendChatMessageToPlayer(player, "~r~ERRO: ~s~Você não tem um veículo.");
             }
         }
     }

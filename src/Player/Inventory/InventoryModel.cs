@@ -37,13 +37,16 @@ namespace pcrpg.src.Player.Inventory
                 if (!API.hasEntityData(sender, "Character")) return;
 
                 int itemId = (int)arguments[0];
-                var item = ContextFactory.Instance.Items.FirstOrDefault(up => up.Id == itemId);
-                if (item != null)
+                using (var ctx = new ContextFactory().Create())
                 {
-                    ContextFactory.Instance.Items.Remove(item);
-                    ContextFactory.Instance.SaveChanges();
-                    API.triggerClientEvent(sender, "OnItemDiscarded", true);
-                }                
+                    var item = ctx.Items.FirstOrDefault(up => up.Id == itemId);
+                    if (item != null)
+                    {
+                        ctx.Items.Remove(item);
+                        API.triggerClientEvent(sender, "OnItemDiscarded", true);
+                        ctx.SaveChanges();
+                    }
+                }
             }
         }
     }

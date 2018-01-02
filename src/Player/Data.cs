@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using pcrpg.src.Database.Models;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
@@ -33,17 +34,24 @@ namespace pcrpg.src.Player
         {
             if (API.hasEntityData(player, "Character"))
             {
-                Character character = API.getEntityData(player, "Character");
+                using (var ctx = new ContextFactory().Create())
+                {
+                    Character tempCharacter = player.getData("Character");
+                    Character character = ctx.Characters.FirstOrDefault(x => x.Id == tempCharacter.Id);
 
-                character.PositionX = player.position.X;
-                character.PositionY = player.position.Y;
-                character.PositionZ = player.position.Z;
-                character.RotationZ = player.rotation.Z;
+                    character.PositionX = player.position.X;
+                    character.PositionY = player.position.Y;
+                    character.PositionZ = player.position.Z;
+                    character.RotationZ = player.rotation.Z;
 
-                character.PlayedTime += (DateTime.Now - character.LastLogin).TotalSeconds;
-                character.LastLogin = DateTime.Now;
+                    character.PlayedTime += (DateTime.Now - tempCharacter.LastLogin).TotalSeconds;
+                    character.LastLogin = DateTime.Now;
+
+                    ctx.SaveChanges();
+
+                    player.setData("Character", character);
+                }
             }
-            ContextFactory.Instance.SaveChanges();
         }
     }
 }

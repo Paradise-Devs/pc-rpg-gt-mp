@@ -21,9 +21,11 @@ namespace pcrpg.src.Gameplay.DialogSystem
 
                 int npcid = (int)arguments[0];
                 Character character = API.getEntityData(sender, "Character");
-
-                var dialogData = ContextFactory.Instance.Dialogs.FirstOrDefault(up => up.NpcId == npcid && up.CharacterId == character.Id);
-                API.triggerClientEvent(sender, "NpcDialogData", npcid, API.toJson(dialogData));
+                using (var ctx = new ContextFactory().Create())
+                {
+                    var dialogData = ctx.Dialogs.FirstOrDefault(up => up.NpcId == npcid && up.CharacterId == character.Id);
+                    API.triggerClientEvent(sender, "NpcDialogData", npcid, API.toJson(dialogData));
+                }
             }
             else if (eventName == "OnSelectAnswer")
             {
@@ -31,16 +33,19 @@ namespace pcrpg.src.Gameplay.DialogSystem
                 int answerid = (int)arguments[1];
 
                 Character character = API.getEntityData(sender, "Character");
-                Dialog dialogData = ContextFactory.Instance.Dialogs.FirstOrDefault(up => up.NpcId == npcid && up.CharacterId == character.Id);
-                if (dialogData == null)
+                using (var ctx = new ContextFactory().Create())
                 {
-                    dialogData = new Dialog { CharacterId = character.Id, NpcId = npcid, CurrentConversation = 0 };
-                    ContextFactory.Instance.Dialogs.Add(dialogData);
+                    Dialog dialogData = ctx.Dialogs.FirstOrDefault(up => up.NpcId == npcid && up.CharacterId == character.Id);
+                    if (dialogData == null)
+                    {
+                        dialogData = new Dialog { CharacterId = character.Id, NpcId = npcid, CurrentConversation = 0 };
+                        ctx.Dialogs.Add(dialogData);
+                    }
+                    dialogData.CurrentConversation++;
+                    dialogData.LastAnswer = answerid;
+                    API.triggerClientEvent(sender, "NpcDialogData", npcid, API.toJson(dialogData));
+                    ctx.SaveChanges();
                 }
-                dialogData.CurrentConversation++;
-                dialogData.LastAnswer = answerid;
-                API.triggerClientEvent(sender, "NpcDialogData", npcid, API.toJson(dialogData));
-                ContextFactory.Instance.SaveChanges();
             }
         }
     }

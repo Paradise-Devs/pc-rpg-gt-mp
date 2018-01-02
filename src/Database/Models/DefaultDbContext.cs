@@ -39,20 +39,7 @@ namespace pcrpg.src.Database.Models
             };
 
             ConnectionString = connectionStringBuilder.ToString();
-        }
-
-        [ThreadStatic]
-        private static DefaultDbContext _instance;
-
-        public static DefaultDbContext Instance
-        {
-            get
-            {
-                if (_instance != null) return _instance;
-                return _instance = new ContextFactory().Create();
-            }
-            private set { }
-        }
+        }        
 
         public DefaultDbContext Create()
         {

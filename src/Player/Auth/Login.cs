@@ -19,28 +19,31 @@ namespace pcrpg.src.Player.Auth
         }        
 
         private void OnPlayerDownloaded(Client player)
-        {            
-            var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.SocialClubName == player.socialClubName);
-            if (user != null)
+        {
+            using (var ctx = new ContextFactory().Create())
             {
-                user.LastIp = player.address;
-                API.setEntityData(player, "User", user);
-                API.triggerClientEvent(player, "ShowCharacterSelection");
-
-                ContextFactory.Instance.SaveChanges();
-            }
-            else
-            {
-                Dictionary<string, string> playerData = new Dictionary<string, string>()
+                var user = ctx.Users.FirstOrDefault(up => up.SocialClubName == player.socialClubName);
+                if (user != null)
                 {
-                    { "name", player.name},
-                    { "socialClub", player.socialClubName}
-                };                
-                API.triggerClientEvent(player, "ShowLoginForm", new JavaScriptSerializer().Serialize(playerData));
-            }
+                    user.LastIp = player.address;
+                    API.setEntityData(player, "User", user);
+                    API.triggerClientEvent(player, "ShowCharacterSelection");
 
-            int dimension = Managers.DimensionManager.RequestPrivateDimension(player);
-            API.setEntityDimension(player, dimension);
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    Dictionary<string, string> playerData = new Dictionary<string, string>()
+                    {
+                        { "name", player.name},
+                        { "socialClub", player.socialClubName}
+                    };                
+                    API.triggerClientEvent(player, "ShowLoginForm", new JavaScriptSerializer().Serialize(playerData));
+                }
+
+                int dimension = Managers.DimensionManager.RequestPrivateDimension(player);
+                API.setEntityDimension(player, dimension);
+            }
         }
 
         private void OnClientEventTrigger(Client sender, string eventName, object[] arguments)
@@ -49,17 +52,19 @@ namespace pcrpg.src.Player.Auth
             {
                 string username = (string)arguments[0];
                 string password = Encrypt((string)arguments[1]);
-
-                var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.Username == username && up.Password == password);
-                if (user != null)
+                using (var ctx = new ContextFactory().Create())
                 {
-                    user.SocialClubName = sender.socialClubName;
-                    API.setEntityData(sender, "User", user);
-                    API.triggerClientEvent(sender, "ShowCharacterSelection");
-                }
-                else
-                {
-                    API.triggerClientEvent(sender, "LoginError", "Usuário ou senha incorreta.");
+                    var user = ctx.Users.FirstOrDefault(up => up.Username == username && up.Password == password);
+                    if (user != null)
+                    {
+                        user.SocialClubName = sender.socialClubName;
+                        API.setEntityData(sender, "User", user);
+                        API.triggerClientEvent(sender, "ShowCharacterSelection");
+                    }
+                    else
+                    {
+                        API.triggerClientEvent(sender, "LoginError", "Usuário ou senha incorreta.");
+                    }
                 }
             }
             else if (eventName == "RegisterAttempt")
@@ -68,20 +73,23 @@ namespace pcrpg.src.Player.Auth
                 string password = Encrypt((string)arguments[1]);
                 string emailadd = (string)arguments[2];
 
-                var user = ContextFactory.Instance.Users.FirstOrDefault(up => up.Username == username);
-                if (user == null)
+                using (var ctx = new ContextFactory().Create())
                 {
-                    user = new User { Username = username, Password = password, Email = emailadd, SocialClubName = sender.socialClubName, Admin = 0, LastIp = sender.address };
-                    ContextFactory.Instance.Users.Add(user);
+                    var user = ctx.Users.FirstOrDefault(up => up.Username == username);
+                    if (user == null)
+                    {
+                        user = new User { Username = username, Password = password, Email = emailadd, SocialClubName = sender.socialClubName, Admin = 0, LastIp = sender.address };
+                        ctx.Users.Add(user);
 
-                    API.setEntityData(sender, "User", user);
-                    API.triggerClientEvent(sender, "ShowCharacterSelection");
+                        API.setEntityData(sender, "User", user);
+                        API.triggerClientEvent(sender, "ShowCharacterSelection");
 
-                    ContextFactory.Instance.SaveChanges();
-                }
-                else
-                {
-                    API.triggerClientEvent(sender, "LoginError", "Este usuário já está em uso.");
+                        ctx.SaveChanges();
+                    }
+                    else
+                    {
+                        API.triggerClientEvent(sender, "LoginError", "Este usuário já está em uso.");
+                    }
                 }
             }
         }

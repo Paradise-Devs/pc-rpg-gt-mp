@@ -1,6 +1,4 @@
-﻿using System.Timers;
-using GrandTheftMultiplayer.Server.API;
-using pcrpg.src.Database.Models;
+﻿using GrandTheftMultiplayer.Server.API;
 
 namespace pcrpg
 {
@@ -14,16 +12,7 @@ namespace pcrpg
         private void OnResourceStart()
         {
             API.setGamemodeName("pcrpg v0.2.0");
-            API.setCommandErrorMessage("~r~ERRO: ~w~Comando inválido.");            
-
-            Timer timer = new Timer(600000);
-            timer.Elapsed += OnSaveChanges;
-            timer.Enabled = true;
-        }
-
-        private void OnSaveChanges(object sender, ElapsedEventArgs e)
-        {
-            ContextFactory.Instance.SaveChanges();
-        }
+            API.setCommandErrorMessage("~r~ERRO: ~w~Comando inválido.");
+        }        
     }
 }

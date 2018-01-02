@@ -21,46 +21,54 @@ namespace pcrpg.src.Player.Selection
             {
                 if (!API.hasEntityData(sender, "User")) return;
                 User user = API.getEntityData(sender, "User");
-                
-                var characters = ContextFactory.Instance.Characters.Where(up => up.UserId == user.Id);
-                API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+                using (var ctx = new ContextFactory().Create())
+                {
+                    var characters = ctx.Characters.Where(up => up.UserId == user.Id).ToList();
+                    API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+                }
             }
             else if (eventName == "SelectCharacter")
             {
                 int characterId = (int)arguments[0];
-                var character = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Id == characterId);
-                API.setEntityData(sender, "Character", character);                
+                using (var ctx = new ContextFactory().Create())
+                {
+                    var character = ctx.Characters.FirstOrDefault(up => up.Id == characterId);
+                    API.setEntityData(sender, "Character", character);
 
-                sender.name = character.Name;
-                character.LastLogin = DateTime.Now;
+                    sender.name = character.Name;
+                    character.LastLogin = DateTime.Now;
 
-                API.setEntityPositionFrozen(sender, false);
-                API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));
-                API.setEntityRotation(sender, new Vector3(0f, 0f, character.RotationZ));
+                    API.setEntityPositionFrozen(sender, false);
+                    API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));
+                    API.setEntityRotation(sender, new Vector3(0f, 0f, character.RotationZ));
 
-                // Sync player face with other players
-                Customization.CustomizationModel gtao = new Customization.CustomizationModel();
-                gtao.InitializePedFace(sender);
-                gtao.UpdatePlayerFace(sender);
+                    // Sync player face with other players
+                    Customization.CustomizationModel gtao = new Customization.CustomizationModel();
+                    gtao.InitializePedFace(sender);
+                    gtao.UpdatePlayerFace(sender);
 
-                Managers.DimensionManager.DismissPrivateDimension(sender);
-                API.setEntityDimension(sender, 0);
+                    Managers.DimensionManager.DismissPrivateDimension(sender);
+                    API.setEntityDimension(sender, 0);
+                }                    
             }
             else if (eventName == "DeleteCharacter")
             {
                 int characterId = (int)arguments[0];
-                var character = ContextFactory.Instance.Characters.FirstOrDefault(up => up.Id == characterId);
-                if (character != null)
+                using (var ctx = new ContextFactory().Create())
                 {
-                    ContextFactory.Instance.Characters.Remove(character);
-                    ContextFactory.Instance.SaveChanges();
+                    var character = ctx.Characters.FirstOrDefault(up => up.Id == characterId);
+                    if (character != null)
+                    {
+                        ctx.Characters.Remove(character);
+                        ctx.SaveChanges();
+                    }
+
+                    if (!API.hasEntityData(sender, "User")) return;
+                    User user = API.getEntityData(sender, "User");
+
+                    var characters = ctx.Characters.Where(up => up.UserId == user.Id);
+                    API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
                 }
-
-                if (!API.hasEntityData(sender, "User")) return;
-                User user = API.getEntityData(sender, "User");
-
-                var characters = ContextFactory.Instance.Characters.Where(up => up.UserId == user.Id);
-                API.triggerClientEvent(sender, "UpdateCharactersList", JsonConvert.SerializeObject(characters, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
             }
         }
     }

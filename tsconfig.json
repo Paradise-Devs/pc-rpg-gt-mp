@@ -13,6 +13,7 @@
     "src/Gameplay/Dialog/DialogController.ts",
     "src/Gameplay/Dialog/NpcHandler.ts",
     "src/Gameplay/Dealership/Dealership.ts",
+    "src/Gameplay/Vehicle/VehicleEngine.ts",
     "src/Player/Vehicle/PersonalVehicleMenu.ts",
     "src/Player/Auth/Login.ts",
     "src/Player/Creation/CharacterCreator.ts",

@@ -5,6 +5,9 @@
 
   <!-- Gameplay -->
 
+  <!-- Vehicles -->
+  <script src="src/Gameplay/Vehicle/VehicleEngine.js" type="client" lang="javascript"/>
+  
   <!-- Dealership -->
   <script src="src/Gameplay/Dealership/Dealership.js" type="client" lang="javascript"/>
   

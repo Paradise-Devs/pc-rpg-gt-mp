@@ -97,6 +97,7 @@
     <Compile Include="src\Gameplay\Dialog\DialogModel.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Commands.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Parkinglot.cs" />
+    <Compile Include="src\Gameplay\Vehicle\VehicleEngine.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Managers\CommandManager.cs" />
@@ -143,6 +144,7 @@
     <TypeScriptCompile Include="src\Gameplay\Dealership\Dealership.ts" />
     <TypeScriptCompile Include="src\Gameplay\Dialog\DialogController.ts" />
     <TypeScriptCompile Include="src\Gameplay\Dialog\NpcHandler.ts" />
+    <TypeScriptCompile Include="src\Gameplay\Vehicle\VehicleEngine.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <TypeScriptCompile Include="src\Player\Selection\CharacterSelector.ts" />

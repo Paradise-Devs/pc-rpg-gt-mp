@@ -85,7 +85,7 @@ function formatMsg(input)
     var pass1 = input.replace(/~b~/g, '</span><span style="color: #07d7ff;">');
     var pass2 = pass1.replace(/~g~/g, '</span><span style="color: #31a50d;">');
     var pass3 = pass2.replace(/~r~/g, '</span><span style="color: #f23452;">');
-    var pass4 = pass3.replace(/~p~/g, '</span><span style="color: #ee1289;">');
+    var pass4 = pass3.replace(/~p~/g, '</span><span style="color: #DA70D6;">');
     var pass5 = pass4.replace(/~y~/g, '</span><span style="color: #ffe801;">');
     var pass6 = pass5.replace(/~o~/g, '</span><span style="color: #ffb733;">');
     var pass7 = pass6.replace(/~s~/g, '</span><span style="color: #bad3e1;">');

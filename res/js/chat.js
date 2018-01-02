@@ -64,6 +64,10 @@ function addMessage(msg, chat)
         return;
     }
 
+    activateUI();
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () { deactivateUI(); }, 5000);
+
     var child = $("<msg>" + formatMsg(msg) + "</msg>");
     child.hide();
         

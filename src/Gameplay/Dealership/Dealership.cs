@@ -255,7 +255,7 @@ namespace pcrpg.src.Gameplay.Dealership
                 {
                     if (vehicle == v.Vehicle)
                     {
-                        API.sendChatMessageToPlayer(player, "~y~INFO: ~s~Para comprar este veículo, aperte ~y~E~w~.");
+                        player.sendNotification("", "Para comprar este veículo, aperte ~p~E~w~.");
                         player.setData("Dealership_ID", dealership);
                         player.setData("DealershipVehicle_ID", v);
                         player.triggerEvent("OnEnterDealershipVehicle");

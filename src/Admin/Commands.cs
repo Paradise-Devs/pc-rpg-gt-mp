@@ -22,6 +22,7 @@ namespace pcrpg.src.Admin
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
             API.sendChatMessageToPlayer(player, "* /ir - /puxar - /congelar - /descongelar - irpos - /say - /limparchat - /sethp - /kill - /pm");
             API.sendChatMessageToPlayer(player, "* /givemoney - /setadmin");
+            API.sendChatMessageToPlayer(player, "* /dcmds - /pcmds");
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
         }
 

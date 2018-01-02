@@ -4,7 +4,9 @@ using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Shared.Math;
 using pcrpg.src.Database.Models;
+using pcrpg.src.Gameplay.Parkinglot;
 using pcrpg.src.Player.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,7 +48,7 @@ namespace pcrpg.src.Player.Vehicle
             }
             else if (eventName == "on_player_select_owned_vehicle")
             {
-                if (sender.position.DistanceTo(new Vector3(100.3687f, -1073.308f, 29.37412f)) < 2f && sender.getMoney() < DepositPrice)
+                if (sender.hasData("ParkinglotMarker_ID") && sender.getMoney() < DepositPrice)
                 {
                     API.sendChatMessageToPlayer(sender, "~r~ERRO: ~s~Você não tem dinheiro suficiente.");
                     return;
@@ -56,11 +58,21 @@ namespace pcrpg.src.Player.Vehicle
                 var vehicle = PlayerVehicles[sender].FirstOrDefault(x => x.Id == vehicle_id);
                 if (vehicle == null) return;
 
-                if (sender.position.DistanceTo(new Vector3(100.3687f, -1073.308f, 29.37412f)) < 2f)
+                if (sender.hasData("ParkinglotMarker_ID"))
                 {
+                    Parkinglot parkinglot = Gameplay.Parkinglot.Main.Parkinglots.FirstOrDefault(h => h.ID == sender.getData("ParkinglotMarker_ID"));
+                    if (parkinglot == null) return;
+                    else if (parkinglot.Spawns.Count < 1)
+                    {
+                        sender.sendNotification("", "Este estacionamento está fechado.");
+                        return;
+                    }
+
+                    var rand = new Random();
+                    var parkingSpace = parkinglot.Spawns[rand.Next(parkinglot.Spawns.Count)];
+                    API.setEntityPosition(vehicle.Entity, parkingSpace.Position);
+                    API.setEntityRotation(vehicle.Entity, parkingSpace.Rotation);
                     sender.giveMoney(-DepositPrice);
-                    API.setEntityPosition(vehicle.Entity, new Vector3(121.2536f, -1081.693f, 28.67012f));
-                    API.setEntityRotation(vehicle.Entity, new Vector3(0.4030921f, 0.03285301f, -0.9649991f));
                 }
                 else
                 {

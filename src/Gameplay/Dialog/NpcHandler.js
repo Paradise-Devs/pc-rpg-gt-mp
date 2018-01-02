@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var _NPC = [
     {
         name: "James",
@@ -97,7 +97,7 @@ API.onResourceStop.connect(() => {
     }
 });
 API.onKeyUp.connect(function (sender, e) {
-    if (e.KeyCode === Keys.R) {
+    if (e.KeyCode === Keys.E) {
         if (!API.getCefBrowserHeadless(resource.DialogController.dlgBrowser))
             return;
         var position = API.getEntityPosition(API.getLocalPlayer());
@@ -108,7 +108,7 @@ API.onKeyUp.connect(function (sender, e) {
         }
     }
 });
-API.onServerEventTrigger.connect(function (eventName, args) {
+API.onServerEventTrigger.connect((eventName, args) => {
     if (eventName == "NpcDialogData") {
         var id = args[0];
         var data = JSON.parse(args[1]);

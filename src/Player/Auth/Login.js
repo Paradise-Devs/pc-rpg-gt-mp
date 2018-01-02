@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var player = null;
 var browser = null;
 var canMove = false;
@@ -16,8 +16,8 @@ API.onResourceStart.connect(() => {
     resource.CharacterCreator.ResetCharacterCreation();
     API.startMusic("res/sounds/music01.mp3", true);
 });
-API.onServerEventTrigger.connect((name, args) => {
-    if (name == "ShowLoginForm") {
+API.onServerEventTrigger.connect((eventName, args) => {
+    if (eventName == "ShowLoginForm") {
         player = args[0];
         if (browser == null) {
             var res = API.getScreenResolution();
@@ -31,14 +31,14 @@ API.onServerEventTrigger.connect((name, args) => {
         API.setCanOpenChat(false);
         API.setCefBrowserHeadless(browser, false);
     }
-    else if (name == "ShowCharacterSelection") {
+    else if (eventName == "ShowCharacterSelection") {
         if (browser != null) {
             API.destroyCefBrowser(browser);
             browser = null;
         }
         resource.CharacterSelector.ShowCharacterSelector();
     }
-    else if (name == "LoginError") {
+    else if (eventName == "LoginError") {
         if (browser != null) {
             browser.call("ShowError", args[0]);
         }

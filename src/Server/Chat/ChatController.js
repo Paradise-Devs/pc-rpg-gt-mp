@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var mainChat = null;
 var chatBrowser = null;
 var currentTab = "Local";
@@ -17,10 +17,10 @@ API.onResourceStart.connect(() => {
     mainChat.onFocusChange.connect(onFocusChange);
     mainChat.SanitationLevel = 2;
 });
-API.onServerEventTrigger.connect((eventName, _arguments) => {
+API.onServerEventTrigger.connect((eventName, args) => {
     if (eventName == "OnCommitChatMessage") {
-        var message = _arguments[0];
-        var tab = _arguments[1];
+        var message = args[0];
+        var tab = args[1];
         if (chatBrowser != null)
             chatBrowser.call("addMessage", message, tab);
     }

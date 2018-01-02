@@ -9,9 +9,9 @@
 });
 
 
-API.onServerEventTrigger.connect(function (name, args)
+API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
 {
-    if (name == "UPDATE_CHARACTER")
+    if (eventName == "UPDATE_CHARACTER")
     {
         setPedCharacter(args[0]);
     }

@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var browser = null;
 // Character's Data
 var character_data = {
@@ -38,7 +38,7 @@ API.onResourceStop.connect(() => {
         browser = null;
     }
 });
-API.onServerEventTrigger.connect((eventName, _arguments) => {
+API.onServerEventTrigger.connect((eventName, args) => {
     if (eventName == "closeCharacterCreationBrowser") {
         if (browser != null) {
             API.destroyCefBrowser(browser);
@@ -53,7 +53,8 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
         API.pointCameraAtPosition(endCam, new Vector3(169.3792, -967.8402, 29.98808));
         API.interpolateCameras(startCam, endCam, 10000, false, false);
         API.showCursor(false);
-        API.triggerServerEvent("SpawnPlayerForTheFirstTime");
+        API.playPlayerAnimation("dead", "dead_d", 1);
+        API.after(5000, "spawnPlayerForTheFirstTime");
         resource.Login.stopMusic();
         resource.Login.canMove = true;
     }
@@ -63,6 +64,13 @@ API.onServerEventTrigger.connect((eventName, _arguments) => {
         }
     }
 });
+function spawnPlayerForTheFirstTime() {
+    API.playPlayerAnimation("get_up@standard", "front", 0);
+    API.setActiveCamera(null);
+    API.setCanOpenChat(true);
+    API.setChatVisible(true);
+    API.setHudVisible(true);
+}
 function ChangeCharacterGender(id) {
     character_data.gender = id;
     character_data.faceFirst = 0;

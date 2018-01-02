@@ -5,8 +5,8 @@ API.onResourceStart.connect(function () {
         setPedCharacter(players[i]);
     }
 });
-API.onServerEventTrigger.connect(function (name, args) {
-    if (name == "UPDATE_CHARACTER") {
+API.onServerEventTrigger.connect((eventName, args) => {
+    if (eventName == "UPDATE_CHARACTER") {
         setPedCharacter(args[0]);
     }
 });
@@ -18,7 +18,7 @@ API.onEntityStreamIn.connect(function (ent, entType) {
 function setPedCharacter(ent) {
     if (API.isPed(ent) &&
         API.getEntitySyncedData(ent, "GTAO_HAS_CHARACTER_DATA") === true &&
-        (API.getEntityModel(ent) == 1885233650 ||
+        (API.getEntityModel(ent) == 1885233650 || // FreemodeMale
             API.getEntityModel(ent) == -1667301416)) {
         // FACE
         var shapeFirstId = API.getEntitySyncedData(ent, "GTAO_SHAPE_FIRST_ID");

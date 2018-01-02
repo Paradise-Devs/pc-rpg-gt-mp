@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var invBrowser = null;
 API.onResourceStart.connect(() => {
     var res = API.getScreenResolution();
@@ -27,7 +27,7 @@ API.onKeyUp.connect(function (sender, e) {
         }
     }
 });
-API.onServerEventTrigger.connect(function (eventName, args) {
+API.onServerEventTrigger.connect((eventName, args) => {
     if (eventName == "UpdateCharacterItems") {
         if (invBrowser == null)
             return;

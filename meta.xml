@@ -4,7 +4,6 @@
   <script src="bin/Release/pcrpg.dll" type="server" lang="compiled" />
 
   <!-- Gameplay -->
-  <script src="src/Gameplay/FirstSpawn.js" type="client" lang="javascript"/>
 
   <!-- Dialog System -->
   <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>

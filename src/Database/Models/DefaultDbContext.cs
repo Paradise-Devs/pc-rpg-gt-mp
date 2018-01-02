@@ -41,6 +41,7 @@ namespace pcrpg.src.Database.Models
             ConnectionString = connectionStringBuilder.ToString();
         }
 
+        [ThreadStatic]
         private static DefaultDbContext _instance;
 
         public static DefaultDbContext Instance

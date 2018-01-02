@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path='../../../types-gt-mp/index.d.ts' />
+/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var browser = null;
 var characters = null;
 API.onServerEventTrigger.connect((eventName, args) => {

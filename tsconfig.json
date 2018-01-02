@@ -8,5 +8,16 @@
     "target": "es6",
     "module": "commonjs"
   },
-  "compileOnSave": true
+  "compileOnSave": true,
+  "files": [
+    "src/Gameplay/Dialog/DialogController.ts",
+    "src/Gameplay/Dialog/NpcHandler.ts",
+    "src/Player/Auth/Login.ts",
+    "src/Player/Creation/CharacterCreator.ts",
+    "src/Player/Customization/CustomizationController.ts",
+    "src/Player/Inventory/InventoryController.ts",
+    "src/Player/Selection/CharacterSelector.ts",
+    "src/Player/Utils/Camera.ts",
+    "src/Server/Chat/ChatController.ts"
+  ]
 }

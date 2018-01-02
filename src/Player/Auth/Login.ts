@@ -1,4 +1,4 @@
-﻿/// <reference path='../../../types-gt-mp/index.d.ts' />
+﻿/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 
 var player = null;
 var browser = null;
@@ -23,9 +23,9 @@ API.onResourceStart.connect(() =>
     API.startMusic("res/sounds/music01.mp3", true);    
 });
 
-API.onServerEventTrigger.connect((name: string, args: any[]) =>
+API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
 {
-    if (name == "ShowLoginForm")
+    if (eventName == "ShowLoginForm")
     {
         player = args[0];
         if (browser == null)
@@ -42,7 +42,7 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
         API.setCanOpenChat(false);
         API.setCefBrowserHeadless(browser, false);
     }
-    else if (name == "ShowCharacterSelection")
+    else if (eventName == "ShowCharacterSelection")
     {
         if (browser != null)
         {
@@ -52,7 +52,7 @@ API.onServerEventTrigger.connect((name: string, args: any[]) =>
 
         resource.CharacterSelector.ShowCharacterSelector();
     }
-    else if (name == "LoginError")
+    else if (eventName == "LoginError")
     {
         if (browser != null)
         {            

@@ -1,4 +1,4 @@
-﻿/// <reference path='../../../types-gt-mp/index.d.ts' />
+﻿/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 
 var invBrowser = null;
 
@@ -38,7 +38,7 @@ API.onKeyUp.connect(function (sender, e)
     }
 });
 
-API.onServerEventTrigger.connect(function (eventName: string, args: any[])
+API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
 {
     if (eventName == "UpdateCharacterItems")
     {

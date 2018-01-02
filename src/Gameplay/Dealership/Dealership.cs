@@ -4,6 +4,8 @@ using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Shared.Math;
 using Newtonsoft.Json;
+using pcrpg.src.Database.Models;
+using pcrpg.src.Player.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -230,7 +232,60 @@ namespace pcrpg.src.Gameplay.Dealership
                         int color1 = (int)args[0];
                         int color2 = (int)args[1];
 
-                        player.sendNotification("Dealership", "TO DO: buy car");
+                        Dealership dealership = player.getData("Dealership_ID");
+                        DealershipVehicle vehicle = player.getData("DealershipVehicle_ID");
+
+                        Character character = player.getData("Character");
+                        using (var ctx = new ContextFactory().Create())
+                        {
+                            var _char = ctx.Characters.FirstOrDefault(x => x.Id == character.Id);
+                            if (_char.Vehicles.Count >= 3)
+                            {
+                                API.sendChatMessageToPlayer(player, $"~r~ERRO: ~s~Você pode ter apenas 3 veículos.");
+                                return;
+                            }
+
+                            if (vehicle.Price > character.Money)
+                            {
+                                API.sendChatMessageToPlayer(player, $"~r~ERRO: ~s~Você não tem dinheiro suficiente.");
+                                return;
+                            }
+
+                            var veh = API.createVehicle(vehicle.Model, new Vector3(dealership.VehicleSpawn.X, dealership.VehicleSpawn.Y, dealership.VehicleSpawn.Z), new Vector3(0.0, 0.0, 0.0), color1, color2);
+                            API.setPlayerIntoVehicle(player, veh, -1);
+
+                            player.resetData("Dealership_ID");
+                            player.resetData("DealershipVehicle_ID");
+                            player.triggerEvent("OnExitDealershipVehicle");
+
+                            player.giveMoney(-vehicle.Price);
+                            player.sendNotification("", $"Você comprou um ~g~{veh.displayName}~s~.");
+
+                            CharacterVehicle characterVehicle = new CharacterVehicle
+                            {
+                                Character = _char,
+                                Price = vehicle.Price,
+                                Model = vehicle.Model,
+                                Color1 = color1,
+                                Color2 = color2,
+                                Fuel = 100,
+                                PositionX = veh.position.X,
+                                PositionY = veh.position.Y,
+                                PositionZ = veh.position.Z,
+                                RotationX = 0.0f,
+                                RotationY = 0.0f,
+                                RotationZ = 0.0f,
+                                CreatedAt = DateTime.Now
+                            };
+
+                            ctx.CharacterVehicle.Add(characterVehicle);
+                            ctx.SaveChanges();
+
+                            if (Player.Vehicle.Vehicle.PlayerVehicles.ContainsKey(player))
+                                Player.Vehicle.Vehicle.PlayerVehicles[player].Add(new Player.Vehicle.PlayerVehicle { Id = characterVehicle.Id, Entity = veh });
+                            else
+                                Player.Vehicle.Vehicle.PlayerVehicles.Add(player, new List<Player.Vehicle.PlayerVehicle> { new Player.Vehicle.PlayerVehicle { Id = characterVehicle.Id, Entity = veh } });
+                        }
                         break;
                     }
             }

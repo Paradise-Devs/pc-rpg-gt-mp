@@ -37,6 +37,7 @@ namespace pcrpg.src.Player.Selection
 
                     sender.name = character.Name;
                     character.LastLogin = DateTime.Now;
+                    Vehicle.Vehicle.SpawnPlayerPersonalVehicles(sender);
 
                     API.setEntityPositionFrozen(sender, false);
                     API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));

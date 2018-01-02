@@ -3,16 +3,16 @@
 var is_on_vehicle = false;
 var dealership_purchase_menu = null;
 var colors = [
-    { id: 0, name: "Black" },
-    { id: 4, name: "Silver" },
-    { id: 27, name: "Red" },
-    { id: 36, name: "Orange" },
-    { id: 37, name: "Gold" },
-    { id: 49, name: "Green" },
-    { id: 64, name: "Blue" },
-    { id: 88, name: "Yellow" },
-    { id: 120, name: "Chrome" },
-    { id: 134, name: "White" }
+    { id: 0, name: "Preto" },
+    { id: 134, name: "Branco" },
+    { id: 4, name: "Prata" },
+    { id: 27, name: "Vermelho" },
+    { id: 36, name: "Laranja" },
+    { id: 37, name: "Dourado" },
+    { id: 49, name: "Verde" },
+    { id: 64, name: "Azul" },
+    { id: 88, name: "Amarelo" },
+    { id: 120, name: "Chroma" }    
 ];
 var color1 = 0;
 var color2 = 0;

@@ -39,6 +39,8 @@ namespace pcrpg.src.Database.Models
 
         public virtual ICollection<CharacterClothes> Clothes { get; set; }
 
+        public virtual ICollection<CharacterVehicle> Vehicles { get; set; }
+
         public virtual ICollection<Item> Items { get; set; }
     }
 }

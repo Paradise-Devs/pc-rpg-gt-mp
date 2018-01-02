@@ -3,6 +3,7 @@ using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared.Math;
 using pcrpg.src.Database.Models;
+using pcrpg.src.Player.Utils;
 using pcrpg.src.Server.Chat;
 
 namespace pcrpg.src.Admin
@@ -19,7 +20,8 @@ namespace pcrpg.src.Admin
             }
 
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
-            API.sendChatMessageToPlayer(player, "* /ir - /puxar - /congelar - /descongelar - irpos - /say - /limparchat - /sethp - /kill - /pm - /setadmin");
+            API.sendChatMessageToPlayer(player, "* /ir - /puxar - /congelar - /descongelar - irpos - /say - /limparchat - /sethp - /kill - /pm");
+            API.sendChatMessageToPlayer(player, "* /givemoney - /setadmin");
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
         }
 
@@ -198,8 +200,6 @@ namespace pcrpg.src.Admin
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
                 return;
             }
-            /*Client target = CommandManager.FindPlayer(sender, targetName);
-            if (target == null) return;*/
 
             if (!API.hasEntityData(target, "Character"))
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
@@ -207,6 +207,25 @@ namespace pcrpg.src.Admin
             {
                 ChatApi.SendClientMessage(target, $"~y~PM de {target.name}: {message}", "Admin");
                 ChatApi.SendClientMessage(sender, $"~y~PM para {target.name}: {message}", "Admin");
+            }
+        }
+
+        [Command("givemoney", "~y~USO: ~w~/givemoney [dinheiro] [jogador]")]
+        public void GiveMoney(Client sender, int money, Client target)
+        {
+            if (!sender.IsAdmin())
+            {
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                return;
+            }
+
+            if (!API.hasEntityData(target, "Character"))
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+            else
+            {
+                target.giveMoney(money);
+                API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} deu ~g~${money} ~w~para você.");
+                API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você deu ~g~${money} ~w~para {target.name}.");
             }
         }
 

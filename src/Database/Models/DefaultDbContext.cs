@@ -21,6 +21,7 @@ namespace pcrpg.src.Database.Models
         public DbSet<Character> Characters { get; set; }
         public DbSet<CharacterTrait> Traits { get; set; }
         public DbSet<CharacterClothes> Clothes { get; set; }
+        public DbSet<CharacterVehicle> CharacterVehicle { get; set; }
     }
 
     public class ContextFactory : IDbContextFactory<DefaultDbContext>

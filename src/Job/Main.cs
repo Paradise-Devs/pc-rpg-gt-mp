@@ -84,7 +84,16 @@ namespace pcrpg.src.Job
                         if (job == null) return;
 
                         if (player.getJob() == (int)job.Type)
-                            player.triggerEvent("JobMenu");
+                        {
+                            var services = new List<string>();
+                            switch (job.Type)
+                            {
+                                case JobType.SecurityGuard:
+                                    services.Add("Transporte de dinheiro");
+                                    break;
+                            }
+                            player.triggerEvent("JobMenu", API.toJson(services));
+                        }
                         else if (player.getJob() == null)
                         {
                             player.setJob((int)job.Type);

@@ -11,10 +11,21 @@ API.onServerEventTrigger.connect(function (event_name, args) {
             break;
 
         case "JobMenu":
+            var data = JSON.parse(args[0]);
+
             if (job_menu == null) {
                 job_menu = API.createMenu("Emprego", "~b~Opções do emprego", 0, 0, 6);
             }
             job_menu.Clear();
+
+            for (let i = 0; i < data.length; i++) {
+                var temp_item = API.createMenuItem(data[i], "");
+                job_menu.AddItem(temp_item);
+                temp_item.Activated.connect(function (menu, item) {
+                    job_menu.Visible = false;
+                    API.triggerServerEvent("JobService", data[i]);
+                });
+            }
 
             var temp_item = API.createMenuItem("Sair do emprego", "Abandona seu emprego.");
             job_menu.AddItem(temp_item);

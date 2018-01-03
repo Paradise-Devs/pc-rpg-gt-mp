@@ -33,9 +33,9 @@ namespace pcrpg.src.Job
                 return;
             }
 
-            if (type < 0 || (int)type > Enum.GetNames(typeof(JobType)).Length)
+            if (type < 0 || (int)type > Enum.GetNames(typeof(JobType)).Length - 1)
             {
-                API.sendChatMessageToPlayer(player, $"~r~ERRO: ~s~Tipo inválido, use valores entre 0 e ${Enum.GetNames(typeof(JobType)).Length}.");
+                API.sendChatMessageToPlayer(player, $"~r~ERRO: ~s~Tipo inválido, use valores entre 0 e {Enum.GetNames(typeof(JobType)).Length - 1}.");
                 return;
             }
 
@@ -69,6 +69,10 @@ namespace pcrpg.src.Job
 
             string job_file = Main.JOB_SAVE_DIR + Path.DirectorySeparatorChar + job.ID + ".json";
             if (File.Exists(job_file)) File.Delete(job_file);
+
+            player.resetData("JobMarker_ID");
+            player.triggerEvent("ShowJobText", 0);
+
             API.sendChatMessageToPlayer(player, $"~g~SUCESSO: ~s~Você deletou este emprego.");
         }
 

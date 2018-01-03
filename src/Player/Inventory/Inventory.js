@@ -1,6 +1,7 @@
 "use strict";
 /// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var invBrowser = null;
+var inventoryData = [];
 API.onResourceStart.connect(() => {
     var res = API.getScreenResolution();
     invBrowser = API.createCefBrowser(res.Width, res.Height);
@@ -17,8 +18,11 @@ API.onResourceStop.connect(() => {
 });
 API.onKeyUp.connect(function (sender, e) {
     if (e.KeyCode === Keys.I) {
+        if (API.isChatOpen() || API.isAnyMenuOpen())
+            return;
         if (API.getCefBrowserHeadless(invBrowser)) {
-            API.triggerServerEvent("GetCharacterItems");
+            //API.triggerServerEvent("GetCharacterItems");
+            API.triggerServerEvent("RequestInventory");
         }
         else {
             API.showCursor(false);
@@ -28,17 +32,30 @@ API.onKeyUp.connect(function (sender, e) {
     }
 });
 API.onServerEventTrigger.connect((eventName, args) => {
-    if (eventName == "UpdateCharacterItems") {
+    switch (eventName) {
+        case "ReceiveInventory":
+            // load data
+            inventoryData = JSON.parse(args[0]);
+            API.showCursor(true);
+            API.startAudio("res/sounds/inventory/open.wav", false);
+            API.setCefBrowserHeadless(invBrowser, false);
+            invBrowser.call("DrawItems", args[0]);
+            break;
+    }
+    /*if (eventName == "UpdateCharacterItems")
+    {
         if (invBrowser == null)
             return;
+
         API.showCursor(true);
         API.startAudio("res/sounds/inventory/open.wav", false);
         API.setCefBrowserHeadless(invBrowser, false);
         invBrowser.call("DrawItems", args[0], args[1]);
     }
-    else if (eventName == "OnItemDiscarded") {
+    else if (eventName == "OnItemDiscarded")
+    {
         invBrowser.call("OnItemDiscarded", args[0]);
-    }
+    }*/
 });
 function onUseItem(id) {
     API.triggerServerEvent("UseItem", id);

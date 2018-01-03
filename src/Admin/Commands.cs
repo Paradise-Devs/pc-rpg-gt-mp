@@ -3,6 +3,8 @@ using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared.Math;
 using pcrpg.src.Database.Models;
+using pcrpg.src.Player.Inventory.Classes;
+using pcrpg.src.Player.Inventory.Extensions;
 using pcrpg.src.Player.Utils;
 using pcrpg.src.Server.Chat;
 
@@ -21,7 +23,7 @@ namespace pcrpg.src.Admin
 
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
             API.sendChatMessageToPlayer(player, "* /ir - /puxar - /congelar - /descongelar - irpos - /say - /limparchat - /sethp - /kill - /pm");
-            API.sendChatMessageToPlayer(player, "* /givemoney - /setadmin");
+            API.sendChatMessageToPlayer(player, "* /givemoney - /giveitem - /clearitems - /setadmin");
             API.sendChatMessageToPlayer(player, "* /dcmds - /pcmds - /hcmds");
             API.sendChatMessageToPlayer(player, "~p~~~~~~~~~~~~~~~~~~~~~~ Comandos Admin ~~~~~~~~~~~~~~~~~~~~~");
         }
@@ -227,6 +229,44 @@ namespace pcrpg.src.Admin
                 target.giveMoney(money);
                 API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} deu ~g~${money} ~w~para você.");
                 API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você deu ~g~${money} ~w~para {target.name}.");
+            }
+        }
+
+        [Command("giveitem", "~y~USO: ~w~/giveitem [jogador] [item] [qtd]")]
+        public void GiveItem(Client sender, Client target, ItemID item, int amount)
+        {
+            if (!sender.IsAdmin())
+            {
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                return;
+            }
+
+            if (!API.hasEntityData(target, "Character"))
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+            else
+            {
+                target.giveItem(item, amount);
+                API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} deu ~g~{item} ~w~para você.");
+                API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você deu ~g~{item} ~w~para {target.name}.");
+            }
+        }
+
+        [Command("clearitems", "~y~USO: ~w~/clearitems [jogador]")]
+        public void ClearItems(Client sender, Client target)
+        {
+            if (!sender.IsAdmin())
+            {
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não tem permissão.");
+                return;
+            }
+
+            if (!API.hasEntityData(target, "Character"))
+                API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
+            else
+            {
+                target.clearInventory();
+                API.sendNotificationToPlayer(target, $"~r~ADMIN: ~w~{sender.name} limpou seu inventário.");
+                API.sendNotificationToPlayer(sender, $"~r~ADMIN: ~w~Você limpou o inventário de {target.name}.");
             }
         }
 

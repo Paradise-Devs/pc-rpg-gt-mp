@@ -17,12 +17,44 @@
         <block class="inventory">
             <content>
                 <inventory>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
+                    <item class="empty"></item>
                 </inventory>
             </content>
             <footer class="right">
-                Banco: <money id="bank"></money>
+                Banco: <money id="bank">$0</money>
                 <separator></separator>
-                Carteira: <money id="wallet"></money>
+                Carteira: <money id="wallet">$0</money>
             </footer>
         </block>
     </div>
@@ -76,9 +108,9 @@
                 }
             }
 
-            cash = JSON.parse(cash);
+            /*cash = JSON.parse(cash);
             $('#bank').html("$" + cash[1]);
-            $('#wallet').html("$" + cash[0]);
+            $('#wallet').html("$" + cash[0]);*/
         }
 
         function AddItem(slot, item)

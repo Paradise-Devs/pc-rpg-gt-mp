@@ -1,6 +1,7 @@
 ﻿/// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 
 var invBrowser = null;
+var inventoryData = [];
 
 API.onResourceStart.connect(() =>
 {
@@ -25,9 +26,12 @@ API.onKeyUp.connect(function (sender, e)
 {
     if (e.KeyCode === Keys.I)
     {
+        if (API.isChatOpen() || API.isAnyMenuOpen()) return;
+
         if (API.getCefBrowserHeadless(invBrowser))
         {            
-            API.triggerServerEvent("GetCharacterItems");            
+            //API.triggerServerEvent("GetCharacterItems");
+            API.triggerServerEvent("RequestInventory");
         }
         else
         {
@@ -40,7 +44,17 @@ API.onKeyUp.connect(function (sender, e)
 
 API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
 {
-    if (eventName == "UpdateCharacterItems")
+    switch (eventName) {
+        case "ReceiveInventory":
+            // load data
+            inventoryData = JSON.parse(args[0]);
+            API.showCursor(true);
+            API.startAudio("res/sounds/inventory/open.wav", false);
+            API.setCefBrowserHeadless(invBrowser, false);
+            invBrowser.call("DrawItems", args[0]);
+            break;
+    }
+    /*if (eventName == "UpdateCharacterItems")
     {
         if (invBrowser == null)
             return;
@@ -53,7 +67,7 @@ API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
     else if (eventName == "OnItemDiscarded")
     {
         invBrowser.call("OnItemDiscarded", args[0]);
-    }
+    }*/
 });
 
 function onUseItem(id)

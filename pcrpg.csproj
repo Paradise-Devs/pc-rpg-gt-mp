@@ -109,6 +109,17 @@
     <Compile Include="src\Managers\DimensionManager.cs" />
     <Compile Include="src\Player\Auth\Login.cs" />
     <Compile Include="src\Player\Creation\CharacterCreation.cs" />
+    <Compile Include="src\Player\Inventory\Extensions\ClientExtensions.cs" />
+    <Compile Include="src\Player\Inventory\Classes\DroppedItem.cs" />
+    <Compile Include="src\Player\Inventory\Classes\InventoryItem.cs" />
+    <Compile Include="src\Player\Inventory\Classes\InventoryItemData.cs" />
+    <Compile Include="src\Player\Inventory\Classes\ItemDefinitions.cs" />
+    <Compile Include="src\Player\Inventory\Classes\WorldModel.cs" />
+    <Compile Include="src\Player\Inventory\Interfaces\IDroppable.cs" />
+    <Compile Include="src\Player\Inventory\ItemTypes\ArmorItem.cs" />
+    <Compile Include="src\Player\Inventory\ItemTypes\BaseItem.cs" />
+    <Compile Include="src\Player\Inventory\ItemTypes\WeaponItem.cs" />
+    <Compile Include="src\Player\Inventory\Main.cs" />
     <Compile Include="src\Player\Selection\CharacterSelection.cs" />
     <Compile Include="src\Player\Data.cs" />
     <Compile Include="src\Player\Customization\CustomizationModel.cs" />
@@ -134,6 +145,7 @@
     <Content Include="res\fonts\fontawesome-webfont.svg" />
     <Content Include="res\img\bg.jpg" />
     <Content Include="res\js\character-clothes.js" />
+    <Content Include="res\js\jquery-ui.js" />
     <Content Include="res\js\jquery.js" />
     <Content Include="res\js\pcfw.js" />
     <Content Include="res\js\slider.js" />
@@ -154,9 +166,10 @@
     <TypeScriptCompile Include="src\Gameplay\Vehicle\VehicleEngine.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
+    <Content Include="src\Player\Inventory\ItemDetector.js" />
     <TypeScriptCompile Include="src\Player\Selection\CharacterSelector.ts" />
     <TypeScriptCompile Include="src\Player\Customization\CustomizationController.ts" />
-    <TypeScriptCompile Include="src\Player\Inventory\InventoryController.ts" />
+    <TypeScriptCompile Include="src\Player\Inventory\Inventory.ts" />
     <TypeScriptCompile Include="src\Player\Vehicle\PersonalVehicleMenu.ts" />
     <TypeScriptCompile Include="src\Server\Chat\ChatController.ts" />
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />

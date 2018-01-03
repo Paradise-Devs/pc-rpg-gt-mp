@@ -50,7 +50,7 @@ namespace pcrpg.src.Player.Vehicle
             {
                 if (sender.hasData("ParkinglotMarker_ID") && sender.getMoney() < DepositPrice)
                 {
-                    API.sendChatMessageToPlayer(sender, "~r~ERRO: ~s~Você não tem dinheiro suficiente.");
+                    sender.sendNotification("", "Você não tem dinheiro suficiente.");
                     return;
                 }
 

@@ -25,7 +25,8 @@
   <script src="src/Player/Vehicle/PersonalVehicleMenu.js" type="client" lang="javascript"/>
   
   <!-- Inventory -->
-  <script src="src/Player/Inventory/InventoryController.js" type="client" lang="javascript"/>
+  <script src="src/Player/Inventory/Inventory.js" type="client" lang="javascript"/>
+  <script src="src/Player/Inventory/ItemDetector.js" type="client" lang="javascript" />
 
   <!-- Utils -->
   <script src="src/Player/Utils/Camera.js" type="client" lang="javascript"/>

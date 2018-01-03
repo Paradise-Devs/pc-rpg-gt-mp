@@ -30,7 +30,7 @@ API.onServerEventTrigger.connect((eventName, args) => {
 });
 API.onKeyUp.connect((sender, key) => {
     switch (key.KeyCode) {
-        case Keys.E:
+        case Keys.Y:
             if (checkpoint == null)
                 return;
             if (API.getEntityPosition(API.getLocalPlayer()).DistanceTo(checkpoint) < 1) {
@@ -88,5 +88,5 @@ function createSecurityServiceEntities() {
     API.setBlipColor(blip, 1);
     API.showBlipRoute(blip, true);
     marker = API.createMarker(1, new Vector3(checkpoint.X, checkpoint.Y, checkpoint.Z - 1.0), new Vector3(), new Vector3(), new Vector3(1, 1, 1), 255, 0, 0, 255);
-    label = API.createTextLabel((is_carrying) ? "~b~Colocar dinheiro~n~~w~Pressione ~b~E" : "~b~Pegar dinheiro~n~~w~Pressione ~b~E", new Vector3(checkpoint.X, checkpoint.Y, checkpoint.Z + 0.5), 15, 0.5);
+    label = API.createTextLabel((is_carrying) ? "~b~Colocar dinheiro~n~~w~Pressione ~b~Y" : "~b~Pegar dinheiro~n~~w~Pressione ~b~Y", new Vector3(checkpoint.X, checkpoint.Y, checkpoint.Z + 0.5), 15, 0.5);
 }

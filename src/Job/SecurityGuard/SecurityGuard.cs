@@ -62,6 +62,13 @@ namespace pcrpg.src.Job.SecurityGuard
                                 return;
                             }
 
+                            var atms = Gameplay.Bank.Main.Banks.Where(x => x.Type != 0).ToList();
+                            if (atms.Count < 1)
+                            {
+                                sender.sendNotification("ERROR", "Todos os caixas estão vazios.");
+                                return;
+                            }
+
                             if (PlayerVehicle.ContainsKey(sender))
                             {
                                 if (API.doesEntityExist(PlayerVehicle[sender]))
@@ -78,7 +85,7 @@ namespace pcrpg.src.Job.SecurityGuard
                             PlayerJobProgress[sender] = 0;
 
                             sender.sendNotification("", "Pegue o caminhão e vá coletar o dinheiro");
-                            sender.triggerEvent("SecurityGuardJobStart", vehicle, new Vector3(-46.75024, -764.0831, 32.82755));
+                            sender.triggerEvent("SecurityGuardJobStart", vehicle, atms[random.Next(atms.Count)].Position);
                         }
                         break;
                     }
@@ -87,8 +94,10 @@ namespace pcrpg.src.Job.SecurityGuard
                         PlayerJobProgress[sender]++;
                         if (PlayerJobProgress[sender] < 5)
                         {
+                            Random random = new Random();
+                            var atms = Gameplay.Bank.Main.Banks.Where(x => x.Type != 0).ToList();
                             sender.sendNotification("", "Vá para o próximo endereço");
-                            sender.triggerEvent("SecurityGuardGetNextCheckpoint", new Vector3(-46.75024, -764.0831, 32.82755));
+                            sender.triggerEvent("SecurityGuardGetNextCheckpoint", atms[random.Next(atms.Count)].Position);
                         }
                         else if (PlayerJobProgress[sender] == 5)
                         {

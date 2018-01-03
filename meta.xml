@@ -5,6 +5,10 @@
 
   <!-- Gameplay -->
 
+  <!-- House -->
+  <script src="src/Gameplay/House/House.js" type="client" lang="javascript"/>
+  <script src="src/Gameplay/House/FurnitureEditor.js" type="client" lang="javascript"/>
+  
   <!-- Vehicles -->
   <script src="src/Gameplay/Vehicle/VehicleEngine.js" type="client" lang="javascript"/>
   
@@ -40,6 +44,14 @@
 
   <!-- Settings -->
   <settings>
+    <!-- House -->
+    <setting name="houseDirName" value="data/HouseData" default="data/House" description="Directory name of the save files." />
+    <setting name="playerHouseLimit" value="2" default="3" description="Maximum amount of houses a player can own. (0 to disable)" />
+    <setting name="houseMoneyLimit" value="5000000" default="5000000" description="Maximum amount of money a house can have." />
+    <setting name="houseWeaponLimit" value="10" default="10" description="Maximum amount of weapons a house can have. (0 to disable)" />
+    <setting name="houseFurnitureLimit" value="25" default="25" description="Maximum amount of furnitures a house can have. (0 to disable)" />
+    <setting name="resetDimensionOnDeath" value="true" default="true" description="Reset a player's dimension when they die." />
+    
     <!-- Dealership -->
     <setting name="dealershipDirName" value="data/Dealership" default="data/Dealership" description="Directory name of the save files." />
     <setting name="playerDealershipLimit" value="0" default="1" description="Maximum amount of dealership a player can own. (0 to disable)" />

@@ -91,10 +91,15 @@
     <Compile Include="src\Database\Models\Item.cs" />
     <Compile Include="src\Database\Models\User.cs" />
     <Compile Include="src\Flags\AnimationFlags.cs" />
+    <Compile Include="src\Gameplay\House\Commands.cs" />
+    <Compile Include="src\Gameplay\House\House.cs" />
     <Compile Include="src\Gameplay\Dealership\Commands.cs" />
     <Compile Include="src\Gameplay\Dealership\Dealership.cs" />
     <Compile Include="src\Gameplay\Dealership\DealershipVehicles.cs" />
     <Compile Include="src\Gameplay\Dialog\DialogModel.cs" />
+    <Compile Include="src\Gameplay\House\HouseFurnitures.cs" />
+    <Compile Include="src\Gameplay\House\HouseTypes.cs" />
+    <Compile Include="src\Gameplay\House\HouseWeapons.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Commands.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Parkinglot.cs" />
     <Compile Include="src\Gameplay\Vehicle\VehicleEngine.cs" />
@@ -144,6 +149,8 @@
     <TypeScriptCompile Include="src\Gameplay\Dealership\Dealership.ts" />
     <TypeScriptCompile Include="src\Gameplay\Dialog\DialogController.ts" />
     <TypeScriptCompile Include="src\Gameplay\Dialog\NpcHandler.ts" />
+    <TypeScriptCompile Include="src\Gameplay\House\FurnitureEditor.ts" />
+    <TypeScriptCompile Include="src\Gameplay\House\House.ts" />
     <TypeScriptCompile Include="src\Gameplay\Vehicle\VehicleEngine.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />

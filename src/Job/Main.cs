@@ -94,6 +94,18 @@ namespace pcrpg.src.Job
                             player.sendNotification("ERROR", "Você já possui um emprego.");
                         break;
                     }
+                case "JobQuit":
+                    {
+                        if (player.getJob() == null)
+                        {
+                            player.sendNotification("ERROR", "Você não possui um emprego.");
+                            return;
+                        }
+
+                        player.setJob(null);
+                        player.sendNotification("SUCCESS", "Você abandonou seu emprego.");
+                        break;
+                    }
             }
         }
 

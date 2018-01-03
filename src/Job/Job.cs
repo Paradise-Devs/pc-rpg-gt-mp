@@ -85,7 +85,7 @@ namespace pcrpg.src.Job
 
         private void UpdateLabel()
         {
-            Label.text = string.Format("~g~Emprego~n~~w~{0}", Name);
+            Label.text = string.Format("~b~Emprego~n~~w~{0}", Name);
         }
 
         private void UpdateBlip()

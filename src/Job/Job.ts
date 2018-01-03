@@ -11,7 +11,19 @@ API.onServerEventTrigger.connect(function (event_name, args) {
             break;
 
         case "JobMenu":
-            API.sendNotification("TO DO: show job services");
+            if (job_menu == null) {
+                job_menu = API.createMenu("Emprego", "~b~Opções do emprego", 0, 0, 6);
+            }
+            job_menu.Clear();
+
+            var temp_item = API.createMenuItem("Sair do emprego", "Abandona seu emprego.");
+            job_menu.AddItem(temp_item);
+            temp_item.Activated.connect(function (menu, item) {
+                job_menu.Visible = false;
+                API.triggerServerEvent("JobQuit");
+            });
+
+            job_menu.Visible = true;
             break;
     }
 });
@@ -28,5 +40,5 @@ API.onKeyDown.connect(function (e, key) {
 });
 
 API.onUpdate.connect(function () {
-    if (job_text_mode > 0) API.displaySubtitle("Pressione ~y~E ~w~para interagir", 100);
+    if (job_text_mode > 0) API.displaySubtitle("Pressione ~b~E ~w~para interagir", 100);
 });

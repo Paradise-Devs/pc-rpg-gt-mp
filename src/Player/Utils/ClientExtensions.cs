@@ -34,7 +34,7 @@ namespace pcrpg.src.Player.Utils
             return null;
         }
 
-        public static void setJob(this Client player, int job)
+        public static void setJob(this Client player, int? job)
         {
             if (player.hasData("Character"))
             {

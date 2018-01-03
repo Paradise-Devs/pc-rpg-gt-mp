@@ -3,6 +3,7 @@ using System.Linq;
 using pcrpg.src.Database.Models;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using pcrpg.src.Player.Utils;
 
 namespace pcrpg.src.Player
 {
@@ -39,6 +40,9 @@ namespace pcrpg.src.Player
                     Character tempCharacter = player.getData("Character");
                     Character character = ctx.Characters.FirstOrDefault(x => x.Id == tempCharacter.Id);
 
+                    character.Job = player.getJob();
+                    character.Money = player.getMoney();
+
                     character.PositionX = player.position.X;
                     character.PositionY = player.position.Y;
                     character.PositionZ = player.position.Z;
@@ -47,9 +51,9 @@ namespace pcrpg.src.Player
                     character.PlayedTime += (DateTime.Now - tempCharacter.LastLogin).TotalSeconds;
                     character.LastLogin = DateTime.Now;
 
-                    ctx.SaveChanges();
-
                     player.setData("Character", character);
+
+                    ctx.SaveChanges();
                 }
             }
         }

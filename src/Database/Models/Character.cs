@@ -13,6 +13,8 @@ namespace pcrpg.src.Database.Models
 
         public bool Gender { get; set; }
 
+        public int? Job { get; set; }
+
         public int Money { get; set; }
 
         public int Bank { get; set; }

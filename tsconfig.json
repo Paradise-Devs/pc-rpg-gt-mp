@@ -16,6 +16,7 @@
     "src/Gameplay/Vehicle/VehicleEngine.ts",
     "src/Gameplay/House/House.ts",
     "src/Gameplay/House/FurnitureEditor.ts",
+    "src/Job/Job.ts",
     "src/Player/Vehicle/PersonalVehicleMenu.ts",
     "src/Player/Auth/Login.ts",
     "src/Player/Creation/CharacterCreator.ts",

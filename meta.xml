@@ -5,6 +5,9 @@
 
   <!-- Gameplay -->
 
+  <!-- Job -->
+  <script src="src/Job/Job.js" type="client" lang="javascript"/>
+  
   <!-- House -->
   <script src="src/Gameplay/House/House.js" type="client" lang="javascript"/>
   <script src="src/Gameplay/House/FurnitureEditor.js" type="client" lang="javascript"/>

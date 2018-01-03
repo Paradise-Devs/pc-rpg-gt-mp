@@ -329,5 +329,5 @@ API.onEntityStreamIn.connect(function (ent, entType) {
 });
 
 API.onUpdate.connect(function () {
-    if (house_text_mode > 0) API.displaySubtitle(((house_text_mode == 1) ? "Pressione ~y~E ~w~para interagir." : "Pressione ~y~E ~w~para sair."), 100);
+    if (house_text_mode > 0) API.displaySubtitle(((house_text_mode == 1) ? "Pressione ~y~E ~w~para interagir" : "Pressione ~y~E ~w~para sair"), 100);
 });

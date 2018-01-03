@@ -25,6 +25,23 @@ namespace pcrpg.src.Player.Utils
             }
         }
 
+        public static int? getJob(this Client player)
+        {
+            if (player.hasData("Character"))
+            {
+                return player.getData("Character").Job;
+            }
+            return null;
+        }
+
+        public static void setJob(this Client player, int job)
+        {
+            if (player.hasData("Character"))
+            {
+                player.getData("Character").Job = job;
+            }
+        }
+
         public static void sendChatAction(this Client player, string action, int style = 0)
         {
             var msg = (style == 0) ? $"~p~* {player.name} {action}" : $"~p~* {action} (({player.name}))";

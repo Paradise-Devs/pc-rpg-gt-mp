@@ -91,6 +91,8 @@
     <Compile Include="src\Database\Models\Item.cs" />
     <Compile Include="src\Database\Models\User.cs" />
     <Compile Include="src\Flags\AnimationFlags.cs" />
+    <Compile Include="src\Gameplay\Bank\Bank.cs" />
+    <Compile Include="src\Gameplay\Bank\Commands.cs" />
     <Compile Include="src\Gameplay\House\Commands.cs" />
     <Compile Include="src\Gameplay\House\House.cs" />
     <Compile Include="src\Gameplay\Dealership\Commands.cs" />

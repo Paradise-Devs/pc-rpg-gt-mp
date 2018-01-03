@@ -105,6 +105,7 @@
     <Compile Include="src\Gameplay\Parkinglot\Commands.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Parkinglot.cs" />
     <Compile Include="src\Gameplay\Vehicle\VehicleEngine.cs" />
+    <Compile Include="src\Job\JobVehicles.cs" />
     <Compile Include="src\Job\Main.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

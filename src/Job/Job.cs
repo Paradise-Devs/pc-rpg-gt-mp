@@ -5,6 +5,7 @@ using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Server.Managers;
 using GrandTheftMultiplayer.Shared.Math;
+using System.Collections.Generic;
 
 namespace pcrpg.src.Job
 {
@@ -19,6 +20,8 @@ namespace pcrpg.src.Job
         public string Name { get; private set; }
         public JobType Type { get; private set; }
         public Vector3 Position { get; }
+
+        public List<JobVehicle> Vehicles { get; }
 
         // entities
         [JsonIgnore]
@@ -36,12 +39,13 @@ namespace pcrpg.src.Job
         [JsonIgnore]
         private DateTime LastSave;
 
-        public Job(Guid id, Vector3 position, JobType type)
+        public Job(Guid id, Vector3 position, JobType type, List<JobVehicle> vehicles = null)
         {
             ID = id;
             Position = position;
             Name = Main.GetJobName(type);
             Type = type;
+            Vehicles = vehicles ?? new List<JobVehicle>();
 
             // create blip
             Blip = API.shared.createBlip(position);

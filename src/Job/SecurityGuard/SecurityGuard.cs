@@ -108,7 +108,7 @@ namespace pcrpg.src.Job.SecurityGuard
                             };
 
                             Random rand = new Random();
-                            sender.triggerEvent("SecurityGuardGetNextCheckpoint", positions[rand.Next(positions.Count)]);
+                            sender.triggerEvent("SecurityGuardGetNextCheckpoint", positions[rand.Next(positions.Count)], true);
                             sender.sendNotification("", "Vá até o banco entregar o dinheiro.");
                         }
                         else
@@ -130,6 +130,8 @@ namespace pcrpg.src.Job.SecurityGuard
                     }
                 case "SecurityGuardCarryAnimStop":
                     {
+                        if (!sender.hasData("SECURITY_JOB_OBJ")) return;
+
                         var obj = sender.getData("SECURITY_JOB_OBJ");
                         API.deleteEntity(obj);
                         sender.resetData("SECURITY_JOB_OBJ");

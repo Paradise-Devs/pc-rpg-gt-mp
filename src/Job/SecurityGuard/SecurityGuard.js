@@ -22,6 +22,8 @@ API.onServerEventTrigger.connect((eventName, args) => {
     }
     else if (eventName == "SecurityGuardGetNextCheckpoint") {
         checkpoint = args[0];
+        if (args.Length > 1)
+            is_carrying = true;
         createSecurityServiceEntities();
     }
     else if (eventName == "SecurityGuardDeleteEntities") {

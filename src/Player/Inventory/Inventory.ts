@@ -26,7 +26,7 @@ API.onKeyUp.connect(function (sender, e)
 {
     if (e.KeyCode === Keys.I)
     {
-        if (API.isChatOpen() || API.isAnyMenuOpen()) return;
+        if (API.isChatOpen() || API.isAnyMenuOpen() || !API.getHudVisible()) return;
 
         if (API.getCefBrowserHeadless(invBrowser))
         {            

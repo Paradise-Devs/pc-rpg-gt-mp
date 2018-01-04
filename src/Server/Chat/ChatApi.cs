@@ -27,7 +27,7 @@ namespace pcrpg.src.Server.Chat
                 if (tab.Equals("Local"))
                 {
                     var players = API.getPlayersInRadiusOfPlayer(15f, sender);
-                    string formattedMessage = $"~w~{sender.name} ~c~diz: ~w~{message}";
+                    string formattedMessage = $"~w~{sender.name} diz: {message}";
                     foreach (var player in players)
                     {
                         SendClientMessage(player, formattedMessage, tab);
@@ -35,7 +35,7 @@ namespace pcrpg.src.Server.Chat
                 }
                 else if (tab.Equals("Global"))
                 {
-                    string formattedMessage = $"~g~{sender.name} ~c~diz: ~g~{message}";
+                    string formattedMessage = $"~c~{sender.name}: ~w~{message}";
                     SendClientMessageToAll(formattedMessage, tab);
                 }
                 else if (tab.Equals("Admin"))
@@ -45,7 +45,7 @@ namespace pcrpg.src.Server.Chat
                     User user = API.getEntityData(sender, "User");
                     if (user.Admin > 0)                    
                     {
-                        string formattedMessage = $"~g~{sender.name} ~c~diz: ~g~{message}";
+                        string formattedMessage = $"~o~{sender.name} diz: ~w~{message}";
                         SendClientMessageToAll(formattedMessage, tab);
                     }
                 }

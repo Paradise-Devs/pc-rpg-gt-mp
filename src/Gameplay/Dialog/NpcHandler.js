@@ -122,3 +122,15 @@ API.onServerEventTrigger.connect((eventName, args) => {
         resource.DialogController.ShowNpcDialog(id, JSON.stringify(_NPC[id]));
     }
 });
+// if consuming too much cpu, remove it
+API.onUpdate.connect(() => {
+    if (!API.getHudVisible())
+        return;
+    var position = API.getEntityPosition(API.getLocalPlayer());
+    for (let i = 0; i < _NPC.length; i++) {
+        if (_NPC[i].position.DistanceTo(position) > 1.25)
+            continue;
+        API.displaySubtitle("Pressione ~y~E ~w~para interagir", 100);
+        break;
+    }
+});

@@ -37,14 +37,9 @@ namespace pcrpg.src.Gameplay.Bank
             Type = type;
 
             // create blip
-            if (Type == 0)
-            {
-                Blip = API.shared.createBlip(position);
-                Blip.name = "Banco";
-                Blip.scale = 1f;
-                Blip.shortRange = true;
-                UpdateBlip();
-            }
+            Blip = API.shared.createBlip(position);            
+            Blip.shortRange = true;
+            UpdateBlip();
 
             // create colshape
             ColShape = API.shared.createCylinderColShape(position, 0.85f, 0.85f);
@@ -74,26 +69,17 @@ namespace pcrpg.src.Gameplay.Bank
 
         private void UpdateBlip()
         {
-            if (!Blip.exists) return;
-
             Blip.sprite = 108;
             Blip.color = 69;
+            Blip.name = (Type == 0) ? "Banco" : "Caixa eletrônico";
+            Blip.scale = (Type == 0) ? 1f : 0.1f;
         }
 
         public void SetType(int new_type)
         {
             Type = new_type;
 
-            if (new_type == 1 && API.shared.doesEntityExist(Blip)) Blip.delete();
-            else if (new_type == 0 && !API.shared.doesEntityExist(Blip))
-            {
-                Blip = API.shared.createBlip(Position);
-                Blip.name = "Banco";
-                Blip.scale = 1f;
-                Blip.shortRange = true;
-                UpdateBlip();
-            }
-
+            UpdateBlip();
             Save();
         }
 
@@ -107,7 +93,7 @@ namespace pcrpg.src.Gameplay.Bank
 
         public void Destroy()
         {
-            if (Blip.exists) Blip.delete();
+            Blip.delete();
             Marker.delete();
             API.shared.deleteColShape(ColShape);
         }

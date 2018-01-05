@@ -31,7 +31,7 @@
             var player_data = JSON.parse(playerData);
 
             $('answers').html("");
-            $('phrase').text(dialogues[player_data.CurrentMessage].Messages[0]);
+            $('phrase').text(dialogues[player_data.CurrentMessage].Messages[(player_data.LastAnswer == null) ? 0 : player_data.LastAnswer]);
 
             for (var i = 0; i < dialogues[player_data.CurrentMessage].Answers.length; i++)
             {

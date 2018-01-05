@@ -12,14 +12,14 @@ API.onResourceStart.connect(() =>
     API.setCefBrowserHeadless(dlgBrowser, true);
 });
 
-function ShowNpcDialog(id, npc)
+function ShowNpcDialog(dialogues, playerdata)
 {    
     API.showCursor(true);
     API.setHudVisible(false);
     API.setCanOpenChat(false);
     resource.Sounds.PlaySelectSound();
     API.setCefBrowserHeadless(dlgBrowser, false);
-    dlgBrowser.call("DrawDialog", id, npc);
+    dlgBrowser.call("DrawDialog", dialogues, playerdata);
 }
 
 function HideNpcDialog()

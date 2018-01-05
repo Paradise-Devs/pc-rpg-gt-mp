@@ -87,10 +87,13 @@
     <Compile Include="src\Database\Models\CharacterTrait.cs" />
     <Compile Include="src\Database\Models\CharacterVehicle.cs" />
     <Compile Include="src\Database\Models\DefaultDbContext.cs" />
-    <Compile Include="src\Database\Models\Dialog.cs" />
     <Compile Include="src\Database\Models\Item.cs" />
     <Compile Include="src\Database\Models\User.cs" />
     <Compile Include="src\Flags\AnimationFlags.cs" />
+    <Compile Include="src\Gameplay\Actor\Actor.cs" />
+    <Compile Include="src\Gameplay\Actor\Dialogue.cs" />
+    <Compile Include="src\Gameplay\Actor\Main.cs" />
+    <Compile Include="src\Gameplay\Actor\PlayerDialogues.cs" />
     <Compile Include="src\Gameplay\Bank\Bank.cs" />
     <Compile Include="src\Gameplay\Bank\Commands.cs" />
     <Compile Include="src\Gameplay\House\Commands.cs" />
@@ -98,7 +101,6 @@
     <Compile Include="src\Gameplay\Dealership\Commands.cs" />
     <Compile Include="src\Gameplay\Dealership\Dealership.cs" />
     <Compile Include="src\Gameplay\Dealership\DealershipVehicles.cs" />
-    <Compile Include="src\Gameplay\Dialog\DialogModel.cs" />
     <Compile Include="src\Gameplay\House\HouseFurnitures.cs" />
     <Compile Include="src\Gameplay\House\HouseTypes.cs" />
     <Compile Include="src\Gameplay\House\HouseWeapons.cs" />
@@ -165,9 +167,9 @@
     <Content Include="res\views\inventory.html" />
     <Content Include="res\views\login.html" />
     <Content Include="res\js\chat.js" />
+    <TypeScriptCompile Include="src\Gameplay\Actor\Actor.ts" />
     <TypeScriptCompile Include="src\Gameplay\Dealership\Dealership.ts" />
-    <TypeScriptCompile Include="src\Gameplay\Dialog\DialogController.ts" />
-    <TypeScriptCompile Include="src\Gameplay\Dialog\NpcHandler.ts" />
+    <TypeScriptCompile Include="src\Gameplay\Actor\DialogController.ts" />
     <TypeScriptCompile Include="src\Gameplay\House\FurnitureEditor.ts" />
     <TypeScriptCompile Include="src\Gameplay\House\House.ts" />
     <TypeScriptCompile Include="src\Gameplay\Vehicle\VehicleEngine.ts" />

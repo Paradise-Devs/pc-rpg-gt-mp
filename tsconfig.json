@@ -10,8 +10,8 @@
   },
   "compileOnSave": true,
   "files": [
-    "src/Gameplay/Dialog/DialogController.ts",
-    "src/Gameplay/Dialog/NpcHandler.ts",
+    "src/Gameplay/Actor/DialogController.ts",
+    "src/Gameplay/Actor/Actor.ts",
     "src/Gameplay/Dealership/Dealership.ts",
     "src/Gameplay/Vehicle/VehicleEngine.ts",
     "src/Gameplay/House/House.ts",

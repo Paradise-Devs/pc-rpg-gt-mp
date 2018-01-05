@@ -20,8 +20,8 @@
   <script src="src/Gameplay/Dealership/Dealership.js" type="client" lang="javascript"/>
   
   <!-- Dialog System -->
-  <script src="src/Gameplay/Dialog/NpcHandler.js" type="client" lang="javascript"/>
-  <script src="src/Gameplay/Dialog/DialogController.js" type="client" lang="javascript"/>
+  <script src="src/Gameplay/Actor/Actor.js" type="client" lang="javascript"/>
+  <script src="src/Gameplay/Actor/DialogController.js" type="client" lang="javascript"/>
 
   <!-- Player -->
   

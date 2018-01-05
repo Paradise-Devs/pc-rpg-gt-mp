@@ -54,6 +54,7 @@ API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
         var z = args[2];
 
         blip = API.createBlip(new Vector3(x, y, z));
+        API.setBlipColor(blip, 43);
         API.setBlipSprite(blip, 225);
         API.setBlipName(blip, "Meu veículo");
     }

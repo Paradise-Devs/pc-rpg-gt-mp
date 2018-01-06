@@ -100,7 +100,7 @@
                         this.items.push(data)
                     },
 
-                    cleanInventory: function(data) {
+                    clean() {
                         this.items = [];
                     }
                 }
@@ -123,6 +123,7 @@
             }
 
             function AddItem(items) {
+                inventory.clean();
                 items = JSON.parse(items);
                 for (let i = 0; i < items.length; i++) {
                     inventory.addItem(items[i]);

@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="description">
-                                    {{ item.Description }}</desc>
+                                    {{ item.Description }}
                                 </div>
                                 <div class="commands" v-if="item.usable">
                                     <i class="media-mouse-right-button"></i> para usar
@@ -118,8 +118,11 @@
                 }
             }
 
-            function AddItem(slot, item) {
-                inventory.addItem(item);
+            function AddItem(items) {
+                items = JSON.parse(items);
+                for (let i = 0; i < items.length; i++) {
+                    inventory.addItem(items[i]);
+                }
             }
 
             function OnDiscardItem(slot, item)

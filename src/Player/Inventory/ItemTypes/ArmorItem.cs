@@ -16,7 +16,7 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
 
             Category = "Colete";
             Rarity = "rare";
-            Icon = "fa fa-check-circle";
+            Icon = "clothes-hoodie";
             Usable = true;
             Tradable = true;
             NeedConfirmation = false;

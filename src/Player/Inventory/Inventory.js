@@ -7,7 +7,7 @@ API.onResourceStart.connect(() => {
     invBrowser = API.createCefBrowser(res.Width, res.Height);
     API.waitUntilCefBrowserInit(invBrowser);
     API.setCefBrowserPosition(invBrowser, 0, 0);
-    API.loadPageCefBrowser(invBrowser, "res/views/inventory.html");
+    API.loadPageCefBrowser(invBrowser, "res/views/inventory-vue.html");
     API.setCefBrowserHeadless(invBrowser, true);
 });
 API.onResourceStop.connect(() => {
@@ -39,7 +39,7 @@ API.onServerEventTrigger.connect((eventName, args) => {
             API.showCursor(true);
             API.startAudio("res/sounds/inventory/open.wav", false);
             API.setCefBrowserHeadless(invBrowser, false);
-            invBrowser.call("DrawItems", args[0]);
+            invBrowser.call("AddItem", args[0]);
             break;
     }
     /*if (eventName == "UpdateCharacterItems")

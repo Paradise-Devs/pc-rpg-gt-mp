@@ -23,11 +23,11 @@ namespace pcrpg.src.Player.Inventory.Classes
     {
         public static Dictionary<ItemID, BaseItem> ItemDictionary = new Dictionary<ItemID, BaseItem>
         {
-            { ItemID.Armor_Tier1, new ArmorItem("Super Light Armor", "+20 armor.", 3, 20, new WorldModel("prop_armour_pickup", new Vector3(0.0, 0.0, 0.1), new Vector3(-90.0, 0.0, 0.0))) },
-            { ItemID.Armor_Tier2, new ArmorItem("Light Armor", "+40 armor.", 2, 40, new WorldModel("prop_bodyarmour_02", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
-            { ItemID.Armor_Tier3, new ArmorItem("Standard Armor", "+60 armor.", 2, 60, new WorldModel("prop_bodyarmour_03", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
-            { ItemID.Armor_Tier4, new ArmorItem("Heavy Armor", "+80 armor.", 1, 80, new WorldModel("prop_bodyarmour_04", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
-            { ItemID.Armor_Tier5, new ArmorItem("Super Heavy Armor", "+100 armor.", 1, 100, new WorldModel("prop_bodyarmour_05", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
+            { ItemID.Armor_Tier1, new ArmorItem("Colete Super Leve", "Aumenta seu colete em 20%.", 3, 20, new WorldModel("prop_armour_pickup", new Vector3(0.0, 0.0, 0.1), new Vector3(-90.0, 0.0, 0.0))) },
+            { ItemID.Armor_Tier2, new ArmorItem("Colete Leve", "Aumenta seu colete em 40%.", 2, 40, new WorldModel("prop_bodyarmour_02", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
+            { ItemID.Armor_Tier3, new ArmorItem("Colete Padrão", "Aumenta seu colete em 60%.", 2, 60, new WorldModel("prop_bodyarmour_03", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
+            { ItemID.Armor_Tier4, new ArmorItem("Colete Pesado", "Aumenta seu colete em 80%.", 1, 80, new WorldModel("prop_bodyarmour_04", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
+            { ItemID.Armor_Tier5, new ArmorItem("Colete Super Pesado", "Aumenta seu colete em 100%.", 1, 100, new WorldModel("prop_bodyarmour_05", new Vector3(0.0, 0.0, 0.125), new Vector3(-90.0, 0.0, 0.0))) },
 
             { ItemID.Weapon_CombatPistol, new WeaponItem("Combat Pistol", "A compact, lightweight, semi-automatic pistol.", 1, WeaponHash.CombatPistol, new WorldModel("w_pi_combatpistol", new Vector3(0.0, 0.0, 0.15), new Vector3())) },
             { ItemID.Weapon_PumpShotgun, new WeaponItem("Pump Shotgun", "Standard shotgun ideal for short-range combat.", 1, WeaponHash.PumpShotgun, new WorldModel("w_sg_pumpshotgun", new Vector3(0.0, 0.0, 0.15), new Vector3())) },

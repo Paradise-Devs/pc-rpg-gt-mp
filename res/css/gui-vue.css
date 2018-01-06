@@ -1,0 +1,463 @@
+/******************************************************************************/
+/*   General                                                                 */
+/****************************************************************************/
+body {
+    background-color: transparent !important;
+    color: #aaa;
+    font-family: "Segoe UI";
+    font-weight: 100;
+    font-size: 15px;
+    width:100%;
+    height:100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    overflow: hidden;
+}
+
+html
+{
+    width:100%;
+    height:100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+hr {
+    margin: 10px 0px 10px 0px;
+}
+
+b {
+    font-weight: 400;
+    color: #fff;
+}
+
+b.dev-color { color: #009587 !important; }
+b.admin-color { color: #F34336 !important; }
+b.mod-color { color: #EDA500 !important; }
+
+button:focus, input:focus, textarea:focus { outline:0 !important; }
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.container-fluid {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/******************************************************************************/
+/*   Fonts                                                                   */
+/******************************************************************************/
+@font-face {
+    font-family: "Roboto";
+    src: url('../fonts/Roboto.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Logo";
+    src: url('../fonts/logo.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Five";
+    src: url('../fonts/five.ttf') format("truetype");
+}
+
+/******************************************************************************/
+/*   Groups                                                                   */
+/******************************************************************************/
+.group {
+    display: block;
+    position: relative;
+}
+
+.group.inputButton input {
+    display: inline-block;
+    position: relative;
+    left: 0px;
+}
+
+.group.inputButton button {
+    display: inline-block;
+    position: absolute;
+    right: 1px;
+    top:1px;
+    height: 36px;
+    padding: 7px 15px 7px 15px;
+}
+
+/******************************************************************************/
+/*   Buttons                                                                  */
+/******************************************************************************/
+button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
+    padding: 8px 15px 8px 15px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+button:disabled {
+    opacity: .2;
+}
+
+button:active {
+    box-shadow: inset 0 0 3px #000;
+}
+
+button:not(:disabled):hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+button.blue {
+    background-color: rgba(25, 117, 209, 0.2);
+}
+
+button.blue:hover {
+    background-color: rgba(25, 117, 209, 0.6);
+}
+
+button.red {
+    background-color: rgba(210, 47, 47, 0.2);
+}
+
+button.red:hover {
+    background-color: rgba(210, 47, 47, 0.6);
+}
+
+/******************************************************************************/
+/*   Testing environment                                                      */
+/******************************************************************************/
+.test-enabled {
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/******************************************************************************/
+/*   Blocks                                                                   */
+/******************************************************************************/
+.block {
+    display: block;
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.block .close {
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    background-color: rgba(210, 47, 47, 0.2);
+    border: 0px;
+    padding: 5px 10px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+.block .close:hover {
+    cursor: pointer;
+    background-color: rgba(210, 47, 47, 0.6);
+    color: #fff;
+}
+
+.block .header {
+    padding: 10px;
+    z-index: -1;
+}
+
+.block .content {
+    display: block;
+    padding: 10px;
+    margin: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow-y: hidden;
+}
+
+.block footer {
+    display: flex;
+    padding: 5px 10px 10px 10px;
+}
+
+.block footer.right {
+    float: right;
+    text-align: right;
+}
+
+.block footer button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
+    padding: 8px 15px 8px 15px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+}
+
+.block footer button:disabled {
+    opacity: .2;
+}
+
+.block footer button:active {
+    box-shadow: inset 0 0 3px #000;
+}
+
+.block footer button:not(:disabled):hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.block footer button.blue {
+    background-color: rgba(25, 117, 209, 0.2);
+}
+
+.block footer button.blue:hover {
+    background-color: rgba(25, 117, 209, 0.6);
+}
+
+.block footer button.red {
+    background-color: rgba(210, 47, 47, 0.2);
+}
+
+.block footer button.red:hover {
+    background-color: rgba(210, 47, 47, 0.6);
+}
+
+.block footer .error {
+    display: none;
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    color: #D22F2F;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.block footer .error b {
+    color: #FF2F2F;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.block footer .loading {
+    display: none;
+    position: absolute;
+    left: 45%;
+    bottom: 6px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.block .username {
+    color: #03A8F3;
+}
+
+.block .lastlogin {
+    font-weight: 600;
+}
+
+body.animated .block {
+    opacity: 0;
+    animation: opacity 2s ease-in-out 1s 1 alternate;
+    animation-fill-mode: forwards;
+}
+
+/******************************************************************************/
+/*   Page title                                                               */
+/******************************************************************************/
+.pagetitle {
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 5%;
+    left: 33%;
+    position: fixed;
+    animation: movetorighttitle 2s ease-in-out 1 alternate;
+    animation-fill-mode: forwards;
+    font-family: "Five";
+    font-size: 6vh;
+    text-shadow: 0px 0px 20px #000;
+    color: #fff;
+}
+
+@keyframes movetolefttitle {
+    from { left : 34% }
+    to { left: 5%; }
+}
+
+@keyframes movetorighttitle {
+    from { left : 5% }
+    to { left: 68%; }
+}
+
+/******************************************************************************/
+/*   Sweetalert customization                                                 */
+/******************************************************************************/
+.sweet-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    z-index: 10000;
+}
+
+
+.sweet-alert {
+    background-color: rgba(30, 30, 30, 1);
+    font-family: 'Segoe UI';
+    width: 478px;
+    border-radius: 0px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -256px;
+    margin-top: -200px;
+    overflow: hidden;
+    display: none;
+    z-index: 99999;
+    max-width: 478px;
+    border: 1px solid #2A2A2A;
+}
+
+.sweet-alert h2 {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 400;
+    text-transform: none;
+    position: relative;
+    line-height: 40px;
+    display: block;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+
+.sweet-alert p {
+    color: #aaa;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    position: relative;
+    float: none;
+    margin: 5px;
+    padding: 0;
+    line-height: normal;
+}
+
+.sweet-alert fieldset {
+    border: none;
+    position: relative;
+}
+
+.sweet-alert .sa-icon {
+    width: 80px;
+    height: 80px;
+    border: 4px solid gray;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+    border-radius: 50%;
+    margin: 20px auto;
+    padding: 0;
+    position: relative;
+    box-sizing: content-box;
+}
+
+.sweet-alert button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
+    padding: 8px 15px 8px 15px;
+    color: #aaa;
+    font-size: 15px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.sweet-alert .sa-button-container::before {
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+.sweet-alert .sa-button-container {
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    text-align: right;
+    float: right;
+}
+
+.sweet-alert button:not(:disabled):hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.sweet-alert button.confirm[disabled] {
+    opacity: .2;
+}
+
+.sweet-alert button.confirm {
+    background-color: rgba(25, 117, 209, 0.2) !important;
+    box-shadow: none !important;
+}
+
+.sweet-alert button.confirm:not(:disabled):hover {
+    background-color: rgba(25, 117, 209, 0.6) !important;
+    box-shadow: none !important;
+}
+
+.sweet-alert button:not(:disabled):hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.sweet-alert button.confirm[disabled] {
+    opacity: .2;
+}
+
+.sweet-alert button:active {
+    box-shadow: inset 0 0 3px #000 !important;
+}

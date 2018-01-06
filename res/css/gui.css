@@ -10,12 +10,14 @@ body {
     width:100%;
     height:100%;
     user-select: none;
+    overflow: hidden;
 }
 
 html
 {
     width:100%;
     height:100%;
+    overflow: hidden;
 }
 
 *, *:before, *:after {
@@ -1358,7 +1360,7 @@ npc answers button {
 /******************************************************************************/
 /*   Inventory                                                                */
 /******************************************************************************/
-block.inventory {
+block.inventory-container {
     display: block;
     position: fixed;
     left: 78%;
@@ -1368,11 +1370,11 @@ block.inventory {
     z-index: -1;
 }
 
-block.inventory header {
+block.inventory-container header {
     z-index: -1;
 }
 
-block.inventory content {
+block.inventory-container content {
     padding-right: 0px;
     padding-top: 0px;
     overflow: visible;
@@ -1446,15 +1448,6 @@ inventory item {
         top: 60%;
         width: 42%;
     }
-}
-
-inventory::before, inventory::after {
-    content: "";
-    display: table;
-}
-
-inventory::before {
-    clear: both;
 }
 
 inventory item.stack counter {

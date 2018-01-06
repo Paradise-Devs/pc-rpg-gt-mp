@@ -37,8 +37,8 @@
                                         <div class="title">{{ item.Name }}</div>
                                         <div class="subtitle">{{ item.Category }}</div>
                                         <div class="subtitle">
-                                            <span v-if="item.Tradable">Item negociável</span>
-                                            <span v-else>Item vinculado a conta</span>
+                                            <span v-if="item.IsDroppable">Item dropável</span>
+                                            <span v-else>Item não dropável</span>
                                         </div>
                                         <badge v-if="item.Rarity != 'common'"><i class="fa fa-star"></i></badge>
                                     </div>

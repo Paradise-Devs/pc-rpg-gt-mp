@@ -57,6 +57,7 @@
                     Banco: <span class="money" id="bank">$0</span>
                     <div class="separator"></div>
                     Carteira: <span class="money" id="wallet">$0</span>
+                    <button @click="addItem"></button>
                 </footer>
             </div>
         </div>
@@ -96,8 +97,19 @@
                         return;
                     },
 
-                    addItem: function(data) {
-                        this.items.push(data)
+                    addItem: function() {
+                        this.items.push({
+                            name: 'Agasalho',
+                            category: 'Roupas',
+                            description: 'Um agasalho bonito para o inverno',
+                            rarity: 'common',
+                            usable: true,
+                            needconfirmation: true,
+                            tradable: false,
+                            quantity: 1,
+                            icon: 'clothes-hoodie',
+                            id: 1
+                        })
                     }
                 }
             })
@@ -106,16 +118,12 @@
             var outside = false;
             var discarding_item = null;
 
-            function AddItem(slot, item) {
-                inventory.addItem(item);
-            }
-
-            function OnUseItem(id) {                
+            function OnUseItem(itemid) {                
                 var array = inventory.items;
-                resourceCall("onUseItem", array[id].id);
+                resourceCall("onUseItem", array[itemid].id);
                 
                 for(var i = 0; i < array.length; i++) {
-                    if(array[i].id == id) {
+                    if(array[i].id == itemid) {
                         array.splice(i, 1);
                         break;
                     }

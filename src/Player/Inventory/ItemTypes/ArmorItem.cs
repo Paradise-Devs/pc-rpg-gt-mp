@@ -9,13 +9,12 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
         public int Value { get; set; }
         public WorldModel DropModel { get; set; }
 
-        public ArmorItem(string name, string description, int stackSize, int armorValue, WorldModel dropModel) : base(name, description, stackSize)
+        public ArmorItem(string name, string description, int stackSize, int armorValue, string rarity, WorldModel dropModel) : base(name, description, stackSize, rarity)
         {
             Value = armorValue;
             DropModel = dropModel;
 
             Category = "Colete";
-            Rarity = "rare";
             Icon = "clothes-hoodie";
             Usable = true;
             Tradable = true;

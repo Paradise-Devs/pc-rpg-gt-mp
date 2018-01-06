@@ -15,11 +15,12 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
         public bool Tradable { get; set; }
         public bool NeedConfirmation { get; set; }
 
-        public BaseItem(string name, string description, int stackSize)
+        public BaseItem(string name, string description, int stackSize, string rarity)
         {
             Name = name;
             Description = description;
             StackSize = stackSize;
+            Rarity = rarity;
         }
 
         public virtual bool Use(Client player)

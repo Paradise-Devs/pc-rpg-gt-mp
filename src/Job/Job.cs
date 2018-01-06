@@ -50,7 +50,7 @@ namespace pcrpg.src.Job
             // create blip
             Blip = API.shared.createBlip(position);
             Blip.sprite = 351;
-            Blip.name = "Emprego";
+            Blip.name = $"Emprego de {Name.ToLower()}";
             Blip.color = 15;
             Blip.scale = 1f;
             Blip.shortRange = true;
@@ -95,7 +95,7 @@ namespace pcrpg.src.Job
         private void UpdateBlip()
         {
             if (string.IsNullOrEmpty(Name))
-                Blip.name = $"Emprego de {Name}";
+                Blip.name = $"Emprego de {Name.ToLower()}";
             else
                 Blip.name = "Emprego";
         }

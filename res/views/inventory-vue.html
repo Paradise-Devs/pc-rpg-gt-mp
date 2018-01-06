@@ -34,13 +34,12 @@
                                 <div class="header">
                                     <div class="icon"><i :class="item.Icon"></i></div>
                                     <div class="info">
-                                        <div class="title">{{ item.Name }}</div>
+                                        <div class="title">{{ item.Name }} <badge v-if="item.Rarity == 'rare' || item.Rarity == 'legendary'"><i class="fa fa-star"></i></badge></div>
                                         <div class="subtitle">{{ item.Category }}</div>
                                         <div class="subtitle">
                                             <span v-if="item.IsDroppable">Item dropável</span>
                                             <span v-else>Item não dropável</span>
-                                        </div>
-                                        <badge v-if="item.Rarity != 'common'"><i class="fa fa-star"></i></badge>
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <div class="description">

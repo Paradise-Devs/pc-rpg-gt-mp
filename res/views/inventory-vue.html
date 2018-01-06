@@ -24,29 +24,29 @@
                         <div 
                             v-for="item in items"
                             class="item"
-                            :class="[{usable: item.usable, stack: verifyQuantity(item)}, item.rarity]"
+                            :class="[{usable: item.Usable, stack: verifyQuantity(item)}, item.Rarity]"
                             @click.right="useItem(item)"
-                            data-id="item.id"
+                            data-id="item.Id"
                         >
-                            <i :class="item.icon"></i>
-                            <span class="counter" v-if="item.quantity > 1">{{ item.quantity }}</span>
+                            <i :class="item.Icon"></i>
+                            <span class="counter" v-if="item.Quantity > 1">{{ item.Quantity }}</span>
                             <div class="container">
                                 <div class="header">
-                                    <div class="icon"><i :class="item.icon"></i></div>
+                                    <div class="icon"><i :class="item.Icon"></i></div>
                                     <div class="info">
-                                        <div class="title">{{ item.name }}</div>
-                                        <div class="subtitle">{{ item.category }}</div>
+                                        <div class="title">{{ item.Name }}</div>
+                                        <div class="subtitle">{{ item.Category }}</div>
                                         <div class="subtitle">
-                                            <span v-if="item.tradable">Item negociável</span>
+                                            <span v-if="item.Tradable">Item negociável</span>
                                             <span v-else>Item vinculado a conta</span>
                                         </div>
-                                        <badge v-if="item.rarity != 'common'"><i class="fa fa-star"></i></badge>
+                                        <badge v-if="item.Rarity != 'common'"><i class="fa fa-star"></i></badge>
                                     </div>
                                 </div>
                                 <div class="description">
                                     {{ item.Description }}
                                 </div>
-                                <div class="commands" v-if="item.usable">
+                                <div class="commands" v-if="item.Usable">
                                     <i class="media-mouse-right-button"></i> para usar
                                 </div>
                             </div>
@@ -69,15 +69,15 @@
                 },
                 methods: {
                     verifyQuantity: function(item) {
-                        return item.quantity > 1 ? true : false;
+                        return item.Quantity > 1 ? true : false;
                     },
 
                     useItem: function(item) {
-                        if(!item.usable) {
+                        if(!item.Usable) {
                             return;
                         } else {
-                            if (!item.needconfirmation) {
-                                OnUseItem(item.id);
+                            if (!item.NeedConfirmation) {
+                                OnUseItem(item.Id);
                             } else {
                                 swal({
                                     title: "Deseja usar este item?",
@@ -89,7 +89,7 @@
                                     closeOnConfirm: true
                                 },
                                 function () {
-                                    OnUseItem(item.id); 
+                                    OnUseItem(item.Id); 
                                 });
                             }
                         }
@@ -112,10 +112,10 @@
 
             function OnUseItem(itemid) {                
                 var array = inventory.items;
-                resourceCall("onUseItem", array[itemid].id);
+                resourceCall("onUseItem", array[itemid].Id);
                 
                 for(var i = 0; i < array.length; i++) {
-                    if(array[i].id == itemid) {
+                    if(array[i].Id == itemid) {
                         array.splice(i, 1);
                         break;
                     }
@@ -135,7 +135,7 @@
                 $(item).removeClass();
                 swal("Deletado!", "Item descartado com sucesso.", "success");
                 item = null;
-                resourceCall("onDiscardItem", items[slot].id);
+                resourceCall("onDiscardItem", items[slot].Id);
             }
 
             $(".inventory").sortable({

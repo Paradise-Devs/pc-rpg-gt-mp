@@ -45,7 +45,7 @@ namespace pcrpg.src.Player.Inventory.Extensions
                 {
                     if (playerInventory.Count >= Main.MaxInventorySlots)
                     {
-                        player.sendChatMessage($"Inventário cheio, não foi possível armazenar {ID} x{amount}.");
+                        player.sendNotification("", $"Inventário cheio, não foi possível armazenar {ID} x{amount}.");
                         break;
                     }
 

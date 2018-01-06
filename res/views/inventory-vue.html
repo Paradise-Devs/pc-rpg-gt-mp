@@ -26,7 +26,7 @@
                             v-bind:id="index"
                             class="item"
                             :class="[{usable: item.Usable, stack: verifyQuantity(item)}, item.Rarity]"
-                            @click.right="useItem(item)"
+                            @click.right="useItem(index)"
                         >
                             <i :class="item.Icon"></i>
                             <span class="counter" v-if="item.Quantity > 1">{{ item.Quantity }}</span>
@@ -72,24 +72,24 @@
                         return item.Quantity > 1 ? true : false;
                     },
 
-                    useItem: function(item) {
-                        if(!item.Usable) {
+                    useItem: function(index) {
+                        if(!inventory.items[index].Usable) {
                             return;
                         } else {
-                            if (!item.NeedConfirmation) {
-                                OnUseItem(item.Id);
+                            if (!inventory.items[index].NeedConfirmation) {
+                                OnUseItem(index);
                             } else {
                                 swal({
                                     title: "Deseja usar este item?",
-                                    text: "Esta operação não tem volta.",
+                                    text: " ",
                                     type: "warning",
                                     showCancelButton: true,
-                                    confirmButtonText: "Ativar",
+                                    confirmButtonText: "Usar",
                                     cancelButtonText: "Voltar",
                                     closeOnConfirm: true
                                 },
                                 function () {
-                                    OnUseItem(item.Id); 
+                                    OnUseItem(index); 
                                 });
                             }
                         }
@@ -110,16 +110,8 @@
             var outside = false;
             var discarding_item = null;
 
-            function OnUseItem(itemid) {                
-                var array = inventory.items;
-                resourceCall("onUseItem", array[itemid].Id);
-                
-                for(var i = 0; i < array.length; i++) {
-                    if(array[i].Id == itemid) {
-                        array.splice(i, 1);
-                        break;
-                    }
-                }
+            function OnUseItem(index) {
+                resourceCall("onUseItem", index);
             }
 
             function AddItem(items) {

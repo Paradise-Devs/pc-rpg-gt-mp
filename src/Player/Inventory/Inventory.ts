@@ -53,25 +53,11 @@ API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
             invBrowser.call("AddItem", args[0]);
             break;
     }
-    /*if (eventName == "UpdateCharacterItems")
-    {
-        if (invBrowser == null)
-            return;
-
-        API.showCursor(true);
-        API.startAudio("res/sounds/inventory/open.wav", false);
-        API.setCefBrowserHeadless(invBrowser, false);
-        invBrowser.call("DrawItems", args[0], args[1]);
-    }
-    else if (eventName == "OnItemDiscarded")
-    {
-        invBrowser.call("OnItemDiscarded", args[0]);
-    }*/
 });
 
-function onUseItem(id)
+function onUseItem(selectedIdx)
 {
-    API.triggerServerEvent("UseItem", id);
+    API.triggerServerEvent("ConsumeItem", selectedIdx);
 }
 
 function onDiscardItem(selectedIdx)

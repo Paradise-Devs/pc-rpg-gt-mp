@@ -26,11 +26,11 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
         {
             if (player.armor == 100)
             {
-                player.sendChatMessage("You have full armor.");
+                player.sendNotification("", "~r~Seu colete já está completo.");
                 return false;
             }
 
-            player.sendChatMessage($"Used armor. (+{Value})");
+            player.sendNotification("", $"+ {Value}% de colete.");
             player.armor = ((player.armor + Value > 100) ? 100 : player.armor + Value);
             return true;
         }

@@ -131,7 +131,7 @@ namespace pcrpg.src.Player.Inventory
                                 DroppedItems.Remove(dropID);
                             }
 
-                            player.sendChatMessage($"~y~INFO: ~w~Pegou {item.Name} x{added}.");
+                            player.sendNotification("", $"+ {item.Name} x{added}.");
                         }
 
                         break;

@@ -21,7 +21,6 @@ API.onKeyUp.connect(function (sender, e) {
         if (API.isChatOpen() || API.isAnyMenuOpen() || !API.getHudVisible())
             return;
         if (API.getCefBrowserHeadless(invBrowser)) {
-            //API.triggerServerEvent("GetCharacterItems");
             API.triggerServerEvent("RequestInventory");
         }
         else {
@@ -60,6 +59,14 @@ API.onServerEventTrigger.connect((eventName, args) => {
 function onUseItem(id) {
     API.triggerServerEvent("UseItem", id);
 }
-function onDiscardItem(id) {
-    API.triggerServerEvent("DiscardItem", id);
+function onDiscardItem(selectedIdx) {
+    var dropAmount = 1; // VIR DO FRONT ISSO
+    if (!inventoryData[selectedIdx].IsDroppable)
+        return;
+    var amount = (inventoryData[selectedIdx].Quantity > 1) ? dropAmount : 1;
+    if (amount < 1)
+        amount = 1;
+    var pos = API.getEntityFrontPosition(API.getLocalPlayer());
+    var ground = API.getGroundHeight(pos);
+    API.triggerServerEvent("DropItem", selectedIdx, amount, new Vector3(pos.X, pos.Y, ground));
 }

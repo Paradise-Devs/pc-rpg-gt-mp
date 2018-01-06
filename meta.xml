@@ -71,7 +71,7 @@
   <file src="res/views/chat.html" />
   <file src="res/views/login.html" />
   <file src="res/views/dialog.html" />
-  <file src="res/views/inventory.html" />
+  <file src="res/views/inventory-vue.html" />
   <file src="res/views/character_selector.html" />
   <file src="res/views/character_creator.html" />
 
@@ -81,6 +81,7 @@
   <file src="res/js/jquery-ui.js" />
   <file src="res/js/tether.js" />
   <file src="res/js/slider.js" />
+  <file src="res/js/vue.js" />
   <file src="res/js/pcfw.js" />
   <file src="res/js/sweetalert.js" />
   <file src="res/js/character-clothes.js" />
@@ -93,6 +94,7 @@
   <!-- CSS -->
   <file src="res/css/jquery-ui.css" />
   <file src="res/css/gui.css" />
+  <file src="res/css/gui-vue.css" />
   <file src="res/css/pcfw.css" />
   <file src="res/css/sweetalert.css" />
 

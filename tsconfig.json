@@ -18,6 +18,8 @@
     "src/Gameplay/House/FurnitureEditor.ts",
     "src/Job/Job.ts",
     "src/Job/SecurityGuard/SecurityGuard.ts",
+    "src/Job/ArmsDealer/ArmsDealer.ts",
+    "src/Job/ArmsDealer/WeaponCraft.ts",
     "src/Player/Vehicle/PersonalVehicleMenu.ts",
     "src/Player/Auth/Login.ts",
     "src/Player/Creation/CharacterCreator.ts",

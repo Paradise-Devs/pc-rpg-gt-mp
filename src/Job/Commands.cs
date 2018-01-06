@@ -43,7 +43,7 @@ namespace pcrpg.src.Job
             new_job.Save();
 
             Main.Jobs.Add(new_job);
-            API.sendChatMessageToPlayer(player, $"~g~SUCESSO: ~s~Você criou o emprego de ${new_job.Name}.");
+            API.sendChatMessageToPlayer(player, $"~g~SUCESSO: ~s~Você criou o emprego de {new_job.Name}.");
         }
 
         [Command("deletejob")]

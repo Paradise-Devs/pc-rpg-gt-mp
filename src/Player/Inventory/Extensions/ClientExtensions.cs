@@ -63,7 +63,19 @@ namespace pcrpg.src.Player.Inventory.Extensions
             return (Main.Inventories[player.handle].Exists(i => i.ID == ID));
         }
 
-        public static void useItem(this Client player, int index)
+        public static int getItem(this Client player, ItemID ID)
+        {
+            if (!Main.Inventories.ContainsKey(player.handle) || !ItemDefinitions.ItemDictionary.ContainsKey(ID)) return -1;
+            return (Main.Inventories[player.handle].FindIndex(i => i.ID == ID));
+        }
+
+        public static int getItemAmount(this Client player, ItemID ID)
+        {
+            if (!Main.Inventories.ContainsKey(player.handle) || !ItemDefinitions.ItemDictionary.ContainsKey(ID)) return 0;
+            return (Main.Inventories[player.handle].First(i => i.ID == ID).Quantity);
+        }
+
+        public static void useItem(this Client player, int index, int quantity = 1)
         {
             if (!Main.Inventories.ContainsKey(player.handle)) return;
             if (index < 0 || index >= Main.Inventories[player.handle].Count) return;
@@ -71,7 +83,7 @@ namespace pcrpg.src.Player.Inventory.Extensions
 
             if (item.Item.Use(player))
             {
-                item.Quantity--;
+                item.Quantity -= quantity;
                 if (item.Quantity < 1) Main.Inventories[player.handle].RemoveAt(index);
 
                 sendInventory(player);

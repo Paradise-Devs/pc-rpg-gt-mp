@@ -103,6 +103,7 @@
     <Compile Include="src\Gameplay\House\HouseFurnitures.cs" />
     <Compile Include="src\Gameplay\House\HouseTypes.cs" />
     <Compile Include="src\Gameplay\House\HouseWeapons.cs" />
+    <Compile Include="src\Job\ArmsDealer\ArmsDealer.cs" />
     <Compile Include="src\Job\Commands.cs" />
     <Compile Include="src\Job\Job.cs" />
     <Compile Include="src\Gameplay\Parkinglot\Commands.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="src\Player\Inventory\ItemTypes\ArmorItem.cs" />
     <Compile Include="src\Player\Inventory\ItemTypes\BaseItem.cs" />
     <Compile Include="src\Player\Inventory\ItemTypes\WeaponItem.cs" />
+    <Compile Include="src\Player\Inventory\ItemTypes\MaterialItem.cs" />
     <Compile Include="src\Player\Inventory\Main.cs" />
     <Compile Include="src\Player\Selection\CharacterSelection.cs" />
     <Compile Include="src\Player\Data.cs" />
@@ -172,6 +174,8 @@
     <TypeScriptCompile Include="src\Gameplay\House\FurnitureEditor.ts" />
     <TypeScriptCompile Include="src\Gameplay\House\House.ts" />
     <TypeScriptCompile Include="src\Gameplay\Vehicle\VehicleEngine.ts" />
+    <TypeScriptCompile Include="src\Job\ArmsDealer\ArmsDealer.ts" />
+    <TypeScriptCompile Include="src\Job\ArmsDealer\WeaponCraft.ts" />
     <TypeScriptCompile Include="src\Job\Job.ts" />
     <TypeScriptCompile Include="src\Job\SecurityGuard\SecurityGuard.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />

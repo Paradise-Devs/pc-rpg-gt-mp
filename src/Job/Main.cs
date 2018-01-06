@@ -43,6 +43,8 @@ namespace pcrpg.src.Job
             {
                 case JobType.SecurityGuard:
                     return "Segurança de carro forte";
+                case JobType.ArmsDealer:
+                    return "Traficante de armas";
                 default:
                     return "Desempregado";
             }
@@ -90,6 +92,11 @@ namespace pcrpg.src.Job
                             {
                                 case JobType.SecurityGuard:
                                     services.Add("Transporte de dinheiro");
+                                    break;
+                                case JobType.ArmsDealer:
+                                    services.Add("Obter materiais");
+                                    services.Add("Criar arma");
+                                    services.Add("Vender materiais");
                                     break;
                             }
                             player.triggerEvent("JobMenu", API.toJson(services));

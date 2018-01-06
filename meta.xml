@@ -8,6 +8,8 @@
   <!-- Job -->
   <script src="src/Job/Job.js" type="client" lang="javascript"/>
   <script src="src/Job/SecurityGuard/SecurityGuard.js" type="client" lang="javascript"/>
+  <script src="src/Job/ArmsDealer/ArmsDealer.js" type="client" lang="javascript"/>
+  <script src="src/Job/ArmsDealer/WeaponCraft.js" type="client" lang="javascript"/>
   
   <!-- House -->
   <script src="src/Gameplay/House/House.js" type="client" lang="javascript"/>

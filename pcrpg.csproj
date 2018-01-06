@@ -118,6 +118,7 @@
     <Compile Include="src\Managers\DimensionManager.cs" />
     <Compile Include="src\Player\Auth\Login.cs" />
     <Compile Include="src\Player\Creation\CharacterCreation.cs" />
+    <Compile Include="src\Player\InteractionMenu\InteractionMenu.cs" />
     <Compile Include="src\Player\Inventory\Extensions\ClientExtensions.cs" />
     <Compile Include="src\Player\Inventory\Classes\DroppedItem.cs" />
     <Compile Include="src\Player\Inventory\Classes\InventoryItem.cs" />
@@ -181,6 +182,7 @@
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <Content Include="src\Player\Inventory\ItemDetector.js" />
+    <TypeScriptCompile Include="src\Player\InteractionMenu\InteractionMenu.ts" />
     <TypeScriptCompile Include="src\Player\Selection\CharacterSelector.ts" />
     <TypeScriptCompile Include="src\Player\Customization\CustomizationController.ts" />
     <TypeScriptCompile Include="src\Player\Inventory\Inventory.ts" />

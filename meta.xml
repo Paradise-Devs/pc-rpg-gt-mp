@@ -26,6 +26,7 @@
   <script src="src/Gameplay/Actor/DialogController.js" type="client" lang="javascript"/>
 
   <!-- Player -->
+  <script src="src/Player/InteractionMenu/InteractionMenu.js" type="client" lang="javascript"/>
   
   <!-- Vehicle -->
   <script src="src/Player/Vehicle/PersonalVehicleMenu.js" type="client" lang="javascript"/>

@@ -1,5 +1,8 @@
 ﻿var hideTimer = null;
 
+var messages = [];
+var messageidx = -1;
+
 $('ul').hide();
 $('ul li').click(function ()
 {
@@ -41,6 +44,7 @@ function setFocus(focus)
     var mainInput = $("input");
     if (focus)
     {
+        messageidx = -1;
         clearTimeout(hideTimer);
         activateUI();
         mainInput.val("");
@@ -115,6 +119,7 @@ function onKeyUp(event)
         var m = $("input").val();
         try
         {
+            if (m) messages.unshift(m);
             var chat = $('messages.selected').data("name");
             resourceCall("commitMessage", (m ? m + "" : " "), chat);
         }
@@ -125,3 +130,27 @@ function onKeyUp(event)
         setFocus(false);
     }
 }
+
+$(document).keyup(function (e) {
+    var input = $("input");
+    if (!input.is(":visible")) return;
+
+    if (e.which === 38) {
+        if (messages.length > 0) {
+            if (messageidx == (messages.length - 1))
+                return;
+
+            messageidx++;
+            $("input").val(messages[messageidx]);
+        }
+    }
+    else if (e.which === 40) {
+        if (messageidx < 0) {
+            $("input").val(null);
+            return;
+        }
+
+        messageidx--;
+        $("input").val(messages[messageidx]);        
+    }
+});

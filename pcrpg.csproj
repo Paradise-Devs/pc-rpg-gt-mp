@@ -87,7 +87,6 @@
     <Compile Include="src\Database\Models\CharacterTrait.cs" />
     <Compile Include="src\Database\Models\CharacterVehicle.cs" />
     <Compile Include="src\Database\Models\DefaultDbContext.cs" />
-    <Compile Include="src\Database\Models\Item.cs" />
     <Compile Include="src\Database\Models\User.cs" />
     <Compile Include="src\Flags\AnimationFlags.cs" />
     <Compile Include="src\Gameplay\Actor\Actor.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="src\Player\Selection\CharacterSelection.cs" />
     <Compile Include="src\Player\Data.cs" />
     <Compile Include="src\Player\Customization\CustomizationModel.cs" />
-    <Compile Include="src\Player\Inventory\InventoryModel.cs" />
     <Compile Include="src\Player\Utils\ClientExtensions.cs" />
     <Compile Include="src\Player\Vehicle\Vehicle.cs" />
     <Compile Include="src\Server\Chat\ChatApi.cs" />

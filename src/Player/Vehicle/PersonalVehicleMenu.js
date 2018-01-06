@@ -33,13 +33,12 @@ API.onServerEventTrigger.connect((eventName, args) => {
             API.deleteEntity(blip);
             blip = null;
         }
-        var x = args[0];
-        var y = args[1];
-        var z = args[2];
-        blip = API.createBlip(new Vector3(x, y, z));
+        var vehicle = args[0];
+        blip = API.createBlip(API.getEntityPosition(vehicle));
         API.setBlipColor(blip, 43);
         API.setBlipSprite(blip, 225);
         API.setBlipName(blip, "Meu veículo");
+        API.attachEntity(blip, vehicle, "", new Vector3(), new Vector3());
     }
     else if (eventName === "on_player_enter_owned_vehicle") {
         if (blip != null) {

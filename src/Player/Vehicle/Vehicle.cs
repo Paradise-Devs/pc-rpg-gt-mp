@@ -83,8 +83,7 @@ namespace pcrpg.src.Player.Vehicle
                 }
                 else
                 {
-                    Vector3 position = API.getEntityPosition(vehicle.Entity);
-                    API.triggerClientEvent(sender, "show_owned_vehicle_blip", position.X, position.Y, position.Z);
+                    API.triggerClientEvent(sender, "show_owned_vehicle_blip", vehicle.Entity);
                 }
             }
         }

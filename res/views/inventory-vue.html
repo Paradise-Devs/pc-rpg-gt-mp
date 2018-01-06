@@ -22,11 +22,11 @@
                 <div class="content">
                     <div class="inventory">
                         <div 
-                            v-for="item in items"
+                            v-for="(item, index) in items"
+                            v-bind:id="index"
                             class="item"
                             :class="[{usable: item.Usable, stack: verifyQuantity(item)}, item.Rarity]"
                             @click.right="useItem(item)"
-                            data-id="item.Id"
                         >
                             <i :class="item.Icon"></i>
                             <span class="counter" v-if="item.Quantity > 1">{{ item.Quantity }}</span>
@@ -134,9 +134,8 @@
             {
                 $(item).empty();
                 $(item).removeClass();
-                swal("Deletado!", "Item descartado com sucesso.", "success");
                 item = null;
-                resourceCall("onDiscardItem", items[slot].Id);
+                resourceCall("onDiscardItem", slot);
             }
 
             $(".inventory").sortable({
@@ -147,17 +146,17 @@
                 beforeStop: function (event, ui)
                 {
                     var item = $(ui.item);
-                    var slot = $(ui.item).data("id");
+                    var slot = $(ui.item).attr('id');
                     if (outside && slot != undefined)
                     {
                         swal({
-                            title: "Deseja descartar este item?",
-                            text: "Você não poderá recuperar este item posteriormente.",
+                            title: "Deseja dropar este item?",
+                            text: " ",
                             type: "warning",
                             showCancelButton: true,
-                            confirmButtonText: "Descartar",
-                            cancelButtonText: "Voltar",
-                            closeOnConfirm: false
+                            confirmButtonText: "Dropar",
+                            cancelButtonText: "Cancelar",
+                            closeOnConfirm: true
                         },
                         function ()
                         {

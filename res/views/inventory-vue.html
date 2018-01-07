@@ -58,20 +58,7 @@
         <script>
             var inventory = new Vue({
                 el: '#inventory',
-                data: {
-                    items: [
-                        {
-                            Name: "Colete padrão",
-                            IsDroppable: true,
-                            Rarity: "rare",
-                            Description: "Usado no corpo",
-                            Category: "Colete",
-                            Icon: "weapon-bulletproof-vest",
-                            Usable: true,
-                            Quantity: 1
-                        }
-                    ]
-                },
+                data: { },
                 methods: {
                     verifyQuantity: function(item) {
                         return item.Quantity > 1 ? true : false;

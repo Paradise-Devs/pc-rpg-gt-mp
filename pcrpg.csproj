@@ -159,7 +159,6 @@
     <Content Include="res\js\jquery-ui.js" />
     <Content Include="res\js\jquery.js" />
     <Content Include="res\js\pcfw.js" />
-    <Content Include="res\js\slider.js" />
     <Content Include="res\js\sweetalert.js" />
     <Content Include="res\js\tether.js" />
     <Content Include="res\sounds\music01.mp3" />

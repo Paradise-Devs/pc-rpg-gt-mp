@@ -39,7 +39,7 @@ namespace pcrpg.src.Player.Inventory.Classes
             _itemObject = API.shared.createObject(API.shared.getHashKey(model.ModelName), position + model.Offset, model.Rotation);
             _itemObject.setSyncedData("ItemDropID", dropID.ToString());
 
-            _itemLabel = API.shared.createTextLabel($"{Name} x{quantity}", position + model.Offset + new Vector3(0.0, 0.0, 0.15), 10f, 0.5f, false);
+            _itemLabel = API.shared.createTextLabel($"{Name} x{quantity}", position + model.Offset + new Vector3(0.0, 0.0, 0.20), 10f, 0.5f, false);
         }
 
         public void Delete()

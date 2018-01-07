@@ -11,7 +11,7 @@
         <div id="chat" class="container-fluid">
             <chat style="-webkit-user-select: none; user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">
                 <container>
-                    <messages class="active" :class="{ selected: isActive('local') }" id="local">
+                    <messages :class="{ selected: isActive('local') }" id="local">
                     </messages>
                     <messages :class="{ selected: isActive('global') }" id="global">
                     </messages>
@@ -217,6 +217,7 @@
             chat input {
                 font-family: "Roboto";
                 margin-top: 40px;
+                display: none;
             }
 
             /*tabs*/

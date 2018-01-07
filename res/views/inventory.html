@@ -118,9 +118,7 @@
                 }
             }
 
-            function OnDiscardItem(slot, item, quantity)
-            {
-                // item = useless
+            function OnDiscardItem(slot, quantity) {
                 resourceCall("onDiscardItem", slot, quantity);
             }
 

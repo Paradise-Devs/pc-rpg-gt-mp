@@ -9,7 +9,7 @@ API.onResourceStart.connect(() =>
     invBrowser = API.createCefBrowser(res.Width, res.Height);
     API.waitUntilCefBrowserInit(invBrowser);
     API.setCefBrowserPosition(invBrowser, 0, 0);
-    API.loadPageCefBrowser(invBrowser, "res/views/inventory-vue.html");
+    API.loadPageCefBrowser(invBrowser, "res/views/inventory.html");
     API.setCefBrowserHeadless(invBrowser, true);
 });
 

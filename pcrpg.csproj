@@ -166,7 +166,6 @@
     <Content Include="res\views\character_creator.html" />
     <Content Include="res\views\character_selector.html" />
     <Content Include="res\views\chat.html" />
-    <Content Include="res\views\inventory-vue.html" />
     <Content Include="res\views\inventory.html" />
     <Content Include="res\views\login.html" />
     <Content Include="res\js\chat.js" />

@@ -62,28 +62,6 @@
         <script>
             var inventory = new Vue({
                 el: '#inventory',
-                data: {
-                    items: [
-                        {
-                            Name: "Materiais",
-                            Icon: "fas fa-cubes",
-                            IsDroppable: true,
-                            Description: "Materiais para criação de armas",
-                            Usable: true,
-                            Rarity: "common",
-                            Quantity: 100
-                        },
-                        {
-                            Name: "Materiais",
-                            Icon: "fas fa-cubes",
-                            IsDroppable: true,
-                            Description: "Materiais para criação de armas",
-                            Usable: false,
-                            Rarity: "common",
-                            Quantity: 1
-                        }
-                    ]
-                },
                 methods: {
                     verifyQuantity: function(item) {
                         return item.Quantity > 1 ? true : false;

@@ -20,7 +20,7 @@ API.onServerEventTrigger.connect((eventName, args) => {
     }
 });
 function createInteractionMenu() {
-    menu = API.createMenu(API.getPlayerName(API.getLocalPlayer()), "Menu para acesso rápido", 0, 0, 3);
+    menu = API.createMenu(API.getPlayerName(API.getLocalPlayer()), "Menu para acesso rápido", 0, 0, 6);
     // GPS
     var list = new List(String);
     list.Add("Nenhum");

@@ -9,6 +9,7 @@
         <script src="../js/jquery-ui.js"></script>
         <script src="../js/sweetalert.js"></script>
         <script src="../js/vue.js"></script>
+        <script src="../js/fa-all.min.js"></script>
     </head>
     <body>
         <div id="inventory" class="container">
@@ -58,7 +59,15 @@
         <script>
             var inventory = new Vue({
                 el: '#inventory',
-                data: { },
+                /*
+                    data: {
+                        items: [
+                            {
+                                Icon: "fas fa-cubes"
+                            }
+                        ]
+                    },
+                */
                 methods: {
                     verifyQuantity: function(item) {
                         return item.Quantity > 1 ? true : false;
@@ -209,12 +218,28 @@
                 background-color: rgba(69, 69, 69, 0.9);
             }
 
+            .inventory .item:hover i {
+                color: #fff;
+            }
+
+            .inventory .item:hover svg {
+                color: #fff;
+            }
+
             .inventory .item:hover .container {
                 display: block;
             }
 
-            .inventory .item:hover i {
-                color: #fff;
+            .inventory .item i {
+                text-shadow: 0px 0px 4px #000;
+                color: #aaa;
+                font-size: 28px;
+            }
+
+            .inventory .item svg {
+                text-shadow: 0px 0px 4px #000;
+                color: #aaa;
+                font-size: 28px;
             }
 
             .inventory .item.stack .counter {
@@ -228,12 +253,6 @@
                 background-color: #2A2A2A;
                 color: #fff;
                 font-size: 10px;
-            }
-
-            .inventory .item i {
-                text-shadow: 0px 0px 4px #000;
-                color: #aaa;
-                font-size: 28px;
             }
 
             .inventory .item .desc.money::first-letter {

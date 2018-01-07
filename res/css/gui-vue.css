@@ -342,7 +342,7 @@ body.animated .block {
 /******************************************************************************/
 /*   Sweetalert customization                                                 */
 /******************************************************************************/
-.sweet-overlay {
+.swal2-container {
     background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     left: 0;
@@ -354,119 +354,105 @@ body.animated .block {
 }
 
 
-.sweet-alert {
-    background-color: rgba(30, 30, 30, 1);
-    font-family: 'Segoe UI';
-    width: 478px;
-    border-radius: 0px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -256px;
-    margin-top: -200px;
-    overflow: hidden;
-    display: none;
-    z-index: 99999;
-    max-width: 478px;
+.swal2-popup {
+    background-color: rgba(30, 30, 30, 1) !important;
+    font-family: 'Segoe UI' !important;
     border: 1px solid #2A2A2A;
+    padding: 0px !important;
+    border-radius: 0px !important;
 }
 
-.sweet-alert h2 {
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-    font-weight: 400;
-    text-transform: none;
-    position: relative;
-    line-height: 40px;
-    display: block;
-    padding: 10px;
+.swal2-popup .swal2-title {
+    color: #fff !important;
+    line-height: 40px !important;
+    padding: 10px !important;
     background-color: rgba(0, 0, 0, 0.3);
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 
-.sweet-alert p {
-    color: #aaa;
-    font-size: 16px;
-    text-align: center;
-    font-weight: 300;
-    position: relative;
-    float: none;
-    margin: 5px;
-    padding: 0;
-    line-height: normal;
+.swal2-popup .swal2-content {
+    color: #fff !important;
+    margin: 10px !important;
 }
 
-.sweet-alert fieldset {
-    border: none;
-    position: relative;
-}
-
-.sweet-alert .sa-icon {
-    width: 80px;
-    height: 80px;
-    border: 4px solid gray;
-    -webkit-border-radius: 40px;
-    border-radius: 40px;
-    border-radius: 50%;
-    margin: 20px auto;
-    padding: 0;
-    position: relative;
-    box-sizing: content-box;
-}
-
-.sweet-alert button {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 0px;
+.swal2-popup .swal2-buttonswrapper button {
+    border-radius: 0px;
     padding: 8px 15px 8px 15px;
-    color: #aaa;
+    color: #fff;
     font-size: 15px;
     font-family: "Roboto";
     text-transform: uppercase;
     cursor: pointer;
 }
 
-.sweet-alert .sa-button-container::before {
-    border-top: 1px solid rgba(0, 0, 0, 1);
+.swal2-popup .swal2-buttonswrapper {
+    padding: 10px;
+    justify-content: flex-start !important;
+    flex-direction: row-reverse;
 }
 
-.sweet-alert .sa-button-container {
-    display: flex;
-    padding: 10px 10px 10px 10px;
-    text-align: right;
-    float: right;
-}
-
-.sweet-alert button:not(:disabled):hover {
+.swal2-popup button:not(:disabled):hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
 }
 
-.sweet-alert button.confirm[disabled] {
+.swal2-popup button.swal2-confirm[disabled] {
     opacity: .2;
 }
 
-.sweet-alert button.confirm {
-    background-color: rgba(25, 117, 209, 0.2) !important;
-    box-shadow: none !important;
-}
+.swal2-popup button.swal2-confirm { background-color: #1976d2 !important; }
+.swal2-popup button.swal2-confirm:not(:disabled):hover { background-color: #1565c0 !important; }
+.swal2-popup button.swal2-confirm[disabled] { opacity: .2; }
 
-.sweet-alert button.confirm:not(:disabled):hover {
-    background-color: rgba(25, 117, 209, 0.6) !important;
-    box-shadow: none !important;
-}
+.swal2-popup button.swal2-cancel { background-color: #3A3A3A !important; }
+.swal2-popup button.swal2-cancel:not(:disabled):hover { background-color: #2F2F2F !important; }
+.swal2-popup button.swal2-cancel[disabled] { opacity: .2; }
 
-.sweet-alert button:not(:disabled):hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-}
-
-.sweet-alert button.confirm[disabled] {
-    opacity: .2;
-}
-
-.sweet-alert button:active {
+.swal2-popup button:active {
     box-shadow: inset 0 0 3px #000 !important;
+}
+
+.swal2-popup .swal2-range output {
+    text-align: right;
+}
+
+.swal2-popup .swal2-range input {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px !important;
+    background: #999;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.swal2-popup .swal2-range output {
+    line-height: 13px !important;
+}
+
+.swal2-popup .swal2-range input:hover {
+    opacity: 1;
+}
+
+.swal2-popup .swal2-range {
+    height: 35px;
+    padding: 0px 20px 0px 40px;
+}
+
+.swal2-popup .swal2-range input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #2979ff;
+    cursor: pointer;
+}
+
+.swal2-popup .swal2-range input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #2979ff;
+    cursor: pointer;
 }

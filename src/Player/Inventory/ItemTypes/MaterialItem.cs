@@ -13,7 +13,7 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
             DropModel = dropModel;
 
             Category = "Materiais";
-            Icon = "clothes-hoodie";
+            Icon = "weapon-bomb";
             Usable = false;
             Tradable = true;
             NeedConfirmation = false;

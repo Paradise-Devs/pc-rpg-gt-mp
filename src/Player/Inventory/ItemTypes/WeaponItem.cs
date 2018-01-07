@@ -10,10 +10,16 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
         public WeaponHash Hash { get; set; }
         public WorldModel DropModel { get; set; }
 
-        public WeaponItem(string name, string description, int stackSize, WeaponHash hash, string rarity, WorldModel dropModel) : base(name, description, stackSize, rarity)
+        public WeaponItem(string name, string description, int stackSize, WeaponHash hash, string rarity, string icon, WorldModel dropModel) : base(name, description, stackSize, rarity)
         {
             Hash = hash;
             DropModel = dropModel;
+
+            Category = "Armas";
+            Icon = icon;
+            Usable = true;
+            Tradable = true;
+            NeedConfirmation = false;
         }
 
         public override bool Use(Client player)

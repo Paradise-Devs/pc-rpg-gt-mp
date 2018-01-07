@@ -15,7 +15,7 @@ namespace pcrpg.src.Player.Inventory.ItemTypes
             DropModel = dropModel;
 
             Category = "Colete";
-            Icon = "clothes-hoodie";
+            Icon = "weapon-bulletproof-vest";
             Usable = true;
             Tradable = true;
             NeedConfirmation = false;

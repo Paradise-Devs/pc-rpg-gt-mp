@@ -21,8 +21,29 @@ namespace pcrpg.src.Job.Taxi
 
         public Taxi()
         {
+            API.onResourceStart += OnResourceStart;
             API.onPlayerDisconnected += OnPlayerDisconnected;
             API.onClientEventTrigger += OnClientEventTrigger;
+        }
+
+        private void OnResourceStart()
+        {
+            API.startTimer(60000, false, () =>
+            {
+                foreach (var taximeter in PlayerTaximeter)
+                {
+                    if (!taximeter.Value.Enabled || taximeter.Key.vehicleSeat != -1) continue;
+
+                    var driver = taximeter.Key;
+                    foreach (var player in API.getAllPlayers())
+                    {
+                        if (player.vehicle == driver.vehicle)
+                        {
+                            // TO DO
+                        }
+                    }
+                }
+            });
         }
 
         private void OnPlayerDisconnected(Client player, string reason)

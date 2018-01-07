@@ -4,22 +4,15 @@
   	*/
 
 @font-face {
-  font-family: "clothes";
-  src: url("../fonts/clothes.ttf") format("truetype");
+  font-family: "Clothes";
+  src: url("../../fonts/clothes.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: "clothes";
-    src: url("../fonts/clothes.svg#Flaticon") format("svg");
-  }
-}
-
 [class^="clothes-"]:before, [class*=" clothes-"]:before,
 [class^="clothes-"]:after, [class*=" clothes-"]:after {
-    font-family: "clothes";
+    font-family: "Clothes";
     font-size: 20px;
     font-style: normal;
 }

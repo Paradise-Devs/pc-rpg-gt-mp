@@ -3,12 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/gui-vue.css">
-        <link rel='stylesheet' href='../css/icons-fa.css'>
-        <link rel='stylesheet' href='../css/icons-clothes.css'>
-        <link rel='stylesheet' href='../css/icons-bodyparts.css'>
-        <link rel='stylesheet' href='../css/icons-media.css'>
-        <link rel='stylesheet' href='../css/icons-food.css'>
-        <link rel="stylesheet" href="../css/sweetalert.css">
         <link rel="stylesheet" href="../css/jquery-ui.css">
 
         <script src="../js/jquery.js"></script>
@@ -33,8 +27,9 @@
                             <div class="container">
                                 <div class="header">
                                     <div class="icon"><i :class="item.Icon"></i></div>
+                                    <span class="badge" v-if="item.Rarity == 'rare' || item.Rarity == 'legendary'"><i class="fa fa-star"></i></span>
                                     <div class="info">
-                                        <div class="title">{{ item.Name }} <badge v-if="item.Rarity == 'rare' || item.Rarity == 'legendary'"><i class="fa fa-star"></i></badge></div>
+                                        <div class="title">{{ item.Name }}</div>
                                         <div class="subtitle">{{ item.Category }}</div>
                                         <div class="subtitle">
                                             <span v-if="item.IsDroppable">Item dropável</span>
@@ -64,7 +59,18 @@
             var inventory = new Vue({
                 el: '#inventory',
                 data: {
-                    items: []
+                    items: [
+                        {
+                            Name: "Colete padrão",
+                            IsDroppable: true,
+                            Rarity: "rare",
+                            Description: "Usado no corpo",
+                            Category: "Colete",
+                            Icon: "weapon-bulletproof-vest",
+                            Usable: true,
+                            Quantity: 1
+                        }
+                    ]
                 },
                 methods: {
                     verifyQuantity: function(item) {
@@ -168,8 +174,8 @@
             .block {
                 display: block;
                 position: fixed;
-                right: 10%;
-                bottom: 10%;
+                right: 5%;
+                bottom: 5%;
                 width: 624px;
                 margin-left: -256px;
             }
@@ -240,6 +246,7 @@
             .inventory .item i {
                 text-shadow: 0px 0px 4px #000;
                 color: #aaa;
+                font-size: 28px;
             }
 
             .inventory .item .desc.money::first-letter {
@@ -275,7 +282,7 @@
             .inventory .item.legendary .container:after { border-top: solid 20px rgba(253, 122, 22, 1); }
             .inventory .item.legendary .container .header { background-color: rgba(253, 122, 22, 0.6); }
             .inventory .item.legendary .container .header .badge { background-color: rgba(253, 122, 22, 1); }
-            .inventory .item.legendary .container .desc { background-color: rgba(253, 122, 22, 0.3); }
+            .inventory .item.legendary .container .description { background-color: rgba(253, 122, 22, 0.3); }
             .inventory .item.legendary .commands { background-color: rgba(253, 122, 22, 0.6); border-width: 0px; }
             .inventory .item.legendary .container .icon { background-color: rgba(253, 122, 22, 0.6); }
 
@@ -285,7 +292,7 @@
             .inventory .item.rare .container:after { border-top: solid 20px rgba(103, 58, 182, 1); }
             .inventory .item.rare .container .header { background-color: rgba(103, 58, 182, 0.6); }
             .inventory .item.rare .container .header .badge { background-color: rgba(103, 58, 182, 1); }
-            .inventory .item.rare .container .desc { background-color: rgba(103, 58, 182, 0.3); }
+            .inventory .item.rare .container .description { background-color: rgba(103, 58, 182, 0.3); }
             .inventory .item.rare .commands { background-color: rgba(103, 58, 182, 0.6); border-width: 0px; }
             .inventory .item.rare .container .icon { background-color: rgba(103, 58, 182, 0.6);}
 
@@ -344,6 +351,10 @@
                 padding: 10px 5px 5px 5px;
             }
 
+            .inventory .item .container .header .badge i {
+                font-size: 15px;
+            }
+
             .inventory .item .container .header .tittle {
                 display: inline-block;
                 padding: 0px;
@@ -356,16 +367,10 @@
                 color: #aaa;
             }
 
-            .inventory .item .container .desc {
+            .inventory .item .container .description {
                 font-size: 12px;
                 font-family: "Roboto";
-                padding: 10px 5px 10px 5px;
-            }
-
-            .inventory .item .container .stats {
-                font-size: 12px;
-                font-family: "Roboto";
-                padding: 10px 5px 10px 5px;
+                padding: 10px 10px;
             }
 
             .inventory .item .container .stats .title {
@@ -374,25 +379,6 @@
                 text-transform: uppercase;
                 font-size: 12px;
                 font-weight: 600;
-            }
-
-            .inventory .item .container .stats ul {
-                list-style-type: none;
-                padding: 0px 0px 0px 15px;
-                margin: 0px;
-                width: 40%;
-            }
-
-            .inventory .item .container .stats ul li data {
-                display: inline-block;
-            }
-
-            .inventory .item .container .stats ul li data.positive {
-                color: green;
-            }
-
-            .inventory .item .container .stats ul li data.negative {
-                color: red;
             }
 
             .inventory .item .container .icon {
@@ -420,10 +406,13 @@
                 text-align: center;
                 border: 1px solid #2A2A2A;
                 background-color: rgba(100, 100, 100, 0.4);
-                width: 242px;
                 color: #aaa;
-                padding: 3px;
+                padding: 5px 0px;
                 text-transform: uppercase;
+                font-size: 14px;
+            }
+
+            .inventory .item .commands i {
                 font-size: 14px;
             }
 

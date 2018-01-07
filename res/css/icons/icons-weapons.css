@@ -1,0 +1,68 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 03/10/2016 10:05
+  	*/
+
+@font-face {
+	font-family: "Weapons";
+	src: url("../../fonts/weapons.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="weapon-"]:before, [class*=" weapon-"]:before,
+[class^="weapon-"]:after, [class*=" weapon-"]:after {
+    font-family: "Weapons";
+    font-style: normal;
+}
+
+.weapon-aim:before { content: "\f100"; }
+.weapon-aim-1:before { content: "\f101"; }
+.weapon-backpack:before { content: "\f102"; }
+.weapon-badge:before { content: "\f103"; }
+.weapon-binoculars:before { content: "\f104"; }
+.weapon-biohazard:before { content: "\f105"; }
+.weapon-bomb:before { content: "\f106"; }
+.weapon-bomb-1:before { content: "\f107"; }
+.weapon-bullet:before { content: "\f108"; }
+.weapon-bulletproof-vest:before { content: "\f109"; }
+.weapon-bullets:before { content: "\f10a"; }
+.weapon-cannon:before { content: "\f10b"; }
+.weapon-chevron:before { content: "\f10c"; }
+.weapon-chevron-1:before { content: "\f10d"; }
+.weapon-cruiser:before { content: "\f10e"; }
+.weapon-fighter:before { content: "\f10f"; }
+.weapon-first-aid-kit:before { content: "\f110"; }
+.weapon-gas-mask:before { content: "\f111"; }
+.weapon-grenade:before { content: "\f112"; }
+.weapon-gun:before { content: "\f113"; }
+.weapon-handcuffs:before { content: "\f114"; }
+.weapon-helicopter:before { content: "\f115"; }
+.weapon-helmet:before { content: "\f116"; }
+.weapon-knife:before { content: "\f117"; }
+.weapon-launcher:before { content: "\f118"; }
+.weapon-machine-gun:before { content: "\f119"; }
+.weapon-machine-gun-1:before { content: "\f11a"; }
+.weapon-medal:before { content: "\f11b"; }
+.weapon-medal-1:before { content: "\f11c"; }
+.weapon-molotov-cocktail:before { content: "\f11d"; }
+.weapon-parachute:before { content: "\f11e"; }
+.weapon-radar:before { content: "\f11f"; }
+.weapon-radar-1:before { content: "\f120"; }
+.weapon-radiation:before { content: "\f121"; }
+.weapon-revolver:before { content: "\f122"; }
+.weapon-rifle:before { content: "\f123"; }
+.weapon-rifle-1:before { content: "\f124"; }
+.weapon-rifle-2:before { content: "\f125"; }
+.weapon-rocket:before { content: "\f126"; }
+.weapon-shotgun:before { content: "\f127"; }
+.weapon-shotgun-1:before { content: "\f128"; }
+.weapon-sniper:before { content: "\f129"; }
+.weapon-submarine:before { content: "\f12a"; }
+.weapon-tank:before { content: "\f12b"; }
+.weapon-tank-1:before { content: "\f12c"; }
+.weapon-tank-2:before { content: "\f12d"; }
+.weapon-tank-3:before { content: "\f12e"; }
+.weapon-token:before { content: "\f12f"; }
+.weapon-torpedo:before { content: "\f130"; }
+.weapon-walkie-talkie:before { content: "\f131"; }

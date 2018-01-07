@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: "Food";
-    src: url("../fonts/food.ttf") format("truetype");
+    src: url("../../fonts/food.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }

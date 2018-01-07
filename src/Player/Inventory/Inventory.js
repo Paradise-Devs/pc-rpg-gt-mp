@@ -45,8 +45,7 @@ API.onServerEventTrigger.connect((eventName, args) => {
 function onUseItem(selectedIdx) {
     API.triggerServerEvent("ConsumeItem", selectedIdx);
 }
-function onDiscardItem(selectedIdx) {
-    var dropAmount = 1; // VIR DO FRONT ISSO
+function onDiscardItem(selectedIdx, dropAmount) {
     if (!inventoryData[selectedIdx].IsDroppable)
         return;
     var amount = (inventoryData[selectedIdx].Quantity > 1) ? dropAmount : 1;

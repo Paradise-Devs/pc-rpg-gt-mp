@@ -60,9 +60,8 @@ function onUseItem(selectedIdx)
     API.triggerServerEvent("ConsumeItem", selectedIdx);
 }
 
-function onDiscardItem(selectedIdx)
+function onDiscardItem(selectedIdx, dropAmount)
 {
-    var dropAmount = 1; // VIR DO FRONT ISSO
     if (!inventoryData[selectedIdx].IsDroppable) return;
     var amount = (inventoryData[selectedIdx].Quantity > 1) ? dropAmount : 1;
     if (amount < 1) amount = 1;

@@ -75,7 +75,7 @@
   <file src="res/views/chat.html" />
   <file src="res/views/login.html" />
   <file src="res/views/dialog.html" />
-  <file src="res/views/inventory-vue.html" />
+  <file src="res/views/inventory.html" />
   <file src="res/views/character_selector.html" />
   <file src="res/views/character_creator.html" />
 
@@ -84,9 +84,9 @@
   <file src="res/js/jquery.js" />
   <file src="res/js/jquery-ui.js" />
   <file src="res/js/tether.js" />
-  <file src="res/js/slider.js" />
   <file src="res/js/vue.js" />
   <file src="res/js/pcfw.js" />
+  <file src="res/js/fa-all.min.js" />
   <file src="res/js/sweetalert.js" />
   <file src="res/js/character-clothes.js" />
 
@@ -103,12 +103,13 @@
   <file src="res/css/sweetalert.css" />
 
   <!-- Icons -->
-  <file src="res/css/icons-anim.css" />
-  <file src="res/css/icons-fa.css" />
-  <file src="res/css/icons-bodyparts.css" />
-  <file src="res/css/icons-clothes.css" />
-  <file src="res/css/icons-media.css" />
-  <file src="res/css/icons-food.css" />
+  <file src="res/css/icons/icons-anim.css" />
+  <file src="res/css/icons/icons-fa.css" />
+  <file src="res/css/icons/icons-bodyparts.css" />
+  <file src="res/css/icons/icons-clothes.css" />
+  <file src="res/css/icons/icons-media.css" />
+  <file src="res/css/icons/icons-food.css" />
+  <file src="res/css/icons/icons-weapons.css" />
   <file src="res/fonts/custom/eyebrows.png" />
 
   <!-- Fonts -->
@@ -120,4 +121,5 @@
   <file src="res/fonts/bodyparts.ttf" />
   <file src="res/fonts/media.ttf" />
   <file src="res/fonts/food.ttf" />
+  <file src="res/fonts/weapons.ttf" />
 </meta>

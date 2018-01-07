@@ -12,7 +12,8 @@ namespace pcrpg.src.Job
     public enum JobType
     {
         SecurityGuard,
-        ArmsDealer
+        ArmsDealer,
+        Taxi
     }    
 
     public class Job

@@ -64,6 +64,8 @@ namespace pcrpg.src.Player.InteractionMenu
 
                     if (position != null) sender.triggerEvent("InteractionMenu_SetWaypointPosition", position.X, position.Y);
                     break;
+                case "InteractionMenu_CallTaxi":
+                    break;
                 case "InteractionMenu_Suicide":
                     sender.sendChatAction("cometeu suicídio.");
                     sender.kill();

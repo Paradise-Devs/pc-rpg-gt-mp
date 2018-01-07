@@ -112,6 +112,7 @@
     <Compile Include="src\Job\JobVehicles.cs" />
     <Compile Include="src\Job\Main.cs" />
     <Compile Include="src\Job\SecurityGuard\SecurityGuard.cs" />
+    <Compile Include="src\Job\Taxi\Taxi.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Managers\CommandManager.cs" />
@@ -179,6 +180,7 @@
     <TypeScriptCompile Include="src\Job\ArmsDealer\WeaponCraft.ts" />
     <TypeScriptCompile Include="src\Job\Job.ts" />
     <TypeScriptCompile Include="src\Job\SecurityGuard\SecurityGuard.ts" />
+    <TypeScriptCompile Include="src\Job\Taxi\Taxi.ts" />
     <TypeScriptCompile Include="src\Player\Auth\Login.ts" />
     <TypeScriptCompile Include="src\Player\Creation\CharacterCreator.ts" />
     <Content Include="src\Player\Inventory\ItemDetector.js" />

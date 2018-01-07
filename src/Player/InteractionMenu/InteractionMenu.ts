@@ -46,8 +46,15 @@ function createInteractionMenu() {
 
     menu.AddItem(list_item);
 
+    // Call taxi
+    var temp_item = API.createMenuItem("Chamar taxi", "Chama um taxi para sua posição atual.");
+    temp_item.Activated.connect(function (sender, item) {
+        API.triggerServerEvent("InteractionMenu_CallTaxi");
+    });
+    menu.AddItem(temp_item);
+
     // Suicide
-    var temp_item = API.createMenuItem("Cometer suicídio", "Tem certeza que deseja fazer isso?");
+    temp_item = API.createMenuItem("Cometer suicídio", "Tem certeza que deseja fazer isso?");
     temp_item.Activated.connect(function (sender, item) {
         menu.Visible = false;
         API.triggerServerEvent("InteractionMenu_Suicide");

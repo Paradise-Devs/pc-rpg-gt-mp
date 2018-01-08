@@ -72,7 +72,7 @@
   <!-- Resources -->
 
   <!-- Views -->
-  <file src="res/views/chat-vue.html" />
+  <file src="res/views/chat.html" />
   <file src="res/views/login.html" />
   <file src="res/views/dialog.html" />
   <file src="res/views/inventory.html" />

@@ -456,3 +456,83 @@ body.animated .block {
     background: #2979ff;
     cursor: pointer;
 }
+
+/******************************************************************************/
+/*   Forms                                                                    */
+/******************************************************************************/
+form {
+    margin: 0px;
+}
+
+label {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    color: #888;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #fff;
+    background-color: rgba(69, 69, 69, 0.8);
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+}
+
+input:read-only {
+    background-color: #222;
+}
+
+input:focus + help {
+    display: block;
+}
+
+input.error {
+    border: 1px solid rgba(210, 47, 47, 0.9);
+    color: #D22F2F;
+    background-color: rgba(210, 47, 47, 0.2);
+}
+
+form help {
+    display: none;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+}
+
+form field error {
+    display: none;
+    float: right;
+    color: #D22F2F;
+}
+
+form field error b {
+    color: #D22F2F;
+    font-weight: 600;
+}
+
+form help a {
+    color: #fff;
+}
+
+form help a:hover {
+    color: #999;
+    text-decoration: none;
+}
+
+form field {
+    display: block;
+    margin-top: 3px;
+    height: 75px;
+}
+
+form field:first-child {
+    margin-top: 0px;
+}

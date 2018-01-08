@@ -81,8 +81,7 @@
                                     type: "warning",
                                     showCancelButton: true,
                                     confirmButtonText: "Usar",
-                                    cancelButtonText: "Voltar",
-                                    closeOnConfirm: true
+                                    cancelButtonText: "Voltar"
                                 },
                                 function () {
                                     OnUseItem(index); 
@@ -128,7 +127,6 @@
                 out: function (e, ui) { outside = true; },
                 over: function (e, ui) { outside = false; },
                 beforeStop: function (event, ui) {
-                    var item = $(ui.item);
                     var slot = $(ui.item).attr('id');
                     var itemQuantity = inventory.items[slot].Quantity;
 
@@ -139,10 +137,9 @@
                                 type: "warning",
                                 showCancelButton: true,
                                 confirmButtonText: "Dropar",
-                                cancelButtonText: "Cancelar",
-                                closeOnConfirm: true
+                                cancelButtonText: "Cancelar"
                             }).then((result) => {
-                                if (result.value) OnDiscardItem(slot, item, 1);
+                                if (result.value) OnDiscardItem(slot, 1);
                             });
                         } else {
                             swal({
@@ -154,13 +151,12 @@
                                     step: 1,
                                     value: 1,
                                 },
-                                html: console.log($('.swal2-popup .swal2-range input').val()),
                                 type: "question",
                                 showCancelButton: true,
                                 confirmButtonText: "Dropar",
                                 cancelButtonText: "Cancelar"
                             }).then((result) => {
-                                if(result.value) OnDiscardItem(slot, item, result.value);
+                                if(result.value) OnDiscardItem(slot, result.value);
                             });
 
                             var slider = $('.swal2-popup .swal2-range input');

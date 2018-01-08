@@ -16,7 +16,7 @@ API.onServerEventTrigger.connect((eventName: string, args: System.Array<any>) =>
 
             var list = new List(String);
             for (let i = 10; i <= 100; i++) list.Add(i.toString());
-            var list_item = API.createListItem("Preço", "Valor cobrado por minuto.", list, 0);
+            var list_item = API.createListItem("Preço", "Valor cobrado a cada 15 segundos.", list, 0);
             taxi_menu.AddItem(list_item);
 
             list_item.OnListChanged.connect(function (sender, new_index) {

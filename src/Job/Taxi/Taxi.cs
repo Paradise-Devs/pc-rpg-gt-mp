@@ -52,7 +52,7 @@ namespace pcrpg.src.Job.Taxi
 
         private void OnResourceStart()
         {
-            API.startTimer(60000, false, () =>
+            API.startTimer(15000, false, () =>
             {
                 foreach (var taximeter in PlayerTaximeter)
                 {

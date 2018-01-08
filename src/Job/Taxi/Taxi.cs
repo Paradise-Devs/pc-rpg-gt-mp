@@ -1,5 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using GrandTheftMultiplayer.Shared;
 using pcrpg.src.Player.Utils;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,40 @@ namespace pcrpg.src.Job.Taxi
     {
         Dictionary<Client, Vehicle> PlayerVehicle = new Dictionary<Client, Vehicle>();
         Dictionary<Client, Taximeter> PlayerTaximeter = new Dictionary<Client, Taximeter>();
+        Dictionary<Client, int> PlayerTaxiFee = new Dictionary<Client, int>();
 
         public Taxi()
         {
+            API.onPlayerExitVehicle += OnPlayerExitVehicle;
             API.onResourceStart += OnResourceStart;
             API.onPlayerDisconnected += OnPlayerDisconnected;
             API.onClientEventTrigger += OnClientEventTrigger;
         }
 
+        private void OnPlayerExitVehicle(Client player, NetHandle vehicle, int seat)
+        {
+            if (seat != -1)
+            {
+                foreach (var v in PlayerVehicle)
+                {
+                    if (vehicle != v.Value) continue;
+
+                    if (PlayerTaxiFee.ContainsKey(player))
+                    {
+                        var driver = v.Key;
+                        player.sendNotification("", $"- ${PlayerTaxiFee[player]}");
+                        driver.sendNotification("", $"+ ${PlayerTaxiFee[player]}");
+
+                        player.giveMoney(-PlayerTaxiFee[player]);
+                        driver.giveMoney(PlayerTaxiFee[player]);
+                    }
+                }
+            }
+        }
+
         private void OnResourceStart()
         {
-            API.startTimer(60000, false, () =>
+            API.startTimer(15000, false, () =>
             {
                 foreach (var taximeter in PlayerTaximeter)
                 {
@@ -37,10 +61,9 @@ namespace pcrpg.src.Job.Taxi
                     var driver = taximeter.Key;
                     foreach (var player in API.getAllPlayers())
                     {
-                        if (player.vehicle == driver.vehicle)
-                        {
-                            // TO DO
-                        }
+                        if (player == driver || player.vehicle != driver.vehicle) continue;
+                        if (!PlayerTaxiFee.ContainsKey(player)) PlayerTaxiFee.Add(player, 0);
+                        PlayerTaxiFee[player] += taximeter.Value.Value;
                     }
                 }
             });
@@ -57,9 +80,10 @@ namespace pcrpg.src.Job.Taxi
             }
 
             if (PlayerTaximeter.ContainsKey(player))
-            {
                 PlayerTaximeter.Remove(player);
-            }
+
+            if (PlayerTaxiFee.ContainsKey(player))
+                PlayerTaxiFee.Remove(player);
         }
 
         private void OnClientEventTrigger(Client sender, string eventName, params object[] arguments)

@@ -72,7 +72,7 @@ namespace pcrpg.src.Gameplay.Bank
             Blip.sprite = 108;
             Blip.color = 69;
             Blip.name = (Type == 0) ? "Banco" : "Caixa eletrônico";
-            Blip.scale = (Type == 0) ? 1f : 0.1f;
+            Blip.scale = (Type == 0) ? 1f : 0.5f;
         }
 
         public void SetType(int new_type)

@@ -89,7 +89,6 @@ namespace pcrpg.src.Gameplay.Actor
             if (!Directory.Exists(ACTOR_SAVE_DIR)) Directory.CreateDirectory(ACTOR_SAVE_DIR);
 
             if (API.hasSetting("saveInterval")) SAVE_INTERVAL = API.getSetting<int>("saveInterval");
-            API.consoleOutput("-> Save Interval: {0}", TimeSpan.FromSeconds(SAVE_INTERVAL).ToString(@"hh\:mm\:ss"));
 
             // load parking lots
             foreach (string file in Directory.EnumerateFiles(ACTOR_SAVE_DIR, "*.json"))

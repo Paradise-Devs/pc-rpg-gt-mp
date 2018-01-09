@@ -96,43 +96,44 @@ namespace pcrpg.src.Job.Taxi
 
                         Job job = Main.Jobs.FirstOrDefault(h => h.ID == sender.getData("JobMarker_ID"));
                         if (job == null) return;
+                        if (job.Type != JobType.Taxi) return;
 
-                        string serviceName = (string)arguments[0];
-                        if (serviceName == "Solicitar taxi da empresa")
+                        int index = (int)arguments[0];
+
+                        switch (index)
                         {
-                            if (job.Vehicles.Count < 1)
-                            {
-                                sender.sendNotification("ERROR", "Estamos sem veículos no momento.");
-                                return;
-                            }
+                            case 0:
+                                if (job.Vehicles.Count < 1)
+                                {
+                                    sender.sendNotification("ERROR", "Estamos sem veículos no momento.");
+                                    return;
+                                }
 
-                            if (PlayerVehicle.ContainsKey(sender))
-                            {
-                                if (API.doesEntityExist(PlayerVehicle[sender]))
-                                    API.deleteEntity(PlayerVehicle[sender]);
+                                if (PlayerVehicle.ContainsKey(sender))
+                                {
+                                    if (API.doesEntityExist(PlayerVehicle[sender]))
+                                        API.deleteEntity(PlayerVehicle[sender]);
 
-                                PlayerVehicle.Remove(sender);
-                            }
+                                    PlayerVehicle.Remove(sender);
+                                }
 
-                            Random random = new Random();
-                            int i = random.Next(job.Vehicles.Count);
-                            var vehicle = API.createVehicle(job.Vehicles[i].Model, job.Vehicles[i].Position, job.Vehicles[i].Rotation, job.Vehicles[i].PrimaryColor, job.Vehicles[i].SecondaryColor);
-                            vehicle.engineStatus = false;
-                            PlayerVehicle.Add(sender, vehicle);
-                        }
-                        else if (serviceName == "Devolver taxi da empresa")
-                        {
-                            if (PlayerVehicle.ContainsKey(sender))
-                            {
-                                if (API.doesEntityExist(PlayerVehicle[sender]))
-                                    API.deleteEntity(PlayerVehicle[sender]);
+                                Random random = new Random();
+                                int i = random.Next(job.Vehicles.Count);
+                                var vehicle = API.createVehicle(job.Vehicles[i].Model, job.Vehicles[i].Position, job.Vehicles[i].Rotation, job.Vehicles[i].PrimaryColor, job.Vehicles[i].SecondaryColor);
+                                vehicle.engineStatus = false;
+                                PlayerVehicle.Add(sender, vehicle);
+                                break;
+                            case 1:
+                                if (PlayerVehicle.ContainsKey(sender))
+                                {
+                                    if (API.doesEntityExist(PlayerVehicle[sender]))
+                                        API.deleteEntity(PlayerVehicle[sender]);
 
-                                PlayerVehicle.Remove(sender);
-                            }
-                            else
-                            {
+                                    PlayerVehicle.Remove(sender);
+                                    return;
+                                }
                                 sender.sendNotification("", "Você não solicitou um veículo.");
-                            }
+                                break;
                         }
                         break;
                     }

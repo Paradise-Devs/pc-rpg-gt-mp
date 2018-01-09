@@ -52,40 +52,44 @@ namespace pcrpg.src.Job.SecurityGuard
 
                         Job job = Main.Jobs.FirstOrDefault(h => h.ID == sender.getData("JobMarker_ID"));
                         if (job == null) return;
+                        if (job.Type != JobType.SecurityGuard) return;
 
-                        string serviceName = (string)arguments[0];
-                        if (serviceName == "Transporte de dinheiro")
+                        int index = (int)arguments[0];
+
+                        switch (index)
                         {
-                            if (job.Vehicles.Count < 1)
-                            {
-                                sender.sendNotification("ERROR", "Estamos sem veículos no momento.");
-                                return;
-                            }
+                            case 0:
+                                if (job.Vehicles.Count < 1)
+                                {
+                                    sender.sendNotification("ERROR", "Estamos sem veículos no momento.");
+                                    return;
+                                }
 
-                            var atms = Gameplay.Bank.Main.Banks.Where(x => x.Type != 0).ToList();
-                            if (atms.Count < 1)
-                            {
-                                sender.sendNotification("ERROR", "Todos os caixas estão vazios.");
-                                return;
-                            }
+                                var atms = Gameplay.Bank.Main.Banks.Where(x => x.Type != 0).ToList();
+                                if (atms.Count < 1)
+                                {
+                                    sender.sendNotification("ERROR", "Todos os caixas estão vazios.");
+                                    return;
+                                }
 
-                            if (PlayerVehicle.ContainsKey(sender))
-                            {
-                                if (API.doesEntityExist(PlayerVehicle[sender]))
-                                    API.deleteEntity(PlayerVehicle[sender]);
+                                if (PlayerVehicle.ContainsKey(sender))
+                                {
+                                    if (API.doesEntityExist(PlayerVehicle[sender]))
+                                        API.deleteEntity(PlayerVehicle[sender]);
 
-                                PlayerVehicle.Remove(sender);
-                            }
+                                    PlayerVehicle.Remove(sender);
+                                }
 
-                            Random random = new Random();
-                            int i = random.Next(job.Vehicles.Count);
-                            var vehicle = API.createVehicle(job.Vehicles[i].Model, job.Vehicles[i].Position, job.Vehicles[i].Rotation, job.Vehicles[i].PrimaryColor, job.Vehicles[i].SecondaryColor);
-                            vehicle.engineStatus = false;
-                            PlayerVehicle.Add(sender, vehicle);
-                            PlayerJobProgress[sender] = 0;
+                                Random random = new Random();
+                                int i = random.Next(job.Vehicles.Count);
+                                var vehicle = API.createVehicle(job.Vehicles[i].Model, job.Vehicles[i].Position, job.Vehicles[i].Rotation, job.Vehicles[i].PrimaryColor, job.Vehicles[i].SecondaryColor);
+                                vehicle.engineStatus = false;
+                                PlayerVehicle.Add(sender, vehicle);
+                                PlayerJobProgress[sender] = 0;
 
-                            sender.sendNotification("", "Pegue o caminhão e vá coletar o dinheiro");
-                            sender.triggerEvent("SecurityGuardJobStart", vehicle, atms[random.Next(atms.Count)].Position);
+                                sender.sendNotification("", "Pegue o caminhão e vá coletar o dinheiro");
+                                sender.triggerEvent("SecurityGuardJobStart", vehicle, atms[random.Next(atms.Count)].Position);
+                                break;
                         }
                         break;
                     }

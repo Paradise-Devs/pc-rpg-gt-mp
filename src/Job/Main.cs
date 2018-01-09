@@ -64,8 +64,6 @@ namespace pcrpg.src.Job
 
             if (API.hasSetting("saveInterval")) SAVE_INTERVAL = API.getSetting<int>("saveInterval");
 
-            API.consoleOutput("-> Save Interval: {0}", TimeSpan.FromSeconds(SAVE_INTERVAL).ToString(@"hh\:mm\:ss"));
-
             // load jobs
             foreach (string file in Directory.EnumerateFiles(JOB_SAVE_DIR, "*.json"))
             {
@@ -93,7 +91,7 @@ namespace pcrpg.src.Job
                             switch (job.Type)
                             {
                                 case JobType.SecurityGuard:
-                                    services.Add("Transporte de dinheiro");
+                                    services.Add("Transportar dinheiro");
                                     break;
                                 case JobType.ArmsDealer:
                                     services.Add("Obter materiais");
@@ -101,11 +99,11 @@ namespace pcrpg.src.Job
                                     services.Add("Vender materiais");
                                     break;
                                 case JobType.Taxi:
-                                    services.Add("Solicitar taxi da empresa");
-                                    services.Add("Devolver taxi da empresa");
+                                    services.Add("Solicitar veículo");
+                                    services.Add("Devolver veículo");
                                     break;
                             }
-                            player.triggerEvent("JobMenu", API.toJson(services));
+                            player.triggerEvent("JobMenu", API.toJson(new { Services = services }));
                         }
                         else if (player.getJob() == null)
                         {

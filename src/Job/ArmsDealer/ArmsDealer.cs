@@ -5,6 +5,7 @@ using pcrpg.src.Player.Inventory.Classes;
 using pcrpg.src.Player.Inventory.Extensions;
 using pcrpg.src.Player.Utils;
 using System;
+using System.Linq;
 
 namespace pcrpg.src.Job.ArmsDealer
 {
@@ -21,31 +22,38 @@ namespace pcrpg.src.Job.ArmsDealer
             {
                 case "JobService":
                     {
-                        string serviceName = (string)arguments[0];
-                        if (serviceName == "Obter materiais")
-                        {
-                            sender.triggerEvent("ArmsDealer_SpawnMaterial");
-                        }
-                        else if (serviceName == "Vender materiais")
-                        {
-                            if (!sender.hasItem(ItemID.Weapon_Material))
-                            {
-                                sender.sendNotification("", "Você não possui materiais.");
-                                return;
-                            }
+                        if (!sender.hasData("JobMarker_ID")) return;
 
-                            int amount = sender.getItemAmount(ItemID.Weapon_Material);
-                            int cost = 3 * amount;
+                        Job job = Main.Jobs.FirstOrDefault(h => h.ID == sender.getData("JobMarker_ID"));
+                        if (job == null) return;
+                        if (job.Type != JobType.ArmsDealer) return;
 
-                            sender.giveMoney(cost);
-                            sender.removeItem(sender.getItem(ItemID.Weapon_Material), amount);
+                        int index = (int)arguments[0];
 
-                            sender.sendNotification("", $"- {amount} materiais");
-                            sender.sendNotification("", $"+ ~g~$~w~{cost}");
-                        }
-                        else if (serviceName == "Criar arma")
+                        switch (index)
                         {
-                            sender.triggerEvent("ShowWeaponCraftMenu");
+                            case 0:
+                                sender.triggerEvent("ArmsDealer_SpawnMaterial");
+                                break;
+                            case 1:
+                                if (!sender.hasItem(ItemID.Weapon_Material))
+                                {
+                                    sender.sendNotification("", "Você não possui materiais.");
+                                    return;
+                                }
+
+                                int amount = sender.getItemAmount(ItemID.Weapon_Material);
+                                int cost = 3 * amount;
+
+                                sender.giveMoney(cost);
+                                sender.removeItem(sender.getItem(ItemID.Weapon_Material), amount);
+
+                                sender.sendNotification("", $"- {amount} materiais");
+                                sender.sendNotification("", $"+ ~g~$~w~{cost}");
+                                break;
+                            case 2:
+                                sender.triggerEvent("ShowWeaponCraftMenu");
+                                break;
                         }
                         break;
                     }

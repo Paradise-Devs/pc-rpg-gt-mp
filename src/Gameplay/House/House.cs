@@ -369,7 +369,6 @@ namespace pcrpg.src.Gameplay.House
             API.consoleOutput("-> House Weapon Limit: {0}", ((HOUSE_WEAPON_LIMIT == 0) ? "Disabled" : HOUSE_WEAPON_LIMIT.ToString()));
             API.consoleOutput("-> House Furniture Limit: {0}", ((HOUSE_FURNITURE_LIMIT == 0) ? "Disabled" : HOUSE_FURNITURE_LIMIT.ToString()));
             API.consoleOutput("-> Dimension Reset On Death: {0}", ((RESET_DIMENSION_ON_DEATH) ? "Enabled" : "Disabled"));
-            API.consoleOutput("-> Save Interval: {0}", TimeSpan.FromSeconds(SAVE_INTERVAL).ToString(@"hh\:mm\:ss"));
 
             // load houses
             foreach (string file in Directory.EnumerateFiles(HOUSE_SAVE_DIR, "*.json"))

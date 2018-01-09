@@ -169,7 +169,6 @@ namespace pcrpg.src.Gameplay.Parkinglot
 
             API.consoleOutput("-> Player Parking lot Limit: {0}", ((PLAYER_PARKINGLOT_LIMIT == 0) ? "Disabled" : PLAYER_PARKINGLOT_LIMIT.ToString()));
             API.consoleOutput("-> Parking lot Safe Limit: ${0:n0}", PARKINGLOT_MONEY_LIMIT);
-            API.consoleOutput("-> Save Interval: {0}", TimeSpan.FromSeconds(SAVE_INTERVAL).ToString(@"hh\:mm\:ss"));
 
             // load parking lots
             foreach (string file in Directory.EnumerateFiles(PARKINGLOT_SAVE_DIR, "*.json"))

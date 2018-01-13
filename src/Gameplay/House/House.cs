@@ -441,8 +441,7 @@ namespace pcrpg.src.Gameplay.House
                             return;
                         }
 
-                        Character character = API.getEntityData(player, "Character");
-                        if (house.Price > character.Money)
+                        if (house.Price > player.getMoney())
                         {
                             player.sendNotification("Error", "~r~Você não tem dinheiro suficiente.");
                             return;
@@ -551,8 +550,7 @@ namespace pcrpg.src.Gameplay.House
                         if (amount < 1) return;
                         if (type == 0)
                         {
-                            Character character = API.getEntityData(player, "Character");
-                            if (character.Money < amount)
+                            if (player.getMoney() < amount)
                             {
                                 player.sendNotification("Error", "~r~Você não tem dinheiro suficiente.");
                                 return;

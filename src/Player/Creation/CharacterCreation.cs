@@ -55,7 +55,7 @@ namespace pcrpg.src.Player.Selection
                     };
 
                     ctx.Characters.Add(character);
-                    API.setEntityData(sender, "Character", character);
+                    Data.Character.Add(sender, character);
 
                     // Traits
                     CharacterTrait traits = new CharacterTrait

@@ -43,7 +43,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            else if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
             {
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
                 return;
@@ -66,7 +66,7 @@ namespace pcrpg.src.Admin
 
             if (sender == target)
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não pode puxar você mesmo.");
-            else if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -91,7 +91,7 @@ namespace pcrpg.src.Admin
 
             if (sender == target)
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~Você não pode congelar você mesmo.");
-            else if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -110,7 +110,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -166,7 +166,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -185,7 +185,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -204,7 +204,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -222,7 +222,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -241,7 +241,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -260,7 +260,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {
@@ -279,7 +279,7 @@ namespace pcrpg.src.Admin
                 return;
             }
 
-            if (!API.hasEntityData(target, "Character"))
+            else if (!target.isLogged())
                 API.sendNotificationToPlayer(sender, "~r~ERRO: ~w~O jogador não está conectado.");
             else
             {

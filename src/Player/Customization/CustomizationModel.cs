@@ -1,6 +1,8 @@
 ﻿using GrandTheftMultiplayer.Server.API;
+using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared;
 using pcrpg.src.Database.Models;
+using pcrpg.src.Player.Utils;
 
 namespace pcrpg.src.Player.Customization
 {
@@ -8,10 +10,12 @@ namespace pcrpg.src.Player.Customization
     {
         public void InitializePedFace(NetHandle ent)
         {
-            if (!API.hasEntityData(ent, "Character"))
-                return;
+            Client player = API.getPlayerFromHandle(ent);
 
-            Character character = API.getEntityData(ent, "Character");            
+            if (player == null) return;
+            else if (!player.isLogged()) return;
+
+            Character character = Data.Character[player];
 
             API.setEntitySyncedData(ent, "GTAO_HAS_CHARACTER_DATA", true);            
 

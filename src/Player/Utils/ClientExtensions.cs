@@ -13,6 +13,12 @@ namespace pcrpg.src.Player.Utils
             return false;
         }
 
+        public static int getBank(this Client player)
+        {
+            if (!Data.Character.ContainsKey(player)) return 0;
+            return Data.Character[player].Bank;
+        }
+
         public static int getMoney(this Client player)
         {
             if (!Data.Character.ContainsKey(player)) return 0;

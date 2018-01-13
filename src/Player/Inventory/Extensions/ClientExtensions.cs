@@ -6,6 +6,7 @@ using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
 using pcrpg.src.Player.Inventory.Classes;
+using pcrpg.src.Player.Utils;
 
 namespace pcrpg.src.Player.Inventory.Extensions
 {
@@ -106,7 +107,7 @@ namespace pcrpg.src.Player.Inventory.Extensions
         {
             if (!Main.Inventories.ContainsKey(player.handle)) return;
             List<InventoryItemData> playerInventory = Main.Inventories[player.handle].Select(i => new InventoryItemData(i)).ToList();
-            player.triggerEvent("ReceiveInventory", API.shared.toJson(playerInventory));
+            player.triggerEvent("ReceiveInventory", API.shared.toJson(playerInventory), API.shared.toJson(new { Money = player.getMoney(), Bank = player.getBank() }));
         }
 
         public static void clearInventory(this Client player)

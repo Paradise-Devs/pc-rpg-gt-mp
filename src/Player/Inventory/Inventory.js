@@ -38,7 +38,7 @@ API.onServerEventTrigger.connect((eventName, args) => {
             API.showCursor(true);
             API.startAudio("res/sounds/inventory/open.wav", false);
             API.setCefBrowserHeadless(invBrowser, false);
-            invBrowser.call("AddItem", args[0]);
+            invBrowser.call("AddItem", args[0], args[1]);
             break;
     }
 });

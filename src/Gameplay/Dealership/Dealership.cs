@@ -53,7 +53,7 @@ namespace pcrpg.src.Gameplay.Dealership
             Name = name;
 
             Money = money;
-            Vehicles = (vehicles == null) ? new List<DealershipVehicle>() : vehicles;
+            Vehicles = vehicles ?? new List<DealershipVehicle>();
 
             // create blip
             Blip = API.shared.createBlip(position);

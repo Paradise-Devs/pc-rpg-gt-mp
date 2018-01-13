@@ -626,11 +626,8 @@
                         showCancelButton: true,
                         confirmButtonColor: "#BCEE68",
                         confirmButtonText: "Criar",
-                        cancelButtonText: "Voltar",
-                        closeOnConfirm: false
-                    },
-                    function ()
-                    {
+                        cancelButtonText: "Voltar"
+                    }).then((result) => {
                         resourceCall("finishCharacterCreation", $("#charname").val());
                     });
                 }

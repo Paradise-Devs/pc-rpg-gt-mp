@@ -81,11 +81,8 @@
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Deletar",
-                        cancelButtonText: "Voltar",
-                        closeOnConfirm: true
-                    },
-                    function ()
-                    {
+                        cancelButtonText: "Voltar"
+                    }).then((result) => {
                         $('selectchar').hide();
                         resourceCall("DeleteCharacter", id);
                     });

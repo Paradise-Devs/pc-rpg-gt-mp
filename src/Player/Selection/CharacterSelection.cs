@@ -32,12 +32,12 @@ namespace pcrpg.src.Player.Selection
                 int characterId = (int)arguments[0];
                 using (var ctx = new ContextFactory().Create())
                 {
-                    var character = ctx.Characters.FirstOrDefault(up => up.Id == characterId);
-                    API.setEntityData(sender, "Character", character);
+                    var character = ctx.Characters.FirstOrDefault(up => up.Id == characterId);                    
 
                     sender.name = character.Name;
                     character.LastLogin = DateTime.Now;
-                    Vehicle.Vehicle.SpawnPlayerPersonalVehicles(sender);
+                    Data.Character.Add(sender, character);
+                    Data.LoadVehicles(character);
 
                     API.setEntityPositionFrozen(sender, false);
                     API.setEntityPosition(sender, new Vector3(character.PositionX, character.PositionY, character.PositionZ));

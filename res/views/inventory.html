@@ -109,9 +109,14 @@
                 resourceCall("onUseItem", index);
             }
 
-            function AddItem(items) {
+            function AddItem(items, cash) {
                 inventory.clean();
                 items = JSON.parse(items);
+
+                cash = JSON.parse(cash);
+                $("#bank").html("$" + cash.Bank);
+                $("#wallet").html("$" + cash.Money);
+
                 for (let i = 0; i < items.length; i++) {
                     inventory.addItem(items[i]);
                 }

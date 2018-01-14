@@ -124,8 +124,7 @@ namespace pcrpg.src.Gameplay.House
                         int idx = Convert.ToInt32(args[0]);
                         if (idx < 0 || idx >= FurnitureList.Count) return;
 
-                        Character character = API.getEntityData(player, "Character");
-                        if (character.Money < FurnitureList[idx].Price)
+                        if (player.getMoney() < FurnitureList[idx].Price)
                         {
                             player.sendNotification("Error", "~r~Você não tem dinheiro suficiente.");
                             return;

@@ -18,13 +18,9 @@ API.onServerEventTrigger.connect(function (event_name, args) {
             }
             job_menu.Clear();
 
-            for (let i = 0; i < data.length; i++) {
-                var temp_item = API.createMenuItem(data[i], "");
+            for (let i = 0; i < data.Services.length; i++) {
+                var temp_item = API.createMenuItem(data.Services[i], "");
                 job_menu.AddItem(temp_item);
-                temp_item.Activated.connect(function (menu, item) {
-                    job_menu.Visible = false;
-                    API.triggerServerEvent("JobService", data[i]);
-                });
             }
 
             var temp_item = API.createMenuItem("Sair do emprego", "Abandona seu emprego.");
@@ -32,6 +28,10 @@ API.onServerEventTrigger.connect(function (event_name, args) {
             temp_item.Activated.connect(function (menu, item) {
                 job_menu.Visible = false;
                 API.triggerServerEvent("JobQuit");
+            });
+
+            job_menu.OnItemSelect.connect(function (menu, item, index) {
+                if (item != temp_item) API.triggerServerEvent("JobService", index);
             });
 
             job_menu.Visible = true;

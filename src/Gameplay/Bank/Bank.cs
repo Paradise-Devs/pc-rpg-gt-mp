@@ -72,7 +72,7 @@ namespace pcrpg.src.Gameplay.Bank
             Blip.sprite = 108;
             Blip.color = 69;
             Blip.name = (Type == 0) ? "Banco" : "Caixa eletrônico";
-            Blip.scale = (Type == 0) ? 1f : 0.1f;
+            Blip.scale = (Type == 0) ? 1f : 0.5f;
         }
 
         public void SetType(int new_type)
@@ -138,7 +138,6 @@ namespace pcrpg.src.Gameplay.Bank
             if (!Directory.Exists(BANK_SAVE_DIR)) Directory.CreateDirectory(BANK_SAVE_DIR);
 
             if (API.hasSetting("saveInterval")) SAVE_INTERVAL = API.getSetting<int>("saveInterval");
-            API.consoleOutput("-> Save Interval: {0}", TimeSpan.FromSeconds(SAVE_INTERVAL).ToString(@"hh\:mm\:ss"));
 
             // load parking lots
             foreach (string file in Directory.EnumerateFiles(BANK_SAVE_DIR, "*.json"))

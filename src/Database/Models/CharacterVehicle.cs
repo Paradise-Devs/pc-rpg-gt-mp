@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using GrandTheftMultiplayer.Server.Elements;
 
 namespace pcrpg.src.Database.Models
 {
@@ -31,5 +33,8 @@ namespace pcrpg.src.Database.Models
         public float RotationZ { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        [NotMapped]
+        public Vehicle Vehicle { get; set; }
     }
 }

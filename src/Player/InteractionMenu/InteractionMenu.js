@@ -2,6 +2,8 @@
 /// <reference path='../../../types-gt-mp/Definitions/index.d.ts' />
 var menu = null;
 API.onKeyDown.connect((sender, e) => {
+    if (API.isChatOpen() || API.isAnyMenuOpen() || !API.getHudVisible())
+        return;
     if (e.KeyCode === Keys.M) {
         if (menu == null)
             createInteractionMenu();

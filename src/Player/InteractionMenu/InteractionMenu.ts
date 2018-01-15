@@ -3,6 +3,8 @@
 var menu = null;
 
 API.onKeyDown.connect((sender: any, e: System.Windows.Forms.KeyEventArgs) => {
+    if (API.isChatOpen() || API.isAnyMenuOpen() || !API.getHudVisible()) return;
+
     if (e.KeyCode === Keys.M) {
         if (menu == null)
             createInteractionMenu();

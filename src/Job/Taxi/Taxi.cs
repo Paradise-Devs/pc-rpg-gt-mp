@@ -2,9 +2,7 @@
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared;
 using pcrpg.src.Player.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace pcrpg.src.Job.Taxi
 {
@@ -12,153 +10,181 @@ namespace pcrpg.src.Job.Taxi
     {
         public bool Enabled { get; set; }
 
-        public int Value { get; set; }
+        public int Fare { get; set; }
+
+        public Taximeter()
+        {
+            Fare = 10;
+            Enabled = false;
+        }
     }
 
     class Taxi : Script
     {
-        Dictionary<Client, Vehicle> PlayerVehicle = new Dictionary<Client, Vehicle>();
+        Dictionary<Client, int> PlayerTaxiFare = new Dictionary<Client, int>();
         Dictionary<Client, Taximeter> PlayerTaximeter = new Dictionary<Client, Taximeter>();
-        Dictionary<Client, int> PlayerTaxiFee = new Dictionary<Client, int>();
 
         public Taxi()
         {
-            API.onPlayerExitVehicle += OnPlayerExitVehicle;
             API.onResourceStart += OnResourceStart;
-            API.onPlayerDisconnected += OnPlayerDisconnected;
+            API.onPlayerEnterVehicle += OnPlayerEnterVehicle;
+            API.onPlayerExitVehicle += OnPlayerExitVehicle;
             API.onClientEventTrigger += OnClientEventTrigger;
-        }
-
-        private void OnPlayerExitVehicle(Client player, NetHandle vehicle, int seat)
-        {
-            if (seat != -1)
-            {
-                foreach (var v in PlayerVehicle)
-                {
-                    if (vehicle != v.Value) continue;
-
-                    if (PlayerTaxiFee.ContainsKey(player))
-                    {
-                        var driver = v.Key;
-                        player.sendNotification("", $"- ${PlayerTaxiFee[player]}");
-                        driver.sendNotification("", $"+ ${PlayerTaxiFee[player]}");
-
-                        player.giveMoney(-PlayerTaxiFee[player]);
-                        driver.giveMoney(PlayerTaxiFee[player]);
-                    }
-                }
-            }
-        }
-
-        private void OnResourceStart()
-        {
-            API.startTimer(15000, false, () =>
-            {
-                foreach (var taximeter in PlayerTaximeter)
-                {
-                    if (!taximeter.Value.Enabled || taximeter.Key.vehicleSeat != -1) continue;
-
-                    var driver = taximeter.Key;
-                    foreach (var player in API.getAllPlayers())
-                    {
-                        if (player == driver || player.vehicle != driver.vehicle) continue;
-                        if (!PlayerTaxiFee.ContainsKey(player)) PlayerTaxiFee.Add(player, 0);
-                        PlayerTaxiFee[player] += taximeter.Value.Value;
-                    }
-                }
-            });
-        }
-
-        private void OnPlayerDisconnected(Client player, string reason)
-        {
-            if (PlayerVehicle.ContainsKey(player))
-            {
-                if (API.doesEntityExist(PlayerVehicle[player]))
-                    API.deleteEntity(PlayerVehicle[player]);
-
-                PlayerVehicle.Remove(player);
-            }
-
-            if (PlayerTaximeter.ContainsKey(player))
-                PlayerTaximeter.Remove(player);
-
-            if (PlayerTaxiFee.ContainsKey(player))
-                PlayerTaxiFee.Remove(player);
         }
 
         private void OnClientEventTrigger(Client sender, string eventName, params object[] arguments)
         {
             switch (eventName)
             {
-                case "JobService":
-                    {
-                        if (!sender.hasData("JobMarker_ID")) return;
-
-                        Job job = Main.Jobs.FirstOrDefault(h => h.ID == sender.getData("JobMarker_ID"));
-                        if (job == null) return;
-                        if (job.Type != JobType.Taxi) return;
-
-                        int index = (int)arguments[0];
-
-                        switch (index)
-                        {
-                            case 0:
-                                if (job.Vehicles.Count < 1)
-                                {
-                                    sender.sendNotification("ERROR", "Estamos sem veículos no momento.");
-                                    return;
-                                }
-
-                                if (PlayerVehicle.ContainsKey(sender))
-                                {
-                                    if (API.doesEntityExist(PlayerVehicle[sender]))
-                                        API.deleteEntity(PlayerVehicle[sender]);
-
-                                    PlayerVehicle.Remove(sender);
-                                }
-
-                                Random random = new Random();
-                                int i = random.Next(job.Vehicles.Count);
-                                var vehicle = API.createVehicle(job.Vehicles[i].Model, job.Vehicles[i].Position, job.Vehicles[i].Rotation, job.Vehicles[i].PrimaryColor, job.Vehicles[i].SecondaryColor);
-                                vehicle.engineStatus = false;
-                                PlayerVehicle.Add(sender, vehicle);
-                                break;
-                            case 1:
-                                if (PlayerVehicle.ContainsKey(sender))
-                                {
-                                    if (API.doesEntityExist(PlayerVehicle[sender]))
-                                        API.deleteEntity(PlayerVehicle[sender]);
-
-                                    PlayerVehicle.Remove(sender);
-                                    return;
-                                }
-                                sender.sendNotification("", "Você não solicitou um veículo.");
-                                break;
-                        }
-                        break;
-                    }
                 case "RequestTaxiMenu":
                     {
-                        if (sender.getJob() != (int)JobType.Taxi || !sender.isInVehicle) return;
-                        if (sender.vehicle != PlayerVehicle[sender]) return;
+                        if (!sender.isInVehicle) return;
+                        else if (sender.vehicle.model != (int)VehicleHash.Taxi) return;
+                        else if (sender.getJob() != (int)JobType.Taxi) return;
+
                         sender.triggerEvent("ShowTaxiMenu");
                         break;
                     }
                 case "ToggleTaximeter":
                     {
                         bool enabled = (bool)arguments[0];
-                        if (!PlayerTaximeter.ContainsKey(sender)) PlayerTaximeter.Add(sender, new Taximeter { Enabled = false, Value = 10 });
                         PlayerTaximeter[sender].Enabled = enabled;
-                        sender.sendChatAction(enabled ? "ligou o taxímetro." : "desligou o taxímetro.");
+                        sender.sendChatAction(enabled ? "ligou o taxímetrô." : "desligou o taxímetrô.");
+
+                        if (enabled)
+                        {
+                            foreach (var passenger in API.getAllPlayers())
+                            {
+                                if (passenger.vehicle != sender.vehicle || sender == passenger) continue;
+                                PlayerTaxiFare.Add(passenger, 0);
+                            }
+                        }
+                        else
+                        {
+                            if (!PlayerTaximeter.ContainsKey(sender)) return;
+                            else if (!PlayerTaximeter[sender].Enabled) return;
+
+                            int total = 0;
+                            var vehicle = sender.vehicle;
+                            foreach (var passenger in API.getAllPlayers())
+                            {
+                                if (!passenger.isInVehicle) continue;
+                                else if (passenger.vehicle != vehicle) continue;
+                                else if (passenger == sender) continue;
+                                else if (!PlayerTaxiFare.ContainsKey(passenger)) continue;
+
+                                var money = PlayerTaxiFare[passenger];
+                                total += money;
+
+                                passenger.giveMoney(-money);
+                                passenger.sendNotification("", $"- ${money}");
+
+                                PlayerTaxiFare.Remove(passenger);
+                            }
+
+                            sender.giveMoney(total);
+                            sender.sendNotification("", $"+ ${total}");
+
+                            PlayerTaximeter.Remove(sender);
+                        }
+                        
                         break;
                     }
                 case "TaximeterValue":
                     {
-                        int.TryParse((string)arguments[0], out int value);
-                        if (!PlayerTaximeter.ContainsKey(sender)) PlayerTaximeter.Add(sender, new Taximeter { Enabled = false, Value = 10 });
-                        PlayerTaximeter[sender].Value = value;
+                        int value = (int)arguments[0];
+                        sender.sendChatAction(value > PlayerTaximeter[sender].Fare ? "aumentou o preço do taxímetrô." : "abaixou o preço do taxímetrô.");
+                        PlayerTaximeter[sender].Fare = value;
                         break;
                     }
+            }
+        }
+
+        private void OnResourceStart()
+        {
+            API.startTimer(15000, true, () =>
+            {
+                foreach (var player in API.getAllPlayers())
+                {
+                    if (!player.isInVehicle) continue;
+                    else if (!PlayerTaxiFare.ContainsKey(player)) continue;
+
+                    var driver = API.getVehicleDriver(player.vehicle);
+                    if (driver == null) continue;
+                    else if (!PlayerTaximeter.ContainsKey(driver)) continue;
+
+                    PlayerTaxiFare[player] += PlayerTaximeter[driver].Fare;
+                }
+            });
+        }
+
+        private void OnPlayerEnterVehicle(Client player, NetHandle vehicle, int seat)
+        {
+            if (API.getEntityModel(vehicle) != (int)VehicleHash.Taxi) return;
+
+            if (seat != -1)
+            {
+                var driver = API.getVehicleDriver(vehicle);
+
+                if (driver == null) return;
+                else if (!PlayerTaximeter.ContainsKey(driver)) return;
+                else if (!PlayerTaximeter[driver].Enabled) return;
+
+                PlayerTaxiFare.Add(player, 0);
+            }
+            else if (player.getJob() == (int)JobType.Taxi)
+            {
+                if (!PlayerTaximeter.ContainsKey(player)) PlayerTaximeter.Add(player, new Taximeter());
+                if (!PlayerTaximeter[player].Enabled) player.sendNotification("", "Seu taxímetro está desligado, aperte ~y~B~w~.");
+            }
+        }
+
+        private void OnPlayerExitVehicle(Client player, NetHandle vehicle, int seat)
+        {
+            if (API.getEntityModel(vehicle) != (int)VehicleHash.Taxi) return;
+
+            if (seat != -1)
+            {
+                var driver = API.getVehicleDriver(vehicle);
+
+                if (driver == null) return;
+                else if (!PlayerTaxiFare.ContainsKey(player)) return;
+
+                var money = PlayerTaxiFare[player];
+                player.sendNotification("", $"- ${money}");
+                driver.sendNotification("", $"+ ${money}");
+
+                player.giveMoney(-money);
+                driver.giveMoney(money);
+
+                PlayerTaxiFare.Remove(player);
+            }
+            else if (player.getJob() == (int)JobType.Taxi)
+            {
+                if (!PlayerTaximeter.ContainsKey(player)) return;
+                else if (!PlayerTaximeter[player].Enabled) return;
+
+                int total = 0;
+                foreach (var passenger in API.getAllPlayers())
+                {
+                    if (!passenger.isInVehicle) continue;
+                    else if (passenger.vehicle != vehicle) continue;
+                    else if (passenger == player) continue;
+                    else if (!PlayerTaxiFare.ContainsKey(passenger)) continue;
+
+                    var money = PlayerTaxiFare[passenger];
+                    total += money;
+
+                    passenger.giveMoney(-money);
+                    passenger.sendNotification("", $"- ${money}");
+
+                    PlayerTaxiFare.Remove(passenger);
+                }
+
+                player.giveMoney(total);
+                player.sendNotification("", $"+ ${total}");
+
+                PlayerTaximeter.Remove(player);
             }
         }
     }

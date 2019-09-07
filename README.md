@@ -15,6 +15,12 @@ Navigate to resources folder and clone this repository, then add it to settings 
 We need an MySql.Data.dll, just search for the .DLL on the internet and put it into your MainFolder of the server where the server.exe is located.
 ```
 
+## Images
+![Authentication](https://cdn.discordapp.com/attachments/602932514356461598/620041546539991100/t9Rli6S.png)
+![NPC](https://cdn.discordapp.com/attachments/602932514356461598/620041546582065152/f774Yyq.jpg)
+![Inventory](https://cdn.discordapp.com/attachments/602932514356461598/620041547433377793/bpUpBSP.jpg)
+![Chat](https://cdn.discordapp.com/attachments/602932514356461598/620041546166829087/1lSMrM8.jpg)
+
 ## Built With
 
 * [MySQL](https://www.mysql.com/) - The database used

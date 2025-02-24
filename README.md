@@ -16,10 +16,12 @@ We need an MySql.Data.dll, just search for the .DLL on the internet and put it i
 ```
 
 ## Images
-![Authentication](https://cdn.discordapp.com/attachments/602932514356461598/620041546539991100/t9Rli6S.png)
-![NPC](https://cdn.discordapp.com/attachments/602932514356461598/620041546582065152/f774Yyq.jpg)
-![Inventory](https://cdn.discordapp.com/attachments/602932514356461598/620041547433377793/bpUpBSP.jpg)
-![Chat](https://cdn.discordapp.com/attachments/602932514356461598/620041546166829087/1lSMrM8.jpg)
+https://www.youtube.com/watch?v=R16eYB2FuMM&t=43s
+
+<img width="459" alt="image" src="https://github.com/user-attachments/assets/f4c884f7-470d-4c83-ae8d-9186be0458ca" />
+
+<img width="688" alt="image" src="https://github.com/user-attachments/assets/3bbc94fb-9303-4b14-b1d1-b748563bd166" />
+
 
 ## Built With
 
